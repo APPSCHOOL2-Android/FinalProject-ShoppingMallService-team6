@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "981401865018",
+    "firebase_url": "https://keepgardening-6-default-rtdb.firebaseio.com",
+    "project_id": "keepgardening-6",
+    "storage_bucket": "keepgardening-6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981401865018:android:1fcadfb16818588ec35e03",
+        "android_client_info": {
+          "package_name": "com.test.keepgardeningproject_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981401865018-7f0gr7cf02m9vedjoog0a3pu0d17sn51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX-xW0TvboalVQnmp-9IJjpPR3VQITg6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981401865018-7f0gr7cf02m9vedjoog0a3pu0d17sn51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
