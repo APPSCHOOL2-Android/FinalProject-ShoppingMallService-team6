@@ -20,7 +20,7 @@ class JoinSellerMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_join_main_seller, container, false)
+        return inflater.inflate(R.layout.fragment_join_seller_main, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
