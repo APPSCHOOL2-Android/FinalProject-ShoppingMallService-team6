@@ -79,6 +79,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        replaceFragment(MY_PAGE_CUSTOMER_REVIEW_FRAGMENT,true,null)
+
     }
 
     // 지정한 Fragment를 보여주는 메서드
