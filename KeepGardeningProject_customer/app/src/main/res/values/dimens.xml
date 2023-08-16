@@ -15,4 +15,8 @@
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
 
+    <!--HomeCustomerMain-->
+    <dimen name="header_margin_vertical_size">40dp</dimen>
+    <dimen name="header_arrow_size">30dp</dimen>
+
 </resources>
