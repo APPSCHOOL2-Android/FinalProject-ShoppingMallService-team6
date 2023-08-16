@@ -1,13 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".UI.LoginCustomerToEmail.LoginCustomerToEmailFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_loginCustomerToEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/black"
+        android:theme="@style/Theme.KeepGardeningProject_customer.Toolbar" />
+
+    <LinearLayout
+        android:padding="@dimen/padding_size_middle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_loginCustomerToEmail_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이메일">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_loginCustomerToEmail_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textEmailAddress"
+                android:fontFamily="@font/nanum_square_round_regular"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_loginCustomerToEmail_password"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_loginCustomerToEmail_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPassword"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_loginCustomerToEmail_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="로그인" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_size_middle"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_loginCustomerToEmail_findPwButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="비밀번호 찾기" />
+
+            <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:id="@+id/textView_loginCustomerToEmail_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_size"
+                android:layout_marginRight="@dimen/margin_size"
+                android:text="|" />
+
+            <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:id="@+id/textView_loginCustomerToEmail_joinEmailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이메일로 회원가입하기" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
