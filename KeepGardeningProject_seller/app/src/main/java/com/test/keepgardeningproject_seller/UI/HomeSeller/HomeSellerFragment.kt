@@ -39,10 +39,21 @@ class HomeSellerFragment : Fragment() {
                 setOnItemSelectedListener {
                     when(it.itemId) {
                         R.id.item_bottomMenu_home -> {
+
                         }
                         R.id.item_bottomMenu_registerProduct -> {
+                            val builder = MaterialAlertDialogBuilder(mainActivity)
+                            builder.setMessage("어떤 상품을 등록하시겠습니까?")
+                            builder.setNegativeButton("일반 상품") { dialogInterface: DialogInterface, i: Int ->
+                                mainActivity.replaceFragment(PRODUCT_SELLER_REGISTER_FRAGMENT,true,null)
+                            }
+                            builder.setPositiveButton("경매 상품") { dialogInterface: DialogInterface, i: Int ->
+                                mainActivity.replaceFragment(AUCTION_SELLER_REGISTER_FRAGMENT,true,null)
+                            }
+                            builder.show()
                         }
                         R.id.item_bottomMenu_mypage -> {
+
                         }
                     }
                     true
