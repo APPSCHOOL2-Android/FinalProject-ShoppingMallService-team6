@@ -1,60 +1,63 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerReviewWrite
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewWriteBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MyPageCustomerReviewWrite.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyPageCustomerReviewWrite : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = MyPageCustomerReviewWrite()
     }
+
+    private lateinit var viewModel: MyPageCustomerReviewWriteViewModel
+
+    lateinit var binding:FragmentMyPageCustomerReviewWriteBinding
+
+    lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page_customer_review_write, container, false)
+
+        binding = FragmentMyPageCustomerReviewWriteBinding.inflate(inflater)
+
+        mainActivity = activity as MainActivity
+
+        val view = binding.root
+
+        binding.run{
+
+            materialToolbarRcWrite.run{
+
+                title = "구매내역"
+
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+
+                setNavigationOnClickListener {
+
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT)
+
+                }
+
+            }
+
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyPageCustomerReviewWrite.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyPageCustomerReviewWrite().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(MyPageCustomerReviewWriteViewModel::class.java)
+        // TODO: Use the ViewModel
     }
+
 }

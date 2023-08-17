@@ -41,6 +41,20 @@ class MyPageSellerQnAFragment : Fragment() {
 
         binding.run{
 
+            materialToolbarSellerQuestion.run{
+
+                title = "문의내역"
+
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+
+                setNavigationOnClickListener {
+
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_QNA_FRAGMENT)
+
+                }
+
+            }
+
             recyclerViewSellerQuestion.run{
 
                 adapter = QuestionRecyclerViewAdapter()

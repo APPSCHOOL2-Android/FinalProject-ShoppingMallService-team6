@@ -26,6 +26,7 @@ import com.test.keepgardeningproject_customer.UI.MyPageCustomerQnA.MyPageCustome
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerQnADetail.MyPageCustomerQnADetailFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerReview.MyPageCustomerReviewFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerReviewDetail.MyPageCustomerReviewDetailFragment
+import com.test.keepgardeningproject_customer.UI.MyPageCustomerReviewWrite.MyPageCustomerReviewWrite
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerWish.MyPageCustomerWishFragment
 import com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer.OrderCheckFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerFragment
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_CUSTOMER_QNA_FRAGMENT = "MyPageCustomerQnAFragment"
         val MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT = "MyPageCustomerQnADetailFragment"
         val MY_PAGE_CUSTOMER_REVIEW_FRAGMENT = "MyPageCustomerReviewFragment"
+        val MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT = "MyPageCustomerReviewFragment"
         val MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET = "MyPageCustomerReviewDetailFragment"
         val MY_PAGE_CUSTOMER_WISH_FRAGMENT = "MyPageCustomerWishFragment"
         val ORDER_CHECK_FORM_CUSTOMER_FRAGMENT = "OrderCheckFromCustomerFragment"
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
             MY_PAGE_CUSTOMER_QNA_FRAGMENT -> MyPageCustomerQnAFragment()
             MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT -> MyPageCustomerQnADetailFragment()
             MY_PAGE_CUSTOMER_REVIEW_FRAGMENT -> MyPageCustomerReviewFragment()
+            MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT ->MyPageCustomerReviewWrite()
             MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET-> MyPageCustomerReviewDetailFragment()
             MY_PAGE_CUSTOMER_WISH_FRAGMENT -> MyPageCustomerWishFragment()
             ORDER_CHECK_FORM_CUSTOMER_FRAGMENT -> OrderCheckFormCustomerFragment()

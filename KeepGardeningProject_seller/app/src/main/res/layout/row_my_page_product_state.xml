@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:text = "상품준비"
         android:id = "@+id/button_seller_product_state_convert"
         android:layout_width="wrap_content"

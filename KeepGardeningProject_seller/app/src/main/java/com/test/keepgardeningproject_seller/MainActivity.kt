@@ -91,8 +91,6 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        //commit test
-
     }
 
     // 지정한 Fragment를 보여주는 메서드

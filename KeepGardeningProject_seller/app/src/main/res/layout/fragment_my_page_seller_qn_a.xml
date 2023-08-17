@@ -6,6 +6,11 @@
     android:orientation="vertical"
     tools:context=".UI.MyPageSellerQnA.MyPageSellerQnAFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/materialToolbar_seller_question"/>
+
 
     <ScrollView
         android:layout_width="match_parent"

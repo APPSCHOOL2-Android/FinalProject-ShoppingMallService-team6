@@ -44,6 +44,19 @@ class MyPageSellerProductStateFragment : Fragment() {
 
         binding.run{
 
+            materialToolbarSellerProductStateBar.run{
+
+                title = "판매/배송"
+
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT)
+
+                }
+
+            }
+
          recyclerViewSellerProductState.run{
 
              adapter = ProductStateRecyclerViewAdapter()

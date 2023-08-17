@@ -23,7 +23,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
     private lateinit var viewModel: MyPageCustomerReviewViewModel
 
-    lateinit var binding:FragmentMyPageCustomerReviewBinding
+    lateinit var binding: FragmentMyPageCustomerReviewBinding
 
     lateinit var mainActivity: MainActivity
 
@@ -38,9 +38,23 @@ class MyPageCustomerReviewFragment : Fragment() {
 
         val view = binding.root
 
-        binding.run{
+        binding.run {
 
-            MyPageReviewRecyclerView.run{
+            materialToolbarRc.run {
+
+                title = "리뷰 내역"
+
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+
+                setNavigationOnClickListener {
+
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_FRAGMENT)
+
+                }
+
+            }
+
+            MyPageReviewRecyclerView.run {
 
                 adapter = ReviewRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
@@ -95,7 +109,11 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
 
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,true,null)
+                mainActivity.replaceFragment(
+                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,
+                    true,
+                    null
+                )
 
             }
 
