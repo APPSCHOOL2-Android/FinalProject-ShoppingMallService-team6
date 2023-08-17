@@ -1,7 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.LoginSellerMain.LoginSellerMainFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_size_big"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_logo_fill_24px"
+            app:tint="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/textView_loginSellerMain_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_extra_bold"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_40" />
+        <TextView
+            android:id="@+id/textView_loginSellerMain_titleSeller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_extra_bold"
+            android:gravity="center"
+            android:text="@string/seller_name"
+            android:textColor="@color/colorAccent3"
+            android:textSize="@dimen/text_size_40" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <Button
+                android:layout_marginTop="@dimen/margin_size"
+                android:id="@+id/button_loginSellerMain_kakaoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/kakaoColor"
+                android:drawableLeft="@drawable/drawable_kakao_resize"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="카카오로 시작하기"
+                android:textColor="@color/black" />
+
+            <Button
+
+                android:id="@+id/button_loginSellerMain_naverLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/naverColor"
+                android:drawableLeft="@drawable/drawable_naver_resize"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="네이버로 시작하기"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/button_loginSellerMain_googleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/googleColor"
+                android:drawableLeft="@drawable/drawable_google_resize"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="구글로 시작하기"
+                android:textColor="@color/black"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0.2dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <Button
+                android:id="@+id/button_loginSellerMain_emailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/googleColor"
+                android:drawableLeft="@drawable/ic_email_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="이메일로 시작하기"
+                android:textColor="@color/black"
+                app:strokeColor="@color/black"
+                app:strokeWidth="0.2dp" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

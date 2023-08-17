@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".UI.LoginSellerFindPw.LoginSellerFindPwFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
 
-</FrameLayout>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_loginSellerFindPw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/black"
+        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+
+    <LinearLayout
+        android:padding="@dimen/padding_size_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_loginSellerFindPw_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="이메일">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_loginSellerFindPw_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textEmailAddress"
+                android:fontFamily="@font/nanum_square_round_regular"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/button_loginSellerFindPw_certification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="이메일 인증하기" />
+
+    </LinearLayout>
+
+</LinearLayout>
