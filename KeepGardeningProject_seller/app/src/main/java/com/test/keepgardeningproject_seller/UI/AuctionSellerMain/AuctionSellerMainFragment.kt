@@ -63,6 +63,9 @@ class AuctionSellerMainFragment : Fragment() {
                 tabLayoutMediator.attach()
 
 
+            buttonAuctionSellerMainEdit.setOnClickListener {
+                mainActivity.replaceFragment(AUCTION_SELLER_EDIT_FRAGMENT, true, null)
+            }
         }
         return fragmentAuctionSellerMainBinding.root
     }
