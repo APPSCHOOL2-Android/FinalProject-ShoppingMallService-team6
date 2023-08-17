@@ -61,6 +61,17 @@ class ProductSellerMainFragment : Fragment() {
             }
             tabLayoutMediator.attach()
 
+            buttonProductSellerMainEdit.setOnClickListener {
+                mainActivity.replaceFragment(PRODUCT_SELLER_EDIT_FRAGMENT, true, null)
+            }
+
+            buttonProductSellerMainDelete.setOnClickListener {
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setMessage("해당 상품을 삭제하시겠습니까?")
+                builder.setNegativeButton("취소",null)
+                builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int -> }
+                builder.show()
+            }
 
         }
 
