@@ -150,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_round_bold"
                     android:text="경매 등록하기"
+                    android:textSize="@dimen/text_size_18"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
