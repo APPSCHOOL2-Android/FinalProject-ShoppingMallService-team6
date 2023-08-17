@@ -55,15 +55,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:id="@+id/textView_joinCustomerMain_emailWrongText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이메일양식이 아닙니다"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:textColor="@color/Red"
-            android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_joinCustomerMain_password"

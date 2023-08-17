@@ -28,6 +28,7 @@
             android:id="@+id/textInputLayout_loginCustomerFindPw_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
             android:hint="이메일">
 
             <com.google.android.material.textfield.TextInputEditText

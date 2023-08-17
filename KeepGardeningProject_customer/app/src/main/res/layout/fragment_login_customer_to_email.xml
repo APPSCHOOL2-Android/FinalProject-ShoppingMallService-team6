@@ -27,6 +27,8 @@
             android:id="@+id/textInputLayout_loginCustomerToEmail_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:transitionGroup="true"
             android:hint="이메일">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -37,11 +39,14 @@
                 android:fontFamily="@font/nanum_square_round_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_loginCustomerToEmail_password"
             android:layout_marginTop="@dimen/margin_size_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:endIconMode="password_toggle"
+            android:transitionGroup="true"
             android:hint="비밀번호">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -52,6 +57,17 @@
                 android:fontFamily="@font/nanum_square_round_regular"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView_loginCustomerToEmail_checkLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+
+            android:text="이메일 또는 비밀번호가 틀렸습니다."
+            android:textColor="@color/Red"
+            android:visibility="gone"/>
+
 
         <Button
             android:id="@+id/button_loginCustomerToEmail_login"
