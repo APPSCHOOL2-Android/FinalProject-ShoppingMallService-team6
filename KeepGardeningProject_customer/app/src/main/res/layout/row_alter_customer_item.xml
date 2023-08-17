@@ -6,21 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
-        app:contentPadding="@dimen/padding_size_small">
+        app:contentPadding="@dimen/padding_size_small"
+        app:strokeColor="@color/gray"
+        app:strokeWidth="0.2dp">
 
         <TextView
             android:id="@+id/textView_rowAlterCustomerItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_size_middle"
-            android:textColor="@color/black"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="어떤 알림~!!!" />
-    </androidx.cardview.widget.CardView>
+            android:padding="@dimen/padding_size_middle"
+            android:text="어떤 알림~!!!"
+            android:textColor="@color/black" />
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

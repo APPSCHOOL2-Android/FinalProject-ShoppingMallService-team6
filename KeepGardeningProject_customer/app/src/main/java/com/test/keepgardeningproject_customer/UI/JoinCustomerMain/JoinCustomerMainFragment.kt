@@ -25,7 +25,7 @@ class JoinCustomerMainFragment : Fragment() {
             toolbarJoinCustomerMain.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
-                    mainActivity.removeFragment(MainActivity.JOIN_CUSOMTER_MAIN_FRAGMENT)
+                    mainActivity.removeFragment(MainActivity.JOIN_CUSTOMER_MAIN_FRAGMENT)
                 }
                 setTitle("회원가입 하기")
             }

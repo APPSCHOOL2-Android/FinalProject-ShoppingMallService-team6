@@ -1,13 +1,10 @@
 package com.test.keepgardeningproject_customer.UI.LoginCustomerToEmail
 
-import android.content.res.ColorStateList
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentLoginCustomerToEmailBinding
@@ -59,7 +56,7 @@ class LoginCustomerToEmailFragment : Fragment() {
                 }
             }
             textViewLoginCustomerToEmailFindPwButton.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOER_FIND_PW_FRAGMENT, true, null)
+                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_FIND_PW_FRAGMENT, true, null)
                 // 넘어갔다가 돌아올시 editText null처리하기
                 textInputLayoutLoginCustomerToEmailEmail.editText?.text = null
                 textInputLayoutLoginCustomerToEmailPassword.editText?.text = null
@@ -67,7 +64,7 @@ class LoginCustomerToEmailFragment : Fragment() {
                 textInputLayoutLoginCustomerToEmailEmail.isErrorEnabled = false
             }
             textViewLoginCustomerToEmailJoinEmailButton.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.JOIN_CUSOMTER_MAIN_FRAGMENT, true, null)
+                mainActivity.replaceFragment(MainActivity.JOIN_CUSTOMER_MAIN_FRAGMENT, true, null)
                 // 넘어갔다가 돌아올시 editText null처리하기
                 textInputLayoutLoginCustomerToEmailEmail.editText?.text = null
                 textInputLayoutLoginCustomerToEmailPassword.editText?.text = null

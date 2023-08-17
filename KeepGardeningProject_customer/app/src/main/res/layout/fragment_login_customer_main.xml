@@ -34,7 +34,7 @@
             android:src="@drawable/ic_logo_fill_24px"
             app:tint="@color/colorPrimary" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView_loginCustomerMain_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_marginTop="@dimen/margin_size"
                 android:id="@+id/button_loginCustomerMain_kakaoLogin"
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:text="카카오로 시작하기"
                 android:textColor="@color/black" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
 
                 android:id="@+id/button_loginCustomerMain_naverLogin"
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:text="네이버로 시작하기"
                 android:textColor="@color/white" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_loginCustomerMain_googleLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_loginCustomerMain_emailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

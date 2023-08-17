@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_customer.UI.LoginCustomerFindPw
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,7 +24,7 @@ class LoginCustomerFindPwFragment : Fragment() {
             toolbarLoginCustomerFindPw.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener{
-                    mainActivity.removeFragment(MainActivity.LOGIN_CUSTOER_FIND_PW_FRAGMENT)
+                    mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_FIND_PW_FRAGMENT)
                 }
                 setTitle("비밀번호 찾기")
             }

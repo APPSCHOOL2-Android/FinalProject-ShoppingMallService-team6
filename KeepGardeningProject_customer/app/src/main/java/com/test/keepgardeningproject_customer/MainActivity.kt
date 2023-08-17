@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
         val CART_CUSTOMER_FRAGMENT = "CartCustomerFragment"
         val HOME_CUSTOMER_MAIN_FRAMGNET ="HomeCustomerMainFragment"
         val HOME_CUSTOMER_SEARCH_FRAMGNET = "HomeCustomerSearchFragment"
-        val JOIN_CUSOMTER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
+        val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
         val LOGIN_CUSTOMER_MAIN_FRAGMENT = "LoginCustomerMainFragment"
-        val LOGIN_CUSTOER_FIND_PW_FRAGMENT = "LoginCustomerFindPwFragment"
+        val LOGIN_CUSTOMER_FIND_PW_FRAGMENT = "LoginCustomerFindPwFragment"
         val LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT ="LoginCustomerToEmailFragment"
         val MY_PAGE_CUSTOMER_AUCTION_FRAGMENT = "MyPageCustomerAuctionFragment"
         val MY_PAGE_CUSTOMER_MODIFY_FRAGMENT = "MyPageCustomerModifyFragment"
@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+        replaceFragment(ALERT_CUSTOMER_FRAGMENT,false,null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -115,8 +116,8 @@ class MainActivity : AppCompatActivity() {
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()
             HOME_CUSTOMER_MAIN_FRAMGNET -> HomeCustomerMainFragment()
             HOME_CUSTOMER_SEARCH_FRAMGNET-> HomeCustomerSearchFragment()
-            JOIN_CUSOMTER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
-            LOGIN_CUSTOER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
+            JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
+            LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
             LOGIN_CUSTOMER_MAIN_FRAGMENT -> LoginCustomerMainFragment()
             LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT -> LoginCustomerToEmailFragment()
             MY_PAGE_CUSTOMER_AUCTION_FRAGMENT->MyPageCustomerAuctionFragment()

@@ -45,7 +45,7 @@
                     android:inputType="text|textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:layout_marginLeft="@dimen/margin_size_top"
                 android:id="@+id/button_joinCustomerMain_doubleCheck"
                 android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
                 android:fontFamily="@font/nanum_square_round_regular"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_marginTop="@dimen/margin_size_top"
             android:id="@+id/textView_joinCustomerMain_passwordWrongText"
             android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_marginTop="@dimen/margin_size_top"
             android:id="@+id/button_joinCustomerMain_join"
             android:layout_width="match_parent"

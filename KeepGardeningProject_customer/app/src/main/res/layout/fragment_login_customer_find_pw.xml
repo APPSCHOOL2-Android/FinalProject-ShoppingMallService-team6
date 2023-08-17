@@ -39,7 +39,7 @@
                 android:fontFamily="@font/nanum_square_round_regular"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_marginTop="@dimen/margin_size_top"
             android:id="@+id/button_loginCustomerFindPw_certification"
             android:layout_width="wrap_content"
