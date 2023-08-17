@@ -49,6 +49,10 @@ class HomeSellerAuctionFragment : Fragment() {
                 textViewRowProductName = rowHomeSellerBinding.textViewRowHomeSellerProductName
                 textViewRowStoreName = rowHomeSellerBinding.textViewRowHomeSellerStoreName
                 textViewRowPrice = rowHomeSellerBinding.textViewRowHomeSellerProductPrice
+
+                rowHomeSellerBinding.root.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,null)
+                }
             }
         }
 
