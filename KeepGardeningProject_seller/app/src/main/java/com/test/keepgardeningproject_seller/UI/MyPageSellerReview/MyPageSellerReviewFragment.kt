@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -66,7 +68,10 @@ class MyPageSellerReviewFragment : Fragment() {
             val StoreName: TextView
             val Comment: TextView
 
+            val detailBtn: ImageView
+
             init {
+                detailBtn = rowCustomerReviewBinding.buttonRsDetail
                 ProductName = rowCustomerReviewBinding.textviewRcProductName
                 StoreName = rowCustomerReviewBinding.textviewRsStoreName
                 Comment = rowCustomerReviewBinding.textviewRsProductComment
@@ -92,9 +97,9 @@ class MyPageSellerReviewFragment : Fragment() {
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
             holder.ProductName.text = "스파이더맨"
 
-            holder.itemView.setOnClickListener {
+            holder.detailBtn.setOnClickListener {
 
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_REVIEW_FRAGMNET,true,null)
+                mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT,true,null)
 
             }
 
