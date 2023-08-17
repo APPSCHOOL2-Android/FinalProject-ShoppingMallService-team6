@@ -58,7 +58,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView_loginSellerToEmail_checkLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,14 +85,14 @@
             android:padding="@dimen/padding_size_middle"
             android:orientation="horizontal">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_loginSellerToEmail_findPwButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="비밀번호 찾기" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_loginSellerToEmail_temp"
                 android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 android:layout_marginRight="@dimen/margin_size"
                 android:text="|" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_loginSellerToEmail_joinEmailButton"
                 android:layout_width="wrap_content"

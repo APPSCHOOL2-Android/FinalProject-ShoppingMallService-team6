@@ -95,13 +95,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        
         installSplashScreen()
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
         replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
+        installSplashScreen()
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
     }
 
     // 지정한 Fragment를 보여주는 메서드
