@@ -1,5 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerProductState
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_seller.MainActivity
@@ -27,7 +30,7 @@ class MyPageSellerProductStateFragment : Fragment() {
 
     private lateinit var viewModel: MyPageSellerProductStateViewModel
 
-    lateinit var binding:FragmentMyPageSellerProductStateBinding
+    lateinit var binding: FragmentMyPageSellerProductStateBinding
 
     lateinit var mainActivity: MainActivity
 
@@ -42,9 +45,9 @@ class MyPageSellerProductStateFragment : Fragment() {
 
         val view = binding.root
 
-        binding.run{
+        binding.run {
 
-            materialToolbarSellerProductStateBar.run{
+            materialToolbarSellerProductStateBar.run {
 
                 title = "판매/배송"
 
@@ -57,13 +60,75 @@ class MyPageSellerProductStateFragment : Fragment() {
 
             }
 
-         recyclerViewSellerProductState.run{
+            recyclerViewSellerProductState.run {
 
-             adapter = ProductStateRecyclerViewAdapter()
+                adapter = ProductStateRecyclerViewAdapter()
 
-             layoutManager = LinearLayoutManager(context)
+                layoutManager = LinearLayoutManager(context)
 
-         }
+            }
+
+            buttonSellerProductPaid.run {
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+                    buttonSellerProductPaid.backgroundTintList =
+                        ColorStateList.valueOf(colorPrimary)
+
+                    buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                }
+
+            }
+            buttonSellerProductReady.run {
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+                    buttonSellerProductReady.backgroundTintList =
+                        ColorStateList.valueOf(colorPrimary)
+
+                    buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                }
+
+            }
+
+            buttonSellerProductDelivery.run {
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+                    buttonSellerProductDelivery.backgroundTintList =
+                        ColorStateList.valueOf(colorPrimary)
+
+                    buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                }
+
+            }
+
+            buttonSellerProductDelivered.run {
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+                    buttonSellerProductDelivered.backgroundTintList =
+                        ColorStateList.valueOf(colorPrimary)
+
+                    buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                }
+
+            }
 
         }
 
@@ -81,15 +146,15 @@ class MyPageSellerProductStateFragment : Fragment() {
         inner class ReviewViewHolder(productStateBinding: RowMyPageProductStateBinding) :
             RecyclerView.ViewHolder(productStateBinding.root) {
 
-            val productState:TextView
-            val orderNumber:TextView
-            val productName:TextView
-            val productPrice :TextView
-            val productCount:TextView
+            val productState: TextView
+            val orderNumber: TextView
+            val productName: TextView
+            val productPrice: TextView
+            val productCount: TextView
 
             val stateConvertBtn: Button
 
-            val orderConfirmBtn : ImageButton
+            val orderConfirmBtn: ImageButton
 
             init {
                 productState = productStateBinding.textViewSellerProductState
@@ -101,7 +166,6 @@ class MyPageSellerProductStateFragment : Fragment() {
                 stateConvertBtn = productStateBinding.buttonSellerProductStateConvert
 
                 orderConfirmBtn = productStateBinding.imagebuttonSellerOrderConfirm
-
 
 
             }
@@ -125,7 +189,6 @@ class MyPageSellerProductStateFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
             holder.productName.text = "아보카도"
-
 
 
         }

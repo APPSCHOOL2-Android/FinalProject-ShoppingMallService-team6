@@ -15,14 +15,16 @@
     <LinearLayout
         android:weightSum="4"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
 
+        <!--결제완료가 선택된 것이 디폴트이므로, 결제완료의 색상은 녹색으로 설정-->
+
         <com.google.android.material.button.MaterialButton
-            android:theme = "@style/Theme.Material3.DynamicColors.DayNight"
+            android:backgroundTint="@color/colorPrimary"
             android:id = "@+id/button_seller_product_paid"
-            android:textSize = "@dimen/text_size_12"
+            android:textSize="@dimen/text_size_10"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -30,8 +32,9 @@
             android:layout_margin="5dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_ready"
-            android:textSize = "@dimen/text_size_12"
+            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -39,8 +42,9 @@
             android:layout_margin="5dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_delivery"
-            android:textSize = "@dimen/text_size_12"
+            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -48,8 +52,9 @@
             android:layout_margin="5dp"/>
 
         <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_delivered"
-            android:textSize = "@dimen/text_size_12"
+            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
