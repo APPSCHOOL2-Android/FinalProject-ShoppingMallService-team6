@@ -9,41 +9,39 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentAlertCustomerBinding
-import com.test.keepgardeningproject_customer.databinding.RowAlterCustomerItemBinding
+import com.test.keepgardeningproject_customer.databinding.RowAlertCustomerItemBinding
 
 class AlertCustomerFragment : Fragment() {
-    lateinit var fragmentAlterCustomerBinding: FragmentAlertCustomerBinding
+    lateinit var fragmentAlertCustomerBinding: FragmentAlertCustomerBinding
     lateinit var mainActivity: MainActivity
-    lateinit var alterCustomerViewModel: AlertCustomerViewModel
+    lateinit var alertCustomerViewModel: AlertCustomerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentAlterCustomerBinding = FragmentAlertCustomerBinding.inflate(inflater)
+        fragmentAlertCustomerBinding = FragmentAlertCustomerBinding.inflate(inflater)
         mainActivity = activity as MainActivity
-        fragmentAlterCustomerBinding.run {
-            toolbarAlterCustomer.run {
+        fragmentAlertCustomerBinding.run {
+            toolbarAlertCustomer.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
                     mainActivity.removeFragment(MainActivity.ALERT_CUSTOMER_FRAGMENT)
                 }
                 setTitle("알림")
             }
-            alterCustomerViewModel = ViewModelProvider(mainActivity)[AlertCustomerViewModel::class.java]
-            alterCustomerViewModel.run{
-                alterDataList.observe(mainActivity){
-                    fragmentAlterCustomerBinding.recyclerviewAlterCustomer.adapter?.notifyDataSetChanged()
+            alertCustomerViewModel = ViewModelProvider(mainActivity)[AlertCustomerViewModel::class.java]
+            alertCustomerViewModel.run{
+                alertDataList.observe(mainActivity){
+                    fragmentAlertCustomerBinding.recyclerviewAlertCustomer.adapter?.notifyDataSetChanged()
 
                 }
             }
-            recyclerviewAlterCustomer.run{
-                adapter = AlterRecyclerViewAdater()
+            recyclerviewAlertCustomer.run{
+                adapter = AlertRecyclerViewAdater()
                 layoutManager = LinearLayoutManager(context)
                 //addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
@@ -52,22 +50,22 @@ class AlertCustomerFragment : Fragment() {
 
 
 
-        return fragmentAlterCustomerBinding.root
+        return fragmentAlertCustomerBinding.root
 
     }
 
-    inner class AlterRecyclerViewAdater: RecyclerView.Adapter<AlterRecyclerViewAdater.AlterViewHolder>(){
-        inner class AlterViewHolder(rowAlterBinding: RowAlterCustomerItemBinding) : RecyclerView.ViewHolder(rowAlterBinding.root){
-            var rowAlterCustomerItem: TextView
+    inner class AlertRecyclerViewAdater: RecyclerView.Adapter<AlertRecyclerViewAdater.AlertViewHolder>(){
+        inner class AlertViewHolder(rowAlertBinding: RowAlertCustomerItemBinding) : RecyclerView.ViewHolder(rowAlertBinding.root){
+            var rowAlertCustomerItem: TextView
             init {
-                rowAlterCustomerItem = rowAlterBinding.textViewRowAlterCustomerItem
+                rowAlertCustomerItem = rowAlertBinding.textViewRowAlertCustomerItem
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlterViewHolder {
-            var rowAlterBinding = RowAlterCustomerItemBinding.inflate(layoutInflater)
-            var allViewHolder = AlterViewHolder(rowAlterBinding)
-            rowAlterBinding.root.layoutParams = ViewGroup.LayoutParams(
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlertViewHolder {
+            var rowAlertBinding = RowAlertCustomerItemBinding.inflate(layoutInflater)
+            var allViewHolder = AlertViewHolder(rowAlertBinding)
+            rowAlertBinding.root.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
@@ -78,7 +76,7 @@ class AlertCustomerFragment : Fragment() {
             return 10
         }
 
-        override fun onBindViewHolder(holder: AlterViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: AlertViewHolder, position: Int) {
 
         }
     }

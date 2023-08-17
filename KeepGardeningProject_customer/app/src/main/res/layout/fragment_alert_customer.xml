@@ -8,7 +8,7 @@
     tools:context=".UI.AlertCustomer.AlertCustomerFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_alterCustomer"
+        android:id="@+id/toolbar_alertCustomer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.KeepGardeningProject_customer.Toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_alterCustomer"
+        android:id="@+id/recyclerview_alertCustomer"
         android:padding="@dimen/padding_size_middle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

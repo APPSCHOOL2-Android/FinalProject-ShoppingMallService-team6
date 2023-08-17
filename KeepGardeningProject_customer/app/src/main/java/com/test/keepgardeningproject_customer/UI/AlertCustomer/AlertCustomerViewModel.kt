@@ -4,5 +4,5 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AlertCustomerViewModel : ViewModel() {
-    var alterDataList = MutableLiveData<MutableList<String>>()
+    var alertDataList = MutableLiveData<MutableList<String>>()
 }
