@@ -3,9 +3,8 @@
     android:height="24dp"
     android:viewportWidth="960"
     android:viewportHeight="960"
-    android:tint="@color/Red">
+    android:tint="?attr/colorControlNormal">
 
-  <!-- tint가 정의 되어 있지 않아 color white-> red로 변경 -->
 
   <path
       android:fillColor="@android:color/white"
