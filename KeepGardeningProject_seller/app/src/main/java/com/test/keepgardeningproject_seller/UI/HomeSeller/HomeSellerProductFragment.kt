@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_seller.MainActivity
+import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerProductBinding
 import com.test.keepgardeningproject_seller.databinding.RowHomeSellerBinding
@@ -51,6 +52,10 @@ class HomeSellerProductFragment : Fragment() {
                 textViewRowProductName = rowHomeSellerBinding.textViewRowHomeSellerProductName
                 textViewRowStoreName = rowHomeSellerBinding.textViewRowHomeSellerStoreName
                 textViewRowPrice = rowHomeSellerBinding.textViewRowHomeSellerProductPrice
+
+                rowHomeSellerBinding.root.setOnClickListener {
+                    mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT,true,null)
+                }
             }
         }
 
