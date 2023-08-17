@@ -8,9 +8,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:textStyle="bold"
         android:layout_margin="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:id = "@+id/textView_seller_product_state"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,28 +30,31 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_seller_product_state" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_marginTop="@dimen/margin_size"
         android:layout_marginStart="@dimen/margin_size"
         android:id = "@+id/textView_seller_order_number"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:layout_height="wrap_content"
         android:text = "주문번호:"
         app:layout_constraintLeft_toRightOf="@id/imageView_seller_product"
         app:layout_constraintTop_toBottomOf="@id/textView_seller_product_state"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_marginTop="@dimen/margin_size"
         android:layout_marginStart="@dimen/margin_size"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:layout_height="wrap_content"
         android:text = "000012345"
         app:layout_constraintLeft_toRightOf="@id/textView_seller_order_number"
         app:layout_constraintTop_toBottomOf="@id/textView_seller_product_state"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id = "@+id/textview_seller_product_name"
         android:layout_marginStart="@dimen/margin_size"
+
         android:textStyle="bold"
         android:fontFamily="@font/nanum_square_round_regular"
         android:layout_width="wrap_content"
@@ -59,8 +63,9 @@
         app:layout_constraintLeft_toRightOf="@id/imageView_seller_product"
         app:layout_constraintTop_toBottomOf="@id/textView_seller_order_number"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_marginStart="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_regular"
         app:layout_constraintLeft_toRightOf="@id/imageView_seller_product"
         app:layout_constraintTop_toBottomOf="@id/textview_seller_product_name"
         android:layout_width="wrap_content"
@@ -68,8 +73,9 @@
         android:text = "금액:"
         android:id = "@+id/seller_price_tag"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_marginStart="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_regular"
         app:layout_constraintLeft_toRightOf="@id/seller_price_tag"
         app:layout_constraintTop_toBottomOf="@id/textview_seller_product_name"
         android:layout_width="wrap_content"
@@ -77,16 +83,18 @@
         android:text = "10,000"
         android:id = "@+id/seller_price"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id = "@+id/seller_count_tag"
         android:layout_marginStart="@dimen/margin_size"
         app:layout_constraintTop_toBottomOf="@id/seller_price_tag"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/imageView_seller_product"
         android:text = "수량:"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
+        android:fontFamily="@font/nanum_square_round_regular"
         android:id = "@+id/seller_count"
         android:layout_marginStart="@dimen/margin_size"
         app:layout_constraintTop_toBottomOf="@id/seller_price_tag"

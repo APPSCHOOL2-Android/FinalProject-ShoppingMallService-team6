@@ -40,18 +40,22 @@
                 android:text = "상점이름"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id = "@+id/textview_qs_storeName"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:textSize = "@dimen/text_size_16"
                 android:text = "상품이름"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:layout_height="wrap_content"
                 android:id = "@+id/textview_qs_productName"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:text = "질문내역"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:layout_height="wrap_content"
                 android:id = "@+id/textview_qs_comment"/>
 

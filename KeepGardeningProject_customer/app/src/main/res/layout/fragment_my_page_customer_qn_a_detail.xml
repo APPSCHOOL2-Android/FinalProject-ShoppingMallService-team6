@@ -23,10 +23,11 @@
         android:layout_height="wrap_content">
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_size"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="2023.08.16"
             android:textAlignment="textEnd" />
 

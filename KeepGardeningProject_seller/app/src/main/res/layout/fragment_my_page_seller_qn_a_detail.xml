@@ -23,7 +23,7 @@
         android:layout_height="wrap_content">
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_size"
@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             android:text="제목"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold" />
 
@@ -78,6 +79,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:gravity="top"
             android:text="내용"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -95,6 +97,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/nanum_square_round_regular"
             android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
