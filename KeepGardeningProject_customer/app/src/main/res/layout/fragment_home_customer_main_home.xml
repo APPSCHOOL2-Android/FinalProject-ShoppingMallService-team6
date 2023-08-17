@@ -1,23 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:transitionGroup="true"
+    android:padding="@dimen/padding_size_middle"
     tools:context=".UI.HomeCustomerMainHome.HomeCustomerMainHomeFragment">
 
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchBar_hcmh"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transitionGroup="false" />
+        android:layout_height="match_parent"
+        android:transitionGroup="true">
 
-    <com.google.android.material.search.SearchView
-        android:id="@+id/searchView_hcmh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transitionGroup="false"
-        app:layout_anchor="@id/searchBar_hcmh">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:transitionGroup="true">
 
-    </com.google.android.material.search.SearchView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top_big"
+                android:orientation="horizontal"
+                android:transitionGroup="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_6"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_commodity" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="농산물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_7"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_seed" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="다육식물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_8"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_bouquet" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="꽃다발"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_9"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_pot" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="원예자재류"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_10"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_money" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="천원샵"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top_big"
+                android:orientation="horizontal"
+                android:transitionGroup="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_1"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_plant" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="다육식물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_2"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_orchid" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="동서양란"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_3"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_monstera" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="관엽식물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_4"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_bonsai" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분재"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_5"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_auction" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="경매"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:transitionGroup="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="인기상품"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/homeCustomerMainHome_title_text_size"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_hcmh_favoriteGoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:transitionGroup="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="추천상품"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/homeCustomerMainHome_title_text_size"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_hcmh_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:nestedScrollingEnabled="true"
+                    android:overScrollMode="never" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

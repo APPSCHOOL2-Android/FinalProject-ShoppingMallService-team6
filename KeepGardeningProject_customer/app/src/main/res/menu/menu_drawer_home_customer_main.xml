@@ -49,14 +49,14 @@
 
     <item
         android:id="@+id/item_hcm_store"
-        android:icon="@drawable/ic_store_24px"
+        android:icon="@drawable/img_store"
         android:title="스토어 목록"
         app:showAsAction="ifRoom" />
 
 
     <item
         android:id="@+id/item_hcm_favorite"
-        android:icon="@drawable/ic_favorite_24px"
+        android:icon="@drawable/img_heart"
         android:title="찜 목록"
         app:showAsAction="ifRoom" />
 

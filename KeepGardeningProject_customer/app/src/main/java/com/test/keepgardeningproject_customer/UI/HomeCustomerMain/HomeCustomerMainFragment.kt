@@ -35,9 +35,6 @@ class HomeCustomerMainFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentHomeCustomerMainBinding.run{
-            // 시작시 홈화면
-            replaceFragment(HOME_CUSTOMER_MAIN_HOME,false,null)
-
             // 툴바
             toolbarHcm.run{
                 // 메뉴버튼
@@ -105,6 +102,11 @@ class HomeCustomerMainFragment : Fragment() {
                 }
 
                 selectedItemId = R.id.item_hcm_home
+            }
+
+            // 플로팅버튼 검색창 이동
+            floatingHcmSearch.setOnClickListener{
+                mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
             }
         }
 

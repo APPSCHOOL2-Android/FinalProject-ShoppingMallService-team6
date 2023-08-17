@@ -17,6 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_hcm_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_size_middle"
+                android:clickable="true"
+                android:src="@drawable/ic_search_24px"
+                app:backgroundTint="@color/colorAccent2"
+                app:circularflow_radiusInDP="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/container_hcm"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_hcm"
                 android:layout_width="match_parent"
@@ -99,7 +111,6 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container_hcm"
-                android:name="com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome.HomeCustomerMainHomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/bottom_hcm"
