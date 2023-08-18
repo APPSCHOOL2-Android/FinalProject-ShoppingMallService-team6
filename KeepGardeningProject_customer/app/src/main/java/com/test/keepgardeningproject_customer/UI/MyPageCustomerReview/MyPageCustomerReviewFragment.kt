@@ -10,9 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerQnaBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
 
 class MyPageCustomerReviewFragment : Fragment() {
@@ -110,7 +108,7 @@ class MyPageCustomerReviewFragment : Fragment() {
             holder.itemView.setOnClickListener {
 
                 mainActivity.replaceFragment(
-                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,
+                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT,
                     true,
                     null
                 )
