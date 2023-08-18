@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerDetailBinding
 
 class StoreInfoCustomerDetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = StoreInfoCustomerDetailFragment()
-    }
+    lateinit var fragmentStoreInfoCustomerDetailBinding: FragmentStoreInfoCustomerDetailBinding
+    lateinit var mainActivity: MainActivity
 
     private lateinit var viewModel: StoreInfoCustomerDetailViewModel
 
@@ -20,13 +20,19 @@ class StoreInfoCustomerDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_store_info_customer_detail, container, false)
-    }
+        fragmentStoreInfoCustomerDetailBinding = FragmentStoreInfoCustomerDetailBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(StoreInfoCustomerDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        fragmentStoreInfoCustomerDetailBinding.run {
+            toolbarStoreInfoDetail.run {
+                title = "스토어 상세"
+                setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.STORE_INFO_CUSTOMER_DETAIL_FRAGMENT)
+                }
+            }
+        }
 
+        return fragmentStoreInfoCustomerDetailBinding.root
+    }
 }
