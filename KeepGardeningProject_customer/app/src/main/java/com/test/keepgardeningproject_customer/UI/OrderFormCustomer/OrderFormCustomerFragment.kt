@@ -10,12 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
 
 class OrderFormCustomerFragment : Fragment() {
     lateinit var fragmentOrderFormCustomerBinding: FragmentOrderFormCustomerBinding
+    lateinit var mainActivity: MainActivity
 
     private lateinit var viewModel: OrderFormCustomerViewModel
 
@@ -24,17 +26,23 @@ class OrderFormCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentOrderFormCustomerBinding = FragmentOrderFormCustomerBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
         fragmentOrderFormCustomerBinding.run {
             toolbarOrderForm.run {
                 title = "주문서"
                 setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT)
+                }
             }
             recyclerViewOrderForm.run {
                 adapter = OrderFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
+
+            button
         }
 
         return fragmentOrderFormCustomerBinding.root
