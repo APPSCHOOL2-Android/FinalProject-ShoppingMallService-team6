@@ -19,6 +19,7 @@ import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMa
 import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerRegister.AuctionSellerRegisterFragment
 import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerFragment
+import com.test.keepgardeningproject_seller.UI.HomeSellerMyPageMain.HomeSellerMyPageMainFragment
 import com.test.keepgardeningproject_seller.UI.JoinSellerMain.JoinSellerMainFragment
 import com.test.keepgardeningproject_seller.UI.LoginSellerMain.LoginSellerMainFragment
 import com.test.keepgardeningproject_seller.UI.LoginSellerFindPw.LoginSellerFindPwFragment
@@ -26,7 +27,6 @@ import com.test.keepgardeningproject_seller.UI.LoginSellerToEmail.LoginSellerToE
 import com.test.keepgardeningproject_seller.UI.MyPageSellerAuction.MyPageSellerAuctionFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerModify.MyPageSellerModifyFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerProductState.MyPageSellerProductStateFragment
-import com.test.keepgardeningproject_seller.UI.MyPageSellerPurchase.MyPageSellerPurchaseFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerQnA.MyPageSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerQnADetail.MyPageSellerQnADetailFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerReview.MyPageSellerReviewFragment
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         val AUCTION_SELLER_QNA_FRAGMENT = "AuctionSellerQnAFragment"
         val AUCTION_SELLER_REGISTER_FRAGMENT = "AuctionSellerRegisterFragment"
         val HOME_SELLER_FRAGMENT = "HomeSellerFragment"
+        val HOME_SELLER_MY_PAGE_MAIN_FRAGMENT = "HomeSellerMyPageMainFragment"
         val JOIN_SELLER_MAIN_FRAGMENT = "JoinSellerMainFragment"
         val LOGIN_SELLER_MAIN_FRAGMENT = "LoginSellerMainFragment"
         val LOGIN_SELLER_FIND_PW_FRAGMENT = "LoginSellerFindPwFragment"
@@ -72,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_SELLER_AUCTION_FRAGMENT = "MyPageSellerAuctionFragment"
         val MY_PAGE_SELLER_MODIFY_FRAGMENT = "MyPageSellerModifyFragment"
         val MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT = "MyPageSellerProductStateFragment"
-        val MY_PAGE_SELLER_PURCHASE_FRAGMENT = "MyPageSellerPurchaseFragment"
         val MY_PAGE_SELLER_QNA_FRAGMENT = "MyPageSellerQnAFragment"
         val MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT = "MyPageSellerQnADetailFragment"
         val MY_PAGE_SELLER_REVIEW_FRAGMENT = "MyPageSellerReviewFragment"
@@ -96,12 +96,11 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
         installSplashScreen()
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        replaceFragment(MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT,false,null)
+        replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
 
     }
 
@@ -129,13 +128,13 @@ class MainActivity : AppCompatActivity() {
             AUCTION_SELLER_QNA_FRAGMENT -> AuctionSellerQnAFragment()
             AUCTION_SELLER_REGISTER_FRAGMENT -> AuctionSellerRegisterFragment()
             HOME_SELLER_FRAGMENT -> HomeSellerFragment()
+            HOME_SELLER_MY_PAGE_MAIN_FRAGMENT -> HomeSellerMyPageMainFragment()
             JOIN_SELLER_MAIN_FRAGMENT -> JoinSellerMainFragment()
             LOGIN_SELLER_MAIN_FRAGMENT -> LoginSellerMainFragment()
             LOGIN_SELLER_FIND_PW_FRAGMENT -> LoginSellerFindPwFragment()
             LOGIN_SELLER_TO_EMAIL_FRAGMENT ->LoginSellerToEmailFragment()
             MY_PAGE_SELLER_AUCTION_FRAGMENT -> MyPageSellerAuctionFragment()
             MY_PAGE_SELLER_MODIFY_FRAGMENT -> MyPageSellerModifyFragment()
-            MY_PAGE_SELLER_PURCHASE_FRAGMENT -> MyPageSellerPurchaseFragment()
             MY_PAGE_SELLER_QNA_FRAGMENT -> MyPageSellerQnAFragment()
             MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT -> MyPageSellerQnADetailFragment()
             MY_PAGE_SELLER_REVIEW_FRAGMENT -> MyPageSellerReviewFragment()

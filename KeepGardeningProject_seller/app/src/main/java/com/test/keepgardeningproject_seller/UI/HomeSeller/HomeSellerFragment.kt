@@ -53,7 +53,7 @@ class HomeSellerFragment : Fragment() {
                             builder.show()
                         }
                         R.id.item_bottomMenu_mypage -> {
-
+                            mainActivity.replaceFragment(MainActivity.HOME_SELLER_MY_PAGE_MAIN_FRAGMENT,false,null)
                         }
                     }
                     true

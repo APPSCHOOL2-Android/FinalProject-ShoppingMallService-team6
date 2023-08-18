@@ -12,6 +12,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome.HomeCustomerMainHomeFragment
+import com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMainBinding
 import com.test.keepgardeningproject_customer.databinding.HeaderHomeCustomerMainBinding
 
@@ -25,6 +26,7 @@ class HomeCustomerMainFragment : Fragment() {
     var oldFragment: Fragment? = null
     companion object{
         val HOME_CUSTOMER_MAIN_HOME = "HomeCustomerMainHomeFragment"
+        val HOME_CUSTOMER_MY_PAGE_MAIN = "HomeCustomerMyPageMainFragment"
     }
 
     override fun onCreateView(
@@ -44,12 +46,12 @@ class HomeCustomerMainFragment : Fragment() {
 
                 // 장바구니
                 imageHcmOrder.setOnClickListener {
-
+                    mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
                 }
 
                 // 알람
                 imageHcmAlarm.setOnClickListener {
-
+                    mainActivity.replaceFragment(MainActivity.ALERT_CUSTOMER_FRAGMENT,true,null)
                 }
             }
 
@@ -62,6 +64,7 @@ class HomeCustomerMainFragment : Fragment() {
 
                 // 드로어 닫기
                 headerHomeCustomerMainBinding.imageHcmHeaderArrowBack.setOnClickListener {
+                    replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
                     drawerHcm.close()
                 }
 
@@ -76,8 +79,12 @@ class HomeCustomerMainFragment : Fragment() {
                         R.id.item_hcm_seed->{}
                         R.id.item_hcm_bouquet->{}
                         R.id.item_hcm_pot->{}
-                        R.id.item_hcm_store->{}
-                        R.id.item_hcm_favorite->{}
+                        R.id.item_hcm_store->{
+                            mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT,true,null)
+                        }
+                        R.id.item_hcm_favorite->{
+                            mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
+                        }
                     }
                     false
                 }
@@ -95,7 +102,7 @@ class HomeCustomerMainFragment : Fragment() {
                         }
 
                         R.id.item_hcm_mypage->{
-                            Toast.makeText(mainActivity, "마이페이지로 이동", Toast.LENGTH_SHORT).show()
+                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
                         }
                     }
                     true
@@ -126,6 +133,7 @@ class HomeCustomerMainFragment : Fragment() {
 
         newFragment = when(name){
             HOME_CUSTOMER_MAIN_HOME-> HomeCustomerMainHomeFragment()
+            HOME_CUSTOMER_MY_PAGE_MAIN -> HomeCustomerMyPageMainFragment()
             else -> Fragment()
         }
 

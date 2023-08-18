@@ -47,14 +47,15 @@ class LoginSellerToEmailFragment : Fragment() {
             }
 
             buttonLoginSellerToEmailLogin.setOnClickListener {
-                val emailCheck = textInputLayoutLoginSellerToEmailEmail.editText?.text.toString()
-                val passwordCheck = textInputLayoutLoginSellerToEmailPassword.editText?.text.toString()
-                val emailError = textInputLayoutLoginSellerToEmailEmail.error
-                if (emailCheck.isNotEmpty() && passwordCheck.isNotEmpty() && emailError == null) {
-                    mainActivity.replaceFragment(MainActivity.HOME_SELLER_FRAGMENT, false, null)
-                }else{
-                    textViewLoginSellerToEmailCheckLogin.visibility = View.VISIBLE
-                }
+//                val emailCheck = textInputLayoutLoginSellerToEmailEmail.editText?.text.toString()
+//                val passwordCheck = textInputLayoutLoginSellerToEmailPassword.editText?.text.toString()
+//                val emailError = textInputLayoutLoginSellerToEmailEmail.error
+//                if (emailCheck.isNotEmpty() && passwordCheck.isNotEmpty() && emailError == null) {
+//                    mainActivity.replaceFragment(MainActivity.HOME_SELLER_FRAGMENT, false, null)
+//                }else{
+//                    textViewLoginSellerToEmailCheckLogin.visibility = View.VISIBLE
+//                }
+                mainActivity.replaceFragment(MainActivity.HOME_SELLER_FRAGMENT, false, null)
             }
             textViewLoginSellerToEmailFindPwButton.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_FIND_PW_FRAGMENT, true, null)

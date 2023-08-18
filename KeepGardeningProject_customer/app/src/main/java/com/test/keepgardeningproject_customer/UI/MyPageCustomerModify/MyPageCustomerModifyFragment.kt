@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerModify
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,26 +13,27 @@ class MyPageCustomerModifyFragment : Fragment() {
 
     lateinit var myPageCustomerModifyBinding: FragmentMyPageCustomerModifyBinding
     lateinit var myPageCustomerModifyViewModel: MyPageCustomerModifyViewModel
-    lateinit var mainactivity :MainActivity
+    lateinit var mainActivity :MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         myPageCustomerModifyBinding = FragmentMyPageCustomerModifyBinding.inflate(layoutInflater)
-        mainactivity = activity as MainActivity
+        mainActivity = activity as MainActivity
 
         myPageCustomerModifyBinding.run {
             toolbarMc.run {
                 setTitle("정보 수정")
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
-                    mainactivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
+
                 }
             }
             buttonMcModify.run {
                 setOnClickListener {
-                    mainactivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
                 }
             }
         }
