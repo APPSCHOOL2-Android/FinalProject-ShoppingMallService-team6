@@ -35,7 +35,7 @@ class MyPageSellerProductStateFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
-    var ProductState:ProductState = ProductState("결제완료","000001","그루트","100",1)
+    var ProductState: ProductState = ProductState("결제완료")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,13 +80,15 @@ class MyPageSellerProductStateFragment : Fragment() {
                         ColorStateList.valueOf(colorPrimary)
 
                     buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivered.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
 
 
-                    recyclerViewSellerProductState.run{
+                    recyclerViewSellerProductState.run {
 
-                        val ProductState:ProductState = ProductState("결제완료","","","",0)
+                        val ProductState: ProductState = ProductState("결제완료")
 
                         adapter = ProductStateRecyclerViewAdapter(ProductState)
 
@@ -107,12 +109,14 @@ class MyPageSellerProductStateFragment : Fragment() {
                         ColorStateList.valueOf(colorPrimary)
 
                     buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivered.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
 
-                    recyclerViewSellerProductState.run{
+                    recyclerViewSellerProductState.run {
 
-                        val ProductState:ProductState = ProductState("상품준비","","","",0)
+                        val ProductState: ProductState = ProductState("상품준비")
 
                         adapter = ProductStateRecyclerViewAdapter(ProductState)
 
@@ -138,7 +142,20 @@ class MyPageSellerProductStateFragment : Fragment() {
 
                     buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
 
-                    buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivered.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
+
+                    recyclerViewSellerProductState.run {
+
+                        val ProductState: ProductState = ProductState("배송중")
+
+                        adapter = ProductStateRecyclerViewAdapter(ProductState)
+
+                        adapter?.notifyDataSetChanged()
+
+                        layoutManager = LinearLayoutManager(context)
+                    }
+
                 }
 
             }
@@ -153,7 +170,19 @@ class MyPageSellerProductStateFragment : Fragment() {
 
                     buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
                     buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-                    buttonSellerProductDelivery.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+                    buttonSellerProductDelivery.backgroundTintList =
+                        ColorStateList.valueOf(Color.GRAY)
+
+                    recyclerViewSellerProductState.run {
+
+                        val ProductState: ProductState = ProductState("배송완료")
+
+                        adapter = ProductStateRecyclerViewAdapter(ProductState)
+
+                        adapter?.notifyDataSetChanged()
+
+                        layoutManager = LinearLayoutManager(context)
+                    }
 
                 }
 
@@ -170,7 +199,7 @@ class MyPageSellerProductStateFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class ProductStateRecyclerViewAdapter(val productState:ProductState) :
+    inner class ProductStateRecyclerViewAdapter(val productState: ProductState) :
         RecyclerView.Adapter<ProductStateRecyclerViewAdapter.ReviewViewHolder>() {
         inner class ReviewViewHolder(productStateBinding: RowMyPageProductStateBinding) :
             RecyclerView.ViewHolder(productStateBinding.root) {
@@ -185,7 +214,7 @@ class MyPageSellerProductStateFragment : Fragment() {
 
             init {
                 productState = productStateBinding.textViewSellerProductState
-                orderNumber = productStateBinding.textViewSellerOrderNumber
+                orderNumber = productStateBinding.textviewSellerProductOrderNumber
                 productName = productStateBinding.textviewSellerProductName
                 productPrice = productStateBinding.sellerPrice
                 productCount = productStateBinding.sellerCount
@@ -214,13 +243,15 @@ class MyPageSellerProductStateFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
             holder.productState.text = productState.state
-            holder.productName.text = productState.productName
-            holder.orderNumber.text = productState.orderNumber
-            holder.productCount.text = productState.count.toString()
-            holder.productPrice.text = productState.price
+            holder.orderNumber.text = "19-70013831"
+            holder.productPrice.text = "10000"
 
             holder.orderConfirmBtn.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_SELLER_FRAGMENT,true,null)
+                mainActivity.replaceFragment(
+                    MainActivity.ORDER_CHECK_FORM_SELLER_FRAGMENT,
+                    true,
+                    null
+                )
             }
 
 
