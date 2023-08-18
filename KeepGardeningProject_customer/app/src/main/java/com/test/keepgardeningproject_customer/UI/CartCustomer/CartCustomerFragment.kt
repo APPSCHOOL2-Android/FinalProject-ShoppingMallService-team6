@@ -34,7 +34,6 @@ class CartCustomerFragment : Fragment() {
             recyclerViewCart.run {
                 adapter = CartRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
         }
 
