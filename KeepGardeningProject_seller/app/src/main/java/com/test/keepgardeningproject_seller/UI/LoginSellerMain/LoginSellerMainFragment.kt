@@ -20,7 +20,7 @@ class LoginSellerMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login_main_seller, container, false)
+        return inflater.inflate(R.layout.fragment_login_seller_main, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

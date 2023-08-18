@@ -4,6 +4,7 @@
     <dimen name="padding_size_big">20dp</dimen>
     <dimen name="padding_size_middle">15dp</dimen>
     <dimen name="padding_size_small">10dp</dimen>
+    <dimen name="padding_size_tiny">5dp</dimen>
     <!--margin-->
     <dimen name="margin_size_top_big">30dp</dimen>
     <dimen name="margin_size_top">10dp</dimen>
@@ -15,6 +16,8 @@
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+
 
     <!--HomeCustomerMain-->
     <dimen name="header_margin_vertical_size">40dp</dimen>
@@ -31,4 +34,5 @@
     <!--HomeCustomerSearch-->
     <dimen name="homeCustomerSearch_recycler_linear_item_text_size">18sp</dimen>
     <dimen name="homeCustomerSearch_recycler_linear_item_image_size">70dp</dimen>
+
 </resources>
