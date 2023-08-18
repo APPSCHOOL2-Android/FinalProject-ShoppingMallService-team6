@@ -42,7 +42,9 @@ class OrderFormCustomerFragment : Fragment() {
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
-            button
+            buttonOrderFormSubmitOrder.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, null)
+            }
         }
 
         return fragmentOrderFormCustomerBinding.root
@@ -75,4 +77,6 @@ class OrderFormCustomerFragment : Fragment() {
 
         }
     }
+
+
 }
