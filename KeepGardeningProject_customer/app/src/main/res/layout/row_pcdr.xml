@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="15dp"
+    android:paddingTop="15dp"
+    android:paddingEnd="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_pcd_choice_button">
+
+        <ImageView
+            android:id="@+id/imageView_pcdr"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_pcdr_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="상품 리뷰 제목이에요!"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingBar_pcdr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:numStars="5" />
+
+            <TextView
+                android:id="@+id/textView_pcdr_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="상품 리뷰 내용이에요!"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
