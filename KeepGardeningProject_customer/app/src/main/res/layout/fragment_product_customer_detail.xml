@@ -35,11 +35,12 @@
             android:layout_marginTop="15dp"
             android:text="카테고리 > 관엽식물" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager_pcd_images"
+        <ImageView
+            android:id="@+id/image_pcd_price"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="15dp" />
+            android:layout_height="180dp"
+            android:src="@drawable/ic_launcher_background"/>
 
         <TextView
             android:id="@+id/textView_pcd_store"
