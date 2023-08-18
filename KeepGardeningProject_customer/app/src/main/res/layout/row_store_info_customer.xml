@@ -5,16 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="2dp"
-        app:contentPadding="20dp">
+        app:cardCornerRadius="10dp"
+        app:contentPadding="@dimen/padding_size_big">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,12 +35,12 @@
                     android:text="상점명"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <ImageButton
-                    android:id="@+id/button_rowStoreInfo_enter"
+                <ImageView
+                    android:id="@+id/imageView_rowStoreInfo_enterStore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
                     app:srcCompat="@drawable/ic_arrow_right_24px" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -83,7 +82,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
