@@ -19,8 +19,10 @@ class LoginSellerMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentLoginSellerMainBinding = FragmentLoginSellerMainBinding.inflate(inflater)
         mainActivity = activity as  MainActivity
+
 
         fragmentLoginSellerMainBinding.run {
             // 카카오 로그인

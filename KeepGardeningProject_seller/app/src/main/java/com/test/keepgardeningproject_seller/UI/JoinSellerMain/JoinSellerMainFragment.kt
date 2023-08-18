@@ -30,6 +30,7 @@ class JoinSellerMainFragment : Fragment() {
                 setTitle("회원가입 하기")
             }
 
+
             // 이메일 포커스 주기
             textInputLayoutJoinSellerMainEmail.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {

@@ -1,12 +1,19 @@
 package com.test.keepgardeningproject_customer
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
+import android.view.animation.AnticipateInterpolator
 import android.view.inputmethod.InputMethodManager
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
@@ -19,6 +26,7 @@ import com.test.keepgardeningproject_customer.UI.HomeCustomerSearch.HomeCustomer
 import com.test.keepgardeningproject_customer.UI.JoinCustomerMain.JoinCustomerMainFragment
 import com.test.keepgardeningproject_customer.UI.LoginCustomerFindPw.LoginCustomerFindPwFragment
 import com.test.keepgardeningproject_customer.UI.LoginCustomerMain.LoginCustomerMainFragment
+import com.test.keepgardeningproject_customer.UI.LoginCustomerToEmail.LoginCustomerToEmailFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerAuction.MyPageCustomerAuctionFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerModify.MyPageCustomerModifyFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment
@@ -53,11 +61,13 @@ class MainActivity : AppCompatActivity() {
         val AUCTION_CUSTOMER_FRAGMENT = "AuctionCustomerFragment"
         val AUCTION_CUSTOMER_DETAIL_FRAMGNET = "AuctionCustomerDetailFragment"
         val CART_CUSTOMER_FRAGMENT = "CartCustomerFragment"
+
         val HOME_CUSTOMER_MAIN_FRAMGNET ="HomeCustomerMainFragment"
         val HOME_CUSTOMER_SEARCH_FRAMGNET = "HomeCustomerSearchFragment"
-        val JOIN_CUSOMTER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
+        val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
+
         val LOGIN_CUSTOMER_MAIN_FRAGMENT = "LoginCustomerMainFragment"
-        val LOGIN_CUSTOER_FIND_PW_FRAGMENT = "LoginCustomerFindPwFragment"
+        val LOGIN_CUSTOMER_FIND_PW_FRAGMENT = "LoginCustomerFindPwFragment"
         val LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT ="LoginCustomerToEmailFragment"
         val MY_PAGE_CUSTOMER_AUCTION_FRAGMENT = "MyPageCustomerAuctionFragment"
         val MY_PAGE_CUSTOMER_MODIFY_FRAGMENT = "MyPageCustomerModifyFragment"
@@ -77,8 +87,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val splashScreen = installSplashScreen()
+        splashScreenCustomizing(splashScreen)
+        SystemClock.sleep(2000)
+
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+        replaceFragment(ALERT_CUSTOMER_FRAGMENT,false,null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -102,10 +118,11 @@ class MainActivity : AppCompatActivity() {
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()
             HOME_CUSTOMER_MAIN_FRAMGNET -> HomeCustomerMainFragment()
             HOME_CUSTOMER_SEARCH_FRAMGNET-> HomeCustomerSearchFragment()
-            JOIN_CUSOMTER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
-            LOGIN_CUSTOER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
+            JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
+            LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
+
             LOGIN_CUSTOMER_MAIN_FRAGMENT -> LoginCustomerMainFragment()
-            LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT -> LoginCustomerFindPwFragment()
+            LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT -> LoginCustomerToEmailFragment()
             MY_PAGE_CUSTOMER_AUCTION_FRAGMENT->MyPageCustomerAuctionFragment()
             MY_PAGE_CUSTOMER_MODIFY_FRAGMENT -> MyPageCustomerModifyFragment()
             MY_PAGE_CUSTOMER_PURCHASE_FRAGMENT -> MyPageCustomerPurchaseFragment()
@@ -166,6 +183,41 @@ class MainActivity : AppCompatActivity() {
         thread {
             SystemClock.sleep(200)
             inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
+
+
+    // SplashScreen 커스터마이징
+    fun splashScreenCustomizing(splashScreen: SplashScreen){
+        // SplashScreen이 사라질 때 동작하는 리스너를 설정한다.
+        splashScreen.setOnExitAnimationListener{
+            // 가로 비율 애니메이션
+            val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 2f, 1f, 0f)
+            // 세로 비율 애니메이션
+            val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 2f, 1f, 0f)
+            // 투명도
+            val alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 1f, 0.5f, 0f)
+
+            // 애니메이션 관리 객체를 생성한다.
+            // 첫 번째 : 애니메이션을 적용할 뷰
+            // 나머지는 적용한 애니메이션 종류
+            val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(it.iconView, scaleX, scaleY, alpha)
+            // 애니메이션 적용을 위한 에이징
+            objectAnimator.interpolator = AnticipateInterpolator()
+            // 애니메이션 동작 시간
+            objectAnimator.duration = 1000
+            // 애니메이션이 끝났을 때 동작할 리스너
+            objectAnimator.addListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator) {
+                    super.onAnimationEnd(animation)
+
+                    // SplashScreen을 제거한다.
+                    it.remove()
+                }
+            })
+
+            // 애니메이션 가동
+            objectAnimator.start()
         }
     }
 }
