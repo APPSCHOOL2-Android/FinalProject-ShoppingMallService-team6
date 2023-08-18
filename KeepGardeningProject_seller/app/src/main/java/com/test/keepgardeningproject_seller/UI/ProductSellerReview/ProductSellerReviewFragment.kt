@@ -37,7 +37,7 @@ class ProductSellerReviewFragment : Fragment() {
 
         fragmentProductSellerReviewBinding.run {
 
-            recyclerVIewProductSellerReview.run {
+            recyclerViewProductSellerReview.run {
                 adapter = RecyclerAdapterClass()
 
                 layoutManager = LinearLayoutManager(mainActivity)
@@ -48,7 +48,7 @@ class ProductSellerReviewFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        var adapter = fragmentProductSellerReviewBinding.recyclerVIewProductSellerReview.adapter as RecyclerAdapterClass
+        var adapter = fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
     }
 

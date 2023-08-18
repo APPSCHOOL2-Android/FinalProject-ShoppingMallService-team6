@@ -50,7 +50,7 @@ class MyPageSellerReviewFragment : Fragment() {
 
                 setNavigationOnClickListener {
 
-                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_REVIEW_FRAGMNET)
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_REVIEW_FRAGMENT)
 
                 }
 
