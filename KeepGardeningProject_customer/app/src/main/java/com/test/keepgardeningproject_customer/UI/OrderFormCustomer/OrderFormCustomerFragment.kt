@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
+import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
 
 class OrderFormCustomerFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = OrderFormCustomerFragment()
-    }
+    lateinit var fragmentOrderFormCustomerBinding: FragmentOrderFormCustomerBinding
 
     private lateinit var viewModel: OrderFormCustomerViewModel
 
@@ -20,13 +23,48 @@ class OrderFormCustomerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_order_form_customer, container, false)
+        fragmentOrderFormCustomerBinding = FragmentOrderFormCustomerBinding.inflate(inflater)
+
+        fragmentOrderFormCustomerBinding.run {
+            toolbarOrderForm.run {
+                title = "주문서"
+                setNavigationIcon(R.drawable.ic_back_24px)
+            }
+            recyclerViewOrderForm.run {
+                adapter = OrderFormRecyclerViewAdpater()
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
+            }
+        }
+
+        return fragmentOrderFormCustomerBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OrderFormCustomerViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    inner class OrderFormRecyclerViewAdpater : RecyclerView.Adapter<OrderFormRecyclerViewAdpater.OrderFormViewHolder>() {
+        inner class OrderFormViewHolder(rowOrderFormCustomerBinding: RowOrderFormCustomerBinding) :
+            RecyclerView.ViewHolder(rowOrderFormCustomerBinding.root) {
 
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderFormViewHolder {
+            val rowOrderFormCustomerBinding = RowOrderFormCustomerBinding.inflate(layoutInflater)
+            val orderFormViewHolder = OrderFormViewHolder(rowOrderFormCustomerBinding)
+
+            rowOrderFormCustomerBinding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            return orderFormViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 2
+        }
+
+        override fun onBindViewHolder(holder: OrderFormViewHolder, position: Int) {
+
+        }
+    }
 }
