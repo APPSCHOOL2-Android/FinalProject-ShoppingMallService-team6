@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
 import com.test.keepgardeningproject_customer.databinding.ActivityMainBinding
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerQnABinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerQnaBinding
@@ -31,6 +33,8 @@ class MyPageCustomerQnAFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
+    lateinit var homeCustomerMainFragment: HomeCustomerMainFragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +43,9 @@ class MyPageCustomerQnAFragment : Fragment() {
         binding = FragmentMyPageCustomerQnABinding.inflate(inflater)
 
         mainActivity = activity as MainActivity
+
+        /*homeCustomerMainFragment = HomeCustomerMainFragment()
+        homeCustomerMainFragment.mainActivity = activity as MainActivity*/
 
         val view = binding.root
 
@@ -87,10 +94,14 @@ class MyPageCustomerQnAFragment : Fragment() {
             val StoreName: TextView
             val Question: TextView
 
+            val moveBtn : ImageButton
+
             init {
                 ProductName = rowCustomerQuestionBinding.textviewQcProductName
                 StoreName = rowCustomerQuestionBinding.textviewQcStoreName
                 Question = rowCustomerQuestionBinding.textviewQcComment
+
+                moveBtn = rowCustomerQuestionBinding.imageButtonQcDetail
             }
 
 
@@ -114,7 +125,8 @@ class MyPageCustomerQnAFragment : Fragment() {
 
         override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
             holder.ProductName.text = "아이언맨"
-            holder.itemView.setOnClickListener {
+
+            holder.moveBtn.setOnClickListener {
 
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT,true,null)
 

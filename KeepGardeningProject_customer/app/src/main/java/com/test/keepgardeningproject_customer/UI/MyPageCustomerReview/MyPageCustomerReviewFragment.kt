@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,10 +82,14 @@ class MyPageCustomerReviewFragment : Fragment() {
             val StoreName: TextView
             val Comment: TextView
 
+            val moveBtn:ImageButton
+
             init {
                 ProductName = rowCustomerReviewBinding.textviewRcProductName
                 StoreName = rowCustomerReviewBinding.textviewRcStoreName
                 Comment = rowCustomerReviewBinding.textviewRcProductComment
+
+                moveBtn = rowCustomerReviewBinding.imageButtonRcDetail
             }
         }
 
@@ -107,7 +112,7 @@ class MyPageCustomerReviewFragment : Fragment() {
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
             holder.ProductName.text = "스파이더맨"
 
-            holder.itemView.setOnClickListener {
+            holder.moveBtn.setOnClickListener {
 
                 mainActivity.replaceFragment(
                     MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,

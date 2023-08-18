@@ -28,7 +28,6 @@ class MyPageCustomerModifyFragment : Fragment() {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
-
                 }
             }
             buttonMcModify.run {

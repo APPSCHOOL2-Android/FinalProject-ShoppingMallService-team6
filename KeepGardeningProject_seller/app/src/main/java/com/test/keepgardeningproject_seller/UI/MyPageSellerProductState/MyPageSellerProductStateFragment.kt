@@ -102,11 +102,14 @@ class MyPageSellerProductStateFragment : Fragment() {
 
                 setOnClickListener {
 
+                    //클릭한 버튼을 제외한 버튼들 전부 회색 처리
+
                     val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
                     buttonSellerProductDelivery.backgroundTintList =
                         ColorStateList.valueOf(colorPrimary)
 
                     buttonSellerProductPaid.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
                     buttonSellerProductReady.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
 
                     buttonSellerProductDelivered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
@@ -152,8 +155,6 @@ class MyPageSellerProductStateFragment : Fragment() {
             val productPrice: TextView
             val productCount: TextView
 
-            val stateConvertBtn: Button
-
             val orderConfirmBtn: ImageButton
 
             init {
@@ -162,8 +163,6 @@ class MyPageSellerProductStateFragment : Fragment() {
                 productName = productStateBinding.textviewSellerProductName
                 productPrice = productStateBinding.sellerPrice
                 productCount = productStateBinding.sellerCount
-
-                stateConvertBtn = productStateBinding.buttonSellerProductStateConvert
 
                 orderConfirmBtn = productStateBinding.imagebuttonSellerOrderConfirm
 
@@ -189,6 +188,12 @@ class MyPageSellerProductStateFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
             holder.productName.text = "아보카도"
+
+            holder.orderConfirmBtn.setOnClickListener {
+
+                mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_SELLER_FRAGMENT,true,null)
+
+            }
 
 
         }

@@ -31,6 +31,8 @@ class OrderCheckFormSellerFragment : Fragment() {
                 setNavigationIcon(R.drawable.ic_back_24px)
             }
 
+
+
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)

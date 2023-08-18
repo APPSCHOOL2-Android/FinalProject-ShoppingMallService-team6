@@ -62,6 +62,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id = "@+id/imageButton_rc_detail"
                 android:layout_marginTop="@dimen/margin_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

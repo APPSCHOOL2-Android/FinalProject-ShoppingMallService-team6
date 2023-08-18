@@ -1,5 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerQnA
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_seller.MainActivity
@@ -54,6 +57,58 @@ class MyPageSellerQnAFragment : Fragment() {
                 }
 
             }
+
+            buttonQsAnswerAll.run{
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+
+                    //클릭한 버튼을 제외한 버튼들 전부 회색 처리
+
+                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(colorPrimary)
+
+                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                    buttonQsNotAnswered.backgroundTintList= ColorStateList.valueOf(Color.GRAY)
+
+                }
+
+            }
+
+            buttonQsAnswered.run{
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.colorAccent3)
+
+                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(colorPrimary)
+
+                    buttonQsNotAnswered.backgroundTintList= ColorStateList.valueOf(Color.GRAY)
+
+                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                }
+
+            }
+
+            buttonQsNotAnswered.run{
+
+                setOnClickListener {
+
+                    val colorPrimary = ContextCompat.getColor(context, R.color.Red)
+
+                    buttonQsNotAnswered.backgroundTintList = ColorStateList.valueOf(colorPrimary)
+
+                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+
+                }
+
+
+            }
+
 
             recyclerViewSellerQuestion.run{
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +12,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id = "@+id/materialToolbar_seller_question"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <com.google.android.material.button.MaterialButton
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/margin_size"
+            android:layout_width="wrap_content"
+            android:id = "@+id/button_qs_answer_all"
+            android:layout_height="wrap_content"
+            android:text = "전체"
+            app:layout_constraintRight_toLeftOf="@id/button_qs_answered"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/gray"
+            android:id = "@+id/button_qs_answered"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/button_qs_not_answered"
+            android:layout_margin="@dimen/margin_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "답변완료"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:backgroundTint="@color/gray"
+            android:id = "@+id/button_qs_not_answered"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/margin_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "미답변"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ScrollView

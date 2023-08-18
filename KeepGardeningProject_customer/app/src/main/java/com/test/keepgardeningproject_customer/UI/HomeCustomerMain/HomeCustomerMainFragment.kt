@@ -102,7 +102,7 @@ class HomeCustomerMainFragment : Fragment() {
                         }
 
                         R.id.item_hcm_mypage->{
-                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
+                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,true,null)
                         }
                     }
                     true
