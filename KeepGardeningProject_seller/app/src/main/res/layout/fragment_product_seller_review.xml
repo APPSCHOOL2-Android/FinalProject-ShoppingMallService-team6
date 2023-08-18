@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_size_middle"
     tools:context=".UI.ProductSellerReview.ProductSellerReviewFragment">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,6 +19,7 @@
             android:layout_height="match_parent"/>
 
     </ScrollView>
+
 
 
 

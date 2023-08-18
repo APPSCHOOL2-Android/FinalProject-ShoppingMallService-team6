@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
-import com.test.keepgardeningproject_seller.UI.AlterSeller.AlterSellerFragment
+import com.test.keepgardeningproject_seller.UI.AlertSeller.AlertSellerFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerDetail.AuctionSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerEdit.AuctionSellerEditFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerInfo.AuctionSellerInfoFragment
@@ -55,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
     companion object{
-        val ALTER_SELLER_FRAGMENT = "AlterSellerFragment"
+        val ALERT_SELLER_FRAGMENT = "AlertSellerFragment"
+
         val AUCTION_SELLER_DETAIL_FRAGMENT = "AuctionSellerDetailFragment"
         val AUCTION_SELLER_EDIT_FRAGMENT = "AuctionSellerEditFragment"
         val AUCTION_SELLER_INFO_FRAGMENT = "AuctionSellerInfoFragment"
@@ -73,21 +75,29 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_SELLER_PURCHASE_FRAGMENT = "MyPageSellerPurchaseFragment"
         val MY_PAGE_SELLER_QNA_FRAGMENT = "MyPageSellerQnAFragment"
         val MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT = "MyPageSellerQnADetailFragment"
-        val MY_PAGE_SELLER_REVIEW_FRAGMNET = "MyPageSellerReviewFragment"
+        val MY_PAGE_SELLER_REVIEW_FRAGMENT = "MyPageSellerReviewFragment"
         val MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT = "MyPageSellerReviewDetailFragment"
         val ORDER_CHECK_FORM_SELLER_FRAGMENT = "OrderCheckFormSellerFragment"
         val ORDER_FORM_SELLER_FRAGMENT = "OrderFormSellerFragment"
-        val PRODUCT_SELLER_DETAIL_FRAMGNET = "ProductSellerDetailFragment"
-        val PRODUCT_SELLER_EDIT_FRAMGNET = "ProductSellerEditFragment"
-        val PRODUCT_SELLER_MAIN_FRAMGNET = "ProductSellerMainFragment"
-        val PRODUCT_SELLER_QNA_FRAMGNET = "ProductSellerQnAFragment"
-        val PRODUCT_SELLER_REGISTER_FRAMGNET = "ProductSellerRegisterFragment"
-        val PRODUCT_SELLER_REVIEW_FRAMGNET = "ProductSellerReviewFragment"
+        val PRODUCT_SELLER_DETAIL_FRAGMENT = "ProductSellerDetailFragment"
+        val PRODUCT_SELLER_EDIT_FRAGMENT = "ProductSellerEditFragment"
+        val PRODUCT_SELLER_MAIN_FRAGMENT = "ProductSellerMainFragment"
+        val PRODUCT_SELLER_QNA_FRAGMENT = "ProductSellerQnAFragment"
+        val PRODUCT_SELLER_REGISTER_FRAGMENT = "ProductSellerRegisterFragment"
+        val PRODUCT_SELLER_REVIEW_FRAGMENT = "ProductSellerReviewFragment"
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        installSplashScreen()
+
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(activityMainBinding.root)
+
+        replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
+        installSplashScreen()
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
@@ -110,34 +120,35 @@ class MainActivity : AppCompatActivity() {
 
         // 새로운 Fragment를 담을 변수
         newFragment = when(name){
-            ALTER_SELLER_FRAGMENT-> AlterSellerFragment()
+            ALERT_SELLER_FRAGMENT-> AlertSellerFragment()
+
             AUCTION_SELLER_DETAIL_FRAGMENT -> AuctionSellerDetailFragment()
-            AUCTION_SELLER_EDIT_FRAGMENT-> AuctionSellerEditFragment()
-            AUCTION_SELLER_INFO_FRAGMENT-> AuctionSellerInfoFragment()
-            AUCTION_SELLER_MAIN_FRAGMENT-> AuctionSellerMainFragment()
-            AUCTION_SELLER_QNA_FRAGMENT-> AuctionSellerQnAFragment()
-            AUCTION_SELLER_REGISTER_FRAGMENT-> AuctionSellerRegisterFragment()
-            HOME_SELLER_FRAGMENT-> HomeSellerFragment()
-            JOIN_SELLER_MAIN_FRAGMENT-> JoinSellerMainFragment()
-            LOGIN_SELLER_MAIN_FRAGMENT-> LoginSellerMainFragment()
-            LOGIN_SELLER_FIND_PW_FRAGMENT-> LoginSellerFindPwFragment()
-            LOGIN_SELLER_TO_EMAIL_FRAGMENT->LoginSellerToEmailFragment()
+            AUCTION_SELLER_EDIT_FRAGMENT -> AuctionSellerEditFragment()
+            AUCTION_SELLER_INFO_FRAGMENT -> AuctionSellerInfoFragment()
+            AUCTION_SELLER_MAIN_FRAGMENT -> AuctionSellerMainFragment()
+            AUCTION_SELLER_QNA_FRAGMENT -> AuctionSellerQnAFragment()
+            AUCTION_SELLER_REGISTER_FRAGMENT -> AuctionSellerRegisterFragment()
+            HOME_SELLER_FRAGMENT -> HomeSellerFragment()
+            JOIN_SELLER_MAIN_FRAGMENT -> JoinSellerMainFragment()
+            LOGIN_SELLER_MAIN_FRAGMENT -> LoginSellerMainFragment()
+            LOGIN_SELLER_FIND_PW_FRAGMENT -> LoginSellerFindPwFragment()
+            LOGIN_SELLER_TO_EMAIL_FRAGMENT ->LoginSellerToEmailFragment()
             MY_PAGE_SELLER_AUCTION_FRAGMENT -> MyPageSellerAuctionFragment()
-            MY_PAGE_SELLER_MODIFY_FRAGMENT->MyPageSellerModifyFragment()
-            MY_PAGE_SELLER_PURCHASE_FRAGMENT-> MyPageSellerPurchaseFragment()
-            MY_PAGE_SELLER_QNA_FRAGMENT-> MyPageSellerQnAFragment()
+            MY_PAGE_SELLER_MODIFY_FRAGMENT -> MyPageSellerModifyFragment()
+            MY_PAGE_SELLER_PURCHASE_FRAGMENT -> MyPageSellerPurchaseFragment()
+            MY_PAGE_SELLER_QNA_FRAGMENT -> MyPageSellerQnAFragment()
             MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT -> MyPageSellerQnADetailFragment()
-            MY_PAGE_SELLER_REVIEW_FRAGMNET-> MyPageSellerReviewFragment()
-            MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT->MyPageSellerReviewDetailFragment()
-            MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT-> MyPageSellerProductStateFragment()
+            MY_PAGE_SELLER_REVIEW_FRAGMENT -> MyPageSellerReviewFragment()
+            MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT ->MyPageSellerReviewDetailFragment()
+            MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT -> MyPageSellerProductStateFragment()
             ORDER_FORM_SELLER_FRAGMENT -> OrderFormSellerFragment()
-            ORDER_CHECK_FORM_SELLER_FRAGMENT->OrderCheckFormSellerFragment()
-            PRODUCT_SELLER_MAIN_FRAMGNET-> ProductSellerMainFragment()
-            PRODUCT_SELLER_DETAIL_FRAMGNET->ProductSellerDetailFragment()
-            PRODUCT_SELLER_EDIT_FRAMGNET->ProductSellerEditFragment()
-            PRODUCT_SELLER_QNA_FRAMGNET->ProductSellerQnAFragment()
-            PRODUCT_SELLER_REGISTER_FRAMGNET->ProductSellerRegisterFragment()
-            PRODUCT_SELLER_REVIEW_FRAMGNET -> ProductSellerReviewFragment()
+            ORDER_CHECK_FORM_SELLER_FRAGMENT -> OrderCheckFormSellerFragment()
+            PRODUCT_SELLER_MAIN_FRAGMENT -> ProductSellerMainFragment()
+            PRODUCT_SELLER_DETAIL_FRAGMENT -> ProductSellerDetailFragment()
+            PRODUCT_SELLER_EDIT_FRAGMENT -> ProductSellerEditFragment()
+            PRODUCT_SELLER_QNA_FRAGMENT -> ProductSellerQnAFragment()
+            PRODUCT_SELLER_REGISTER_FRAGMENT -> ProductSellerRegisterFragment()
+            PRODUCT_SELLER_REVIEW_FRAGMENT -> ProductSellerReviewFragment()
 
 
             else -> Fragment()
@@ -188,4 +199,6 @@ class MainActivity : AppCompatActivity() {
             inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
+
+
 }
