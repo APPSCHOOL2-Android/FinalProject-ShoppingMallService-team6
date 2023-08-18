@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val AUCTION_CUSTOMER_DETAIL_FRAMGNET = "AuctionCustomerDetailFragment"
         val CART_CUSTOMER_FRAGMENT = "CartCustomerFragment"
 
-        val HOME_CUSTOMER_MAIN_FRAMGNET ="HomeCustomerMainFragment"
+        val HOME_CUSTOMER_MAIN_FRAGMENT ="HomeCustomerMainFragment"
         val HOME_CUSTOMER_SEARCH_FRAGMENT = "HomeCustomerSearchFragment"
         val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
 
@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             AUCTION_CUSTOMER_FRAGMENT -> AuctionCustomerFragment()
             AUCTION_CUSTOMER_DETAIL_FRAMGNET -> AuctionCustomerDetailFragment()
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()
-            HOME_CUSTOMER_MAIN_FRAMGNET -> HomeCustomerMainFragment()
+            HOME_CUSTOMER_MAIN_FRAGMENT -> HomeCustomerMainFragment()
             HOME_CUSTOMER_SEARCH_FRAGMENT-> HomeCustomerSearchFragment()
             JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
             LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
