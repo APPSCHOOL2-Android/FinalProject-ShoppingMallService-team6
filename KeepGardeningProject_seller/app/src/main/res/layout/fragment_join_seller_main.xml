@@ -1,13 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".UI.JoinSellerMain.JoinSellerMainFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_joinSellerMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/black"
+        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_size_middle"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_joinSellerMain_email"
+                android:layout_weight="100"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:hint="이메일"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_joinSellerMain_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginLeft="@dimen/margin_size_top"
+                android:id="@+id/button_joinSellerMain_doubleCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="중복확인" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_joinSellerMain_password"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            app:endIconMode="password_toggle"
+            android:hint="비밀번호"
+            android:fontFamily="@font/nanum_square_round_regular">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPassword"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_joinSellerMain_passwordRight"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            app:endIconMode="password_toggle"
+            android:hint="비밀번호 확인"
+            android:fontFamily="@font/nanum_square_round_regular">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_passwordRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPassword"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textView_joinSellerMain_passwordWrongText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="비밀번호가 서로 다릅니다."
+            android:textColor="@color/Red"
+            android:visibility="gone" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_joinSellerMain_nickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            app:endIconMode="clear_text"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:hint="닉네임">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPersonName"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_joinSellerMain_storeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            app:endIconMode="clear_text"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:hint="상점 이름">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_storeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPersonName"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:textSize="@dimen/text_size_16"
+            android:text="상점 배너" />
+        <ImageView
+            android:id="@+id/imageView"
+
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/margin_size_top"
+
+            android:scaleType="fitXY"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_joinSellerMain_storeDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            app:endIconMode="clear_text"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:hint="상점 설명">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_storeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text|textPersonName"
+                android:fontFamily="@font/nanum_square_round_regular"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_joinSellerMain_postNumber"
+                android:layout_weight="100"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:hint="우편번호"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_joinSellerMain_postNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginLeft="@dimen/margin_size_top"
+                android:id="@+id/button_joinSellerMain_findPostNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="찾기" />
+
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/textInputLayout_joinSellerMain_storeAddress"
+            android:layout_weight="100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:hint="상세 주소"
+            android:transitionGroup="true"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_joinSellerMain_storeAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:id="@+id/button_joinSellerMain_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="회원가입 하기" />
+
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
