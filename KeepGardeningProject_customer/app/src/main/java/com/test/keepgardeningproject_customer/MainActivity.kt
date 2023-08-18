@@ -1,18 +1,12 @@
 package com.test.keepgardeningproject_customer
 
 import android.Manifest
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
-import android.view.animation.AnticipateInterpolator
 import android.view.inputmethod.InputMethodManager
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -60,10 +54,10 @@ class MainActivity : AppCompatActivity() {
     companion object{
         val ALERT_CUSTOMER_FRAGMENT = "AlertCustomerFragment"
         val AUCTION_CUSTOMER_FRAGMENT = "AuctionCustomerFragment"
-        val AUCTION_CUSTOMER_DETAIL_FRAMGNET = "AuctionCustomerDetailFragment"
+        val AUCTION_CUSTOMER_DETAIL_FRAGMENT = "AuctionCustomerDetailFragment"
         val CART_CUSTOMER_FRAGMENT = "CartCustomerFragment"
 
-        val HOME_CUSTOMER_MAIN_FRAMGNET ="HomeCustomerMainFragment"
+        val HOME_CUSTOMER_MAIN_FRAGMENT ="HomeCustomerMainFragment"
         val HOME_CUSTOMER_SEARCH_FRAGMENT = "HomeCustomerSearchFragment"
         val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
 
@@ -77,13 +71,15 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT = "MyPageCustomerQnADetailFragment"
         val MY_PAGE_CUSTOMER_REVIEW_FRAGMENT = "MyPageCustomerReviewFragment"
         val MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT = "MyPageCustomerReviewFragment"
-        val MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET = "MyPageCustomerReviewDetailFragment"
+        val MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT = "MyPageCustomerReviewDetailFragment"
         val MY_PAGE_CUSTOMER_WISH_FRAGMENT = "MyPageCustomerWishFragment"
         val ORDER_CHECK_FORM_CUSTOMER_FRAGMENT = "OrderCheckFromCustomerFragment"
         val ORDER_FORM_CUSTOMER_FRAGMENT = "OrderFormCustomerFragment"
         val PRODUCT_CUSTOMER_DETAIL_FRAGMENT ="ProductCustomerDetailFragment"
         val STORE_INFO_CUSTOMER_FRAGMENT = "StoreInfoCustomerFragment"
         val STORE_INFO_CUSTOMER_DETAIL_FRAGMENT = "StoreInfoCustomerDetailFragment"
+
+        var homeCustomerMainChosedFragment = R.id.item_hcm_home
     }
 
 
@@ -116,9 +112,9 @@ class MainActivity : AppCompatActivity() {
         newFragment = when(name){
             ALERT_CUSTOMER_FRAGMENT -> AlertCustomerFragment()
             AUCTION_CUSTOMER_FRAGMENT -> AuctionCustomerFragment()
-            AUCTION_CUSTOMER_DETAIL_FRAMGNET -> AuctionCustomerDetailFragment()
+            AUCTION_CUSTOMER_DETAIL_FRAGMENT -> AuctionCustomerDetailFragment()
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()
-            HOME_CUSTOMER_MAIN_FRAMGNET -> HomeCustomerMainFragment()
+            HOME_CUSTOMER_MAIN_FRAGMENT -> HomeCustomerMainFragment()
             HOME_CUSTOMER_SEARCH_FRAGMENT-> HomeCustomerSearchFragment()
             JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
             LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
@@ -132,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT -> MyPageCustomerQnADetailFragment()
             MY_PAGE_CUSTOMER_REVIEW_FRAGMENT -> MyPageCustomerReviewFragment()
             MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT ->MyPageCustomerReviewWrite()
-            MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET-> MyPageCustomerReviewDetailFragment()
+            MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT-> MyPageCustomerReviewDetailFragment()
             MY_PAGE_CUSTOMER_WISH_FRAGMENT -> MyPageCustomerWishFragment()
             ORDER_CHECK_FORM_CUSTOMER_FRAGMENT -> OrderCheckFormCustomerFragment()
             ORDER_FORM_CUSTOMER_FRAGMENT -> OrderFormCustomerFragment()
