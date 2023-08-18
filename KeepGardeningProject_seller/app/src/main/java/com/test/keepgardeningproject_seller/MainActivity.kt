@@ -100,6 +100,9 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        replaceFragment(MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT,false,null)
+
     }
 
     // 지정한 Fragment를 보여주는 메서드

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/ProductQuestionRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_size"
+    android:background="#406E7783">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:textStyle="bold"
+        android:layout_margin="@dimen/margin_size"
+        android:textColor="@color/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:id = "@+id/textview_qs_replyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "답변완료"
+        android:fontFamily="@font/nanum_square_round_regular"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_margin="@dimen/margin_size"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src = "@drawable/ic_launcher_foreground"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text = "상점이름"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:id = "@+id/textview_qs_storeName"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:textSize = "@dimen/text_size_16"
+                android:text = "상품이름"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:layout_height="wrap_content"
+                android:id = "@+id/textview_qs_productName"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text = "질문내역"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:layout_height="wrap_content"
+                android:id = "@+id/textview_qs_comment"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id = "@+id/button_qs_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right_24px"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+</LinearLayout>
