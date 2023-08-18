@@ -13,4 +13,12 @@
         <item name="colorPrimary">@color/white</item>
     </style>
     <style name="Theme.KeepGardeningProject_customer" parent="Base.Theme.KeepGardeningProject_customer" />
+    <!-- Splash Screen -->
+    <style name="AppTheme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/app_background</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/app</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.KeepGardeningProject_customer</item>
+    </style>
 </resources>
