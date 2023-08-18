@@ -78,6 +78,8 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_CUSTOMER_DETAIL_FRAGMENT ="ProductCustomerDetailFragment"
         val STORE_INFO_CUSTOMER_FRAGMENT = "StoreInfoCustomerFragment"
         val STORE_INFO_CUSTOMER_DETAIL_FRAGMENT = "StoreInfoCustomerDetailFragment"
+
+        var homeCustomerMainChosedFragment = R.id.item_hcm_home
     }
 
 
