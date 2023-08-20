@@ -1,4 +1,4 @@
-package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.tabs
+package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailBinding
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailReviewBinding
 import com.test.keepgardeningproject_customer.databinding.RowPcdrBinding
 

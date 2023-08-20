@@ -18,78 +18,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_pcd">
 
-        <TextView
-            android:id="@+id/textView_pcd_category"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_size_middle"
-            android:layout_marginTop="15dp"
-            android:text="카테고리 > 관엽식물" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image_pcd_price"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/ic_launcher_background"/>
+            <TextView
+                android:id="@+id/textView_pcd_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_size_middle"
+                android:layout_marginTop="15dp"
+                android:text="카테고리 > 관엽식물" />
 
-        <TextView
-            android:id="@+id/textView_pcd_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_size_middle"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="@dimen/padding_size_middle"
-            android:text="채윤스토어"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/image_pcd"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/textView_pcd_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_size_middle"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="@dimen/padding_size_middle"
-            android:text="상품명"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView_pcd_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_size_middle"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/padding_size_middle"
+                android:text="채윤스토어"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:gravity="right"
-            android:text="13,000 원"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView_pcd_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_size_middle"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/padding_size_middle"
+                android:text="상품명"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs_pcd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="right"
+                android:text="13,000 원"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs_pcd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager_pcd_tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager_pcd_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -118,5 +125,16 @@
             android:layout_weight="1"
             android:text="구매하기" />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add_24px"
+        app:backgroundTint="@color/colorAccent1"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

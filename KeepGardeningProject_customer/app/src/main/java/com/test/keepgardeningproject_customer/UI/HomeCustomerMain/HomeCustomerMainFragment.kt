@@ -98,17 +98,19 @@ class HomeCustomerMainFragment : Fragment() {
                             drawerHcm.open()
                         }
                         R.id.item_hcm_home->{
+                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
                             replaceFragment(HOME_CUSTOMER_MAIN_HOME,false,null)
                         }
 
                         R.id.item_hcm_mypage->{
+                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
                             replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
                         }
                     }
                     true
                 }
 
-                selectedItemId = R.id.item_hcm_home
+                selectedItemId = MainActivity.homeCustomerMainChosedFragment
             }
 
             // 플로팅버튼 검색창 이동
@@ -122,6 +124,7 @@ class HomeCustomerMainFragment : Fragment() {
 
     fun replaceFragment(name:String, addToBackStack:Boolean, bundle:Bundle?){
         SystemClock.sleep(200)
+
 
         // Fragment 교체 상태로 설정한다.
         val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()

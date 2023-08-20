@@ -11,14 +11,18 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.tabs.ProductCustomerDetailDetailFragment
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.tabs.ProductCustomerDetailReviewFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailBottomDialog
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailDetailFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailReviewFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailBinding
 
 class ProductCustomerDetailFragment : Fragment() {
 
     lateinit var fragmentProductCustomerDetailBinding: FragmentProductCustomerDetailBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var productCustomerDetailDetailFragment : ProductCustomerDetailDetailFragment
+    lateinit var productCustomerDetailReviewFragment : ProductCustomerDetailReviewFragment
 
     // 탭
     val tabName = arrayOf(
@@ -33,6 +37,8 @@ class ProductCustomerDetailFragment : Fragment() {
     ): View? {
         fragmentProductCustomerDetailBinding = FragmentProductCustomerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+        productCustomerDetailDetailFragment = ProductCustomerDetailDetailFragment()
+        productCustomerDetailReviewFragment = ProductCustomerDetailReviewFragment()
 
         fragmentProductCustomerDetailBinding.run{
             // 툴바
@@ -47,15 +53,28 @@ class ProductCustomerDetailFragment : Fragment() {
             // 상품 이미지 뷰페이저
 
             // 탭레이아웃
-            run{
-                fragmentList.add(ProductCustomerDetailDetailFragment())
-                fragmentList.add(ProductCustomerDetailReviewFragment())
+            fragmentList.add(productCustomerDetailDetailFragment)
+            fragmentList.add(productCustomerDetailReviewFragment)
 
-                viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
-                val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
-                    tab.text = tabName[i]
+            viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
+            val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
+                tab.text = tabName[i]
+            }
+            tabLayoutMediator.attach()
+
+            when(tabsPcd.selectedTabPosition){
+                0->{
+                    viewPagerPcdTab.layoutParams.height = 10000
                 }
-                tabLayoutMediator.attach()
+                1->{
+                    viewPagerPcdTab.layoutParams.height = 1000
+                }
+            }
+
+            // 구매완료 버튼
+            buttonPcdBuy.setOnClickListener{
+                val bs = ProductCustomerDetailBottomDialog()
+                bs.show(mainActivity.supportFragmentManager,"구매")
             }
 
         }
