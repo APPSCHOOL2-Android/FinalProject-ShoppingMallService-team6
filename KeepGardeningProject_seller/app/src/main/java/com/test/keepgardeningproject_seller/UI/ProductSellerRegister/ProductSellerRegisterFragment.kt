@@ -1,5 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerRegister
 
+import android.content.DialogInterface
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -12,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
@@ -99,9 +101,65 @@ class ProductSellerRegisterFragment : Fragment() {
                     sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                 }
             }
+
+            buttonProductSellerRegisterRegister.setOnClickListener {
+                var productName = textInputEditTextProductSellerRegisterProductName.text.toString()
+                var productPrice = textInputEditTextProductSellerRegisterProductPrice.text.toString()
+                var productContent = textInputEditTextProductSellerRegisterProductDetail.text.toString()
+                var productCategory = textInputEditTextProductSellerRegisterCategory.text.toString()
+
+                if(productName.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상품 이름을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextProductSellerRegisterProductName)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(productPrice.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상품 가격을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextProductSellerRegisterProductPrice)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(productContent.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상세 내용을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextProductSellerRegisterProductDetail)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(productCategory.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("카테고리를 선택해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
                 val newBundle = Bundle()
                 newBundle.putString("oldFragment", "ProductSellerRegisterFragment")
                 mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
+            }
         }
 
 
