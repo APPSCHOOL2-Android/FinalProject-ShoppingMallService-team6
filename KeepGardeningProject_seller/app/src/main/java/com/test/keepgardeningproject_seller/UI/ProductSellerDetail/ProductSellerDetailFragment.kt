@@ -52,6 +52,7 @@ class ProductSellerDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        fragmentProductSellerDetailBinding.root.requestLayout()
 
         var adapter = fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()

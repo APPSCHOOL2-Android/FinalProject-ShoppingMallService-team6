@@ -124,7 +124,8 @@ class AuctionSellerMainFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        fragmentAuctionSellerMainBinding.viewPagerAuctionSellerMainFragment.requestLayout()
     }
-
 }

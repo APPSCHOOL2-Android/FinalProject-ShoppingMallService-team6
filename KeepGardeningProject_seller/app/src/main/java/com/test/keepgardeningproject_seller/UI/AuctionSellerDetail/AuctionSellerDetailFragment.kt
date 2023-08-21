@@ -56,6 +56,7 @@ class AuctionSellerDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        fragmentAuctionSellerDetailBinding.root.requestLayout()
 
         var adapter = fragmentAuctionSellerDetailBinding.recyclerViewAuctionSellerDetail.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()

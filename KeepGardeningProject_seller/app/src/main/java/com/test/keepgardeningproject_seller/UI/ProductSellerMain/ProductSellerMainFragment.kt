@@ -131,6 +131,11 @@ class ProductSellerMainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProductSellerMainViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
+    override fun onResume() {
+        super.onResume()
+        fragmentProductSellerMainBinding.viewPagerProductSellerMainFragment.requestLayout()
+    }
 }
 
 class ViewPager2Adapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
