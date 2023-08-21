@@ -61,8 +61,16 @@ class ProductSellerMainFragment : Fragment() {
                 }
 
                 setNavigationOnClickListener {
+                    var oldFragment = arguments?.getString("oldFragment")
+                    if(oldFragment == "ProductSellerRegisterFragment") {
+                        mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
+                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                    } else {
+                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                    }
                 }
             }
+
             tabLayoutProductSellerMain.run {
                 //ViewPager2 Adapter 셋팅
                 var viewPager2Adatper = ViewPager2Adapter(mainActivity)

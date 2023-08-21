@@ -67,6 +67,13 @@ class AuctionSellerMainFragment : Fragment() {
                 }
 
                 setNavigationOnClickListener {
+                    var oldFragment = arguments?.getString("oldFragment")
+                    if(oldFragment == "AuctionSellerRegisterFragment") {
+                        mainActivity.removeFragment(MainActivity.AUCTION_SELLER_REGISTER_FRAGMENT)
+                        mainActivity.removeFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT)
+                    } else {
+                        mainActivity.removeFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT)
+                    }
                 }
             }
 

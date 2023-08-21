@@ -99,6 +99,9 @@ class ProductSellerRegisterFragment : Fragment() {
                     sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                 }
             }
+                val newBundle = Bundle()
+                newBundle.putString("oldFragment", "ProductSellerRegisterFragment")
+                mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
         }
 
 

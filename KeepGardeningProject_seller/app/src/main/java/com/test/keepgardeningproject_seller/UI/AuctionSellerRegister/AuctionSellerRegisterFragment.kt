@@ -64,7 +64,9 @@ class AuctionSellerRegisterFragment : Fragment() {
                 builder.setMessage("경매가 시작되면 \n경매가격, 마감날짜를 \n수정하실 수 없습니다.")
                 builder.setNegativeButton("취소",null)
                 builder.setPositiveButton("등록") { dialogInterface: DialogInterface, i: Int ->
-                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,null)
+                    val newBundle = Bundle()
+                    newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
+                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,newBundle)
                 }
                 builder.show()
             }
