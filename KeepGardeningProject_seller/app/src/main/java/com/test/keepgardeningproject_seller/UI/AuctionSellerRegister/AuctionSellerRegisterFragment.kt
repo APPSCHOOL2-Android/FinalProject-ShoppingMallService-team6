@@ -8,6 +8,7 @@ import android.graphics.PorterDuff
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerRegisterBinding
+import java.util.Calendar
 
 class AuctionSellerRegisterFragment : Fragment() {
 
@@ -58,6 +60,95 @@ class AuctionSellerRegisterFragment : Fragment() {
 
 
             buttonAuctionSellerRegisterRegister.setOnClickListener {
+
+                var auctionProductName = textInputEditTextAuctionSellerRegisterProductName.text.toString()
+                var auctionOpenPrice = textInputEditTextAuctionSellerRegisterOpenPrice.text.toString()
+                var auctionProductContent = textInputEditTextAuctionSellerRegisterProductDetail.text.toString()
+
+                // 입력받은 경매 종료 날짜 정보
+                var year = datePickerAuctionSellerRegisterEndDate.year
+                var month = datePickerAuctionSellerRegisterEndDate.month + 1
+                var day = datePickerAuctionSellerRegisterEndDate.dayOfMonth
+
+                val calendar = Calendar.getInstance()
+                val currentYear = calendar.get(Calendar.YEAR)
+                val currentMonth = calendar.get(Calendar.MONTH) + 1
+                val currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+
+
+                // 입력받은 경매 종료 시간 정보
+                var hour = timePickerAuctionSellerRegisterEndDate.hour
+                var minute = timePickerAuctionSellerRegisterEndDate.minute
+
+                val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+                val currentMinute = calendar.get(Calendar.MINUTE)
+
+                if(auctionProductName.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상품 이름을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAuctionSellerRegisterProductName)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(auctionOpenPrice.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상품 가격을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAuctionSellerRegisterOpenPrice)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(auctionProductContent.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상세 내용을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAuctionSellerRegisterProductDetail)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(year == currentYear && month == currentMonth && day == currentDayOfMonth) {
+                    if(hour < currentHour) {
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setMessage("마감 날짜는 현재 이전 시간으로\n설정할 수 없습니다.")
+                        builder.setPositiveButton("확인",null)
+                        builder.show()
+
+                        return@setOnClickListener
+                    }
+                    else if(hour == currentHour && minute < currentMinute) {
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setMessage("마감 날짜는 현재 이전 시간으로\n설정할 수 없습니다.")
+                        builder.setPositiveButton("확인",null)
+                        builder.show()
+
+                        return@setOnClickListener
+                    }
+                    else if(hour == currentHour && minute == currentMinute) {
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setMessage("마감 날짜는 현재와 동일한 시간으로\n설정할 수 없습니다.")
+                        builder.setPositiveButton("확인",null)
+                        builder.show()
+
+                        return@setOnClickListener
+                    }
+                }
+
+
+
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setIcon(R.drawable.ic_warning_24px)
                 builder.setTitle("경고")
