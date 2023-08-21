@@ -169,7 +169,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_ordererName"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -196,7 +197,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_ordererPhone"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -223,7 +225,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_ordererEmail"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -308,7 +311,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_receiverName"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -328,14 +332,15 @@
                             android:text="연락처" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInput_orderForm_addressPhone"
+                            android:id="@+id/textInput_orderForm_receiverPhone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editText_orderForm_addressPhone"
+                                android:id="@+id/editText_orderForm_receiverPhone"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -351,17 +356,20 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="left|center_vertical"
-                            android:text="우편번호" />
+                            android:text="주소" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInput_orderForm_zipCode"
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent">
+                            android:id="@+id/textInput_orderForm_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editText_orderForm_zipCode"
+                                android:id="@+id/editText_orderForm_address"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="match_parent"
+                                android:enabled="false"
+                                android:inputType="text|textMultiLine" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -369,12 +377,19 @@
                             android:layout_width="10dp"
                             android:layout_height="match_parent" />
 
-                        <Button
-                            android:id="@+id/button_orderForm_findAddress"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="주소 검색" />
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/button_orderForm_findAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:text="검색" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -390,7 +405,7 @@
                             android:layout_gravity="start"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="left|center_vertical"
-                            android:text="상세 주소" />
+                            android:text="상세주소" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInput_orderForm_detailAddress"
@@ -400,7 +415,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_detailAddress"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -427,7 +443,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editText_orderForm_deliveryRequest"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
