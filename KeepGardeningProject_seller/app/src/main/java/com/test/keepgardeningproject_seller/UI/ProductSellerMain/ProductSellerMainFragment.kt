@@ -8,26 +8,21 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_DETAIL_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_EDIT_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_QNA_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REVIEW_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerAuctionFragment
-import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerProductFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
@@ -37,13 +32,6 @@ class ProductSellerMainFragment : Fragment() {
 
     lateinit var fragmentProductSellerMainBinding: FragmentProductSellerMainBinding
     lateinit var mainActivity: MainActivity
-
-    val fragmentList = mutableListOf<Fragment>()
-
-    // 탭에 표시할 이름
-    val tabName = arrayOf(
-        "상세정보","리뷰","문의"
-    )
 
     companion object {
         fun newInstance() = ProductSellerMainFragment()
@@ -58,10 +46,6 @@ class ProductSellerMainFragment : Fragment() {
 
         fragmentProductSellerMainBinding = FragmentProductSellerMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
-
-        fragmentList.add(ProductSellerDetailFragment())
-        fragmentList.add(ProductSellerReviewFragment())
-        fragmentList.add(ProductSellerQnAFragment())
 
         fragmentProductSellerMainBinding.run {
 
