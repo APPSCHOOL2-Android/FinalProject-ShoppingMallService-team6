@@ -1,5 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerEdit
 
+import android.content.DialogInterface
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_EDIT_FRAGMENT
 import com.test.keepgardeningproject_seller.R
@@ -53,7 +55,36 @@ class AuctionSellerEditFragment : Fragment() {
                     mainActivity.removeFragment(MainActivity.AUCTION_SELLER_EDIT_FRAGMENT)
                 }
             }
+
             buttonAuctionSellerEditEdit.setOnClickListener {
+
+                var auctionProductName = textInputEditTextAuctionSellerEditProductName.text.toString()
+                var auctionProductContent = textInputEditTextAuctionSellerEditProductDetail.text.toString()
+
+                if(auctionProductName.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상품 이름을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAuctionSellerEditProductName)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(auctionProductContent.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("상세 내용을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAuctionSellerEditProductDetail)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
                 mainActivity.removeFragment(AUCTION_SELLER_EDIT_FRAGMENT)
             }
         }
