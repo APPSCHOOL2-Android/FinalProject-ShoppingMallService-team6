@@ -103,15 +103,14 @@ class MyPageCustomerQnAFragment : Fragment() {
             val StoreName: TextView
             val Question: TextView
             val state:TextView
-
-            val moveBtn : ImageView
+            val moveBtnQc : ImageButton
 
             init {
                 ProductName = rowCustomerQuestionBinding.textviewQcProductName
                 StoreName = rowCustomerQuestionBinding.textviewQcStoreName
                 Question = rowCustomerQuestionBinding.textviewQcComment
                 state = rowCustomerQuestionBinding.textviewQcReplyState
-                moveBtn = rowCustomerQuestionBinding.imageButtonQcDetail
+                moveBtnQc = rowCustomerQuestionBinding.imageButtonQcDetail
             }
 
 
@@ -138,16 +137,17 @@ class MyPageCustomerQnAFragment : Fragment() {
             holder.StoreName.text = Qna.storeName
             holder.Question.text = Qna.content.titleQnA
 
-            if(Qna.replyState){
+            /*if(Qna.replyState){
 
                 holder.state.text = "답변완료"
 
-            }else{
+            }
+            else{
 
                 holder.state.text = "미답변"
 
-            }
-            //moveBtn이 사라져서 itemView로 임시 설정했습니다.
+            }*/
+
             holder.itemView.setOnClickListener {
 
                 val imageResourceId = R.drawable.img_orchid

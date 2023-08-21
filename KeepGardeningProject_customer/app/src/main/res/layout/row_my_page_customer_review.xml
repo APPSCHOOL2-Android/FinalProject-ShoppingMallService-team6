@@ -57,11 +57,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginStart="200dp"
+            android:layout_marginStart="170dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <ImageButton
+                android:layout_marginEnd="30dp"
                 android:id = "@+id/imageButton_rc_detail"
                 android:layout_marginTop="@dimen/margin_size"
                 android:layout_width="wrap_content"

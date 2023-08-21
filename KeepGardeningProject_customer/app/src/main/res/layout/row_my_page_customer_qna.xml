@@ -63,14 +63,14 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id = "@+id/imageButton_qc_detail"
+                android:id="@+id/imageButton_qc_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_right_24px"/>
+                android:contentDescription="@string/alert"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_add_24px" />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 

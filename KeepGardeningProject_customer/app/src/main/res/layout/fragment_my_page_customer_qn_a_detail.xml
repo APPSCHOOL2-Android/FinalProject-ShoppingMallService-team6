@@ -26,6 +26,7 @@
 
 
         <com.google.android.material.textview.MaterialTextView
+            android:id = "@+id/textview_qc_current_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_size"

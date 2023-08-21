@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReview
+import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReviewDetail
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerQnaBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
+import org.w3c.dom.Text
 
 class MyPageCustomerReviewFragment : Fragment() {
 
@@ -27,6 +31,12 @@ class MyPageCustomerReviewFragment : Fragment() {
     lateinit var binding: FragmentMyPageCustomerReviewBinding
 
     lateinit var mainActivity: MainActivity
+
+    lateinit var newBundle:Bundle
+
+    var reviewDetail:MypageReviewDetail = MypageReviewDetail(1,"오준용","환불할게요")
+
+    var MypageReview = MypageReview("DC","조커",3.0f, reviewDetail)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +67,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             MyPageReviewRecyclerView.run {
 
-                adapter = ReviewRecyclerViewAdapter()
+                adapter = ReviewRecyclerViewAdapter(MypageReview)
                 layoutManager = LinearLayoutManager(context)
 
             }
@@ -73,7 +83,7 @@ class MyPageCustomerReviewFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class ReviewRecyclerViewAdapter :
+    inner class ReviewRecyclerViewAdapter(val review: MypageReview) :
         RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>() {
         inner class ReviewViewHolder(rowCustomerReviewBinding: RowMyPageCustomerReviewBinding) :
             RecyclerView.ViewHolder(rowCustomerReviewBinding.root) {
@@ -82,12 +92,16 @@ class MyPageCustomerReviewFragment : Fragment() {
             val StoreName: TextView
             val Comment: TextView
 
+            val rating :RatingBar
+
             val moveBtn:ImageButton
 
             init {
                 ProductName = rowCustomerReviewBinding.textviewRcProductName
                 StoreName = rowCustomerReviewBinding.textviewRcStoreName
                 Comment = rowCustomerReviewBinding.textviewRcProductComment
+
+                rating = rowCustomerReviewBinding.ProductReviewStars
 
                 moveBtn = rowCustomerReviewBinding.imageButtonRcDetail
             }
@@ -110,14 +124,29 @@ class MyPageCustomerReviewFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-            holder.ProductName.text = "스파이더맨"
+            holder.ProductName.text = MypageReview.productName
+            holder.StoreName.text = MypageReview.storeName
+            holder.Comment.text = MypageReview.content.reviewTitle
+            holder.rating.rating = MypageReview.ratings
 
             holder.moveBtn.setOnClickListener {
+
+                val imageResourceId = R.drawable.img_orchid
+
+                newBundle = Bundle().apply{
+
+                    putFloat("contentRating",MypageReview.ratings)
+                    putInt("contentImage",imageResourceId)
+                    putString("contentTitle",MypageReview.content.reviewTitle)
+                    putString("contentReview",MypageReview.content.reviewContent)
+
+                }
+
 
                 mainActivity.replaceFragment(
                     MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,
                     true,
-                    null
+                    newBundle
                 )
 
             }
