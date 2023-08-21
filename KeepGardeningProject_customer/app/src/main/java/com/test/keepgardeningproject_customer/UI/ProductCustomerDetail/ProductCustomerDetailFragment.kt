@@ -5,16 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailBottomDialog
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailDetailFragment
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailReviewFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailBinding
+import com.test.keepgardeningproject_customer.databinding.RowPcddBinding
 
 class ProductCustomerDetailFragment : Fragment() {
 
@@ -50,45 +47,44 @@ class ProductCustomerDetailFragment : Fragment() {
                 }
             }
 
-            // 상품 이미지 뷰페이저
-
-            // 탭레이아웃
-            fragmentList.add(productCustomerDetailDetailFragment)
-            fragmentList.add(productCustomerDetailReviewFragment)
-
-            viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
-            val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
-                tab.text = tabName[i]
-            }
-            tabLayoutMediator.attach()
-
-            when(tabsPcd.selectedTabPosition){
-                0->{
-                    viewPagerPcdTab.layoutParams.height = 10000
-                }
-                1->{
-                    viewPagerPcdTab.layoutParams.height = 1000
-                }
-            }
-
             // 구매완료 버튼
             buttonPcdBuy.setOnClickListener{
                 val bs = ProductCustomerDetailBottomDialog()
                 bs.show(mainActivity.supportFragmentManager,"구매")
             }
 
+            recyclerViewPcd.run{
+                adapter = RecyclerAdapterPCDD()
+                layoutManager = LinearLayoutManager(mainActivity)
+            }
         }
 
         return fragmentProductCustomerDetailBinding.root
     }
 
-    inner class TabAdapterClass(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
-        override fun getItemCount(): Int {
-            return 2
+
+    inner class RecyclerAdapterPCDD : RecyclerView.Adapter<RecyclerAdapterPCDD.ViewHolderPCDD>(){
+        inner class ViewHolderPCDD(rowPcddBinding: RowPcddBinding) : RecyclerView.ViewHolder(rowPcddBinding.root){
+            val imagePcddRow : ImageView
+
+            init{
+                imagePcddRow = rowPcddBinding.imagePcddRow
+            }
         }
 
-        override fun createFragment(position: Int): Fragment {
-            return fragmentList[position]
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPCDD {
+            val rowPcddBinding = RowPcddBinding.inflate(layoutInflater)
+            val viewHolderPCDD = ViewHolderPCDD(rowPcddBinding)
+
+            return viewHolderPCDD
+        }
+
+        override fun getItemCount(): Int {
+            return 10
+        }
+
+        override fun onBindViewHolder(holder: ViewHolderPCDD, position: Int) {
+            holder.imagePcddRow.setImageResource(R.drawable.ic_launcher_background)
         }
     }
 }
