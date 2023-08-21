@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,8 @@ import kotlin.concurrent.thread
 class OrderFormCustomerFragment : Fragment() {
     lateinit var fragmentOrderFormCustomerBinding: FragmentOrderFormCustomerBinding
     lateinit var mainActivity: MainActivity
+
+    var address = ""
 
     private lateinit var viewModel: OrderFormCustomerViewModel
 
@@ -48,9 +51,12 @@ class OrderFormCustomerFragment : Fragment() {
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
+            buttonOrderFormFindAddress.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT, true, null)
+            }
+
             buttonOrderFormSubmitOrder.setOnClickListener {
                 next()
-
             }
         }
 
@@ -90,8 +96,8 @@ class OrderFormCustomerFragment : Fragment() {
             val ordererPhone = editTextOrderFormOrdererPhone.text.toString()
             val ordererEmail = editTextOrderFormOrdererEmail.text.toString()
             val receiverName = editTextOrderFormReceiverName.text.toString()
-            val addressPhone = editTextOrderFormAddressPhone.text.toString()
-            val zipCode = editTextOrderFormZipCode.text.toString()
+            val receiverPhone = editTextOrderFormReceiverPhone.text.toString()
+            val address = editTextOrderFormAddress.text.toString()
             val detailAddress = editTextOrderFormDetailAddress.text.toString()
             val paymentMethod = radioGroupOrderFormPayment.checkedRadioButtonId
             val paymentRadio1 = radioButtonOrderFormDeposit.isChecked
@@ -144,23 +150,23 @@ class OrderFormCustomerFragment : Fragment() {
                 return
             }
 
-            if (addressPhone.isEmpty()) {
+            if (receiverPhone.isEmpty()) {
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setTitle("배송지 연락처 오류")
                 builder.setMessage("배송지 연락처을 입력해주세요")
                 builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-                    mainActivity.showSoftInput(editTextOrderFormAddressPhone)
+                    mainActivity.showSoftInput(editTextOrderFormReceiverPhone)
                 }
                 builder.show()
                 return
             }
 
-            if (zipCode.isEmpty()) {
+            if (address.isEmpty()) {
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setTitle("우편번호 오류")
                 builder.setMessage("우편번호를 입력해주세요")
                 builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
-                    mainActivity.showSoftInput(editTextOrderFormZipCode)
+                    mainActivity.showSoftInput(editTextOrderFormAddress)
                 }
                 builder.show()
                 return
@@ -200,6 +206,13 @@ class OrderFormCustomerFragment : Fragment() {
             }
 
             mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, null)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fragmentOrderFormCustomerBinding.run {
+            editTextOrderFormAddress.setText(mainActivity.address)
         }
     }
 }
