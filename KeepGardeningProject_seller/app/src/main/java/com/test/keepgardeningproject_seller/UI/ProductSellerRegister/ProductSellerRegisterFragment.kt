@@ -1,5 +1,10 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerRegister
 
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.test.keepgardeningproject_seller.MainActivity
+import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
+import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerRegisterBinding
 
@@ -31,6 +38,23 @@ class ProductSellerRegisterFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentProductSellerRegisterBinding.run {
+
+            toolbarProductSellerRegister.run {
+                title = "상품 등록"
+
+                setNavigationIcon(R.drawable.ic_back_24px)
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+                    navigationIcon?.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
+
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_REGISTER_FRAGMENT)
+                }
+            }
+
             val sheetBehavior = BottomSheetBehavior.from(includeProductSellerRegister.bottomSheetCategory)
 
             sheetBehavior.isHideable = true

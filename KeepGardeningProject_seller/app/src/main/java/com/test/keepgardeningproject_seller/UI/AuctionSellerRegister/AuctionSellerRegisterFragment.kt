@@ -1,6 +1,11 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerRegister
 
 import android.content.DialogInterface
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,6 +37,26 @@ class AuctionSellerRegisterFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentAuctionSellerRegisterBinding.run {
+
+            toolbarAuctionSellerRegister.run {
+                title = "경매 등록"
+
+                setNavigationIcon(R.drawable.ic_back_24px)
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+                    navigationIcon?.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
+
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.AUCTION_SELLER_REGISTER_FRAGMENT)
+                }
+            }
+
+            datePickerAuctionSellerRegisterEndDate.minDate = System.currentTimeMillis()
+
+
             buttonAuctionSellerRegisterRegister.setOnClickListener {
                 val builder = MaterialAlertDialogBuilder(mainActivity)
                 builder.setIcon(R.drawable.ic_warning_24px)

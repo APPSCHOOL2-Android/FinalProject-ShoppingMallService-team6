@@ -1,5 +1,10 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerEdit
 
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,6 +37,22 @@ class AuctionSellerEditFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentAuctionSellerEditBinding.run {
+
+            toolbarAuctionSellerEdit.run {
+                title = "경매 수정"
+
+                setNavigationIcon(R.drawable.ic_back_24px)
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+                    navigationIcon?.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
+
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.AUCTION_SELLER_EDIT_FRAGMENT)
+                }
+            }
             buttonAuctionSellerEditEdit.setOnClickListener {
                 mainActivity.removeFragment(AUCTION_SELLER_EDIT_FRAGMENT)
             }

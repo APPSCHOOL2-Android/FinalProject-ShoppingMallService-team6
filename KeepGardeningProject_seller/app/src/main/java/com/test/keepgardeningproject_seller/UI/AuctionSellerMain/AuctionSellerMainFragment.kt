@@ -1,8 +1,15 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerMain
 
 import androidx.lifecycle.ViewModelProvider
+import android.content.Context
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,20 +54,31 @@ class AuctionSellerMainFragment : Fragment() {
         fragmentAuctionSellerMainBinding = FragmentAuctionSellerMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        fragmentAuctionSellerMainBinding.run {
 
         fragmentList.add(AuctionSellerDetailFragment())
         fragmentList.add(AuctionSellerInfoFragment())
         fragmentList.add(AuctionSellerQnAFragment())
+            toolbarAuctionSellerMain.run {
+                title = "경매 상품 정보"
 
-        fragmentAuctionSellerMainBinding.run {
+                setNavigationIcon(R.drawable.ic_back_24px)
 
             viewPagerAuctionSellerMainFragment.adapter = TabAdapterClass(mainActivity)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    navigationIcon?.colorFilter =
+                        BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
 
                 // 탭 구성
                 val tabLayoutMediator = TabLayoutMediator(tabAuctionSellerMain, viewPagerAuctionSellerMainFragment){ tab: TabLayout.Tab, i: Int ->
                     tab.text = tabName[i]
+                setNavigationOnClickListener {
                 }
                 tabLayoutMediator.attach()
+            }
 
 
             buttonAuctionSellerMainEdit.setOnClickListener {
