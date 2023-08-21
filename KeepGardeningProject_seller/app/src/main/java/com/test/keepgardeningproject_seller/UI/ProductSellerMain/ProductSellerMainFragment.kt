@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerMain
 
 import android.content.DialogInterface
-import androidx.lifecycle.ViewModelProvider
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -17,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_EDIT_FRAGMENT
@@ -27,6 +27,7 @@ import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSeller
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
+
 
 class ProductSellerMainFragment : Fragment() {
 
@@ -80,7 +81,9 @@ class ProductSellerMainFragment : Fragment() {
 
                 //Adapter 연결
                 fragmentProductSellerMainBinding.viewPagerProductSellerMainFragment.apply {
+
                     adapter = viewPager2Adatper
+
 
                     registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                         override fun onPageSelected(position: Int) {
@@ -109,7 +112,10 @@ class ProductSellerMainFragment : Fragment() {
                     val builder = MaterialAlertDialogBuilder(mainActivity)
                     builder.setMessage("해당 상품을 삭제하시겠습니까?")
                     builder.setNegativeButton("취소", null)
-                    builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int -> }
+                    builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int ->
+                        Snackbar.make(fragmentProductSellerMainBinding.root, "해당 상품이 삭제되었습니다.",Snackbar.LENGTH_LONG).show()
+                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
+                    }
                     builder.show()
                 }
 
