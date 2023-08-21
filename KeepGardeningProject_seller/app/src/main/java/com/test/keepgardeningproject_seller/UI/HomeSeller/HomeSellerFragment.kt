@@ -3,6 +3,11 @@ package com.test.keepgardeningproject_seller.UI.HomeSeller
 import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.SystemClock
@@ -16,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_seller.MainActivity
+import com.test.keepgardeningproject_seller.MainActivity.Companion.ALERT_SELLER_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.HOME_SELLER_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
@@ -50,6 +56,21 @@ class HomeSellerFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentHomeSellerBinding.run {
+
+            toolbarHomeSeller.run{
+
+                inflateMenu(R.menu.main_menu)
+
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.item_mainMenu_notification -> {
+                            mainActivity.replaceFragment(ALERT_SELLER_FRAGMENT, true, null)
+                        }
+                        else -> { }
+                    }
+                    true
+                }
+            }
 
             bottomNavigationViewHomeSeller.run {
 
