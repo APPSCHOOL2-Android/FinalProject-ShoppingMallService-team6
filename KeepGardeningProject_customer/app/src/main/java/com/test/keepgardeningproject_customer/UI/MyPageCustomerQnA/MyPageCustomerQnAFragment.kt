@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_customer.DAO.MyPageCustomerQnAData.MypageQnAData
+import com.test.keepgardeningproject_customer.DAO.MyPageCustomerQnAData.MypageQnADetailData
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
@@ -33,7 +36,13 @@ class MyPageCustomerQnAFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
+    lateinit var newBundle:Bundle
+
     lateinit var homeCustomerMainFragment: HomeCustomerMainFragment
+
+    var MypageQnADetail = MypageQnADetailData(1,"아이언맨 나이?","아이언맨은 52세입니다.",3.5f)
+
+    var MypageQnAData = MypageQnAData(true,"마블","어벤져스",MypageQnADetail)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +76,7 @@ class MyPageCustomerQnAFragment : Fragment() {
 
             MyPageCustomerQuestionRecyclerView.run{
 
-                adapter = QuestionRecyclerViewAdapter()
+                adapter = QuestionRecyclerViewAdapter(MypageQnAData)
                 layoutManager = LinearLayoutManager(context)
 
             }
@@ -85,7 +94,7 @@ class MyPageCustomerQnAFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class QuestionRecyclerViewAdapter :
+    inner class QuestionRecyclerViewAdapter(val Qna:MypageQnAData) :
         RecyclerView.Adapter<QuestionRecyclerViewAdapter.QuestionViewHolder>() {
         inner class QuestionViewHolder(rowCustomerQuestionBinding: RowMyPageCustomerQnaBinding) :
             RecyclerView.ViewHolder(rowCustomerQuestionBinding.root) {
@@ -93,14 +102,15 @@ class MyPageCustomerQnAFragment : Fragment() {
             val ProductName: TextView
             val StoreName: TextView
             val Question: TextView
+            val state:TextView
 
-            val moveBtn : ImageButton
+            val moveBtn : ImageView
 
             init {
                 ProductName = rowCustomerQuestionBinding.textviewQcProductName
                 StoreName = rowCustomerQuestionBinding.textviewQcStoreName
                 Question = rowCustomerQuestionBinding.textviewQcComment
-
+                state = rowCustomerQuestionBinding.textviewQcReplyState
                 moveBtn = rowCustomerQuestionBinding.imageButtonQcDetail
             }
 
@@ -124,11 +134,34 @@ class MyPageCustomerQnAFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-            holder.ProductName.text = "아이언맨"
+            holder.ProductName.text = Qna.productName
+            holder.StoreName.text = Qna.storeName
+            holder.Question.text = Qna.content.titleQnA
 
-            holder.moveBtn.setOnClickListener {
+            if(Qna.replyState){
 
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT,true,null)
+                holder.state.text = "답변완료"
+
+            }else{
+
+                holder.state.text = "미답변"
+
+            }
+            //moveBtn이 사라져서 itemView로 임시 설정했습니다.
+            holder.itemView.setOnClickListener {
+
+                val imageResourceId = R.drawable.img_orchid
+
+                newBundle = Bundle().apply{
+
+                    putFloat("contentRating",Qna.content.starNumbers)
+                    putInt("contentImage",imageResourceId)
+                    putString("contentTitle",Qna.content.titleQnA)
+                    putString("contentQnA",Qna.content.contentQnA)
+
+                }
+
+                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT,true,newBundle)
 
             }
 

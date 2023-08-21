@@ -49,6 +49,27 @@ class MyPageCustomerQnADetailFragment : Fragment() {
 
             }
 
+            val imageId = arguments?.getInt("contentImage")
+
+            imageId?.let{
+
+                imageviewQcDetail.setImageResource(it)
+
+            }
+
+            val numStars = arguments?.getFloat("contentRating")
+
+            numStars?.let{
+
+                ratingbarRcReviewDetail.rating = it
+
+            }
+
+            editTextViewQcDetailTitle.hint = arguments?.getString("contentTitle")
+
+            editTextViewQcDetailContent.hint = arguments?.getString("contentQnA")
+
+
         }
 
         return view
