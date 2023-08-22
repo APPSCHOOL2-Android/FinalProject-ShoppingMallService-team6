@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.AuctionSellerDetail.AuctionSellerDetailFragment">
 
     <TextView
+        android:id="@+id/textView_auctionSellerDetail_productContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_round_regular"
+        android:text="상품 상세 내용"
+        android:textSize="@dimen/text_size_16" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_auctionSellerDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_marginTop="@dimen/margin_size_top">
 
-</FrameLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

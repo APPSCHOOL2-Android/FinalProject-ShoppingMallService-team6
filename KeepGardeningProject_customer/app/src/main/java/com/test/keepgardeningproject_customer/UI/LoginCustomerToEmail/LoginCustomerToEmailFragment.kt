@@ -50,7 +50,7 @@ class LoginCustomerToEmailFragment : Fragment() {
                 val passwordCheck = textInputLayoutLoginCustomerToEmailPassword.editText?.text.toString()
                 val emailError = textInputLayoutLoginCustomerToEmailEmail.error
                 if (emailCheck.isNotEmpty() && passwordCheck.isNotEmpty() && emailError == null) {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_MAIN_FRAMGNET, false, null)
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_MAIN_FRAGMENT, false, null)
                 }else{
                     textViewLoginCustomerToEmailCheckLogin.visibility = View.VISIBLE
                 }

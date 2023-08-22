@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:orientation="vertical"
     android:transitionGroup="true"
     tools:context=".UI.ProductSellerMain.ProductSellerMainFragment">
@@ -14,20 +15,21 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
     <TextView
         android:id="@+id/textView_productSellerMain_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_size_middle"
         android:layout_marginTop="@dimen/margin_size_top"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="카테고리 >" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_size_middle">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,12 +40,14 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
+                android:padding="@dimen/padding_size_middle"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top">
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:padding="@dimen/padding_size_middle">
 
                 <TextView
                     android:id="@+id/textView_productSellerMain_productPrice"
@@ -82,11 +86,30 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_productSellerMain"
+                android:id="@+id/tabLayout_productSellerMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:background="@color/white" />
+                app:tabMode="fixed">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상세정보"
+                    />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰"
+                    />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="문의"
+                    />
+
+            </com.google.android.material.tabs.TabLayout>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager_productSellerMain_fragment"
@@ -95,37 +118,37 @@
 
             </androidx.viewpager2.widget.ViewPager2>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/padding_size_middle">
-
-                <Button
-                    android:id="@+id/button_productSellerMain_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_size_small"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:text="수정"
-                    android:textSize="@dimen/text_size_18"
-                    app:cornerRadius="7dp" />
-
-                <Button
-                    android:id="@+id/button_productSellerMain_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_size_small"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/Red"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:text="삭제"
-                    android:textSize="@dimen/text_size_18"
-                    app:cornerRadius="7dp" />
-            </LinearLayout>
-
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_middle">
+
+        <Button
+            android:id="@+id/button_productSellerMain_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding_size_small"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="수정"
+            android:textSize="@dimen/text_size_18"
+            app:cornerRadius="7dp" />
+
+        <Button
+            android:id="@+id/button_productSellerMain_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_size_small"
+            android:layout_weight="1"
+            android:backgroundTint="@color/Red"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="삭제"
+            android:textSize="@dimen/text_size_18"
+            app:cornerRadius="7dp" />
+    </LinearLayout>
 
 </LinearLayout>

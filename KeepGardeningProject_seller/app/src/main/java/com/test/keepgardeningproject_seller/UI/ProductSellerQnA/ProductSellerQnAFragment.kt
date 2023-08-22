@@ -51,6 +51,8 @@ class ProductSellerQnAFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        fragmentProductSellerQnABinding.root.requestLayout()
+
         var adapter = fragmentProductSellerQnABinding.recyclerViewProductSellerQnA.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
     }

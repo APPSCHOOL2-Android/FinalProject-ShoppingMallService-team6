@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReview
 import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReviewDetail
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerQnaBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
 import org.w3c.dom.Text
 
@@ -144,7 +142,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
 
                 mainActivity.replaceFragment(
-                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET,
+                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT,
                     true,
                     newBundle
                 )

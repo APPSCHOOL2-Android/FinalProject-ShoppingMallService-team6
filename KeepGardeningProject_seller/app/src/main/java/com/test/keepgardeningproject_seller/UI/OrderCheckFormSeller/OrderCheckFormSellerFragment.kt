@@ -10,12 +10,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentOrderCheckFormSellerBinding
 import com.test.keepgardeningproject_seller.databinding.RowOrderCheckFormSellerBinding
 
 class OrderCheckFormSellerFragment : Fragment() {
     lateinit var fragmentOrderCheckFormSellerBinding: FragmentOrderCheckFormSellerBinding
+    lateinit var mainActivity: MainActivity
 
     private lateinit var viewModel: OrderCheckFormSellerViewModel
 
@@ -24,11 +26,15 @@ class OrderCheckFormSellerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentOrderCheckFormSellerBinding = FragmentOrderCheckFormSellerBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
         fragmentOrderCheckFormSellerBinding.run {
             toolbarOrderCheckForm.run {
                 title = "주문확인서"
                 setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.ORDER_CHECK_FORM_SELLER_FRAGMENT)
+                }
             }
 
 
