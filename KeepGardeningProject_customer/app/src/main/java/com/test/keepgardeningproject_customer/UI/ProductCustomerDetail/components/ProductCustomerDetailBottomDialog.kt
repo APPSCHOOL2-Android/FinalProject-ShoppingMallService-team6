@@ -1,4 +1,4 @@
-package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail
+package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components
 
 import android.os.Bundle
 import android.view.LayoutInflater

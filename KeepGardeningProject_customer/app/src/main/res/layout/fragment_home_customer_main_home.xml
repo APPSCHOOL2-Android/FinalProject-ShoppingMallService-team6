@@ -28,6 +28,7 @@
                 android:transitionGroup="true">
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -50,6 +51,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -72,6 +74,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -94,6 +97,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -116,6 +120,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -146,6 +151,7 @@
                 android:transitionGroup="true">
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -168,6 +174,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -190,6 +197,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -212,6 +220,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -234,6 +243,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_hcmh_menu10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -276,7 +286,8 @@
                     android:id="@+id/recycler_hcmh_favoriteGoods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp" />
+                    android:layout_marginTop="40dp"
+                    android:transitionGroup="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -301,7 +312,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="40dp"
                     android:nestedScrollingEnabled="true"
-                    android:overScrollMode="never" />
+                    android:overScrollMode="never"
+                    android:transitionGroup="true" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
