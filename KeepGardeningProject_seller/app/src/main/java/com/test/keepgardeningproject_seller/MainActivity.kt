@@ -11,6 +11,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.UI.AlertSeller.AlertSellerFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerDetail.AuctionSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerEdit.AuctionSellerEditFragment
@@ -89,6 +90,8 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_SELLER_REVIEW_FRAGMENT = "ProductSellerReviewFragment"
     }
 
+    // 로그인한 사용자의 정보를 담을 객체
+    lateinit var loginSellerInfo: UserSellerInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
