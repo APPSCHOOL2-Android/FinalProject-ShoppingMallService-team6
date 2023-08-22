@@ -104,7 +104,7 @@ class MyPageCustomerAuctionFragment : Fragment() {
                     holder.imageviewAcimg.setImageResource(obj.img)
                     holder.itemView.setOnClickListener{
                         //경매상세정보로 이동
-                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAMGNET,true,null)
+                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
                     }
 
                 }
@@ -125,7 +125,7 @@ class MyPageCustomerAuctionFragment : Fragment() {
                     holder.itemView.setOnClickListener{
 
                         //경매상세정보로 이동
-                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAMGNET,true,null)
+                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
                     }
 
                 }
