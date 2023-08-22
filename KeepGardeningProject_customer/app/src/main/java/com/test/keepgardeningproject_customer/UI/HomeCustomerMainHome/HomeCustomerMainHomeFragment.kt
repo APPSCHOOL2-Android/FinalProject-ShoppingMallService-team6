@@ -45,7 +45,9 @@ class HomeCustomerMainHomeFragment : Fragment() {
                 btnHcmhMenu4.setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
                 }
-                btnHcmhMenu5.setOnClickListener {  }
+                btnHcmhMenu5.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
                 btnHcmhMenu6.setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
                 }
@@ -59,7 +61,6 @@ class HomeCustomerMainHomeFragment : Fragment() {
                     mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
                 }
                 btnHcmhMenu10.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
                 }
             }
 

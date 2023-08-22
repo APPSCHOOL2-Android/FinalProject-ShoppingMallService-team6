@@ -28,129 +28,6 @@
                 android:transitionGroup="true">
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/image_hcmh_6"
-                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
-                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
-                        android:background="@drawable/background_hcmh_icon"
-                        android:src="@drawable/img_commodity" />
-
-                    <TextView
-                        android:id="@+id/textView_hcmh_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="농산물"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_hcmh_menu2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/image_hcmh_7"
-                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
-                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
-                        android:background="@drawable/background_hcmh_icon"
-                        android:src="@drawable/img_seed" />
-
-                    <TextView
-                        android:id="@+id/textView_hcmh_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="다육식물"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_hcmh_menu3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/image_hcmh_8"
-                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
-                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
-                        android:background="@drawable/background_hcmh_icon"
-                        android:src="@drawable/img_bouquet" />
-
-                    <TextView
-                        android:id="@+id/textView_hcmh_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="꽃다발"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_hcmh_menu4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/image_hcmh_9"
-                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
-                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
-                        android:background="@drawable/background_hcmh_icon"
-                        android:src="@drawable/img_pot" />
-
-                    <TextView
-                        android:id="@+id/textView_hcmh_9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="원예자재류"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btn_hcmh_menu5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/image_hcmh_10"
-                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
-                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
-                        android:background="@drawable/background_hcmh_icon"
-                        android:src="@drawable/img_money" />
-
-                    <TextView
-                        android:id="@+id/textView_hcmh_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="천원샵"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top_big"
-                android:orientation="horizontal"
-                android:transitionGroup="true">
-
-                <LinearLayout
                     android:id="@+id/btn_hcmh_menu6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -262,6 +139,129 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="경매"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top_big"
+                android:orientation="horizontal"
+                android:transitionGroup="true">
+
+                <LinearLayout
+                    android:id="@+id/btn_hcmh_menu1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_6"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_commodity" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="농산물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_hcmh_menu2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_7"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_seed" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="다육식물"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_hcmh_menu3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_8"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_bouquet" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="꽃다발"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_hcmh_menu4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_9"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_pot" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="원예자재류"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_hcmh_menu5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_hcmh_10"
+                        android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:background="@drawable/background_hcmh_icon"
+                        android:src="@drawable/img_money" />
+
+                    <TextView
+                        android:id="@+id/textView_hcmh_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="천원샵"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
