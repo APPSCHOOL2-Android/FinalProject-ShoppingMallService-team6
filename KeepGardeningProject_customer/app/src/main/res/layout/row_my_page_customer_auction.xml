@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:padding="@dimen/padding_size_small">
 
         <ImageView
-            android:id="@+id/imageview_ac_img"
+            android:id="@+id/imageview_ac_img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,10 +35,11 @@
                     android:id="@+id/textview_ac_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
                     android:text="[입찰완료]"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="@dimen/text_size_20"
-                    app:fontFamily="@font/nanum_square_round_extra_bold"  />
+                    app:fontFamily="@font/nanum_square_round_extra_bold" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView_ac_productName"
@@ -47,7 +48,7 @@
                     android:text="몬스테라"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="@dimen/text_size_20"
-                    app:fontFamily="@font/nanum_square_round_bold"/>
+                    app:fontFamily="@font/nanum_square_round_bold" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -65,17 +66,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_ac_buy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="구매하기"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14"
-                    app:backgroundTint="@color/colorPrimary"
-                    tools:ignore="TouchTargetSizeCheck" />
 
             </LinearLayout>
 

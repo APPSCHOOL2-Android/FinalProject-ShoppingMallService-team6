@@ -1,22 +1,20 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerAuction
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment
-import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerAuctionBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerAuctionBinding
+import java.lang.RuntimeException
 
 class MyPageCustomerAuctionFragment : Fragment() {
 
@@ -28,22 +26,39 @@ class MyPageCustomerAuctionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       //return inflater.inflate(R.layout.fragment_my_page_customer_auction, container, false)
-        fragmentAuctionCustomerBinding = FragmentMyPageCustomerAuctionBinding.inflate(layoutInflater)
+
+        fragmentAuctionCustomerBinding =
+            FragmentMyPageCustomerAuctionBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
+
+        val datas = listOf<Models>(
+            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","몬스테라",),
+            Models(Models.BID_TYPE,R.mipmap.ic_launcher,"[입찰완료]","해바라기"),
+            Models(Models.Auction_TYPE2,R.mipmap.ic_launcher,"[경매중]","목화",),
+            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","장미",),
+            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","목련",),
+            Models(Models.BID_TYPE,R.mipmap.ic_launcher,"[입찰완료]","할미꽃",) ,
+            Models(Models.Auction_TYPE2,R.mipmap.ic_launcher,"[경매중]","개나리",)
+        )
 
         fragmentAuctionCustomerBinding.run {
 
             recyclerviewAc.run {
-                adapter = ResultRecyclerViewAdapter()
+                adapter = ResultRecyclerviewAdapter(datas)
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
+                addItemDecoration(
+                    MaterialDividerItemDecoration(
+                        context,
+                        MaterialDividerItemDecoration.VERTICAL
+                    )
+                )
             }
 
             toolbarAc.run {
                 setTitle("경매내역")
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
+                    //마이페이지 메인화면으로 이동
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_AUCTION_FRAGMENT)
                 }
 
@@ -52,46 +67,100 @@ class MyPageCustomerAuctionFragment : Fragment() {
 
         }
 
-        return  fragmentAuctionCustomerBinding.root
+        return fragmentAuctionCustomerBinding.root
     }
-    inner class ResultRecyclerViewAdapter : RecyclerView.Adapter<ResultRecyclerViewAdapter.ResultViewHolder>(){
-        inner class ResultViewHolder(rowAuctionListBinding: RowMyPageCustomerAuctionBinding) : RecyclerView.ViewHolder(rowAuctionListBinding.root){
 
-            val textViewAuctionState:TextView
-            val textViewAuctionName:TextView
-            val buttonAuctionBuy: Button
-
-            init{
-                textViewAuctionName = rowAuctionListBinding.textViewAcProductName
-                textViewAuctionState = rowAuctionListBinding.textviewAcState
-                buttonAuctionBuy = rowAuctionListBinding.buttonAcBuy
+    inner class ResultRecyclerviewAdapter(private val list:List<Models>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            val view :View?
+            //결제완료 및 배송완료 분기처리
+            return when(viewType){
+                Models.AUCTION_TYPE->{
+                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction,parent,false)
+                   AuctionTypeViewHolder(view)
+                }
+               Models.BID_TYPE->{
+                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction_button,parent,false)
+                   BidTypeViewHolder(view)
+                }
+                Models.Auction_TYPE2->{
+                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction,parent,false)
+                    AuctionTypeViewHolder(view)
+                }
+                else ->throw RuntimeException("뷰 타입 에러")
             }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
-            val rowMyPageCustomerAuctionBinding = RowMyPageCustomerAuctionBinding.inflate(layoutInflater)
-            val allViewHolder = ResultViewHolder(rowMyPageCustomerAuctionBinding)
-
-            rowMyPageCustomerAuctionBinding.root.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            return allViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 50
+            return list.size
         }
 
-        override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-            holder.textViewAuctionState.text  = "[입찰완료]"
-            holder.textViewAuctionName.text =  "몬스테라"
-            holder.buttonAuctionBuy.visibility = View.GONE
-            if(position/2 ==0){
-                holder.buttonAuctionBuy.visibility = View.VISIBLE
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            val obj = list[position]
+            when (obj.type) {
+                Models.AUCTION_TYPE -> {
+                    (holder as AuctionTypeViewHolder).txtAcState.text = obj.state
+                    holder.txtAcName.text = obj.title
+                    holder.imageviewAcimg.setImageResource(obj.img)
+                    holder.itemView.setOnClickListener{
+                        //경매상세정보로 이동
+                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAMGNET,true,null)
+                    }
+
+                }
+                Models.BID_TYPE-> {
+                    (holder as BidTypeViewHolder).txtBdState.text = obj.state
+                    holder.txtBdName.text = obj.title
+                    holder.imageviewBdimg.setImageResource(obj.img)
+                    holder.butoonBdbuy.setText("구매하기")
+                    holder.butoonBdbuy.setOnClickListener {
+                        //구매하기로 이동
+                        mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT,true,null)
+                    }
+                }
+                Models.Auction_TYPE2-> {
+                    (holder as AuctionTypeViewHolder).txtAcState.text = obj.state
+                    holder.txtAcName.text = obj.title
+                    holder.imageviewAcimg.setImageResource(obj.img)
+                    holder.itemView.setOnClickListener{
+
+                        //경매상세정보로 이동
+                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAMGNET,true,null)
+                    }
+
+                }
             }
         }
+
+
+        // 여기서 받는 position은 데이터의 index다.
+        override fun getItemViewType(position: Int): Int {
+            return list[position].type
+        }
+
+        //뷰홀더에 들어가 아이템 설정
+        inner class AuctionTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val txtAcState: TextView = itemView.findViewById(R.id.textview_ac_state)
+            val txtAcName :TextView = itemView.findViewById(R.id.textView_ac_productName)
+            val imageviewAcimg :ImageView = itemView.findViewById(R.id.imageview_ac_img1)
+        }
+
+        inner class BidTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val txtBdState: TextView = itemView.findViewById(R.id.textview_ac_state2)
+            val txtBdName :TextView = itemView.findViewById(R.id.textView_ac_productName2)
+            val imageviewBdimg :ImageView = itemView.findViewById(R.id.imageview_ac_img2)
+            val butoonBdbuy : Button = itemView.findViewById(R.id.button_ac_buy)
+        }
+
+
     }
 
+
+}
+data class Models(var type:Int,var img:Int,var state:String,var title:String){
+    companion object{
+        val AUCTION_TYPE = 0
+        val BID_TYPE = 1
+        val Auction_TYPE2 = 2
+    }
 }
