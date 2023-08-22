@@ -13,8 +13,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.test.keepgardeningproject_customer.DAO.MyPageCustomerQnAData.MypageQnAData
-import com.test.keepgardeningproject_customer.DAO.MyPageCustomerQnAData.MypageQnADetailData
+import com.test.keepgardeningproject_customer.DAO.MypageQnAData
+import com.test.keepgardeningproject_customer.DAO.MypageQnADetailData
+
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
@@ -94,7 +95,7 @@ class MyPageCustomerQnAFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class QuestionRecyclerViewAdapter(val Qna:MypageQnAData) :
+    inner class QuestionRecyclerViewAdapter(val Qna: MypageQnAData) :
         RecyclerView.Adapter<QuestionRecyclerViewAdapter.QuestionViewHolder>() {
         inner class QuestionViewHolder(rowCustomerQuestionBinding: RowMyPageCustomerQnaBinding) :
             RecyclerView.ViewHolder(rowCustomerQuestionBinding.root) {

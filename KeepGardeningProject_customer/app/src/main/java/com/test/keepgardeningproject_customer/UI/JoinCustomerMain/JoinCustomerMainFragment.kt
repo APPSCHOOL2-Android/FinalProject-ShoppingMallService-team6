@@ -1,14 +1,15 @@
 package com.test.keepgardeningproject_customer.UI.JoinCustomerMain
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentJoinCustomerMainBinding
 
 class JoinCustomerMainFragment : Fragment() {
@@ -51,11 +52,40 @@ class JoinCustomerMainFragment : Fragment() {
             }
             // 로그인 화면으로
             buttonJoinCustomerMainJoin.setOnClickListener {
-                mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
-                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,false,null)
+                userSubmit()
             }
+
         }
         return fragmentJoinCustomerMainBinding.root
+    }
+
+    fun userSubmit(){
+        fragmentJoinCustomerMainBinding.run {
+
+            //이메일,패스워드,닉네임
+            var email = textInputEditTextJoinCustomerMainEmail.text.toString()
+            var pw = textInputEditTextJoinCustomerMainPassword.text.toString()
+            var nickNames = textInputEditTextJoinCustomerMainNickName.text.toString()
+
+            UserRepository.getUserIndex {
+                var userindex = it.result.value as Long
+
+                userindex++
+                val userinfo = UserInfo(userindex,0,email,pw,nickNames)
+
+                UserRepository.setUserInfo(userinfo){
+                    UserRepository.setUserIdx(userindex){
+                        mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
+                        mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
+                    }
+                }
+
+
+            }
+
+
+
+        }
     }
 
 

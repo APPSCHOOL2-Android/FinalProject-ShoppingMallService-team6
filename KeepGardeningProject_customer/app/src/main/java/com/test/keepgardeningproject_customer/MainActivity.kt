@@ -56,6 +56,12 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
     companion object{
+
+//        var loginType:Int = -1
+//
+//        var isLogin :Boolean = false
+//
+//        var loginType_kakao :Int  = 0
         val ALERT_CUSTOMER_FRAGMENT = "AlertCustomerFragment"
         val AUCTION_CUSTOMER_FRAGMENT = "AuctionCustomerFragment"
         val AUCTION_CUSTOMER_DETAIL_FRAGMENT = "AuctionCustomerDetailFragment"

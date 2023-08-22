@@ -51,6 +51,4 @@ class LoginCustomerMainFragment : Fragment() {
         return fragmentLoginCustomerMainBinding.root
     }
 
-
-
 }

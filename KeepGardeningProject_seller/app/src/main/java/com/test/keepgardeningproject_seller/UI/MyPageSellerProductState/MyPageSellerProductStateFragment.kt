@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.test.keepgardeningproject_seller.DAO.MyPageSellerProductState.ProductState
+import com.test.keepgardeningproject_seller.DAO.ProductState
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerProductStateBinding

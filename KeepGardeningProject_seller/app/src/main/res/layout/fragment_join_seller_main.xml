@@ -149,8 +149,10 @@
             android:layout_marginTop="@dimen/margin_size_top"
             android:textSize="@dimen/text_size_16"
             android:text="상점 배너" />
+
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView_joinSellerMain"
 
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -158,8 +160,6 @@
 
             android:scaleType="fitXY"
             tools:src="@tools:sample/backgrounds/scenic" />
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="@dimen/margin_size_top"

@@ -11,8 +11,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReview
-import com.test.keepgardeningproject_customer.DAO.MyPageCustomerReviewData.MypageReviewDetail
+import com.test.keepgardeningproject_customer.DAO.MypageReview
+import com.test.keepgardeningproject_customer.DAO.MypageReviewDetail
+import com.test.keepgardeningproject_customer.DAO.TestDAO
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
@@ -33,7 +34,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
     lateinit var newBundle:Bundle
 
-    var reviewDetail:MypageReviewDetail = MypageReviewDetail(1,"오준용","환불할게요")
+    var reviewDetail: MypageReviewDetail = MypageReviewDetail(1,"오준용","환불할게요")
 
     var MypageReview = MypageReview("DC","조커",3.0f, reviewDetail)
 

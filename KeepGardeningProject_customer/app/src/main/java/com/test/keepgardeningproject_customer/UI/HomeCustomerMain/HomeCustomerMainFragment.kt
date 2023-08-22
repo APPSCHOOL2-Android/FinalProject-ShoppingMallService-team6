@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome.HomeCustomerMainHomeFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMainBinding
@@ -102,9 +103,13 @@ class HomeCustomerMainFragment : Fragment() {
                         }
 
                         R.id.item_hcm_mypage->{
+                            //로그인이 되어 있을떄
 
-                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
-                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
+//                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
+//                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
+
+                            //로그인이 안되어 있을 떄
+                            mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
 
                         }
                     }
