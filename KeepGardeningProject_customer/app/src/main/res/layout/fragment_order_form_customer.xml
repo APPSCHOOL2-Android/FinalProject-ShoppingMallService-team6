@@ -32,7 +32,7 @@
                 android:padding="@dimen/padding_size_big">
 
                 <TextView
-                    android:id="@+id/textView_orderFormCustomer_orderInfo"
+                    android:id="@+id/textView_orderForm_orderInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
@@ -45,7 +45,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
                     android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never" />
+                    android:overScrollMode="never"
+                    android:transitionGroup="true" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                             android:text="상품 금액" />
 
                         <TextView
-                            android:id="@+id/textView_orderFormCustomer_productFee"
+                            android:id="@+id/textView_orderForm_productPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -98,7 +99,7 @@
                             android:text="배송비" />
 
                         <TextView
-                            android:id="@+id/textView_orderFormCustomer_deliveryFee"
+                            android:id="@+id/textView_orderForm_deliveryFee"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -121,7 +122,7 @@
                             android:text="총 결제 금액" />
 
                         <TextView
-                            android:id="@+id/textView_orderFormCustomer_totalPaymentFee"
+                            android:id="@+id/textView_orderForm_totalPaymentPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -161,12 +162,15 @@
                             android:text="주문자명" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererName"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -186,12 +190,15 @@
                             android:text="연락처" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererPhone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererPhone"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -211,12 +218,15 @@
                             android:text="이메일" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererEmail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererEmail"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -244,7 +254,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/button_orderForm_basicAddress"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -257,7 +267,7 @@
                             android:layout_height="match_parent" />
 
                         <Button
-                            android:id="@+id/button5"
+                            android:id="@+id/button_orderForm_pickAddress"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -270,7 +280,7 @@
                             android:layout_height="match_parent" />
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/button_orderForm_newAddress"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -294,12 +304,15 @@
                             android:text="받는사람" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_receiverName"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_receiverName"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -319,12 +332,15 @@
                             android:text="연락처" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_receiverPhone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_receiverPhone"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -340,15 +356,20 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="left|center_vertical"
-                            android:text="우편번호" />
+                            android:text="주소" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent">
+                            android:id="@+id/textInput_orderForm_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_address"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="match_parent"
+                                android:enabled="false"
+                                android:inputType="text|textMultiLine" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -356,12 +377,19 @@
                             android:layout_width="10dp"
                             android:layout_height="match_parent" />
 
-                        <Button
-                            android:id="@+id/button6"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="주소 검색" />
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/button_orderForm_findAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:text="검색" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -377,15 +405,18 @@
                             android:layout_gravity="start"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="left|center_vertical"
-                            android:text="상세 주소" />
+                            android:text="상세주소" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_detailAddress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_detailAddress"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -405,12 +436,15 @@
                             android:text="배송 요청사항" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_deliveryRequest"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_deliveryRequest"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
@@ -436,26 +470,27 @@
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         <RadioGroup
+                            android:id="@+id/radioGroup_orderForm_payment"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingLeft="20dp">
 
                             <RadioButton
-                                android:id="@+id/radioButton"
+                                android:id="@+id/radioButton_orderForm_deposit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanum_square_round_regular"
                                 android:text="무통장 입금" />
 
                             <RadioButton
-                                android:id="@+id/radioButton2"
+                                android:id="@+id/radioButton_orderForm_card"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanum_square_round_regular"
                                 android:text="카드 결제" />
 
                             <RadioButton
-                                android:id="@+id/radioButton4"
+                                android:id="@+id/radioButton_orderForm_naverPay"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanum_square_round_regular"
@@ -479,7 +514,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <TextView
-                        android:id="@+id/textView36"
+                        android:id="@+id/textView_orderForm_finalPayPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -496,7 +531,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/checkBox_orderForm_allAgree"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
@@ -504,20 +539,21 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
+                        android:id="@+id/checkBoxGroup_orderForm_agree"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingLeft="20dp">
 
                         <CheckBox
-                            android:id="@+id/checkBox3"
+                            android:id="@+id/checkBox_orderForm_agree1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:text="(필수) 개인정보 수집, 처리 및 이용 동의" />
 
                         <CheckBox
-                            android:id="@+id/checkBox2"
+                            android:id="@+id/checkBox_orderForm_agree2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nanum_square_round_regular"
@@ -537,10 +573,11 @@
         android:padding="@dimen/padding_size_small">
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/button_orderForm_submitOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="주문하기" />
+            android:text="주문하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </LinearLayout>
 </LinearLayout>

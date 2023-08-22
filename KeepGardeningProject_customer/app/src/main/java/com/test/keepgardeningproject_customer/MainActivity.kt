@@ -33,6 +33,7 @@ import com.test.keepgardeningproject_customer.UI.MyPageCustomerWish.MyPageCustom
 import com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer.OrderCheckFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
+import com.test.keepgardeningproject_customer.UI.SearchAddress.SearchAddressFragment
 import com.test.keepgardeningproject_customer.UI.StoreInfoCustomer.StoreInfoCustomerFragment
 import com.test.keepgardeningproject_customer.UI.StoreInfoCustomerDetail.StoreInfoCustomerDetailFragment
 import com.test.keepgardeningproject_customer.databinding.ActivityMainBinding
@@ -44,6 +45,9 @@ class MainActivity : AppCompatActivity() {
 
     var newFragment: Fragment? = null
     var oldFragment: Fragment? = null
+
+    // 다음 주소 검색 api에서 받아온 주소
+    var address = ""
 
     // 확인할 권한 목록
     val permissionList = arrayOf(
@@ -78,7 +82,8 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_CUSTOMER_DETAIL_FRAGMENT ="ProductCustomerDetailFragment"
         val STORE_INFO_CUSTOMER_FRAGMENT = "StoreInfoCustomerFragment"
         val STORE_INFO_CUSTOMER_DETAIL_FRAGMENT = "StoreInfoCustomerDetailFragment"
-
+        val SEARCH_ADDRESS_FRAGMENT = "SearchAddressFragment"
+      
         var homeCustomerMainChosedFragment = R.id.item_hcm_home
     }
 
@@ -135,6 +140,7 @@ class MainActivity : AppCompatActivity() {
             PRODUCT_CUSTOMER_DETAIL_FRAGMENT-> ProductCustomerDetailFragment()
             STORE_INFO_CUSTOMER_FRAGMENT -> StoreInfoCustomerFragment()
             STORE_INFO_CUSTOMER_DETAIL_FRAGMENT -> StoreInfoCustomerDetailFragment()
+            SEARCH_ADDRESS_FRAGMENT -> SearchAddressFragment()
 
             else -> Fragment()
         }

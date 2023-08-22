@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentCartCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowCartCustomerBinding
@@ -17,6 +18,8 @@ import com.test.keepgardeningproject_customer.databinding.RowOrderCheckFormCusto
 
 class CartCustomerFragment : Fragment() {
     lateinit var fragmentCartCustomerBinding: FragmentCartCustomerBinding
+    lateinit var mainActivity: MainActivity
+
     private lateinit var viewModel: CartCustomerViewModel
 
     override fun onCreateView(
@@ -24,17 +27,24 @@ class CartCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentCartCustomerBinding = FragmentCartCustomerBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
         fragmentCartCustomerBinding.run {
             toolbarCart.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.CART_CUSTOMER_FRAGMENT)
+                }
                 title = "장바구니"
             }
 
             recyclerViewCart.run {
                 adapter = CartRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
+            }
+
+            buttonCartPay.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT, true, null)
             }
         }
 
