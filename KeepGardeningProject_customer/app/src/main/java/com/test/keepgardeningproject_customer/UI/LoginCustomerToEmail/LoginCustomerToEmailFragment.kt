@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentLoginCustomerToEmailBinding
 
 class LoginCustomerToEmailFragment : Fragment() {
@@ -50,6 +51,24 @@ class LoginCustomerToEmailFragment : Fragment() {
                 val passwordCheck = textInputLayoutLoginCustomerToEmailPassword.editText?.text.toString()
                 val emailError = textInputLayoutLoginCustomerToEmailEmail.error
                 if (emailCheck.isNotEmpty() && passwordCheck.isNotEmpty() && emailError == null) {
+                    // 로그인 완료시 구현
+                    // 아이디, 비밀번호가 있는지 검증
+                    // 검증완료시
+                    // 1. MainActivity
+                    //      isLogined = true
+                    //      loginedUserInfo 객체 저장
+                    // 2.홈화면의 마이페이지화면으로 이동하기
+                    UserRepository.getUserInfoById(emailCheck){
+                        // 회원가입된 이메일이 없다면
+                        if(it.result.exists() == false) {
+
+                        }
+                        // 회원가입된 이메일이 있다면
+                        else{
+
+                        }
+                    }
+
                     mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_MAIN_FRAGMENT, false, null)
                 }else{
                     textViewLoginCustomerToEmailCheckLogin.visibility = View.VISIBLE
