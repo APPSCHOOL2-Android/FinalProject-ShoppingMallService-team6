@@ -55,10 +55,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout_productSellerEdit_productName"
-                    style="?attr/textInputFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_size_top"
+                    app:endIconMode="clear_text"
                     android:hint="상품 이름">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -66,16 +66,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/semiwhite"
                         android:fontFamily="@font/nanum_square_round_regular" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout_productSellerEdit_productDetail"
-                    style="?attr/textInputFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_size_top"
+                    app:endIconMode="clear_text"
                     android:hint="상세 내용">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -83,16 +82,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/semiwhite"
                         android:fontFamily="@font/nanum_square_round_regular" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout_productSellerEdit_productPrice"
-                    style="?attr/textInputFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_size_top"
+                    app:endIconMode="clear_text"
                     android:hint="상품 가격">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -100,7 +98,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/semiwhite"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -147,7 +144,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_bold"
                         android:text="상품 수정하기"
-                        android:textSize="@dimen/text_size_18"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

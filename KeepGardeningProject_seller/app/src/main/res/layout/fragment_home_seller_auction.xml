@@ -8,10 +8,11 @@
     tools:context=".UI.HomeSeller.HomeSellerAuctionFragment">
 
     <TextView
+        android:layout_marginTop="@dimen/margin_size_top"
         android:id="@+id/textView_HomewSellerAuction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_square_round_bold"
+        android:fontFamily="@font/nanum_square_round_extra_bold"
         android:text="경매중인 상품"
         android:textSize="@dimen/text_size_20" />
 

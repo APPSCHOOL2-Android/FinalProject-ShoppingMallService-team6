@@ -10,12 +10,12 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id = "@+id/materialToolbar_seller_product_state_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"/>
 
     <LinearLayout
-        android:weightSum="4"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
 
@@ -24,52 +24,48 @@
         <com.google.android.material.button.MaterialButton
             android:backgroundTint="@color/colorPrimary"
             android:id = "@+id/button_seller_product_paid"
-            android:textSize="@dimen/text_size_10"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text = "결제완료"
-            android:layout_margin="5dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_size_5"
+            android:text = "결제완료" />
 
         <com.google.android.material.button.MaterialButton
             android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_ready"
-            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text = "상품준비"
-            android:layout_margin="5dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_size_5"
+            android:text = "상품준비" />
 
         <com.google.android.material.button.MaterialButton
             android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_delivery"
-            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text = "배송중"
-            android:layout_margin="5dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_size_5"
+            android:text = "배송중" />
 
         <com.google.android.material.button.MaterialButton
             android:backgroundTint="@color/gray"
             android:id = "@+id/button_seller_product_delivered"
-            android:textSize = "10sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text = "배송완료"
-            android:layout_margin="5dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_size_5"
+            android:text = "배송완료" />
 
     </LinearLayout>
 
     <ScrollView
+        android:layout_marginTop="@dimen/margin_size_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id = "@+id/recyclerView_seller_product_state"
-            android:layout_margin="@dimen/margin_size"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

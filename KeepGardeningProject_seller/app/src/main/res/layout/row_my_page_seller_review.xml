@@ -1,81 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/margin_size"
-    android:background="#406E7783">
+    android:orientation="vertical">
 
-
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_margin="@dimen/margin_size"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src = "@drawable/ic_launcher_foreground"/>
+        android:layout_margin="@dimen/margin_size_5"
+        app:contentPadding="@dimen/padding_size_middle">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_foreground" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:text = "상점이름"
-                android:layout_width="match_parent"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:layout_height="wrap_content"
-                android:id = "@+id/textview_rs_storeName"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:text = "상품이름"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id = "@+id/textview_rc_productName"/>
-
-            <RatingBar
-                android:id = "@+id/ProductReviewStars"
+            <LinearLayout
+                android:layout_marginLeft="@dimen/margin_size_top"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:numStars="5"
-                android:rating="3"
-                android:stepSize="1"/>
-
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id = "@+id/textview_rs_productComment"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text = "한줄 평"/>
+                android:orientation="vertical">
 
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:id="@+id/textview_rs_storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="상점이름" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:id="@+id/textview_rc_productName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="상품이름" />
+
+                <RatingBar
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:id="@+id/ProductReviewStars"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:stepSize="1" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:id="@+id/textview_rs_productComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="한줄 평" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical">
+
+                <ImageButton
+                    android:id="@+id/button_rs_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/ic_arrow_right_24px" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginStart="200dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+    </com.google.android.material.card.MaterialCardView>
 
-            <ImageButton
-                android:id = "@+id/button_rs_detail"
-                android:layout_marginTop="@dimen/margin_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_right_24px"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@color/white"/>
 
 </LinearLayout>

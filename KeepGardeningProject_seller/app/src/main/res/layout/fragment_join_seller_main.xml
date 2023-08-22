@@ -175,7 +175,7 @@
                 android:id="@+id/textInputEditText_joinSellerMain_storeDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text|textPersonName"
+                android:inputType="text|textMultiLine"
                 android:fontFamily="@font/nanum_square_round_regular"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -192,8 +192,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:hint="우편번호"
-                android:transitionGroup="true"
-                app:endIconMode="clear_text">
+                android:enabled="false"
+                android:transitionGroup="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditText_joinSellerMain_postNumber"

@@ -10,15 +10,16 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"
         android:id = "@+id/materialToolbar_seller_review"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_size_middle">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id = "@+id/recyclerView_seller_review"
-            android:layout_margin="@dimen/margin_size"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

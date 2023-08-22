@@ -8,6 +8,7 @@
     <!--margin-->
     <dimen name="margin_size_top">10dp</dimen>
     <dimen name="margin_size">15dp</dimen>
+    <dimen name="margin_size_5">5dp</dimen>
     <!--text-->
     <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_12">12sp</dimen>

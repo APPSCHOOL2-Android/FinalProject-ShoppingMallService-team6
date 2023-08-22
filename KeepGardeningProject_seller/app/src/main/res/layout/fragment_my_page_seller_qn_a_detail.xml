@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"
         android:id = "@+id/materialToolbar_qs_detail"/>
 
 
@@ -54,6 +55,7 @@
             android:layout_margin="@dimen/margin_size"
             android:numStars="5"
             android:rating="3"
+            android:saveEnabled="false"
             android:stepSize="1" />
 
         <com.google.android.material.textview.MaterialTextView

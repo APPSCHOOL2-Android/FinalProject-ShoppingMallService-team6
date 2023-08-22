@@ -51,27 +51,26 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_auctionSellerRegister_productName"
-                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_size_top"
-                android:hint="상품 이름">
+                android:hint="상품 이름"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputEditText_auctionSellerRegister_productName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/semiwhite"
                     android:fontFamily="@font/nanum_square_round_regular" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_auctionSellerRegister_openPrice"
-                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_size_top"
+                app:endIconMode="clear_text"
                 android:hint="경매 시작가">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,17 +78,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/semiwhite"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_auctionSellerRegister_productDetail"
-                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_size_top"
+                app:endIconMode="clear_text"
                 android:hint="상세 내용">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -97,7 +95,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/semiwhite"
                     android:fontFamily="@font/nanum_square_round_regular" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,16 +103,16 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:padding="@dimen/padding_size_middle"
-                app:cardBackgroundColor="@color/semiwhite">
+                app:strokeColor="@color/gray"
+                app:cardCornerRadius="4dp">
 
                 <TextView
                     android:id="@+id/textView_auctionSellerRegister_endDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_size_middle"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_marginRight="@dimen/padding_size_middle"
-                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:padding="@dimen/padding_size_middle"
+                    android:textSize="@dimen/text_size_16"
                     android:text="마감 날짜" />
 
                 <LinearLayout

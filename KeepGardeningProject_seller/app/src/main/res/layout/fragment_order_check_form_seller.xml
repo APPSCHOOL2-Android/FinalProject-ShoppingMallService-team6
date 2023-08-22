@@ -37,6 +37,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:id="@+id/textView_orderCheckForm_orderNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -44,6 +45,7 @@
                         android:text="No. 202308171234" />
 
                     <TextView
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:id="@+id/textView_orderCheckForm_orderDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -74,16 +76,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_size_top"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_orderCheckForm_addressInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="배송지 정보"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textSize="@dimen/text_size_16"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -95,7 +98,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="받으시는 분" />
 
                     <TextView
@@ -111,14 +114,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="연락처" />
 
                     <TextView
@@ -134,14 +137,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="배송지" />
 
                     <TextView
@@ -157,14 +160,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView14"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="배송 메시지" />
 
                     <TextView
@@ -181,15 +184,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_size"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_orderCheckForm_ordererInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="주문자 정보"
+                    android:textSize="@dimen/text_size_16"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <LinearLayout
@@ -202,7 +206,7 @@
                         android:id="@+id/textView19"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="이름" />
 
                     <TextView
@@ -218,14 +222,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="연락처" />
 
                     <TextView
@@ -241,14 +245,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="이메일" />
 
                     <TextView

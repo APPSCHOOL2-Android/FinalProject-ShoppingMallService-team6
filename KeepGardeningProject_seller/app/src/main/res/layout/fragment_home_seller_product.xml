@@ -11,7 +11,7 @@
         android:id="@+id/textView_HomewSellerProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_square_round_bold"
+        android:fontFamily="@font/nanum_square_round_extra_bold"
         android:text="판매중인 상품"
         android:textSize="@dimen/text_size_20" />
 

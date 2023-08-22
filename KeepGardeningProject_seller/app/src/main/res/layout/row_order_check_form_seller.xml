@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/imageView_rowOrderCheckForm_productImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:textSize="@dimen/text_size_20"
             android:text="배송상태"
             app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderCheckForm_productImage"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="상품명"
             app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderCheckForm_productImage"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_storeName" />
