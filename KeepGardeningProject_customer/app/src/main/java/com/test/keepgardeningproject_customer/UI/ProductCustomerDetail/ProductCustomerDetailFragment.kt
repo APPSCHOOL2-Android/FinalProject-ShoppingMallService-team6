@@ -5,20 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.tabs.ProductCustomerDetailDetailFragment
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.tabs.ProductCustomerDetailReviewFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailBottomDialog
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailDetailFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailReviewFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailBinding
+import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailDetailBinding
+import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailReviewBinding
+import com.test.keepgardeningproject_customer.databinding.RowPcddBinding
 
 class ProductCustomerDetailFragment : Fragment() {
 
     lateinit var fragmentProductCustomerDetailBinding: FragmentProductCustomerDetailBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var productCustomerDetailDetailFragment : ProductCustomerDetailDetailFragment
+    lateinit var productCustomerDetailReviewFragment : ProductCustomerDetailReviewFragment
 
     // 탭
     val tabName = arrayOf(
@@ -33,6 +43,8 @@ class ProductCustomerDetailFragment : Fragment() {
     ): View? {
         fragmentProductCustomerDetailBinding = FragmentProductCustomerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+        productCustomerDetailDetailFragment = ProductCustomerDetailDetailFragment()
+        productCustomerDetailReviewFragment = ProductCustomerDetailReviewFragment()
 
         fragmentProductCustomerDetailBinding.run{
             // 툴바
@@ -44,24 +56,35 @@ class ProductCustomerDetailFragment : Fragment() {
                 }
             }
 
+            // 구매완료 버튼
+            buttonPcdBuy.setOnClickListener{
+                val bs = ProductCustomerDetailBottomDialog()
+                bs.show(mainActivity.supportFragmentManager,"구매")
+            }
+
             // 상품 이미지 뷰페이저
 
             // 탭레이아웃
-            run{
-                fragmentList.add(ProductCustomerDetailDetailFragment())
-                fragmentList.add(ProductCustomerDetailReviewFragment())
+            fragmentList.add(productCustomerDetailDetailFragment)
+            fragmentList.add(productCustomerDetailReviewFragment)
 
-                viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
-                val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
-                    tab.text = tabName[i]
-                }
-                tabLayoutMediator.attach()
+            viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
+            val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
+                tab.text = tabName[i]
             }
-
+            tabLayoutMediator.attach()
         }
 
         return fragmentProductCustomerDetailBinding.root
     }
+
+    //tab 전환시 layout를 다시 요청
+    override fun onResume() {
+        super.onResume()
+        fragmentProductCustomerDetailBinding.viewPagerPcdTab.requestLayout()
+    }
+
+
 
     inner class TabAdapterClass(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
         override fun getItemCount(): Int {
@@ -71,5 +94,6 @@ class ProductCustomerDetailFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return fragmentList[position]
         }
+
     }
 }

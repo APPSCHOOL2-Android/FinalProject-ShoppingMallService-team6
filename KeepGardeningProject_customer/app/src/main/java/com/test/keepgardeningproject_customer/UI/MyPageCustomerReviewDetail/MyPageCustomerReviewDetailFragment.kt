@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewDetailBinding
 
 
@@ -45,7 +44,7 @@ class MyPageCustomerReviewDetailFragment : Fragment() {
 
                 setNavigationOnClickListener {
 
-                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAMGNET)
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT)
 
                 }
 

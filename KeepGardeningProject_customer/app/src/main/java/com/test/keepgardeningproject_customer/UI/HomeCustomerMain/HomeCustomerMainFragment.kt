@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.MainActivity
@@ -98,17 +97,19 @@ class HomeCustomerMainFragment : Fragment() {
                             drawerHcm.open()
                         }
                         R.id.item_hcm_home->{
+                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
                             replaceFragment(HOME_CUSTOMER_MAIN_HOME,false,null)
                         }
 
                         R.id.item_hcm_mypage->{
+                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
                             replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
                         }
                     }
                     true
                 }
 
-                selectedItemId = R.id.item_hcm_home
+                selectedItemId = MainActivity.homeCustomerMainChosedFragment
             }
 
             // 플로팅버튼 검색창 이동
@@ -122,6 +123,7 @@ class HomeCustomerMainFragment : Fragment() {
 
     fun replaceFragment(name:String, addToBackStack:Boolean, bundle:Bundle?){
         SystemClock.sleep(200)
+
 
         // Fragment 교체 상태로 설정한다.
         val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()

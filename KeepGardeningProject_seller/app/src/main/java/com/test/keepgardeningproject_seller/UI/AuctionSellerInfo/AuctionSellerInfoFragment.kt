@@ -56,8 +56,11 @@ class AuctionSellerInfoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         var adapter = fragmentAuctionSellerInfoBinding.recyclerViewAuctionSellerInfo.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
+
+        fragmentAuctionSellerInfoBinding.root.requestLayout()
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
