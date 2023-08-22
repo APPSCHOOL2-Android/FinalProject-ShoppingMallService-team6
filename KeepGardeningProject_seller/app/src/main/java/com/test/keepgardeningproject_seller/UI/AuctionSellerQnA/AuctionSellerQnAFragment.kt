@@ -53,8 +53,11 @@ class AuctionSellerQnAFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         var adapter = fragmentAuctionSellerQnABinding.recyclerViewAuctionSellerQnA.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
+
+        fragmentAuctionSellerQnABinding.root.requestLayout()
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {

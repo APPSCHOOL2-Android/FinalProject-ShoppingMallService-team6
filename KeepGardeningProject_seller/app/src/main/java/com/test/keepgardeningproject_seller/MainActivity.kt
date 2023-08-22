@@ -20,6 +20,7 @@ import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnA
 import com.test.keepgardeningproject_seller.UI.AuctionSellerRegister.AuctionSellerRegisterFragment
 import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerFragment
 import com.test.keepgardeningproject_seller.UI.HomeSellerMyPageMain.HomeSellerMyPageMainFragment
+import com.test.keepgardeningproject_seller.UI.JoinSellerAddInfo.JoinSellerAddInfoFragment
 import com.test.keepgardeningproject_seller.UI.JoinSellerMain.JoinSellerMainFragment
 import com.test.keepgardeningproject_seller.UI.LoginSellerMain.LoginSellerMainFragment
 import com.test.keepgardeningproject_seller.UI.LoginSellerFindPw.LoginSellerFindPwFragment
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         val HOME_SELLER_FRAGMENT = "HomeSellerFragment"
         val HOME_SELLER_MY_PAGE_MAIN_FRAGMENT = "HomeSellerMyPageMainFragment"
         val JOIN_SELLER_MAIN_FRAGMENT = "JoinSellerMainFragment"
+        val JOIN_SELLER_ADD_INFO_FRAGMENT = "JoinSellerAddInfoFragment"
         val LOGIN_SELLER_MAIN_FRAGMENT = "LoginSellerMainFragment"
         val LOGIN_SELLER_FIND_PW_FRAGMENT = "LoginSellerFindPwFragment"
         val LOGIN_SELLER_TO_EMAIL_FRAGMENT = "LoginSellerToEmailFragment"
@@ -129,6 +131,7 @@ class MainActivity : AppCompatActivity() {
             AUCTION_SELLER_REGISTER_FRAGMENT -> AuctionSellerRegisterFragment()
             HOME_SELLER_FRAGMENT -> HomeSellerFragment()
             HOME_SELLER_MY_PAGE_MAIN_FRAGMENT -> HomeSellerMyPageMainFragment()
+            JOIN_SELLER_ADD_INFO_FRAGMENT -> JoinSellerAddInfoFragment()
             JOIN_SELLER_MAIN_FRAGMENT -> JoinSellerMainFragment()
             LOGIN_SELLER_MAIN_FRAGMENT -> LoginSellerMainFragment()
             LOGIN_SELLER_FIND_PW_FRAGMENT -> LoginSellerFindPwFragment()
@@ -201,3 +204,18 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+// 사용자 정보를 담을 클래스
+data class UserClass(var UserIdx:Long,
+                     var UserLoginType:String,
+                     var UserEmail:String,
+                     var UserPw:String,
+                     var UserNickName:String,
+                     var UserStoreIdx:Long?)
+// 상점 정보를 담을 클래스
+data class StoreClass(var StoreIdx : Long,
+                      var StoreName : String,
+                      var StoreDetail : String,
+                      var StoreImageTitle : String?,
+                      var StorePostAddress:String?,
+                      var StorePostAddressDetail:String?)

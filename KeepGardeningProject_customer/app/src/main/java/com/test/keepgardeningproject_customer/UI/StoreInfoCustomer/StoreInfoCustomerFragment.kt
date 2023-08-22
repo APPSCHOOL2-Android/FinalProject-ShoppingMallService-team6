@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowCartCustomerBinding
@@ -17,6 +18,8 @@ import com.test.keepgardeningproject_customer.databinding.RowStoreInfoCustomerBi
 
 class StoreInfoCustomerFragment : Fragment() {
     lateinit var fragmentStoreInfoCustomerBinding: FragmentStoreInfoCustomerBinding
+    lateinit var mainActivity: MainActivity
+
     private lateinit var viewModel: StoreInfoCustomerViewModel
 
     override fun onCreateView(
@@ -24,11 +27,15 @@ class StoreInfoCustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentStoreInfoCustomerBinding = FragmentStoreInfoCustomerBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
         fragmentStoreInfoCustomerBinding.run {
             toolbarStoreInfo.run {
                 title = "스토어"
                 setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT)
+                }
             }
 
             recyclerViewStoreInfo.run {
@@ -48,6 +55,10 @@ class StoreInfoCustomerFragment : Fragment() {
 
             init {
                 rowStoreName = rowStoreInfoCustomerBinding.textViewRowStoreInfoStoreName
+
+                rowStoreInfoCustomerBinding.root.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_DETAIL_FRAGMENT, true, null)
+                }
             }
         }
 
