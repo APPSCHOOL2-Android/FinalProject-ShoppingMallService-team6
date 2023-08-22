@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_size_middle"
+    tools:context=".UI.AuctionCustomerDetail.AuctionCustomerDetailAuctionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textview_acda_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="@dimen/text_size_16"
+            android:text="번호"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textview_acda_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="@dimen/text_size_16"
+            android:text="닉네임" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textview_acda_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="@dimen/text_size_16"
+            android:text="입찰일시" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textview_acda_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="@dimen/text_size_16"
+            android:text="입찰금액" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_ac_detail_auction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

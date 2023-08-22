@@ -124,6 +124,7 @@ class HomeCustomerMainFragment : Fragment() {
     fun replaceFragment(name:String, addToBackStack:Boolean, bundle:Bundle?){
         SystemClock.sleep(200)
 
+
         // Fragment 교체 상태로 설정한다.
         val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()
 

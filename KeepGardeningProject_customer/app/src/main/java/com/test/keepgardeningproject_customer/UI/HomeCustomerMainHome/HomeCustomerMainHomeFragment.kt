@@ -31,6 +31,39 @@ class HomeCustomerMainHomeFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         fragmentHomeCustomerMainHomeBinding.run{
+            // 메뉴선택
+            run{
+                btnHcmhMenu1.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu2.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu3.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu4.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu5.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu6.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu7.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu8.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu9.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                }
+                btnHcmhMenu10.setOnClickListener {
+                }
+            }
+
             // 인기상품
             recyclerHcmhFavoriteGoods.run{
                 adapter = RecyclerAdapterHCMHFavorite()
@@ -42,6 +75,7 @@ class HomeCustomerMainHomeFragment : Fragment() {
                 adapter = RecyclerAdapterHCMHRecommend()
                 layoutManager = GridLayoutManager(context,2)
             }
+
         }
 
         return fragmentHomeCustomerMainHomeBinding.root
