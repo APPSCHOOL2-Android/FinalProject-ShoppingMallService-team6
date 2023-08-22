@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorPrimary"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +14,7 @@
         android:padding="@dimen/padding_size_small">
 
         <ImageView
-            android:id="@+id/imageview_as_img"
+            android:id="@+id/imageview_pc_img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -20,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="9"
             android:orientation="vertical"
             android:padding="5dp">
@@ -31,17 +33,17 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textview_as_state"
+                    android:id="@+id/textview_pc_state2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/margin_size_top"
-                    android:text="[경매완료]"
+                    android:text="[배송완료]"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="@dimen/text_size_20"
                     app:fontFamily="@font/nanum_square_round_extra_bold" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textView_as_productName"
+                    android:id="@+id/textView_pc_productName2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="몬스테라"
@@ -55,7 +57,32 @@
                     android:layout_weight="20" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="ExtraText">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_pc_review2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="리뷰쓰기"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    app:backgroundTint="@color/colorPrimary"
+                    tools:ignore="TouchTargetSizeCheck" />
+                하
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

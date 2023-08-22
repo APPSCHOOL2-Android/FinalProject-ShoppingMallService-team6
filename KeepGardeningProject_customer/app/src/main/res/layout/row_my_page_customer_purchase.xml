@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/colorPrimary"
     android:orientation="vertical">
 
@@ -36,6 +36,7 @@
                     android:id="@+id/textview_pc_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
                     android:text="[결제완료]"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="@dimen/text_size_20"
@@ -67,18 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_pc_buy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="리뷰쓰기"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_14"
-                    app:backgroundTint="@color/colorPrimary"
-                    tools:ignore="TouchTargetSizeCheck" />
-하
+                하
             </LinearLayout>
 
         </LinearLayout>

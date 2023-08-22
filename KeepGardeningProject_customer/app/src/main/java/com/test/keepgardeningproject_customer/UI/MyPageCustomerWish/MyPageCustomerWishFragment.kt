@@ -18,11 +18,22 @@ import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomer
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerAuctionBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerWishBinding
 
+
+data class model(var title:String,var storename:String,var price:String)
 class MyPageCustomerWishFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
     lateinit var myPageCustomerWishViewModel: MyPageCustomerWishViewModel
     lateinit var myPageCustomerWishBinding: FragmentMyPageCustomerWishBinding
+
+    //이미지 가짜 데이터
+    var datas = mutableListOf(
+        model("몬스테라","마녀상점","13000원"),
+        model("산세베리아","개미상점","25000원"),
+        model("튤립","베짱이상점","12000원"),
+        model("강아지꽃","강아지상점","9000원"),
+        model("벚꽃","고양이상점","3000원")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +75,15 @@ class MyPageCustomerWishFragment : Fragment() {
                 textViewWishPrice = rowWishListBinding.textViewWcPrice
                 imageViewWishimg = rowWishListBinding.imageViewWcImg
                 imageViewWishHeartIcon = rowWishListBinding.imageViewWcHeartIcon
+
+                //어뎁터 표지선을 받아 삭제
+                rowWishListBinding.imageViewWcHeartIcon.setOnClickListener {
+                    datas.removeAt(adapterPosition)
+                    notifyDataSetChanged()
+                }
+
             }
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultViewHolder {
@@ -80,13 +99,15 @@ class MyPageCustomerWishFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 50
+            return datas.size
         }
 
         override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-            holder.textViewWishPrice.text = "13000원"
-            holder.textViewWishProductName.text = "몬스테라"
-            holder.textViewWishStoreName.text = "스토어"
+            holder.textViewWishPrice.text = datas[position].price
+            holder.textViewWishProductName.text = datas[position].title
+            holder.textViewWishStoreName.text = datas[position].storename
+            holder.imageViewWishimg.setImageResource(R.mipmap.ic_launcher)
+
         }
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".UI.MyPageSellerModify.MyPageSellerModifyFragment">
 
@@ -15,145 +15,182 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_size_middle">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_passwordCheck"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호확인"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_passwordCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_nickName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="닉네임"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_nickName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPersonName"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_ms_storeBanner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:layout_weight="1"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="상점배너"
-                android:textSize="@dimen/text_size_18" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView_ms_storeImg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_size"
-            android:src="@mipmap/ic_launcher" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_storeName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="상점명"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_storeName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_storeDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="상점 설명"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_storeDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_size_middle">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_ms_addressNumber"
+                android:id="@+id/textInputLayout_ms_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:layout_marginBottom="@dimen/margin_size"
-                android:layout_weight="1"
-                android:hint="우편번호"
+                android:hint="비밀번호"
                 android:transitionGroup="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_addressNumber"
+                    android:id="@+id/textInputEditText_ms_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPassword"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_passwordCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호확인"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_passwordCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPassword"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="닉네임"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_nickName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPersonName"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ms_storeBanner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="상점배너"
+                    android:textSize="@dimen/text_size_18" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView_ms_storeImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_size"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상점명"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPassword"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상점 설명"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPassword"
+                    android:textSize="@dimen/text_size_18" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_ms_addressNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginBottom="@dimen/margin_size"
+                    android:layout_weight="1"
+                    android:hint="우편번호"
+                    android:transitionGroup="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditText_ms_addressNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_size"
+                        android:enabled="true"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:inputType="text|textPassword"
+                        android:textSize="@dimen/text_size_18" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_mc_modifySearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_size"
+                    android:layout_marginTop="@dimen/margin_size_top"
                     android:layout_marginRight="@dimen/margin_size"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="찾기"
+                    android:textSize="@dimen/text_size_20"
+                    app:backgroundTint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_addressDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상세 주소"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_addressDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:enabled="true"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:inputType="text|textPassword"
@@ -161,49 +198,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_mc_modifySearch"
+                android:id="@+id/button_ms_modifyEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_size"
                 android:layout_marginTop="@dimen/margin_size_top"
-                android:layout_marginRight="@dimen/margin_size"
-                android:layout_weight="2"
                 android:fontFamily="@font/nanum_square_round_bold"
-                android:text="찾기"
+                android:text="수정완료"
                 android:textSize="@dimen/text_size_20"
                 app:backgroundTint="@color/colorPrimary" />
 
+
         </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_ms_addressDetail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="상세 주소"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_ms_addressDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_ms_modifyEnd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:text="수정완료"
-            android:textSize="@dimen/text_size_20"
-            app:backgroundTint="@color/colorPrimary" />
-
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
