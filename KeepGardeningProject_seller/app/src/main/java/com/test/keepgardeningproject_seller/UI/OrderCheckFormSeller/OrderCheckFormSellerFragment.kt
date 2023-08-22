@@ -37,6 +37,8 @@ class OrderCheckFormSellerFragment : Fragment() {
                 }
             }
 
+
+
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)

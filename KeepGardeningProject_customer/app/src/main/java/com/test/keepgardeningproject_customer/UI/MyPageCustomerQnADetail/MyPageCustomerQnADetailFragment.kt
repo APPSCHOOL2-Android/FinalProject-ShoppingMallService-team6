@@ -1,14 +1,17 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnADetail
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerQnADetailBinding
+import java.time.LocalDate
 
 class MyPageCustomerQnADetailFragment : Fragment() {
 
@@ -22,6 +25,7 @@ class MyPageCustomerQnADetailFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +52,31 @@ class MyPageCustomerQnADetailFragment : Fragment() {
                 }
 
             }
+
+            val now = LocalDate.now()
+
+            textviewQcCurrentTime.text = now.toString()
+
+            val imageId = arguments?.getInt("contentImage")
+
+            imageId?.let{
+
+                imageviewQcDetail.setImageResource(it)
+
+            }
+
+            val numStars = arguments?.getFloat("contentRating")
+
+            numStars?.let{
+
+                ratingbarRcReviewDetail.rating = it
+
+            }
+
+            editTextViewQcDetailTitle.hint = arguments?.getString("contentTitle")
+
+            editTextViewQcDetailContent.hint = arguments?.getString("contentQnA")
+
 
         }
 

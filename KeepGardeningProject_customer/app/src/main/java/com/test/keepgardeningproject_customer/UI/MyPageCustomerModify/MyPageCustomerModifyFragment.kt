@@ -32,7 +32,6 @@ class MyPageCustomerModifyFragment : Fragment() {
                 setNavigationOnClickListener {
                     //마이메이지 메인화면으로 이동
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT)
-
                 }
             }
             buttonMcModify.run {
