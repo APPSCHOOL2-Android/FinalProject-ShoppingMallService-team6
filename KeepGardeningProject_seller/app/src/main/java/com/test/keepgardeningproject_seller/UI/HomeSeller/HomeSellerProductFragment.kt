@@ -54,7 +54,9 @@ class HomeSellerProductFragment : Fragment() {
                 textViewRowPrice = rowHomeSellerBinding.textViewRowHomeSellerProductPrice
 
                 rowHomeSellerBinding.root.setOnClickListener {
-                    mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT,true,null)
+                    val newBundle = Bundle()
+                    newBundle.putString("oldFragment", "HomeSellerProductFragment")
+                    mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT,true,newBundle)
                 }
             }
         }
