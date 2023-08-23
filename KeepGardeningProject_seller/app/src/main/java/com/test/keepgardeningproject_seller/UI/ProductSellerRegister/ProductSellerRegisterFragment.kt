@@ -2,45 +2,33 @@ package com.test.keepgardeningproject_seller.UI.ProductSellerRegister
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
-import android.graphics.ImageDecoder
-import android.graphics.Matrix
 import android.graphics.PorterDuff
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import com.test.keepgardeningproject_seller.StoreClass
-import com.test.keepgardeningproject_seller.UserClass
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerRegisterBinding
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.test.keepgardeningproject_seller.databinding.RowSellerRegisterBinding
 
 class ProductSellerRegisterFragment : Fragment() {
 
@@ -50,11 +38,11 @@ class ProductSellerRegisterFragment : Fragment() {
     // 업로드할 이미지의 Uri
     var uploadUri: Uri? = null
 
-    lateinit var cameraLauncher: ActivityResultLauncher<Intent>
-    lateinit var albumLauncher: ActivityResultLauncher<Intent>
 
-    var imageList = arrayListOf<String>("None")
+    var imageList = ArrayList<String>()
+    var uriList = ArrayList<Uri>()
 
+    val MAX_IMAGE_NUM = 3
 
     companion object {
         fun newInstance() = ProductSellerRegisterFragment()
@@ -69,11 +57,6 @@ class ProductSellerRegisterFragment : Fragment() {
 
         fragmentProductSellerRegisterBinding = FragmentProductSellerRegisterBinding.inflate(inflater)
         mainActivity = activity as MainActivity
-
-        // 카메라 설정
-        cameraLauncher = cameraSetting(fragmentProductSellerRegisterBinding.imageViewProductSellerRegisterProductImage1)
-        // 앨범 설정
-        albumLauncher = albumSetting(fragmentProductSellerRegisterBinding.imageViewProductSellerRegisterProductImage1)
 
         fragmentProductSellerRegisterBinding.run {
 
@@ -93,36 +76,24 @@ class ProductSellerRegisterFragment : Fragment() {
                 }
             }
 
+            recyclerViewProductSellerRegisterImage.run {
+                adapter = RecyclerAdapterClass()
+
+                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+            }
+
             buttonProductSellerRegisterAddImage.setOnClickListener {
-                val builder = MaterialAlertDialogBuilder(mainActivity)
-                builder.setMessage("이미지 등록 방법을 선택해주세요.")
-                builder.setNegativeButton("갤러리") { dialogInterface: DialogInterface, i: Int ->
-                    val newIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    newIntent.setType("image/*")
-                    val mimeType = arrayOf("image/*")
-                    newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
-                    albumLauncher.launch(newIntent)
+                if (uriList.count() == MAX_IMAGE_NUM) {
+                    Snackbar.make(fragmentProductSellerRegisterBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
-                builder.setPositiveButton("카메라") { dialogInterface: DialogInterface, i: Int ->
-                    val newIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                registerForActivityResult.launch(intent)
 
-                    // 사진이 저장될 파일 이름
-                    val fileName = "/temp_upload.jpg"
-                    // 경로
-                    val filePath = mainActivity.getExternalFilesDir(null).toString()
-                    // 경로 + 파일이름
-                    val picPath = "${filePath}/${fileName}"
-
-                    // 사진이 저장될 경로를 관리할 Uri객체 생성
-                    // 업로드시 사용할 Uri
-                    val file = File(picPath)
-                    uploadUri = FileProvider.getUriForFile(mainActivity,
-                        "com.test.keepgardeningproject_seller.file_provider", file)
-
-                    newIntent.putExtra(MediaStore.EXTRA_OUTPUT, uploadUri)
-                    cameraLauncher.launch(newIntent)
-                }
-                builder.show()
+                var adapter = fragmentProductSellerRegisterBinding.recyclerViewProductSellerRegisterImage.adapter as RecyclerAdapterClass
+                adapter.notifyDataSetChanged()
             }
 
             val sheetBehavior = BottomSheetBehavior.from(includeProductSellerRegister.bottomSheetCategory)
@@ -229,14 +200,16 @@ class ProductSellerRegisterFragment : Fragment() {
                     // 상품 인덱스 증가
                     productIdx++
 
-                    // 상품 정보 저장
-                    val fileName = if(uploadUri == null) {
-                        "None"
-                    } else {
-                        "image/img_${System.currentTimeMillis()}.jpg"
-                    }
+                    for (i in 0 until uriList.count()) {
+                        // 상품 정보 저장
+                        val fileName = if(uriList[i] == null) {
+                            "None"
+                        } else {
+                            "image/img_${System.currentTimeMillis()}_$i.jpg"
+                        }
 
-                    imageList[0] = fileName
+                        imageList.add(fileName)
+                    }
 
                     val productDataClass = ProductClass(productIdx, imageList, productName, productPrice, 1, productCategory, productContent)
 
@@ -245,20 +218,35 @@ class ProductSellerRegisterFragment : Fragment() {
                         // 상품 인덱스 저장
                         ProductRepository.setProductIdx(productIdx) {
 
-                            // 이미지 업로드
-                            if(uploadUri != null){
-                                ProductRepository.uploadImage(uploadUri!!, fileName) {
-                                    Snackbar.make(fragmentProductSellerRegisterBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                                    val newBundle = Bundle()
-                                    newBundle.putString("oldFragment", "ProductSellerRegisterFragment")
-                                    mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
+                            for (i in 0 until uriList.count()) {
+                                // 이미지 업로드
+                                if (uriList[i] != null) {
+                                    ProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
+                                        Snackbar.make(
+                                            fragmentProductSellerRegisterBinding.root,
+                                            "저장되었습니다",
+                                            Snackbar.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                } else {
+                                    Snackbar.make(
+                                        fragmentProductSellerRegisterBinding.root,
+                                        "저장되었습니다",
+                                        Snackbar.LENGTH_SHORT
+                                    ).show()
                                 }
-                            } else {
-                                Snackbar.make(fragmentProductSellerRegisterBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                                val newBundle = Bundle()
-                                newBundle.putString("oldFragment", "ProductSellerRegisterFragment")
-                                mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
                             }
+
+                            val newBundle = Bundle()
+                            newBundle.putString(
+                                "oldFragment",
+                                "ProductSellerRegisterFragment"
+                            )
+                            mainActivity.replaceFragment(
+                                PRODUCT_SELLER_MAIN_FRAGMENT,
+                                true,
+                                newBundle
+                            )
                         }
                     }
                 }
@@ -269,109 +257,71 @@ class ProductSellerRegisterFragment : Fragment() {
         return fragmentProductSellerRegisterBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        var adapter = fragmentProductSellerRegisterBinding.recyclerViewProductSellerRegisterImage.adapter as RecyclerAdapterClass
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductSellerRegisterViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
-    // 카메라 관련 설정
-    fun cameraSetting(previewImageView: ImageView) : ActivityResultLauncher<Intent> {
-        // 사진 촬영을 위한 런처
-        val cameraContract = ActivityResultContracts.StartActivityForResult()
-        val cameraLauncher = registerForActivityResult(cameraContract) {
-            if(it?.resultCode == AppCompatActivity.RESULT_OK) {
-                // Uri를 이용해 이미지에 접근하여 Bitmap 객체 생성
-                val bitmap = BitmapFactory.decodeFile(uploadUri?.path)
-
-                // 이미지 크기 조정
-                val ratio = 1024.0 / bitmap.width
-                val targetHeight = (bitmap.height * ratio).toInt()
-                val bitmap2 = Bitmap.createScaledBitmap(bitmap, 1024, targetHeight, false)
-
-                // 회전 각도값
-                val degree = getDegree(uploadUri!!)
-
-                // 회전 이미지 생성
-                val matrix = Matrix()
-                matrix.postRotate(degree.toFloat())
-                val bitmap3 = Bitmap.createBitmap(bitmap2, 0, 0, bitmap2.width, bitmap2.height, matrix, false)
-                previewImageView.setImageBitmap(bitmap3)
-            }
-        }
-
-        return cameraLauncher
-    }
-
-    // 이미지 파일에 기록되어 있는 회전 정보를 가져온다.
-    fun getDegree(uri:Uri) : Int {
-
-        var exifInterface: ExifInterface? = null
-
-        // 사진 파일로 부터 tag 정보를 관리하는 객체를 추출한다.
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            val photoUri = MediaStore.setRequireOriginal(uri)
-            // 스트림을 추출한다.
-            val inputStream = mainActivity.contentResolver.openInputStream(photoUri)
-            // ExifInterface 정보를 읽엉돈다.
-            exifInterface = ExifInterface(inputStream!!)
-        } else {
-            exifInterface = ExifInterface(uri.path!!)
-        }
-
-        var degree = 0
-        if(exifInterface != null){
-            // 각도 값을 가지고온다.
-            val orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1)
-
-            when(orientation){
-                ExifInterface.ORIENTATION_ROTATE_90 -> degree = 90
-                ExifInterface.ORIENTATION_ROTATE_180 -> degree = 180
-                ExifInterface.ORIENTATION_ROTATE_270 -> degree = 270
-            }
-        }
-        return degree
-    }
-
-    // 앨범 관련 설정
-    fun albumSetting(previewImageView: ImageView) : ActivityResultLauncher<Intent> {
-
-        val albumContract = ActivityResultContracts.StartActivityForResult()
-        val albumLauncher = registerForActivityResult(albumContract) {
-
-            if(it.resultCode == AppCompatActivity.RESULT_OK) {
-                // 선택한 이미지에 접근할 수 있는 Uri 객체를 추출한다.
-                if(it.data?.data != null){
-                    uploadUri = it.data?.data
-
-                    // 안드로이드 10 (Q) 이상이라면...
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-                        // 이미지를 생성할 수 있는 디코더를 생성한다.
-                        val source = ImageDecoder.createSource(mainActivity.contentResolver, uploadUri!!)
-                        // Bitmap객체를 생성한다.
-                        val bitmap = ImageDecoder.decodeBitmap(source)
-
-                        previewImageView.setImageBitmap(bitmap)
-                    } else {
-                        // 컨텐츠 프로바이더를 통해 이미지 데이터 정보를 가져온다.
-                        val cursor = mainActivity.contentResolver.query(uploadUri!!, null, null, null, null)
-                        if(cursor != null){
-                            cursor.moveToNext()
-
-                            // 이미지의 경로를 가져온다.
-                            val idx = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
-                            val source = cursor.getString(idx)
-
-                            // 이미지를 생성하여 보여준다.
-                            val bitmap = BitmapFactory.decodeFile(source)
-                            previewImageView.setImageBitmap(bitmap)
+    private val registerForActivityResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            when (result.resultCode) {
+                AppCompatActivity.RESULT_OK -> {
+                    val clipData = result.data?.clipData
+                    if (clipData != null) { // 이미지를 여러 개 선택할 경우
+                        val clipDataSize = clipData.itemCount
+                        val selectableCount = MAX_IMAGE_NUM - uriList.count()
+                        if (clipDataSize > selectableCount) { // 최대 선택 가능한 개수를 초과해서 선택한 경우
+                            Snackbar.make(fragmentProductSellerRegisterBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            // 선택 가능한 경우 ArrayList에 가져온 uri를 넣어준다.
+                            for (i in 0 until clipDataSize) {
+                                uriList.add(clipData.getItemAt(i).uri)
+                            }
+                        }
+                    } else { // 이미지를 한 개만 선택할 경우 null이 올 수 있다.
+                        val uri = result?.data?.data
+                        if (uri != null) {
+                            uriList.add(uri)
                         }
                     }
+                    var adapter = fragmentProductSellerRegisterBinding.recyclerViewProductSellerRegisterImage.adapter as RecyclerAdapterClass
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
 
-        return albumLauncher
+
+    inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
+        inner class ViewHolderClass(rowSellerRegisterBinding: RowSellerRegisterBinding) : RecyclerView.ViewHolder(rowSellerRegisterBinding.root) {
+
+            var imageViewProduct : ImageView
+
+            init {
+                imageViewProduct = rowSellerRegisterBinding.imageViewRowSellerRegister
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
+            var rowBinding = RowSellerRegisterBinding.inflate(layoutInflater)
+            var viewHolder = ViewHolderClass(rowBinding)
+
+            return viewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return uriList.count()
+        }
+
+        override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+            holder.imageViewProduct.setImageURI(uriList[position])
+        }
     }
 
 }
