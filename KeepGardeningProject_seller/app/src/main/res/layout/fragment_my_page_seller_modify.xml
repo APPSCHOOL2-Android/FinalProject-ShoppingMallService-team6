@@ -11,8 +11,6 @@
         android:id="@+id/toolbar_ms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
         style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
     <ScrollView

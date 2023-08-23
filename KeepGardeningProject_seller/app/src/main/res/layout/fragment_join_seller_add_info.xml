@@ -10,10 +10,7 @@
         android:id="@+id/toolbar_joinSellerAddInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/black"
-        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

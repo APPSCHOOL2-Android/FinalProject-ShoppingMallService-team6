@@ -10,9 +10,7 @@
         android:id="@+id/toolbar_as"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_as"

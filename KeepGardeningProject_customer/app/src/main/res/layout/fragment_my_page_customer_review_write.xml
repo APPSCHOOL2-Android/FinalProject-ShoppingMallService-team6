@@ -63,7 +63,7 @@
         android:gravity="top"
         android:text="별점"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nanum_square_round_bold"/>
 
     <RatingBar
         android:id="@+id/ratingbar_rc_review_detail"
@@ -80,7 +80,7 @@
         android:gravity="top"
         android:text="제목"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nanum_square_round_bold"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -88,6 +88,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextView_rc_title"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -99,7 +100,7 @@
         android:gravity="top"
         android:text="내용"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nanum_square_round_bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -118,7 +119,7 @@
         android:gravity="top"
         android:text="사진첨부"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nanum_square_round_bold" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -218,6 +219,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_size"
             android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="리뷰 작성하기" />
 
 

@@ -10,7 +10,6 @@
         android:layout_margin="@dimen/margin_size_5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/white"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/padding_size_middle"
@@ -29,6 +28,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_size_top"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/img_bonsai" />
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_size_top"
-                android:fontFamily="@font/nanum_square_round_bold"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:text="가격"
                 android:textSize="@dimen/text_size_16" />
         </LinearLayout>

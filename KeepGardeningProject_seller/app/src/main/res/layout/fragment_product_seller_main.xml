@@ -13,18 +13,16 @@
         android:id="@+id/toolbar_productSellerMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
     <TextView
         android:id="@+id/textView_productSellerMain_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/padding_size_middle"
+        android:layout_marginLeft="@dimen/margin_size_top"
         android:layout_marginTop="@dimen/margin_size_top"
-        android:fontFamily="@font/nanum_square_round_regular"
-        android:text="카테고리 >" />
+        android:fontFamily="@font/nanum_square_round_light"
+        android:text="카테고리 > 카테고리이름" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -39,51 +37,45 @@
             <ImageView
                 android:id="@+id/imageView_joinSellerMain"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
                 android:padding="@dimen/padding_size_middle"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:padding="@dimen/padding_size_middle">
-
+                android:orientation="vertical"
+                android:layout_margin="@dimen/margin_size">
                 <TextView
-                    android:id="@+id/textView_productSellerMain_productPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nanum_square_round_extra_bold"
-                    android:text="가격"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.958"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_productSellerMain_prodcutSellerName" />
-
-                <TextView
+                    android:textSize="@dimen/text_size_20"
                     android:id="@+id/textView_productSellerMain_productName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="48dp"
                     android:fontFamily="@font/nanum_square_round_extra_bold"
-                    android:text="상품 이름"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="상품 이름" />
 
                 <TextView
+
+                    android:textSize="@dimen/text_size_16"
                     android:id="@+id/textView_productSellerMain_prodcutSellerName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/margin_size_top"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="상점 이름"
-                    app:layout_constraintEnd_toEndOf="@+id/textView_productSellerMain_productName"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView_productSellerMain_productName"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_productSellerMain_productName" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    />
+                <TextView
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:id="@+id/textView_productSellerMain_productPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="가격"
+                    android:gravity="right"
+                     />
+            </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout_productSellerMain"
@@ -91,23 +83,24 @@
                 android:layout_height="wrap_content"
                 app:tabMode="fixed">
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="상세정보"
-                    />
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="상세정보"-->
+<!--                    />-->
+<!--                -->
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="리뷰"-->
+<!--                />-->
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="리뷰"
-                    />
+<!--                <com.google.android.material.tabs.TabItem-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="문의"-->
+<!--                    />-->
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="문의"
-                    />
 
             </com.google.android.material.tabs.TabLayout>
 

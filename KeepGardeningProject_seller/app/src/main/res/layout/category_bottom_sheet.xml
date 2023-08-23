@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:backgroundTint="@color/semiwhite"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <view
