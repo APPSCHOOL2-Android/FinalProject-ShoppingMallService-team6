@@ -31,6 +31,7 @@
                 android:id="@+id/textview_acd_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:text="카데고리 -> 경매" />
 
             <ImageView
@@ -54,12 +55,14 @@
                         android:id="@+id/textview_acd_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="몬스테라"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textview_acd_store"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_height="wrap_content"
                         android:text="미미상점" />
                 </LinearLayout>
@@ -83,6 +86,7 @@
                             android:id="@+id/textview_acd_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="남은시간: " />
@@ -90,6 +94,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_month"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="30일"
@@ -97,6 +102,7 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_hour"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -106,6 +112,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_minute"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="10분"
@@ -115,6 +122,7 @@
                             android:id="@+id/textview_acd_second"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="right"
                             android:text="30초"
                             tools:layout_weight="1" />
@@ -129,6 +137,7 @@
                             android:id="@+id/textview_acd_open"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="시작가격" />
@@ -136,6 +145,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_openprice"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
@@ -150,6 +160,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_current"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
@@ -159,6 +170,7 @@
                             android:id="@+id/textview_acd_currentprice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="23000원" />
@@ -173,6 +185,7 @@
                             android:id="@+id/textview_acd_states"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="경매상태" />
@@ -181,6 +194,7 @@
                             android:id="@+id/textview_acd_statenow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:layout_weight="1"
                             android:gravity="right"
                             android:text="입찰가능" />
@@ -198,6 +212,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textview_acd_period"
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="경매 기간" />
@@ -205,6 +220,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textview_acd_periodnow"
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
                     android:layout_height="wrap_content"
                     android:text="23/08/12 11:38 ~ 23/08/14 21:26" />
             </LinearLayout>
@@ -245,12 +261,14 @@
             android:id="@+id/button_acd_insert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_weight="4"
             android:text="입찰하기" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_acd_qnas"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:text="문의하기" />

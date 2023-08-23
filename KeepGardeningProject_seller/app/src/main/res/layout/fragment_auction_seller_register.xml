@@ -12,9 +12,7 @@
         android:id="@+id/toolbar_auctionSellerRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"

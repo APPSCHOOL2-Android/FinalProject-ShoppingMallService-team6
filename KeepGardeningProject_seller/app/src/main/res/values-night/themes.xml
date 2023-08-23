@@ -3,5 +3,12 @@
     <style name="Base.Theme.KeepGardeningProject_seller" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
     </style>
+
+    <!--툴바 색상-->
+    <style name="Theme.KeepGardeningProject_seller.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
+
+    </style>
+    <style name="Theme.KeepGardeningProject_seller" parent="Base.Theme.KeepGardeningProject_seller" />
 </resources>

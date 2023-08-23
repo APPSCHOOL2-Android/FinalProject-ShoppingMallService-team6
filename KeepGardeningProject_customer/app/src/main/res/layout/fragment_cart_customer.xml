@@ -29,7 +29,7 @@
             android:text="전체 2개"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cart_selectDelete"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_weight="1"
         android:transitionGroup="true" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_cart_pay"
         style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"

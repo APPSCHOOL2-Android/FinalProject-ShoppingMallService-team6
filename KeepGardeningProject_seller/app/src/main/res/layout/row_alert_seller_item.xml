@@ -9,7 +9,6 @@
         android:layout_margin="@dimen/margin_size_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:contentPadding="@dimen/padding_size_small"
@@ -22,7 +21,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_regular"
             android:padding="@dimen/padding_size_middle"
-            android:text="Seller알림~!!!"
-            android:textColor="@color/black" />
+            android:text="Seller알림~!!!" />
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

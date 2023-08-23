@@ -14,6 +14,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
+        android:fontFamily="@font/nanum_square_round_regular"
         android:id="@+id/textView_hcs_gridTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
         android:textSize="@dimen/homeCustomerMainHome_recycler_recommend_item_text_size" />
 
     <TextView
+        android:fontFamily="@font/nanum_square_round_regular"
         android:id="@+id/textView_hcs_gridStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +36,7 @@
         android:textSize="10sp" />
 
     <TextView
+        android:fontFamily="@font/nanum_square_round_bold"
         android:id="@+id/textView_hcs_gridPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,5 +45,5 @@
         android:text="10000원"
         android:textColor="@color/black"
         android:textSize="@dimen/homeCustomerMainHome_recycler_recommend_item_text_size"
-        android:textStyle="bold" />
+        />
 </LinearLayout>

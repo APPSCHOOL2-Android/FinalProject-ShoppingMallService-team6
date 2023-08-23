@@ -87,6 +87,7 @@
                             app:tint="@color/colorAccent3" />
 
                         <TextView
+                            android:fontFamily="@font/nanum_square_round_regular"
                             android:id="@+id/textView_hcm_logo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

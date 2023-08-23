@@ -14,11 +14,12 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeSellerMyPageMain_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="이름" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -29,10 +30,11 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeSellerMyPageMain_sellDelivery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
             android:text="판매/배송" />
 
@@ -44,11 +46,12 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeSellerMyPageMain_auction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="경매내역" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -58,11 +61,12 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeSellerMyPageMain_qna"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="문의내역" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -72,11 +76,12 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeSellerMyPageMain_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="리뷰내역" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -99,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_round_bold"
                 android:text="로그아웃" />
 
             <com.google.android.material.button.MaterialButton
@@ -106,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_round_bold"
                 android:text="회원탈퇴" />
         </LinearLayout>
 

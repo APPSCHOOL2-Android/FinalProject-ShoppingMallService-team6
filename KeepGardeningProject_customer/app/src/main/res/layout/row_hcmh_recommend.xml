@@ -14,6 +14,7 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
+        android:fontFamily="@font/nanum_square_round_regular"
         android:layout_gravity="center_horizontal"
         android:id="@+id/textView_hcmh_recommendTitle"
         android:layout_width="@dimen/homeCustomerMainHome_recycler_recommend_item_image_size"
@@ -23,6 +24,7 @@
         android:textSize="@dimen/homeCustomerMainHome_recycler_recommend_item_text_size" />
 
     <TextView
+        android:fontFamily="@font/nanum_square_round_bold"
         android:layout_gravity="center_horizontal"
         android:id="@+id/textView_hcmh_recommendPrice"
         android:layout_width="@dimen/homeCustomerMainHome_recycler_recommend_item_image_size"
