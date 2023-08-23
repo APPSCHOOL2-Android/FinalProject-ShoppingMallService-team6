@@ -6,9 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.test.keepgardeningproject_customer.DAO.UserInfo
+import com.google.firebase.database.ktx.values
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMyPageMainBinding
 
@@ -26,9 +27,19 @@ class HomeCustomerMyPageMainFragment : Fragment() {
         homeCustomerMainFragment = HomeCustomerMainFragment()
         homeCustomerMainFragment.mainActivity = activity as MainActivity
         fragmentHomeCustomerMyPageMainBinding.run {
-            textviewHomeCustomerMyPageMainName.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT,true,null)
+
+            textviewHomeCustomerMyPageMainName.run {
+
+                //메인액티비티에서 받아옴
+                textviewHomeCustomerMyPageMainName.text = MainActivity.loginedUserInfo.userNickname.toString()
+
+                setOnClickListener {
+
+                    //logintype 받아서 번들로 넘겨줌
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT,true,null)
+                }
             }
+
             textviewHomeCustomerMyPageMainAuction.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_AUCTION_FRAGMENT,true,null)
             }
@@ -44,11 +55,7 @@ class HomeCustomerMyPageMainFragment : Fragment() {
             textviewHomeCustomerMyPageMainWish.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
             }
-            // 로그아웃 버튼
             buttonHomeCustomerMyPageMainLogOut.setOnClickListener {
-                MainActivity.isLogined = false
-                MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
-                MainActivity.loginedUserInfo = UserInfo(null, null, null, null, null)
                 homeCustomerMainFragment.replaceFragment(HomeCustomerMainFragment.HOME_CUSTOMER_MAIN_HOME,false,null)
             }
             buttonHomeCustomerMyPageMainWithdrawal.setOnClickListener {
@@ -57,6 +64,7 @@ class HomeCustomerMyPageMainFragment : Fragment() {
         }
         return fragmentHomeCustomerMyPageMainBinding.root
     }
+
 
 
 
