@@ -11,6 +11,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.UI.AlertCustomer.AlertCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomer.AuctionCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailFragment
@@ -58,10 +59,21 @@ class MainActivity : AppCompatActivity() {
     companion object{
 
 //        var loginType:Int = -1
-//
 //        var isLogin :Boolean = false
-//
 //        var loginType_kakao :Int  = 0
+
+        // 로그인관련 정보
+        var isLogined :Boolean = false
+        var loginedUserInfo = UserInfo(
+            userIdx = null,
+            userLoginType = null,
+            userEmail = null,
+            userPw = null,
+            userNickname = null
+        )
+
+        // 화면 분기
+
         val ALERT_CUSTOMER_FRAGMENT = "AlertCustomerFragment"
         val AUCTION_CUSTOMER_FRAGMENT = "AuctionCustomerFragment"
         val AUCTION_CUSTOMER_DETAIL_FRAGMENT = "AuctionCustomerDetailFragment"
@@ -89,7 +101,9 @@ class MainActivity : AppCompatActivity() {
         val STORE_INFO_CUSTOMER_FRAGMENT = "StoreInfoCustomerFragment"
         val STORE_INFO_CUSTOMER_DETAIL_FRAGMENT = "StoreInfoCustomerDetailFragment"
         val SEARCH_ADDRESS_FRAGMENT = "SearchAddressFragment"
-      
+
+
+        // 홈화면 상태
         var homeCustomerMainChosedFragment = R.id.item_hcm_home
     }
 

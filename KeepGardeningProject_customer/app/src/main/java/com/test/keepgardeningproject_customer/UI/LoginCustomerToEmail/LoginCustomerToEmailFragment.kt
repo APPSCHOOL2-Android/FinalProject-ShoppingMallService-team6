@@ -1,12 +1,17 @@
 package com.test.keepgardeningproject_customer.UI.LoginCustomerToEmail
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentLoginCustomerToEmailBinding
 
 class LoginCustomerToEmailFragment : Fragment() {
@@ -50,7 +55,77 @@ class LoginCustomerToEmailFragment : Fragment() {
                 val passwordCheck = textInputLayoutLoginCustomerToEmailPassword.editText?.text.toString()
                 val emailError = textInputLayoutLoginCustomerToEmailEmail.error
                 if (emailCheck.isNotEmpty() && passwordCheck.isNotEmpty() && emailError == null) {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_MAIN_FRAGMENT, false, null)
+                    // 로그인 완료시 구현
+                    // 아이디, 비밀번호가 있는지 검증
+                    // 검증완료시
+                    // 1. MainActivity
+                    //      isLogined = true
+                    //      loginedUserInfo 객체 저장
+                    // 2.홈화면의 마이페이지화면으로 이동하기
+                    UserRepository.getUserInfoById(emailCheck){
+                        // 회원가입된 이메일이 없다면
+                        if(it.result.exists() == false) {
+                            val builder = MaterialAlertDialogBuilder(mainActivity)
+                            builder.setTitle("로그인 오류")
+                            builder.setMessage("존재하지 않는 아이디 입니다")
+                            builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                                mainActivity.showSoftInput(textInputLayoutLoginCustomerToEmailEmail)
+                            }
+                            builder.show()
+                        }
+                        // 회원가입된 이메일이 있다면
+                        else{
+                            for(c1 in it.result.children){
+                                val userPw = c1.child("userPw").value as String
+
+                                // 비밀번호 검증
+                                if(passwordCheck != userPw){
+                                    if(it.result.exists() == false) {
+                                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                                        builder.setTitle("로그인 오류")
+                                        builder.setMessage("잘못된 비밀번호 입니다")
+                                        builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                                            mainActivity.showSoftInput(
+                                                textInputLayoutLoginCustomerToEmailEmail
+                                            )
+                                        }
+                                        builder.show()
+                                    }
+                                }
+                                else{
+//                                    var userIdx: Long?,
+//                                    var userLoginType:Long?,
+//                                    var userEmail:String?,
+//                                    val userPw:String?,
+//                                    var userNickname: String?)
+                                    val userIdx = c1.child("userIdx").value as Long
+                                    val userLoginType = c1.child("userLoginType").value as Long
+                                    val userEmail = c1.child("userEmail").value as String
+                                    val userPw = c1.child("userPw").value as String
+                                    val userNickname = c1.child("userNickname").value as String
+
+                                     val loginedUserInfo = UserInfo(
+                                        userIdx = userIdx,
+                                        userLoginType = userLoginType,
+                                        userEmail = userEmail,
+                                        userPw = userPw,
+                                        userNickname = userNickname
+                                    )
+
+                                    MainActivity.loginedUserInfo = loginedUserInfo
+                                    MainActivity.isLogined = true
+                                    MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
+
+                                    Snackbar.make(fragmentLoginCustomerToEmailBinding.root, "로그인 되었습니다", Snackbar.LENGTH_SHORT).show()
+
+                                    mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
+                                    mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
+                                }
+
+                            }
+                        }
+                    }
+
                 }else{
                     textViewLoginCustomerToEmailCheckLogin.visibility = View.VISIBLE
                 }

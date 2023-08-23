@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.MainActivity
@@ -27,6 +28,9 @@ class HomeCustomerMainFragment : Fragment() {
     companion object{
         val HOME_CUSTOMER_MAIN_HOME = "HomeCustomerMainHomeFragment"
         val HOME_CUSTOMER_MY_PAGE_MAIN = "HomeCustomerMyPageMainFragment"
+
+        val HCMH_ID = R.id.item_hcm_home
+        val HCMM_ID = R.id.item_hcm_mypage
     }
 
     override fun onCreateView(
@@ -62,7 +66,7 @@ class HomeCustomerMainFragment : Fragment() {
                 headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = "홍길동님 환영합니다"
                 addHeaderView(headerHomeCustomerMainBinding.root)
 
-                // 드로어 닫기
+                // 마이페이지로
                 headerHomeCustomerMainBinding.imageHcmHeaderArrowBack.setOnClickListener {
                     replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
                     drawerHcm.close()
@@ -91,33 +95,7 @@ class HomeCustomerMainFragment : Fragment() {
             }
 
             // 바텀네비게이션
-            bottomHcm.run{
-                setOnItemSelectedListener {
-                    when(it.itemId){
-                        R.id.item_hcm_category->{
-                            drawerHcm.open()
-                        }
-                        R.id.item_hcm_home->{
-                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
-                            replaceFragment(HOME_CUSTOMER_MAIN_HOME,false,null)
-                        }
-
-                        R.id.item_hcm_mypage->{
-                            //로그인이 되어 있을떄
-
-//                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
-//                            replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
-
-                            //로그인이 안되어 있을 떄
-                            mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
-
-                        }
-                    }
-                    true
-                }
-
-                selectedItemId = MainActivity.homeCustomerMainChosedFragment
-            }
+            bottom(MainActivity.homeCustomerMainChosedFragment)
 
             // 플로팅버튼 검색창 이동
             floatingHcmSearch.setOnClickListener{
@@ -171,10 +149,44 @@ class HomeCustomerMainFragment : Fragment() {
                 fragmentTransaction.addToBackStack(name)
             }
 
+
             // 교체 명령이 동작하도록 한다.
             fragmentTransaction.commit()
         }
     }
+
+    fun bottom(id : Int){
+        fragmentHomeCustomerMainBinding.run{
+            bottomHcm.run{
+                setOnItemSelectedListener {
+                    when(it.itemId){
+                        R.id.item_hcm_category->{
+                            fragmentHomeCustomerMainBinding.drawerHcm.open()
+                        }
+                        R.id.item_hcm_home->{
+                            MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
+                            replaceFragment(HOME_CUSTOMER_MAIN_HOME,false,null)
+                        }
+
+                        R.id.item_hcm_mypage->{
+                            if(MainActivity.isLogined){
+                                // 로그인 되어 있으면
+                                MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
+                                replaceFragment(HOME_CUSTOMER_MY_PAGE_MAIN,false,null)
+                            }else{
+                                //로그인이 안되어 있을 떄
+                                MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_home
+                                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                            }
+                        }
+                    }
+                    true
+                }
+                selectedItemId = id
+            }
+        }
+    }
+
 
     fun removeFragment(name:String){
         mainActivity.supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)

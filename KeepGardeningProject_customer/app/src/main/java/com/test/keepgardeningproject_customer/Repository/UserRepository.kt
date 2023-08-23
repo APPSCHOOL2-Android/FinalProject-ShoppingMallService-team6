@@ -82,7 +82,7 @@ class UserRepository {
         fun modifyUserInfo(userInfo: UserInfo,callback1: (Task<Void>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val userInfoData = database.getReference("UserInfo")
-            userInfoData.orderByChild("UserIdx").equalTo(userInfo.userIdx.toDouble()).get().addOnCompleteListener {
+            userInfoData.orderByChild("UserIdx").equalTo(userInfo.userIdx!!.toDouble()).get().addOnCompleteListener {
                 for(data in it.result.children){
                     data.ref.child("userEmail").setValue(userInfo.userEmail)
                     data.ref.child("userPw").setValue(userInfo.userPw)
