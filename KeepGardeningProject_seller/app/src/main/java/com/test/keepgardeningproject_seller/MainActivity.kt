@@ -92,6 +92,8 @@ class MainActivity : AppCompatActivity() {
 
     // 로그인한 사용자의 정보를 담을 객체
     lateinit var loginSellerInfo: UserSellerInfo
+    // 현재 로그인 상태를 판별하는 변수
+    var isLogined = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
