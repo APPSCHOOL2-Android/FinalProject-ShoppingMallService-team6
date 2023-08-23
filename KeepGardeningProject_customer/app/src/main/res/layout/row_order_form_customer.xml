@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="상품명"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,12 +28,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="상품금액"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_productName" />
 
         <TextView
             android:id="@+id/textView_rowOrderForm_totalCount"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -42,6 +45,7 @@
 
         <TextView
             android:id="@+id/textView_rowOrderForm_productPrice"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -54,6 +58,7 @@
             android:id="@+id/textView_rowOrderForm_deliveryFee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="10dp"
             android:text="배송비 : 3000원"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +68,7 @@
             android:id="@+id/imageView_rowOrderForm_productImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_1"
@@ -72,6 +78,7 @@
             android:id="@+id/textView_rowOrderForm_productInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:text="상품 상세설명"
@@ -83,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="10dp"
             android:text="상품금액"
             app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderForm_productImage"
@@ -92,6 +100,7 @@
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="수량"
@@ -102,6 +111,7 @@
             android:id="@+id/textView_rowOrderForm_totalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="10dp"
             android:text="23,000원"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +121,7 @@
             android:id="@+id/textView_rowOrderForm_productCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="10dp"
             android:text="1개"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +131,7 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_marginTop="36dp"
             android:text="상점 요청사항"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +149,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_rowOrderForm_request"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 

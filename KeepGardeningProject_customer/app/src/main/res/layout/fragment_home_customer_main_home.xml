@@ -42,7 +42,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_plant" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -65,7 +66,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_orchid" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -88,7 +90,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_monstera" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -111,7 +114,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_bonsai" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -134,7 +138,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_auction" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -165,7 +170,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_commodity" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,7 +194,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_seed" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,7 +218,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_bouquet" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -234,7 +242,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_pot" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -257,7 +266,8 @@
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_money" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -297,7 +307,7 @@
                 android:orientation="vertical"
                 android:transitionGroup="true">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_round_extra_bold"

@@ -17,6 +17,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_pcdd_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
