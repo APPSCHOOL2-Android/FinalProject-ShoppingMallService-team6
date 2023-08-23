@@ -14,7 +14,8 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/nanum_square_round_regular"
             android:id="@+id/textview_homeCustomerMyPageMain_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +30,8 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/nanum_square_round_regular"
             android:id="@+id/textview_homeCustomerMyPageMain_purchase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +46,8 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/nanum_square_round_regular"
             android:id="@+id/textview_homeCustomerMyPageMain_auction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +61,7 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_homeCustomerMyPageMain_qna"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +75,8 @@
         android:layout_marginTop="@dimen/margin_size_top"
         app:contentPadding="@dimen/margin_size">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:fontFamily="@font/nanum_square_round_regular"
             android:id="@+id/textview_homeCustomerMyPageMain_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,6 +114,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_homeCustomerMyPageMain_logOut"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="로그아웃" />
@@ -118,6 +123,7 @@
                 android:id="@+id/button_homeCustomerMyPageMain_withdrawal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:layout_weight="1"
                 android:text="회원탈퇴" />
         </LinearLayout>

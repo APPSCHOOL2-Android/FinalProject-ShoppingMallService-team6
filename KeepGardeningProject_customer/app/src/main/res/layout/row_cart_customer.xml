@@ -20,6 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_rowCart_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_rowCart_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_rowCart_price" />
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_rowCart_productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,6 +76,7 @@
                 app:srcCompat="@drawable/ic_close_24px" />
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_rowCart_priceValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,6 +109,7 @@
                 app:srcCompat="@drawable/ic_remove_24px" />
 
             <TextView
+                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_rowCart_countValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

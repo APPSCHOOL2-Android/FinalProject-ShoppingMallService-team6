@@ -36,14 +36,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_orderNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="No. 202308171234" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_orderDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView_orderCheckForm_addressInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -91,14 +91,14 @@
                     android:layout_marginTop="@dimen/margin_size_top"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_pcd_dialogTitle"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="받으시는 분" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_addressUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,14 +114,14 @@
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_pcd_dialogPrice"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="연락처" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_addressPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -137,14 +137,14 @@
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView8"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="배송지" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_addressDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -160,14 +160,14 @@
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView14"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="배송 메시지" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_deliveryMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView_orderCheckForm_ordererInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -198,14 +198,14 @@
                     android:layout_marginTop="@dimen/margin_size_top"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView19"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="이름" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_ordererName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -221,14 +221,14 @@
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView22"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="연락처" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_ordererPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,14 +244,14 @@
                     android:layout_marginTop="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView26"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="이메일" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_orderCheckForm_ordererEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
