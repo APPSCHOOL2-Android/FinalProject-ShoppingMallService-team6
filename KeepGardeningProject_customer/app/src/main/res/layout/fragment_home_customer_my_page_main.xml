@@ -5,129 +5,147 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/padding_size_middle"
     tools:context=".UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment" >
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:id="@+id/textview_homeCustomerMyPageMain_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="이름" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:id="@+id/textview_homeCustomerMyPageMain_purchase"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="구매내역" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:id="@+id/textview_homeCustomerMyPageMain_auction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="경매내역" />
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textview_homeCustomerMyPageMain_qna"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="문의내역" />
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:id="@+id/textview_homeCustomerMyPageMain_review"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="리뷰내역" />
-
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        app:contentPadding="@dimen/margin_size">
-
-        <TextView
-            android:id="@+id/textview_homeCustomerMyPageMain_wish"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:text="찜내역" />
-
-    </com.google.android.material.card.MaterialCardView>
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom|left">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_size_middle">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_homeCustomerMyPageMain_logOut"
-                android:layout_width="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="로그아웃" />
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="이름" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_homeCustomerMyPageMain_withdrawal"
-                android:layout_width="wrap_content"
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_auction"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
                 android:fontFamily="@font/nanum_square_round_regular"
+                android:text="경매내역" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="리뷰내역" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_qna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:text="문의내역" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <TextView
+                android:id="@+id/textview_homeCustomerMyPageMain_wish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:text="찜내역" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:text="회원탈퇴" />
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_logOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="로그아웃" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_withdrawal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="회원탈퇴" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="구매내역" />
+
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
 </LinearLayout>

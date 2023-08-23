@@ -8,19 +8,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMainHomeBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcmhFavoriteBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcmhRecommendBinding
+import java.text.DecimalFormat
 
 class HomeCustomerMainHomeFragment : Fragment() {
 
     lateinit var fragmentHomeCustomerMainHomeBinding: FragmentHomeCustomerMainHomeBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var homeCustomerMainHomeViewModel : HomeCustomerMainHomeViewModel
+
+    // 인기상품
+
+    // 추천상품에 전체 게시물 불러와 보여주기
+    val productClassList = mutableListOf<ProductClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +41,18 @@ class HomeCustomerMainHomeFragment : Fragment() {
         // Inflate the layout for this fragment
         fragmentHomeCustomerMainHomeBinding = FragmentHomeCustomerMainHomeBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        // 인기상품 동기화
+
+
+        // 추천상품 동기화
+        homeCustomerMainHomeViewModel = ViewModelProvider(mainActivity)[HomeCustomerMainHomeViewModel::class.java]
+        homeCustomerMainHomeViewModel.run{
+            productClassList.observe(mainActivity){
+                fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
+            }
+        }
+        homeCustomerMainHomeViewModel.getProductInfoAll()
 
         fragmentHomeCustomerMainHomeBinding.run{
             // 메뉴선택
@@ -154,12 +178,20 @@ class HomeCustomerMainHomeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return homeCustomerMainHomeViewModel.productClassList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ViewHolderHCMHRecommend, position: Int) {
-            holder.textViewHcmhRecommendTitle.text = "상품명"
-            holder.textViewHcmhRecommendPrice.text = "10,000원"
+            // 이미지 썸네일 넣기(대표 사진 0번)
+//            Glide.with(mainActivity).load(homeCustomerMainHomeViewModel.productThumbnailList.value?.get(position)).into(holder.imageViewHcmhRecommend)
+
+            // 제목 표시하기 (1줄 고정)
+            holder.textViewHcmhRecommendTitle.text = homeCustomerMainHomeViewModel.productClassList.value?.get(position)?.productName
+
+            // 숫자 comma 표시하기
+            var decimal = DecimalFormat("#,###")
+            var temp = homeCustomerMainHomeViewModel.productClassList.value?.get(position)?.productPrice?.toInt()
+            holder.textViewHcmhRecommendPrice.text = decimal.format(temp) + "원"
         }
     }
 }
