@@ -51,40 +51,12 @@
                             app:icon="@drawable/ic_add_24px"
                             app:iconGravity="textEnd" />
 
-                        <ImageView
-                            android:id="@+id/imageView_productSellerRegister_productImage1"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="@dimen/margin_size"
-                            tools:src="@tools:sample/avatars" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView_productSellerRegister_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp" />
 
-                        <ImageView
-                            android:id="@+id/imageView_productSellerRegister_productImage2"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="@dimen/margin_size"
-                            tools:src="@tools:sample/avatars" />
-
-                        <ImageView
-                            android:id="@+id/imageView_productSellerRegister_productImage3"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="@dimen/margin_size"
-                            tools:src="@tools:sample/avatars" />
-
-                        <ImageView
-                            android:id="@+id/imageView_productSellerRegister_productImage4"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="@dimen/margin_size"
-                            tools:src="@tools:sample/avatars" />
-
-                        <ImageView
-                            android:id="@+id/imageView_productSellerRegister_productImage5"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="@dimen/margin_size"
-                            tools:src="@tools:sample/avatars" />
                     </LinearLayout>
                 </ScrollView>
 
