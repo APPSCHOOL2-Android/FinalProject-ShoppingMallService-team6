@@ -169,10 +169,11 @@ class LoginSellerToEmailFragment : Fragment() {
                                 userSellerPostNumber,
                                 userSellerPostDetail
                             )
+                            mainActivity.isLogined = true
+
                             Snackbar.make(fragmentLoginSellerToEmailBinding.root, "로그인 되었습니다", Snackbar.LENGTH_SHORT).show()
 
                             mainActivity.replaceFragment(MainActivity.HOME_SELLER_FRAGMENT, false, null)
-                            Log.i("Seungheon", mainActivity.loginSellerInfo.toString())
                         }
                     }
                 }
