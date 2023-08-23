@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:id = "@+id/button_qs_answer_all"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text = "전체" />
 
         <com.google.android.material.button.MaterialButton
@@ -32,6 +33,7 @@
             android:id = "@+id/button_qs_answered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text = "답변완료"
             />
 
@@ -41,6 +43,7 @@
             android:id = "@+id/button_qs_not_answered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text = "미답변" />
 
 

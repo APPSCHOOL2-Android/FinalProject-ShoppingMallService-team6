@@ -8,18 +8,18 @@
     android:transitionGroup="true"
     tools:context=".UI.HomeSeller.HomeSellerFragment">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_homeSeller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Theme.KeepGardeningProject_seller.Toolbar"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"
         app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView_homeSeller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView_homeSeller"
