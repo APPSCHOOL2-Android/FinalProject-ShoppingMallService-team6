@@ -54,7 +54,7 @@ class JoinSellerMainFragment : Fragment() {
             }
             // 중복확인하기
             buttonJoinSellerMainDoubleCheck.setOnClickListener {
-                Toast.makeText(requireContext(),"중복확인", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "중복확인", Toast.LENGTH_SHORT).show()
             }
             // 로그인 화면으로
             buttonJoinSellerMainJoin.setOnClickListener {
@@ -65,13 +65,13 @@ class JoinSellerMainFragment : Fragment() {
         return fragmentJoinSellerMainBinding.root
     }
 
-    fun userSubmit(){
+    fun userSubmit() {
         fragmentJoinSellerMainBinding.run {
 
             //이메일,패스워드,닉네임,배너,상점명, 상점설명, 우편번호, 상세주소
             var email = textInputEditTextJoinSellerMainEmail.text.toString()
-            var pw =textInputEditTextJoinSellerMainPassword.text.toString()
-            var nickNames =textInputEditTextJoinSellerMainNickName.text.toString()
+            var pw = textInputEditTextJoinSellerMainPassword.text.toString()
+            var nickNames = textInputEditTextJoinSellerMainNickName.text.toString()
             var storeName = textInputEditTextJoinSellerMainStoreName.text.toString()
             var storeInfo = textInputEditTextJoinSellerMainStoreDetail.text.toString()
             var postNumber = textInputEditTextJoinSellerMainPostNumber.text.toString()
@@ -82,17 +82,18 @@ class JoinSellerMainFragment : Fragment() {
 
                 userindex++
 
-//                val fileName = if (uploadUri == null) {
-//                    "None"
-//                } else {
-//                    "imge/img_${System.currentTimeMillis()}.jpg"
-//                }
+                // 배너 이미지 선택 안하면 파일 이름은 None으로 설정
+                val fileName = if (uploadUri == null) {
+                    "None"
+                } else {
+                    "imge/img_${System.currentTimeMillis()}.jpg"
+                }
 
-                //베너 구현필요 -> 지금은 null로 처리 (이미지 불러오고 가져오는 function 필요!)
-                val userinfo = UserSellerInfo(userindex,0,email,pw,nickNames,null,storeName,storeInfo,postNumber,postDetail)
+                val userinfo =
+                    UserSellerInfo(userindex, 0, email, pw, nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
 
-                UserRepository.setUserSellerInfo(userinfo){
-                    UserRepository.setUserSellerIdx(userindex){
+                UserRepository.setUserSellerInfo(userinfo) {
+                    UserRepository.setUserSellerIdx(userindex) {
                         mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
                         mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                     }
@@ -100,7 +101,6 @@ class JoinSellerMainFragment : Fragment() {
             }
         }
     }
-
 
 
 }
