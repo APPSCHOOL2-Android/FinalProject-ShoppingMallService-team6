@@ -82,5 +82,17 @@ class UserRepository {
             imageRef.putFile(uploadUri!!).addOnCompleteListener(callback1)
         }
 
+        // 상점 배너 이미지 업로드
+        fun uploadStoreImage(uploadUri: Uri, fileName: String, callback1: (Task<UploadTask.TaskSnapshot>) -> Unit) {
+            // firebase storage에 접근한다.
+            val storage = FirebaseStorage.getInstance()
+            // 파일에 접근할 수 있는 객체를 가져온다.
+            var imageRef = storage.reference.child(fileName)
+
+            // 파일을 업로드한다.
+            // 안드로이드에서 파일을 선택하면 파일에 접근할 수 있는 uri 객체를 반환함
+            // putFile 매개변수로 해당 uri 객체가 들어감
+            imageRef.putFile(uploadUri!!).addOnCompleteListener(callback1)
+        }
     }
 }
