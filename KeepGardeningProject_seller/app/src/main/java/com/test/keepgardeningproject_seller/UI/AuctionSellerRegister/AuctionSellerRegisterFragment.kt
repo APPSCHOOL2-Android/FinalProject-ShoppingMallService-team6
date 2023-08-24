@@ -1,22 +1,32 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerRegister
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerRegisterBinding
+import com.test.keepgardeningproject_seller.databinding.RowSellerRegisterBinding
 import java.util.Calendar
 
 class AuctionSellerRegisterFragment : Fragment() {
@@ -56,6 +66,11 @@ class AuctionSellerRegisterFragment : Fragment() {
                 }
             }
 
+            recyclerViewAuctionSellerRegisterImage.run {
+                adapter = RecyclerAdapterClass()
+
+                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+            }
             datePickerAuctionSellerRegisterEndDate.minDate = System.currentTimeMillis()
 
 
@@ -165,10 +180,42 @@ class AuctionSellerRegisterFragment : Fragment() {
         return fragmentAuctionSellerRegisterBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        var adapter = fragmentAuctionSellerRegisterBinding.recyclerViewAuctionSellerRegisterImage.adapter as RecyclerAdapterClass
+        adapter.notifyDataSetChanged()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AuctionSellerRegisterViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
+        inner class ViewHolderClass(rowSellerRegisterBinding: RowSellerRegisterBinding) : RecyclerView.ViewHolder(rowSellerRegisterBinding.root) {
+
+            var imageViewProduct : ImageView
+
+            init {
+                imageViewProduct = rowSellerRegisterBinding.imageViewRowSellerRegister
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
+            var rowBinding = RowSellerRegisterBinding.inflate(layoutInflater)
+            var viewHolder = ViewHolderClass(rowBinding)
+
+            return viewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return uriList.count()
+        }
+
+        override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+            holder.imageViewProduct.setImageURI(uriList[position])
+        }
     }
 
 }
