@@ -195,6 +195,15 @@ class ProductSellerRegisterFragment : Fragment() {
                     return@setOnClickListener
                 }
 
+                if(uriList.size == 0) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("이미지를 1개 이상 선택해주세요.")
+                    builder.setPositiveButton("확인",null)
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
                 ProductRepository.getProductIdx {
                     var productIdx = it.result.value as Long
                     // 상품 인덱스 증가
@@ -202,11 +211,7 @@ class ProductSellerRegisterFragment : Fragment() {
 
                     for (i in 0 until uriList.count()) {
                         // 상품 정보 저장
-                        val fileName = if(uriList[i] == null) {
-                            "None"
-                        } else {
-                            "image/img_${System.currentTimeMillis()}_$i.jpg"
-                        }
+                        val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
 
                         imageList.add(fileName)
                     }
@@ -220,20 +225,8 @@ class ProductSellerRegisterFragment : Fragment() {
 
                             for (i in 0 until uriList.count()) {
                                 // 이미지 업로드
-                                if (uriList[i] != null) {
-                                    ProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
-                                        Snackbar.make(
-                                            fragmentProductSellerRegisterBinding.root,
-                                            "저장되었습니다",
-                                            Snackbar.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                } else {
-                                    Snackbar.make(
-                                        fragmentProductSellerRegisterBinding.root,
-                                        "저장되었습니다",
-                                        Snackbar.LENGTH_SHORT
-                                    ).show()
+                                ProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
+
                                 }
                             }
 
@@ -242,14 +235,11 @@ class ProductSellerRegisterFragment : Fragment() {
                                 "oldFragment",
                                 "ProductSellerRegisterFragment"
                             )
-                            mainActivity.replaceFragment(
-                                PRODUCT_SELLER_MAIN_FRAGMENT,
-                                true,
-                                newBundle
-                            )
+                            mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
                         }
                     }
                 }
+                Snackbar.make(fragmentProductSellerRegisterBinding.root, "상품이 등록되었습니다.", Snackbar.LENGTH_SHORT).show()
             }
         }
 
