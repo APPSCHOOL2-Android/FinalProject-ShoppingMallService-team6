@@ -58,7 +58,7 @@ class CartCustomerViewModel : ViewModel() {
 //    }
 
     // 장바구니에 있는 상품의 정보 불러오기
-    fun getProductInCart(cartUserIdx: Double) {
+    fun getProductInCart(cartUserIdx: Long) {
         val tempList = mutableListOf<CartClass>()
         val tempImageList = mutableListOf<String>()
 
@@ -84,14 +84,21 @@ class CartCustomerViewModel : ViewModel() {
     // 상품 갯수 + 하기
     fun plusCartProduct(cartClass: CartClass) {
         CartRepository.plusCartProduct(cartClass) {
-            getProductInCart(cartClass.cartUserIdx.toDouble())
+            getProductInCart(cartClass.cartUserIdx)
         }
     }
 
     // 상품 갯수 - 하기
     fun minusCartProduct(cartClass: CartClass) {
         CartRepository.minusCartProduct(cartClass) {
-            getProductInCart(cartClass.cartUserIdx.toDouble())
+            getProductInCart(cartClass.cartUserIdx)
+        }
+    }
+
+    // 상품 하나 삭제하기
+    fun removeCartProduct(cartClass: CartClass) {
+        CartRepository.removeCartProduct(cartClass.cartIdx) {
+            getProductInCart(cartClass.cartUserIdx)
         }
     }
 

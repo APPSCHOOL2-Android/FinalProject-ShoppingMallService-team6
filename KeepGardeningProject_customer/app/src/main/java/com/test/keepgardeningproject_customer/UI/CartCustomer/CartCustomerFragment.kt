@@ -65,20 +65,7 @@ class CartCustomerFragment : Fragment() {
             }
 
             // 현재 사용자의 장바구니 정보를 가져온다.
-            cartCustomerViewModel.getProductInCart(userIdx?.toDouble()!!)
-//            CartRepository.get(userIdx!!.toDouble()) {
-//                for (c1 in it.result.children) {
-//                    val cartIdx = c1.child("cartIdx").value as Long
-//                    val cartUserIdx = c1.child("cartUserIdx").value as Long
-//                    val cartProductIdx = c1.child("cartProductIdx").value as MutableList<Long>
-//                    val cartCount = c1.child("cartCount").value as Long
-//
-//                    cartClass = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartCount)
-//
-//                    // 장바구니에 담겨있는 상품 정보를 가져온다.
-//                    viewModel.getProductInCart(cartClass.cartProductIdx)
-//                }
-//            }
+            cartCustomerViewModel.getProductInCart(userIdx)
         }
 
         return fragmentCartCustomerBinding.root
@@ -109,6 +96,11 @@ class CartCustomerFragment : Fragment() {
                 rowCartCustomerBinding.buttonRowCartPlus.setOnClickListener {
                     val cartClass = cartCustomerViewModel.cartList.value?.get(adapterPosition)!!
                     cartCustomerViewModel.plusCartProduct(cartClass)
+                }
+
+                rowCartCustomerBinding.buttonRowCartDelete.setOnClickListener {
+                    val cartClass = cartCustomerViewModel.cartList.value?.get(adapterPosition)!!
+                    cartCustomerViewModel.removeCartProduct(cartClass)
                 }
             }
         }
