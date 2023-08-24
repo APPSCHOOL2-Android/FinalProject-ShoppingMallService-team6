@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.ktx.values
+import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.UserRepository
@@ -55,11 +56,17 @@ class HomeCustomerMyPageMainFragment : Fragment() {
             textviewHomeCustomerMyPageMainWish.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
             }
+            // 로그아웃 버튼
             buttonHomeCustomerMyPageMainLogOut.setOnClickListener {
-                homeCustomerMainFragment.replaceFragment(HomeCustomerMainFragment.HOME_CUSTOMER_MAIN_HOME,false,null)
+                MainActivity.isLogined = false
+                MainActivity.loginedUserInfo = UserInfo(null,null,null,null,null)
+                mainActivity.removeFragment(MainActivity.HOME_CUSTOMER_MY_PAGE_MAIN)
             }
+            // 회원탈퇴 버튼
             buttonHomeCustomerMyPageMainWithdrawal.setOnClickListener {
-                homeCustomerMainFragment.replaceFragment(HomeCustomerMainFragment.HOME_CUSTOMER_MAIN_HOME,false,null)
+                MainActivity.isLogined = false
+                MainActivity.loginedUserInfo = UserInfo(null,null,null,null,null)
+                mainActivity.removeFragment(MainActivity.HOME_CUSTOMER_MY_PAGE_MAIN)
             }
         }
         return fragmentHomeCustomerMyPageMainBinding.root

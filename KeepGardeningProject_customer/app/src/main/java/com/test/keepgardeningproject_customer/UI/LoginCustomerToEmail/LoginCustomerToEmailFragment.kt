@@ -114,7 +114,6 @@ class LoginCustomerToEmailFragment : Fragment() {
 
                                     MainActivity.loginedUserInfo = loginedUserInfo
                                     MainActivity.isLogined = true
-                                    MainActivity.homeCustomerMainChosedFragment = R.id.item_hcm_mypage
 
                                     Snackbar.make(fragmentLoginCustomerToEmailBinding.root, "로그인 되었습니다", Snackbar.LENGTH_SHORT).show()
 

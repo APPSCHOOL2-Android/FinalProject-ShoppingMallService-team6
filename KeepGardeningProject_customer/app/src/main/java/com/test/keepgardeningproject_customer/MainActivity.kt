@@ -17,6 +17,7 @@ import com.test.keepgardeningproject_customer.UI.AuctionCustomer.AuctionCustomer
 import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailFragment
 import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
+import com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerSearch.HomeCustomerSearchFragment
 import com.test.keepgardeningproject_customer.UI.JoinCustomerMain.JoinCustomerMainFragment
 import com.test.keepgardeningproject_customer.UI.LoginCustomerFindPw.LoginCustomerFindPwFragment
@@ -81,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
         val HOME_CUSTOMER_MAIN_FRAGMENT ="HomeCustomerMainFragment"
         val HOME_CUSTOMER_SEARCH_FRAGMENT = "HomeCustomerSearchFragment"
+        val HOME_CUSTOMER_MY_PAGE_MAIN = "HomeCustomerMyPageMainFragment"
         val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
 
         val LOGIN_CUSTOMER_MAIN_FRAGMENT = "LoginCustomerMainFragment"
@@ -104,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // 홈화면 상태
-        var homeCustomerMainChosedFragment = R.id.item_hcm_home
+        //var homeCustomerMainChosedFragment = R.id.item_hcm_home
     }
 
 
@@ -141,6 +143,7 @@ class MainActivity : AppCompatActivity() {
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()
             HOME_CUSTOMER_MAIN_FRAGMENT -> HomeCustomerMainFragment()
             HOME_CUSTOMER_SEARCH_FRAGMENT-> HomeCustomerSearchFragment()
+            HOME_CUSTOMER_MY_PAGE_MAIN -> HomeCustomerMyPageMainFragment()
             JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
             LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
 

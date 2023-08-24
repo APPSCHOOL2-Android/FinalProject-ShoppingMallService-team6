@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item_hcm_category"
-        android:icon="@drawable/ic_menu_24px"
-        android:title="카테고리"
+        android:id="@+id/item_hcm_search"
+        android:icon="@drawable/ic_search_24px"
+        android:title="상품검색"
         app:showAsAction="always" />
     <item
         android:id="@+id/item_hcm_home"
