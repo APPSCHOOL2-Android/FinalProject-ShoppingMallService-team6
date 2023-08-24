@@ -37,11 +37,21 @@ class MyPageCustomerReviewWrite : Fragment() {
 
             materialToolbarRcWrite.run{
 
-                title = "구매내역"
+                title = "리뷰내역"
 
                 setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
 
                 setNavigationOnClickListener {
+
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT)
+
+                }
+
+            }
+
+            buttonRcWrite.run{
+
+                setOnClickListener {
 
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT)
 

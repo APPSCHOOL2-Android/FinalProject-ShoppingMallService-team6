@@ -16,6 +16,7 @@ import com.test.keepgardeningproject_customer.DAO.MypageReviewDetail
 import com.test.keepgardeningproject_customer.DAO.TestDAO
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.ReviewRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
 import org.w3c.dom.Text
@@ -35,8 +36,6 @@ class MyPageCustomerReviewFragment : Fragment() {
     lateinit var newBundle:Bundle
 
     var reviewDetail: MypageReviewDetail = MypageReviewDetail(1,"오준용","환불할게요")
-
-    var MypageReview = MypageReview("DC","조커",3.0f, reviewDetail)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,10 +64,18 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             }
 
-            MyPageReviewRecyclerView.run {
+            val userIdx = MainActivity.loginedUserInfo.userIdx.toString()
 
-                adapter = ReviewRecyclerViewAdapter(MypageReview)
-                layoutManager = LinearLayoutManager(context)
+
+            ReviewRepository.getUserReview(userIdx){
+
+                MyPageReviewRecyclerView.run{
+
+                    adapter = ReviewRecyclerViewAdapter(it)
+                    layoutManager = LinearLayoutManager(context)
+
+
+                }
 
             }
 
@@ -83,7 +90,7 @@ class MyPageCustomerReviewFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class ReviewRecyclerViewAdapter(val review: MypageReview) :
+    inner class ReviewRecyclerViewAdapter(val reviewList: MutableList<MypageReview>) :
         RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>() {
         inner class ReviewViewHolder(rowCustomerReviewBinding: RowMyPageCustomerReviewBinding) :
             RecyclerView.ViewHolder(rowCustomerReviewBinding.root) {
@@ -124,10 +131,10 @@ class MyPageCustomerReviewFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-            holder.ProductName.text = MypageReview.productName
-            holder.StoreName.text = MypageReview.storeName
-            holder.Comment.text = MypageReview.content.reviewTitle
-            holder.rating.rating = MypageReview.ratings
+            holder.ProductName.text = reviewList[position].productName
+            holder.StoreName.text = reviewList[position].storeName
+            holder.Comment.text = reviewList[position].reviewTitle
+            holder.rating.rating = reviewList[position].ratings
 
             holder.moveBtn.setOnClickListener {
 
@@ -135,10 +142,10 @@ class MyPageCustomerReviewFragment : Fragment() {
 
                 newBundle = Bundle().apply{
 
-                    putFloat("contentRating",MypageReview.ratings)
+                    putFloat("contentRating",reviewList[position].ratings)
                     putInt("contentImage",imageResourceId)
-                    putString("contentTitle",MypageReview.content.reviewTitle)
-                    putString("contentReview",MypageReview.content.reviewContent)
+                    putString("contentTitle",reviewList[position].reviewTitle)
+                    putString("contentReview",reviewList[position].reviewContent)
 
                 }
 

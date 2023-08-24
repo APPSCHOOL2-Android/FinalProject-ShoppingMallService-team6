@@ -79,9 +79,9 @@ class MyPageCustomerReviewDetailFragment : Fragment() {
 
             }
 
-            editTextViewRcTitle.hint = arguments?.getString("contentTitle")
+            editTextViewRcTitle.setText(arguments?.getString("contentTitle"))
 
-            editTextViewRcContent.hint = arguments?.getString("contentReview")
+            editTextViewRcContent.setText(arguments?.getString("contentReview"))
 
         }
 
