@@ -44,6 +44,12 @@
                         app:cornerRadius="10dp"
                         app:icon="@drawable/ic_add_24px"
                         app:iconGravity="textEnd" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_auctionSellerRegister_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp" />
                 </LinearLayout>
             </ScrollView>
 
