@@ -10,6 +10,8 @@ data class UserInfo(
     var userIdx: Long?,
     var userLoginType: Long?,
     var userEmail: String?,
-    val userPw: String?,
+    var userPw: String?,
     var userNickname: String?
 )
+
+
