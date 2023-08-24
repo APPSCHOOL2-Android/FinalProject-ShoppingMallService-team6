@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailDetailBinding
 import com.test.keepgardeningproject_customer.databinding.RowPcddBinding
 
@@ -19,6 +24,8 @@ class ProductCustomerDetailDetailFragment : Fragment() {
     lateinit var fragmentProductCustomerDetailDetailBinding: FragmentProductCustomerDetailDetailBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var productCustomerDetailViewModel : ProductCustomerDetailViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +33,14 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         fragmentProductCustomerDetailDetailBinding = FragmentProductCustomerDetailDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
+
+        productCustomerDetailViewModel = ViewModelProvider(mainActivity)[ProductCustomerDetailViewModel::class.java]
+
+        productCustomerDetailViewModel.productInfo.observe(mainActivity){
+            var binding = fragmentProductCustomerDetailDetailBinding
+            // 상세정보
+            binding.textViewPcddDetail.text = it.productDetail
+        }
 
         fragmentProductCustomerDetailDetailBinding.run{
             recyclerPcdd.run{
@@ -65,11 +80,18 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return productCustomerDetailViewModel.productInfo.value?.productImageList?.size ?: 0
         }
 
         override fun onBindViewHolder(holder: ViewHolderPCDD, position: Int) {
-            holder.imagePcddRow.setImageResource(R.drawable.img_heart_red)
+            // 상세정보 이미지
+            var fileNameList = productCustomerDetailViewModel.productInfo.value?.productImageList!!
+            for(fileName in fileNameList){
+                ProductRepository.getProductImage(fileName){
+                    var fileUri = it.result
+                    Glide.with(mainActivity).load(fileUri).into(holder.imagePcddRow)
+                }
+            }
         }
     }
 }

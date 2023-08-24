@@ -29,11 +29,6 @@ class HomeCustomerMainHomeFragment : Fragment() {
 
     lateinit var homeCustomerMainHomeViewModel : HomeCustomerMainHomeViewModel
 
-    // 인기상품
-
-    // 추천상품에 전체 게시물 불러와 보여주기
-    val productClassList = mutableListOf<ProductClass>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -163,7 +158,10 @@ class HomeCustomerMainHomeFragment : Fragment() {
 
                 // 클릭시 개별 아이템 상세페이지 이동
                 rowHcmhRecommendBinding.root.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,null)
+                    val selectedProductIdx = homeCustomerMainHomeViewModel.productClassList.value?.get(adapterPosition)?.productIdx!!
+                    val bundle = Bundle()
+                    bundle.putLong("selectedProductIdx",selectedProductIdx)
+                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
                 }
             }
         }

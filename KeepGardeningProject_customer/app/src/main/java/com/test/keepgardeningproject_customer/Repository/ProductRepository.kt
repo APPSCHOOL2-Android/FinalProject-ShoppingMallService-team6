@@ -18,10 +18,10 @@ class ProductRepository {
             productIdxRef.get().addOnCompleteListener(callback1)
         }
 
-        fun getProductInfoByIdx(productIdx:Long, callback1: (Task<DataSnapshot>) -> Unit){
+        fun getProductInfoByIdx(productIdx:Double, callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val productDataRef = database.getReference("Product")
-            productDataRef.orderByChild("productIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener(callback1)
+            productDataRef.orderByChild("productIdx").equalTo(productIdx).get().addOnCompleteListener(callback1)
         }
 
         fun getProductInfoAll(callback1: (Task<DataSnapshot>) -> Unit){
@@ -37,6 +37,11 @@ class ProductRepository {
             fileRef.downloadUrl.addOnCompleteListener(callback1)
         }
 
+        fun getProductSellerInfoByIdx(storeIdx : Double, callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("UserSellerInfo")
+            productDataRef.orderByChild("userSellerIdx").get().addOnCompleteListener(callback1)
+        }
 
     }
 }
