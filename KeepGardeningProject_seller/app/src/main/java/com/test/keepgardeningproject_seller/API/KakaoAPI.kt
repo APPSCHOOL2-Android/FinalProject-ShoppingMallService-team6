@@ -1,23 +1,18 @@
 package com.test.keepgardeningproject_seller.API
 
 import android.app.Application
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
-import com.test.keepgardeningproject_seller.MainActivity
-import kotlin.math.acos
 
 public class KakaoAPI {
     // 카카오톡 로그인 확인
-    fun CheckLogin(context: Context) {
+    fun checkKaKaoLogin(context: Context) {
         // 로그인 조합 예제
         // 카카오계정으로 로그인 공통 callback 구성
         // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
@@ -53,7 +48,7 @@ public class KakaoAPI {
     }
 
     // 카카오 로그아웃 함수
-    fun LogOut() {
+    fun kakaoLogOut() {
         UserApiClient.instance.logout { error ->
             if (error != null) {
                 // 로그아웃 실패 시 처리
@@ -66,7 +61,7 @@ public class KakaoAPI {
         }
     }
     // 회원탈퇴 함수
-    fun withdrawFromKakao() {
+    fun kakaoWithdraw() {
         UserApiClient.instance.unlink { error ->
             if (error != null) {
                 // 탈퇴 실패 시 처리

@@ -1,8 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.LoginSellerMain
 
-import android.content.ContentValues
-import android.content.Context
-import android.content.DialogInterface
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,34 +8,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
-import com.nhn.android.oauth.BuildConfig
+import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import com.navercorp.nid.profile.NidProfileCallback
+import com.navercorp.nid.profile.data.NidProfileResponse
 import com.test.keepgardeningproject_seller.API.KakaoAPI
+import com.test.keepgardeningproject_seller.API.NaverAPI
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.Repository.UserRepository.Companion.getUserSellerInfoById
 import com.test.keepgardeningproject_seller.databinding.FragmentLoginSellerMainBinding
-import kotlin.math.log
 
 class LoginSellerMainFragment : Fragment() {
 
     lateinit var fragmentLoginSellerMainBinding: FragmentLoginSellerMainBinding
     lateinit var mainActivity: MainActivity
 
-    // 카카오톡 API불러오기
+    // 카카오톡 API 불러오기
     val kakaoApi = KakaoAPI()
-
-
+    // 네이버 API 불러오기
+    val naverApi = NaverAPI()
     // val sharedPref = requireContext().getSharedPreferences("myLogin", Context.MODE_PRIVATE)
     var user_email : String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // 네이버 로그인 SDK 초기화
         NaverIdLoginSDK.initialize(requireContext(), "el7gHNDTrFweYrwQdjFT", "Kp1DmQI6qv", "킵 가드닝")
         fragmentLoginSellerMainBinding = FragmentLoginSellerMainBinding.inflate(inflater)
         mainActivity = activity as  MainActivity
@@ -50,12 +50,14 @@ class LoginSellerMainFragment : Fragment() {
         fragmentLoginSellerMainBinding.run {
             // 카카오 로그인
             buttonLoginSellerMainKakaoLogin.setOnClickListener {
-                kakaoApi.CheckLogin(requireContext())
+                kakaoApi.checkKaKaoLogin(requireContext())
                 kakaoLogin()
             }
             // 네이버 로그인
             buttonLoginSellerMainNaverLogin.setOnClickListener {
                 Toast.makeText(requireContext(),"naver", Toast.LENGTH_SHORT).show()
+                //naverApi.checkNaverLogin(requireContext())
+                naverLogin()
             }
             // 구글 로그인
             buttonLoginSellerMainGoogleLogin.setOnClickListener {
@@ -92,6 +94,26 @@ class LoginSellerMainFragment : Fragment() {
 
             }
         }
+    }
+    fun naverLogin(){
+
+        // 사용자 정보 가져오기
+        NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+            override fun onSuccess(result: NidProfileResponse) {
+                val email = result.profile?.email.toString()
+                checkEmail(email)
+                // 로그인 및 사용자 정보 처리
+            }
+
+            override fun onError(errorCode: Int, message: String) {
+                // 사용자 정보 가져오기 실패 처리
+            }
+
+            override fun onFailure(httpStatus: Int, message: String) {
+                // 사용자 정보 가져오기 실패 처리
+            }
+        })
+
     }
     fun checkEmail(loginSellerEmail:String){
         getUserSellerInfoById(loginSellerEmail) {
