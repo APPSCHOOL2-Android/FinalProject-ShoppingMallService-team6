@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_CUSTOMER_QNA_FRAGMENT = "MyPageCustomerQnAFragment"
         val MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT = "MyPageCustomerQnADetailFragment"
         val MY_PAGE_CUSTOMER_REVIEW_FRAGMENT = "MyPageCustomerReviewFragment"
-        val MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT = "MyPageCustomerReviewFragment"
+        val MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT = "MyPageCustomerReviewWriteFragment"
         val MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT = "MyPageCustomerReviewDetailFragment"
         val MY_PAGE_CUSTOMER_WISH_FRAGMENT = "MyPageCustomerWishFragment"
         val ORDER_CHECK_FORM_CUSTOMER_FRAGMENT = "OrderCheckFromCustomerFragment"
