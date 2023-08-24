@@ -216,7 +216,7 @@ class ProductSellerRegisterFragment : Fragment() {
                         imageList.add(fileName)
                     }
 
-                    val productDataClass = ProductClass(productIdx, imageList, productName, productPrice, 1, productCategory, productContent)
+                    val productDataClass = ProductClass(productIdx, imageList, productName, productPrice, mainActivity.loginSellerInfo.userSellerIdx, productCategory, productContent)
 
                     // 상품 정보 저장
                     ProductRepository.addProductInfo(productDataClass) {

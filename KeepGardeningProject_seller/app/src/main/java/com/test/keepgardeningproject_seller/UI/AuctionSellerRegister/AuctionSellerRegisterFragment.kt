@@ -209,7 +209,7 @@ class AuctionSellerRegisterFragment : Fragment() {
                         imageList,
                         auctionProductName,
                         auctionOpenPrice,
-                        1,
+                        mainActivity.loginSellerInfo.userSellerIdx,
                         auctionProductOpenDate,
                         auctionProductCloseDate,
                         auctionProductContent
