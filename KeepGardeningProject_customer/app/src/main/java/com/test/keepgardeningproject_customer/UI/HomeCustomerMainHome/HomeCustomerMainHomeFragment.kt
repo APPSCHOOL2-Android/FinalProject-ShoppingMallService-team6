@@ -1,7 +1,8 @@
 package com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome
 
-import android.graphics.drawable.GradientDrawable.Orientation
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMainHomeBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcmhFavoriteBinding
@@ -49,6 +49,9 @@ class HomeCustomerMainHomeFragment : Fragment() {
         homeCustomerMainHomeViewModel = ViewModelProvider(mainActivity)[HomeCustomerMainHomeViewModel::class.java]
         homeCustomerMainHomeViewModel.run{
             productClassList.observe(mainActivity){
+                fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
+            }
+            productImageNameList.observe(mainActivity){
                 fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
             }
         }
@@ -183,7 +186,11 @@ class HomeCustomerMainHomeFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderHCMHRecommend, position: Int) {
             // 이미지 썸네일 넣기(대표 사진 0번)
-//            Glide.with(mainActivity).load(homeCustomerMainHomeViewModel.productThumbnailList.value?.get(position)).into(holder.imageViewHcmhRecommend)
+            var fileName = homeCustomerMainHomeViewModel.productImageNameList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName){
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imageViewHcmhRecommend)
+            }
 
             // 제목 표시하기 (1줄 고정)
             holder.textViewHcmhRecommendTitle.text = homeCustomerMainHomeViewModel.productClassList.value?.get(position)?.productName

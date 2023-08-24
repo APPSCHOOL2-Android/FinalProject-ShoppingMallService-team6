@@ -7,10 +7,11 @@
     android:paddingBottom="@dimen/padding_size_middle">
 
     <ImageView
-        android:layout_gravity="center_horizontal"
         android:id="@+id/imageView_hcmh_recommend"
         android:layout_width="@dimen/homeCustomerMainHome_recycler_recommend_item_image_size"
         android:layout_height="@dimen/homeCustomerMainHome_recycler_recommend_item_image_size"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
