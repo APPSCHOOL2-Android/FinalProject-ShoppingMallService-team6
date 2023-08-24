@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_customer.UI.MyPageCustomerReview
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -66,14 +67,11 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             val userIdx = MainActivity.loginedUserInfo.userIdx.toString()
 
-
             ReviewRepository.getUserReview(userIdx){
 
                 MyPageReviewRecyclerView.run{
-
                     adapter = ReviewRecyclerViewAdapter(it)
                     layoutManager = LinearLayoutManager(context)
-
 
                 }
 
@@ -127,7 +125,7 @@ class MyPageCustomerReviewFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return reviewList.size
         }
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
@@ -148,7 +146,6 @@ class MyPageCustomerReviewFragment : Fragment() {
                     putString("contentReview",reviewList[position].reviewContent)
 
                 }
-
 
                 mainActivity.replaceFragment(
                     MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT,

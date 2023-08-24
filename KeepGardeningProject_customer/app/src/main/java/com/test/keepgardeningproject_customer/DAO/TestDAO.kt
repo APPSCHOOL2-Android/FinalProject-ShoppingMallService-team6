@@ -11,7 +11,6 @@ data class MypageQnADetailData(val imageResourceId:Int,
                                starNumbers:Float)
 
 data class MypageReview(
-    val userIdx:String?,
     val storeName: String,
     val productName: String,
     val ratings: Float,
