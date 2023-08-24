@@ -6,6 +6,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.test.keepgardeningproject_customer.DAO.CartClass
 
 class CartRepository {
     companion object {
@@ -37,6 +38,32 @@ class CartRepository {
             val fileRef = storage.reference.child(fileName)
             // 데이터를 가져올 수 있는 경로를 가져온다.
             fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
+
+        // 상품 갯수 +
+        fun plusCartProduct(cartClass: CartClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val cartDataRef = database.getReference("Cart")
+
+            cartDataRef.orderByChild("cartIdx").equalTo(cartClass.cartIdx.toDouble()).get().addOnCompleteListener {
+                for (c1 in it.result.children) {
+                    c1.ref.child("cartPrice").setValue(cartClass.cartPrice + (cartClass.cartPrice / cartClass.cartCount))
+                    c1.ref.child("cartCount").setValue(cartClass.cartCount + 1).addOnCompleteListener(callback1)
+                }
+            }
+        }
+
+        // 상품 갯수 -
+        fun minusCartProduct(cartClass: CartClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val cartDataRef = database.getReference("Cart")
+
+            cartDataRef.orderByChild("cartIdx").equalTo(cartClass.cartIdx.toDouble()).get().addOnCompleteListener {
+                for (c1 in it.result.children) {
+                    c1.ref.child("cartPrice").setValue(cartClass.cartPrice - (cartClass.cartPrice / cartClass.cartCount))
+                    c1.ref.child("cartCount").setValue(cartClass.cartCount - 1).addOnCompleteListener(callback1)
+                }
+            }
         }
 
         // 상품 삭제

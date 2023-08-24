@@ -81,6 +81,20 @@ class CartCustomerViewModel : ViewModel() {
         }
     }
 
+    // 상품 갯수 + 하기
+    fun plusCartProduct(cartClass: CartClass) {
+        CartRepository.plusCartProduct(cartClass) {
+            getProductInCart(cartClass.cartUserIdx.toDouble())
+        }
+    }
+
+    // 상품 갯수 - 하기
+    fun minusCartProduct(cartClass: CartClass) {
+        CartRepository.minusCartProduct(cartClass) {
+            getProductInCart(cartClass.cartUserIdx.toDouble())
+        }
+    }
+
     // 상품 이미지 불러오기
 //    fun getProductImageInCart(productIdxList: MutableList<Long>) {
 //        val tempList = mutableListOf<Bitmap>()

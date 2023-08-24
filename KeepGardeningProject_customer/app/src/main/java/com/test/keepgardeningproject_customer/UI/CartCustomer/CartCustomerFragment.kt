@@ -27,8 +27,7 @@ class CartCustomerFragment : Fragment() {
 
     private lateinit var cartCustomerViewModel: CartCustomerViewModel
 
-    lateinit var cartClass: CartClass
-    val userIdx = MainActivity.loginedUserInfo.userIdx
+    val userIdx = MainActivity.loginedUserInfo.userIdx!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -99,6 +98,18 @@ class CartCustomerFragment : Fragment() {
                 rowPriceValue = rowCartCustomerBinding.textViewRowCartPriceValue
                 rowCountValue = rowCartCustomerBinding.textViewRowCartCountValue
                 rowProductImage = rowCartCustomerBinding.imageViewRowCartProduct
+
+                rowCartCustomerBinding.buttonRowCartMinus.setOnClickListener {
+                    val cartClass = cartCustomerViewModel.cartList.value?.get(adapterPosition)!!
+                    if (cartClass.cartCount >= 2) {
+                        cartCustomerViewModel.minusCartProduct(cartClass)
+                    }
+                }
+
+                rowCartCustomerBinding.buttonRowCartPlus.setOnClickListener {
+                    val cartClass = cartCustomerViewModel.cartList.value?.get(adapterPosition)!!
+                    cartCustomerViewModel.plusCartProduct(cartClass)
+                }
             }
         }
 
