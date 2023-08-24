@@ -25,7 +25,7 @@ class CartCustomerFragment : Fragment() {
     lateinit var fragmentCartCustomerBinding: FragmentCartCustomerBinding
     lateinit var mainActivity: MainActivity
 
-    private lateinit var viewModel: CartCustomerViewModel
+    private lateinit var cartCustomerViewModel: CartCustomerViewModel
 
     lateinit var cartClass: CartClass
     val userIdx = MainActivity.loginedUserInfo.userIdx
@@ -37,12 +37,12 @@ class CartCustomerFragment : Fragment() {
         fragmentCartCustomerBinding = FragmentCartCustomerBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        viewModel = ViewModelProvider(mainActivity)[CartCustomerViewModel::class.java]
-        viewModel.run {
-            productList.observe(mainActivity) {
+        cartCustomerViewModel = ViewModelProvider(mainActivity)[CartCustomerViewModel::class.java]
+        cartCustomerViewModel.run {
+            cartList.observe(mainActivity) {
                 fragmentCartCustomerBinding.recyclerViewCart.adapter?.notifyDataSetChanged()
             }
-            productImageList.observe(mainActivity) {
+            cartImageList.observe(mainActivity) {
                 fragmentCartCustomerBinding.recyclerViewCart.adapter?.notifyDataSetChanged()
             }
         }
@@ -66,19 +66,20 @@ class CartCustomerFragment : Fragment() {
             }
 
             // 현재 사용자의 장바구니 정보를 가져온다.
-            CartRepository.getCartData(userIdx!!.toDouble()) {
-                for (c1 in it.result.children) {
-                    val cartIdx = c1.child("cartIdx").value as Long
-                    val cartUserIdx = c1.child("cartUserIdx").value as Long
-                    val cartProductIdx = c1.child("cartProductIdx").value as MutableList<Long>
-                    val cartCount = c1.child("cartCount").value as Long
-
-                    cartClass = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartCount)
-
-                    // 장바구니에 담겨있는 상품 정보를 가져온다.
-                    viewModel.getProductInCart(cartClass.cartProductIdx)
-                }
-            }
+            cartCustomerViewModel.getProductInCart(userIdx?.toDouble()!!)
+//            CartRepository.get(userIdx!!.toDouble()) {
+//                for (c1 in it.result.children) {
+//                    val cartIdx = c1.child("cartIdx").value as Long
+//                    val cartUserIdx = c1.child("cartUserIdx").value as Long
+//                    val cartProductIdx = c1.child("cartProductIdx").value as MutableList<Long>
+//                    val cartCount = c1.child("cartCount").value as Long
+//
+//                    cartClass = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartCount)
+//
+//                    // 장바구니에 담겨있는 상품 정보를 가져온다.
+//                    viewModel.getProductInCart(cartClass.cartProductIdx)
+//                }
+//            }
         }
 
         return fragmentCartCustomerBinding.root
@@ -114,18 +115,18 @@ class CartCustomerFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return viewModel.productList.value?.size!!
+            return cartCustomerViewModel.cartList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-            var fileName = viewModel.productImageList.value?.get(position)!!
+            var fileName = cartCustomerViewModel.cartImageList.value?.get(position)!!
             CartRepository.getProductMainImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.rowProductImage)
             }
-            holder.rowProductName.text = viewModel.productList.value?.get(position)?.productName
-            holder.rowPriceValue.text = "${viewModel.productList.value?.get(position)?.productPrice}원"
-            holder.rowCountValue.text = "1"
+            holder.rowProductName.text = cartCustomerViewModel.cartList.value?.get(position)?.cartName
+            holder.rowPriceValue.text = "${cartCustomerViewModel.cartList.value?.get(position)?.cartPrice}원"
+            holder.rowCountValue.text = cartCustomerViewModel.cartList.value?.get(position)?.cartCount.toString()
         }
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.Repository.CartRepository
 import java.net.HttpURLConnection
@@ -17,12 +18,12 @@ class CartCustomerViewModel : ViewModel() {
     var productName = MutableLiveData<String>()
     var productPrice = MutableLiveData<String>()
 
-    var productList = MutableLiveData<MutableList<ProductClass>>()
-    var productImageList = MutableLiveData<MutableList<String>>()
+    var cartList = MutableLiveData<MutableList<CartClass>>()
+    var cartImageList = MutableLiveData<MutableList<String>>()
 
     init {
-        productList.value = mutableListOf<ProductClass>()
-        productImageList.value = mutableListOf<String>()
+        cartList.value = mutableListOf<CartClass>()
+        cartImageList.value = mutableListOf<String>()
     }
 
     // 장바구니에 있는 상품 목록 불러오기
@@ -56,39 +57,27 @@ class CartCustomerViewModel : ViewModel() {
 //        }
 //    }
 
-    // 장바구니에 있는 상품과 이미지 파일명 불러오기
-    fun getProductInCart(productIdxList: MutableList<Long>) {
-        val tempList = mutableListOf<ProductClass>()
+    // 장바구니에 있는 상품의 정보 불러오기
+    fun getProductInCart(cartUserIdx: Double) {
+        val tempList = mutableListOf<CartClass>()
         val tempImageList = mutableListOf<String>()
 
-        CartRepository.getProductAll {
+        CartRepository.getCartbyUserIdx(cartUserIdx) {
             for (c1 in it.result.children) {
-                val productIdx = c1.child("productIdx").value as Long
-                val productImageList = c1.child("productImageList").value as ArrayList<String>
-                val productName = c1.child("productName").value as String
-                val productPrice = c1.child("productPrice").value as String
-                val productStoreIdx = c1.child("productStoreIdx").value as Long
-                val productCategory = c1.child("productCategory").value as String
-                val productDetail = c1.child("productDetail").value as String
+                val cartIdx = c1.child("cartIdx").value as Long
+                val cartImage = c1.child("cartImage").value as String
+                val cartName = c1.child("cartName").value as String
+                val cartPrice = c1.child("cartPrice").value as Long
+                val cartProductIdx = c1.child("cartProductIdx").value as Long
+                val cartUserIdx = c1.child("cartUserIdx").value as Long
+                val cartCount = c1.child("cartCount").value as Long
 
-                if (productIdx !in productIdxList) {
-                    continue
-                }
-
-                val p1 = ProductClass(
-                    productIdx,
-                    productImageList,
-                    productName,
-                    productPrice,
-                    productStoreIdx,
-                    productCategory,
-                    productDetail
-                )
-                tempList.add(p1)
-                tempImageList.add(productImageList[0])
+                val cart = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartName, cartPrice, cartCount)
+                tempList.add(cart)
+                tempImageList.add(cartImage)
             }
-            productList.value = tempList
-            productImageList.value = tempImageList
+            cartList.value = tempList
+            cartImageList.value = tempImageList
         }
     }
 
