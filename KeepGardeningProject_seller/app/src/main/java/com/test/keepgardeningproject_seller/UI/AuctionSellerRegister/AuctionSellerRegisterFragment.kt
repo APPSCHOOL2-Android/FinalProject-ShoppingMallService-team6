@@ -222,7 +222,7 @@ class AuctionSellerRegisterFragment : Fragment() {
 
                             for (i in 0 until uriList.count()) {
                                 // 이미지 업로드
-                                ProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
+                                AuctionProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
 
                                 }
                             }
