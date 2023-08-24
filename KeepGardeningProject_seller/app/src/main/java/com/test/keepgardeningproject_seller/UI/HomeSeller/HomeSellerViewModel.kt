@@ -3,7 +3,9 @@ package com.test.keepgardeningproject_seller.UI.HomeSeller
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.DAO.ProductClass
+import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 
 class HomeSellerViewModel : ViewModel() {
@@ -49,9 +51,61 @@ class HomeSellerViewModel : ViewModel() {
             // 가장 마지막에 등록한것부터 보여주기
             tempList.reverse()
             tempImageNameList.reverse()
-            
+
             productClassList.value = tempList
             productImageNameList.value = tempImageNameList
+        }
+    }
+
+
+    // 전체 상품 목록
+    var auctionProductClassList = MutableLiveData<MutableList<AuctionProductClass>>()
+    // 상품 이미지 이름 리스트
+    var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
+
+    init {
+        auctionProductClassList.value = mutableListOf<AuctionProductClass>()
+        auctionProductImageNameList.value = mutableListOf<String>()
+    }
+
+
+    fun getAuctionProductInfoAll(storeIdx: Long) {
+        val tempList = mutableListOf<AuctionProductClass>()
+        val tempImageNameList = mutableListOf<String>()
+        val tempUriList = mutableListOf<Uri>()
+
+        AuctionProductRepository.getAuctionProductInfoAll(storeIdx) {
+            for (c1 in it.result.children) {
+                val auctionProductIdx = c1.child("auctionProductIdx").value as Long
+                var auctionProductImageList = c1.child("auctionProductImageList").value as ArrayList<String>
+                var auctionProductName = c1.child("auctionProductName").value as String
+                var auctionProductOpenDate = c1.child("auctionProductOpenDate").value as String
+                var auctionProductCloseDate = c1.child("auctionProductCloseDate").value as String
+                var auctionProductOpenPrice = c1.child("auctionProductOpenPrice").value as String
+                var auctionProductStoreIdx = c1.child("auctionProductStoreIdx").value as Long
+                var auctionProductDetail = c1.child("auctionProductDetail").value as String
+
+
+                val p1 = AuctionProductClass(
+                    auctionProductIdx,
+                    auctionProductImageList,
+                    auctionProductName,
+                    auctionProductOpenPrice,
+                    auctionProductStoreIdx,
+                    auctionProductOpenDate,
+                    auctionProductCloseDate,
+                    auctionProductDetail
+                )
+                tempList.add(p1)
+                tempImageNameList.add(auctionProductImageList[0])
+            }
+
+            // 가장 마지막에 등록한것부터 보여주기
+            tempList.reverse()
+            tempImageNameList.reverse()
+
+            auctionProductClassList.value = tempList
+            auctionProductImageNameList.value = tempImageNameList
         }
     }
 }
