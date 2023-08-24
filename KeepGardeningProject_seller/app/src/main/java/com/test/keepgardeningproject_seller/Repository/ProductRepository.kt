@@ -43,5 +43,27 @@ class ProductRepository {
             val imageRef = storage.reference.child(fileName)
             imageRef.putFile(uploadUri).addOnCompleteListener(callback1)
         }
+
+        // 해당 인덱스 상품 정보 가져오기
+        fun getProductInfoByIdx(productIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("Product")
+            productDataRef.orderByChild("productIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
+
+        // 해당 스토어의 전체 상품 정보 가져오기
+        fun getProductInfoAll(storeIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("Product")
+            productDataRef.orderByChild("productStoreIdx").equalTo(storeIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
+
+        // 상품 이미지 가져오기
+        fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
+            val storage = FirebaseStorage.getInstance()
+            val fileRef = storage.reference.child(fileName)
+
+            fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
     }
 }

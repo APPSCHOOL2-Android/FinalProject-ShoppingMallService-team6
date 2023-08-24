@@ -7,18 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerProductBinding
 import com.test.keepgardeningproject_seller.databinding.RowHomeSellerBinding
+import java.text.DecimalFormat
 
 class HomeSellerProductFragment : Fragment() {
 
     lateinit var fragmentHomeSellerProductBinding: FragmentHomeSellerProductBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var homeSellerViewModel: HomeSellerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +33,17 @@ class HomeSellerProductFragment : Fragment() {
 
         fragmentHomeSellerProductBinding = FragmentHomeSellerProductBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        homeSellerViewModel = ViewModelProvider(mainActivity)[HomeSellerViewModel::class.java]
+        homeSellerViewModel.run{
+            productClassList.observe(mainActivity){
+                fragmentHomeSellerProductBinding.recyclerViewHomeSellerProduct.adapter?.notifyDataSetChanged()
+            }
+            productImageNameList.observe(mainActivity){
+                fragmentHomeSellerProductBinding.recyclerViewHomeSellerProduct.adapter?.notifyDataSetChanged()
+            }
+        }
+        homeSellerViewModel.getProductInfoAll(mainActivity.loginSellerInfo.userSellerIdx)
 
         fragmentHomeSellerProductBinding.run {
             recyclerViewHomeSellerProduct.run {
@@ -78,10 +95,29 @@ class HomeSellerProductFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 9
+            return homeSellerViewModel.productClassList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+
+            // 이미지 썸네일 넣기(대표 사진 0번)
+            var fileName = homeSellerViewModel.productImageNameList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName){
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imageViewRow)
+            }
+
+            // 상품명 표시
+            holder.textViewRowProductName.text = homeSellerViewModel.productClassList.value?.get(position)?.productName
+
+            // 상점명 표시
+            holder.textViewRowStoreName.text = mainActivity.loginSellerInfo.userSellerStoreName
+
+
+            // 숫자 comma 표시하기
+            var decimal = DecimalFormat("#,###")
+            var temp = homeSellerViewModel.productClassList.value?.get(position)?.productPrice?.toInt()
+            holder.textViewRowPrice.text = decimal.format(temp) + "원"
         }
     }
 }

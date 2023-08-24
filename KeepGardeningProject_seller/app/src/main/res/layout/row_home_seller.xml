@@ -38,7 +38,10 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="상품 이름" />
+                android:text="상품 이름"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_rowHomeSeller_storeName"
@@ -47,7 +50,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="상점 이름" />
+                android:text="상점 이름"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_12" />
 
             <TextView
                 android:id="@+id/textView_rowHomeSeller_productPrice"
@@ -57,7 +62,9 @@
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="가격"
-                android:textSize="@dimen/text_size_16" />
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
