@@ -183,7 +183,14 @@ class AuctionSellerRegisterFragment : Fragment() {
                     }
                 }
 
+                if(uriList.size == 0) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("이미지를 1개 이상 선택해주세요.")
+                    builder.setPositiveButton("확인",null)
+                    builder.show()
 
+                    return@setOnClickListener
+                }
 
                 AuctionProductRepository.getAuctionProductIdx {
                     var auctionProductIdx = it.result.value as Long
