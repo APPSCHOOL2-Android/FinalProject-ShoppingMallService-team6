@@ -1,8 +1,11 @@
 package com.test.keepgardeningproject_seller.UI.HomeSeller
 
+import android.content.Context
 import android.net.Uri
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
@@ -19,6 +22,11 @@ class HomeSellerViewModel : ViewModel() {
         productImageNameList.value = mutableListOf<String>()
     }
 
+    // 상품 dataList 초기화
+    fun resetProductList() {
+        productClassList.value = mutableListOf<ProductClass>()
+        productImageNameList.value = mutableListOf<String>()
+    }
 
     fun getProductInfoAll(storeIdx: Long) {
         val tempList = mutableListOf<ProductClass>()
