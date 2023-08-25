@@ -2,6 +2,8 @@ package com.test.keepgardeningproject_customer.UI.OrderFormCustomer
 
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.SystemClock
@@ -11,31 +13,82 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.textfield.TextInputEditText
+import com.test.keepgardeningproject_customer.DAO.CartClass
+import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
+import com.test.keepgardeningproject_customer.DAO.TotalOrderClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.CartRepository
+import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
+import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.DecimalFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.concurrent.thread
 
 class OrderFormCustomerFragment : Fragment() {
     lateinit var fragmentOrderFormCustomerBinding: FragmentOrderFormCustomerBinding
     lateinit var mainActivity: MainActivity
 
-    var address = ""
+    var decimal = DecimalFormat("#,###")
 
-    private lateinit var viewModel: OrderFormCustomerViewModel
+    var address = ""
+    val userIdx = MainActivity.loginedUserInfo.userIdx!!
+    var totalOrderPrice = 0L
+    var selectedPayment = ""
+
+    private lateinit var orderFormCustomerViewModel: OrderFormCustomerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         fragmentOrderFormCustomerBinding = FragmentOrderFormCustomerBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        val fromWhere = arguments?.getString("fromWhere")!!
+
+        orderFormCustomerViewModel = ViewModelProvider(mainActivity)[OrderFormCustomerViewModel::class.java]
+        orderFormCustomerViewModel.run {
+            orderFormProductList.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.recyclerViewOrderForm.adapter?.notifyDataSetChanged()
+            }
+            orderFormProductImageList.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.recyclerViewOrderForm.adapter?.notifyDataSetChanged()
+            }
+            orderFormTotalProductPrice.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.textViewOrderFormProductPrice.text = decimal.format(it) + "원"
+            }
+            orderFormDeliveryFee.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.textViewOrderFormDeliveryFee.text = decimal.format(it) + "원"
+            }
+            orderFormTotalPrice.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.run {
+                    textViewOrderFormTotalPaymentPrice.text = decimal.format(it) + "원"
+                    textViewOrderFormFinalPayPrice.text = decimal.format(it) + "원"
+                }
+            }
+            orderFormOrdererName.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.editTextOrderFormOrdererName.setText(it)
+            }
+            orderFormOrdererEmail.observe(mainActivity) {
+                fragmentOrderFormCustomerBinding.editTextOrderFormOrdererEmail.setText(it)
+            }
+        }
+
 
         fragmentOrderFormCustomerBinding.run {
             toolbarOrderForm.run {
@@ -51,12 +104,32 @@ class OrderFormCustomerFragment : Fragment() {
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
+            editTextOrderFormOrdererName.setTextColor(Color.BLACK)
+            editTextOrderFormOrdererEmail.setTextColor(Color.BLACK)
+            editTextOrderFormAddress.setTextColor(Color.BLACK)
+
             buttonOrderFormFindAddress.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT, true, null)
             }
 
+            radioGroupOrderFormPayment.setOnCheckedChangeListener { group, checkedId ->
+                val selectedRadioButton = when (checkedId) {
+                    R.id.radioButton_orderForm_deposit -> radioButtonOrderFormDeposit
+                    R.id.radioButton_orderForm_card -> radioButtonOrderFormCard
+                    R.id.radioButton_orderForm_naverPay -> radioButtonOrderFormNaverPay
+                    else -> radioButtonOrderFormDeposit
+                }
+                selectedPayment = selectedRadioButton.text.toString()
+            }
+
             buttonOrderFormSubmitOrder.setOnClickListener {
                 next()
+            }
+
+            if (fromWhere == "cartPage") {
+                orderFormCustomerViewModel.getProductFromCart(MainActivity.loginedUserInfo.userIdx!!)
+            } else if (fromWhere == "productPage") {
+
             }
         }
 
@@ -67,7 +140,21 @@ class OrderFormCustomerFragment : Fragment() {
         inner class OrderFormViewHolder(rowOrderFormCustomerBinding: RowOrderFormCustomerBinding) :
             RecyclerView.ViewHolder(rowOrderFormCustomerBinding.root) {
 
+            var rowProductName: TextView
+            var rowProductPrice: TextView
+            var rowProductTotalPrice: TextView
+            var rowProductCount: TextView
+            var rowStoreRequest: TextInputEditText
+            var rowProductImage: ImageView
 
+            init {
+                rowProductName = rowOrderFormCustomerBinding.textViewRowOrderFormProductName
+                rowProductPrice = rowOrderFormCustomerBinding.textViewRowOrderFormProductPrice
+                rowProductTotalPrice = rowOrderFormCustomerBinding.textViewRowOrderFormTotalPrice
+                rowProductCount = rowOrderFormCustomerBinding.textViewRowOrderFormProductCount
+                rowStoreRequest = rowOrderFormCustomerBinding.editTextRowOrderFormRequest
+                rowProductImage = rowOrderFormCustomerBinding.imageViewRowOrderFormProductImage
+            }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderFormViewHolder {
@@ -82,11 +169,26 @@ class OrderFormCustomerFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 2
+            return orderFormCustomerViewModel.orderFormProductList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: OrderFormViewHolder, position: Int) {
+            var fileName = orderFormCustomerViewModel.orderFormProductImageList.value?.get(position)!!
+            CartRepository.getProductMainImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.rowProductImage)
+            }
+            holder.rowProductName.text = orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartName
 
+            var decimal = DecimalFormat("#,###")
+            var price1 = orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartPrice
+            holder.rowProductPrice.text = decimal.format(price1) + "원"
+
+            var price2 = orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartPrice!! + 3000
+            holder.rowProductTotalPrice.text = decimal.format(price2) + "원"
+            totalOrderPrice += price2
+
+            holder.rowProductCount.text = "${orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartCount}개"
         }
     }
 
@@ -205,7 +307,91 @@ class OrderFormCustomerFragment : Fragment() {
                 return
             }
 
-            mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, null)
+            val coroutineScope = CoroutineScope(Dispatchers.Main)
+
+            // 전체 주문 인덱스 번호를 가져온다.
+            OrderProductRepository.getTotalOrderIdx {
+                var totalOrderIdx = it.result.value as Long
+                totalOrderIdx++
+
+                // 개별 주문 인덱스 번호를 가져온다.
+                OrderProductRepository.getOrdersProductIdx {
+                    var ordersIdx = it.result.value as Long
+
+                    // 주문서에 있는 개별 상품만큼 반복
+                    for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
+                        ordersIdx++
+
+                        // 개별 상품의 주문 정보
+                        val ordersProductClass = OrdersProductClass(
+                            ordersIdx,
+                            userIdx,
+                            product.cartProductIdx,
+                            "",
+                            product.cartCount,
+                            product.cartPrice,
+                            "결제완료",
+                            totalOrderIdx
+                        )
+
+                        OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
+                            // 개별 주문 인덱스 번호 저장
+                            OrderProductRepository.setOrdersProductIdx(ordersIdx)
+                        }
+                    }
+                }
+
+
+
+
+//                for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
+//                    // 개별 주문 인덱스 번호를 가져온다.
+//                    OrderProductRepository.getOrdersProductIdx {
+//                        var ordersIdx = it.result.value as Long
+//                        ordersIdx++
+//
+//                        // 개별 상품의 주문 정보
+//                        val ordersProductClass = OrdersProductClass(
+//                            ordersIdx,
+//                            userIdx,
+//                            product.cartProductIdx,
+//                            "",
+//                            product.cartCount,
+//                            product.cartPrice,
+//                            "결제완료",
+//                            totalOrderIdx
+//                        )
+//
+//                        OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
+//                            // 개별 주문 인덱스 번호 저장
+//                            OrderProductRepository.setOrdersProductIdx(ordersIdx)
+//                        }
+//                    }
+//                }
+
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val orderDate = sdf.format(Date(System.currentTimeMillis()))
+
+                val totalOrderClass = TotalOrderClass(
+                    totalOrderIdx,
+                    userIdx,
+                    orderDate,
+                    totalOrderPrice,
+                    editTextOrderFormOrdererPhone.text.toString(),
+                    editTextOrderFormReceiverName.text.toString(),
+                    editTextOrderFormReceiverPhone.text.toString(),
+                    editTextOrderFormAddress.text.toString(),
+                    editTextOrderFormDetailAddress.text.toString(),
+                    editTextOrderFormDeliveryRequest.text.toString(),
+                    selectedPayment
+                )
+
+                OrderProductRepository.addTotalOrdertInfo(totalOrderClass) {
+                    OrderProductRepository.setTotalOrderIdx(totalOrderIdx) {
+                        //mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, null)
+                    }
+                }
+            }
         }
     }
 
