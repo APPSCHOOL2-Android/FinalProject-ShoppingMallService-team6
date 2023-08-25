@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,8 @@ import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLE
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
+import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
@@ -34,6 +38,12 @@ class ProductSellerMainFragment : Fragment() {
     lateinit var fragmentProductSellerMainBinding: FragmentProductSellerMainBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var productSellerMainViewModel: ProductSellerMainViewModel
+
+    var productIdx = 0
+
+    var fileNameList = mutableListOf<String>()
+
     companion object {
         fun newInstance() = ProductSellerMainFragment()
     }
@@ -43,10 +53,31 @@ class ProductSellerMainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        productIdx = arguments?.getInt("productIdx", 0)!!
 
         fragmentProductSellerMainBinding = FragmentProductSellerMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        productSellerMainViewModel = ViewModelProvider(mainActivity)[ProductSellerMainViewModel::class.java]
+        productSellerMainViewModel.run {
+
+            productName.observe(mainActivity) {
+                fragmentProductSellerMainBinding.textViewProductSellerMainProductName.text = it
+            }
+            productPrice.observe(mainActivity) {
+                fragmentProductSellerMainBinding.textViewProductSellerMainProductPrice.text = it
+            }
+            productCategory.observe(mainActivity) {
+                fragmentProductSellerMainBinding.textViewProductSellerMainCategory.text = "카테고리 > $it"
+            }
+            productImageNameList.observe(mainActivity) {
+                fileNameList = it
+//                fragmentProductSellerMainBinding.imageViewJoinSellerMain.setImageBitmap()
+            }
+            productSellerMainViewModel.getProductInfo(productIdx.toLong())
+        }
 
         fragmentProductSellerMainBinding.run {
 
@@ -65,12 +96,14 @@ class ProductSellerMainFragment : Fragment() {
                     var oldFragment = arguments?.getString("oldFragment")
                     if(oldFragment == "ProductSellerRegisterFragment") {
                         mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
-                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     } else {
-                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     }
                 }
             }
+
+            textViewProductSellerMainProdcutSellerName.text = mainActivity.loginSellerInfo.userSellerStoreName
 
             tabLayoutProductSellerMain.run {
                 //ViewPager2 Adapter 셋팅
@@ -86,9 +119,6 @@ class ProductSellerMainFragment : Fragment() {
 
 
                     registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                        override fun onPageSelected(position: Int) {
-                            super.onPageSelected(position)
-                        }
                     })
                 }
 
