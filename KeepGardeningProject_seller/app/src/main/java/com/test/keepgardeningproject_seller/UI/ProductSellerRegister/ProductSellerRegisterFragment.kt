@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -296,6 +298,23 @@ class ProductSellerRegisterFragment : Fragment() {
 
             init {
                 imageViewProduct = rowSellerRegisterBinding.imageViewRowSellerRegister
+
+                // context 메뉴 구성 (context 메뉴 활성화)
+                rowSellerRegisterBinding.root.setOnCreateContextMenuListener { menu, v, menuInfo ->
+
+                    mainActivity.menuInflater.inflate(R.menu.delete_menu, menu)
+
+                    // context menu의 항목 선택시 실행되는 함수
+                    menu[0].setOnMenuItemClickListener {
+
+                        uriList.removeAt(adapterPosition)
+
+                        // recyclerView 갱신
+                        this@RecyclerAdapterClass.notifyDataSetChanged()
+
+                        false
+                    }
+                }
             }
         }
 

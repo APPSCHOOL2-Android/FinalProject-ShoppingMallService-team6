@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -92,6 +93,7 @@ class AuctionSellerRegisterFragment : Fragment() {
             }
 
             datePickerAuctionSellerRegisterEndDate.minDate = System.currentTimeMillis()
+            timePickerAuctionSellerRegisterEndDate.setIs24HourView(true)
 
 
             buttonAuctionSellerRegisterRegister.setOnClickListener {
@@ -298,6 +300,23 @@ class AuctionSellerRegisterFragment : Fragment() {
 
             init {
                 imageViewProduct = rowSellerRegisterBinding.imageViewRowSellerRegister
+
+                // context 메뉴 구성 (context 메뉴 활성화)
+                rowSellerRegisterBinding.root.setOnCreateContextMenuListener { menu, v, menuInfo ->
+
+                    mainActivity.menuInflater.inflate(R.menu.delete_menu, menu)
+
+                    // context menu의 항목 선택시 실행되는 함수
+                    menu[0].setOnMenuItemClickListener {
+
+                        uriList.removeAt(adapterPosition)
+
+                        // recyclerView 갱신
+                        this@RecyclerAdapterClass.notifyDataSetChanged()
+
+                        false
+                    }
+                }
             }
         }
 
