@@ -144,6 +144,15 @@ class ProductSellerMainFragment : Fragment() {
                     builder.setNegativeButton("취소", null)
                     builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int ->
                         Snackbar.make(fragmentProductSellerMainBinding.root, "해당 상품이 삭제되었습니다.",Snackbar.LENGTH_LONG).show()
+
+                        // 글 삭제
+                        ProductRepository.removeProduct(productIdx.toLong()) {
+                            // 이미지가 있는 경우 삭제
+                            for(i in 0 until fileNameList.size) {
+                                ProductRepository.removeImage(fileNameList[i]!!) {}
+                            }
+                        }
+                        SystemClock.sleep(500)
                         mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     }
                     builder.show()
