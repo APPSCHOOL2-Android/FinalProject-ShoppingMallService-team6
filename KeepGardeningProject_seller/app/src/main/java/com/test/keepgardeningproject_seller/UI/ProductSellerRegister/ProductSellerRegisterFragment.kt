@@ -235,6 +235,7 @@ class ProductSellerRegisterFragment : Fragment() {
                                 "oldFragment",
                                 "ProductSellerRegisterFragment"
                             )
+                            newBundle.putInt("productIdx", productIdx.toInt())
                             mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
                         }
                     }

@@ -73,6 +73,7 @@ class HomeSellerProductFragment : Fragment() {
                 rowHomeSellerBinding.root.setOnClickListener {
                     val newBundle = Bundle()
                     newBundle.putString("oldFragment", "HomeSellerProductFragment")
+                    newBundle.putInt("productIdx", productList[adapterPosition].productIdx.toInt())
                     mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT,true,newBundle)
                 }
             }
