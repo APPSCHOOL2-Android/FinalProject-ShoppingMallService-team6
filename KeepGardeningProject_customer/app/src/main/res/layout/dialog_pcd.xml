@@ -85,34 +85,39 @@
         android:paddingEnd="15dp"
         android:paddingBottom="30dp">
 
-        <ImageView
-            android:id="@+id/image_pcd_dialogHeart"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center_vertical"
+        <Button
+            android:id="@+id/button_pcd_dialogInquiry"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:layout_weight="1"
-            app:srcCompat="@drawable/img_heart_red" />
+            android:text="문의하기"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/button_pcd_dialogCart"
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="장바구니"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:fontFamily="@font/nanum_square_round_regular"/>
+            android:textColor="@color/Red"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/button_pcd_dialogBuy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="구매하기"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:fontFamily="@font/nanum_square_round_regular" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
