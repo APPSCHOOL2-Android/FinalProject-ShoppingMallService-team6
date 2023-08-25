@@ -65,5 +65,26 @@ class ProductRepository {
 
             fileRef.downloadUrl.addOnCompleteListener(callback1)
         }
+
+        // 이미지 삭제
+        fun removeImage(fileName:String, callback1:(Task<Void>) -> Unit) {
+            val storage = FirebaseStorage.getInstance()
+            val fileRef = storage.reference.child(fileName)
+            // 파일을 삭제한다.
+            fileRef.delete().addOnCompleteListener (callback1)
+        }
+
+        // 상품 정보(글) 삭제
+        fun removeProduct(productIdx:Long, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val testDataRef = database.getReference("Product")
+
+            testDataRef.orderByChild("productIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    // 해당 데이터 삭제
+                    a1.ref.removeValue().addOnCompleteListener(callback1)
+                }
+            }
+        }
     }
 }
