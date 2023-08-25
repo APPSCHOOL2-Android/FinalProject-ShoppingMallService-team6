@@ -24,7 +24,6 @@ class HomeCustomerMainHomeViewModel : ViewModel() {
     fun getProductInfoAll() {
         val tempList = mutableListOf<ProductClass>()
         val tempImageNameList = mutableListOf<String>()
-        val tempUriList = mutableListOf<Uri>()
 
         ProductRepository.getProductInfoAll {
             for (c1 in it.result.children) {

@@ -55,33 +55,52 @@ class HomeCustomerMainHomeFragment : Fragment() {
         fragmentHomeCustomerMainHomeBinding.run{
             // 메뉴선택
             run{
+                val bundle = Bundle()
+                // 다육식물
                 btnHcmhMenu1.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","다육식물")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 동서양란
                 btnHcmhMenu2.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","동서양란")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 관엽식물
                 btnHcmhMenu3.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","관엽식물")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 분재
                 btnHcmhMenu4.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","분재")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 경매
                 btnHcmhMenu5.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+
                 }
+                // 농산물
                 btnHcmhMenu6.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","농산물")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 다육식물
                 btnHcmhMenu7.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","씨앗/묘목")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 꽃다발
                 btnHcmhMenu8.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","꽃다발")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 원예자재류
                 btnHcmhMenu9.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,null)
+                    bundle.putString("category","원예자재류")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
+                // 천원샵
                 btnHcmhMenu10.setOnClickListener {
                 }
             }

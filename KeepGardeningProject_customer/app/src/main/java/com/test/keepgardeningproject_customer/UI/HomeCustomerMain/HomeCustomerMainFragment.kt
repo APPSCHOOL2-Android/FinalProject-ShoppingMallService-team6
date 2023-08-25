@@ -68,15 +68,40 @@ class HomeCustomerMainFragment : Fragment() {
 
                 // 드로어 열렸을때 네비게이션
                 setNavigationItemSelectedListener {
+                    val bundle = Bundle()
                     when(it.itemId){
-                        R.id.item_hcm_plant->{}
-                        R.id.item_hcm_orchid->{}
-                        R.id.item_hcm_monstera->{}
-                        R.id.item_hcm_bonsai->{}
-                        R.id.item_hcm_commodity->{}
-                        R.id.item_hcm_seed->{}
-                        R.id.item_hcm_bouquet->{}
-                        R.id.item_hcm_pot->{}
+                        R.id.item_hcm_plant->{
+                            bundle.putString("category","다육식물")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_orchid->{
+                            bundle.putString("category","동서양란")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_monstera->{
+                            bundle.putString("category","관엽식물")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_bonsai->{
+                            bundle.putString("category","분재")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_commodity->{
+                            bundle.putString("category","농산물")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_seed->{
+                            bundle.putString("category","씨앗/묘목")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_bouquet->{
+                            bundle.putString("category","꽃다발")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
+                        R.id.item_hcm_pot->{
+                            bundle.putString("category","원예자재류")
+                            mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
+                        }
                         R.id.item_hcm_store->{
                             mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT,true,null)
                         }
