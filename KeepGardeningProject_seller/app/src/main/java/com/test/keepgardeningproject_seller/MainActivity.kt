@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
-
+        loginSellerInfo = UserSellerInfo(0,-1,"","","","","","","","")
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -210,17 +210,3 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-// 사용자 정보를 담을 클래스
-data class UserClass(var UserIdx:Long,
-                     var UserLoginType:String,
-                     var UserEmail:String,
-                     var UserPw:String,
-                     var UserNickName:String,
-                     var UserStoreIdx:Long?)
-// 상점 정보를 담을 클래스
-data class StoreClass(var StoreIdx : Long,
-                      var StoreName : String,
-                      var StoreDetail : String,
-                      var StoreImageTitle : String?,
-                      var StorePostAddress:String?,
-                      var StorePostAddressDetail:String?)

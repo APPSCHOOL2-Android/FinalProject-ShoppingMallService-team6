@@ -104,11 +104,11 @@ class JoinSellerAddInfoFragment : Fragment() {
                         // 이미지 업로드
                         if (uploadUri != null) {
                             UserRepository.uploadStoreImage(uploadUri!!, fileName) {
-                                Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                //Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                 mainActivity.removeFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT)
                             }
                         } else {
-                            Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                            //Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                             mainActivity.removeFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT)
                         }
 //

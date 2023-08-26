@@ -1,6 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.LoginSellerMain
 
-import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,11 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
-import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.test.keepgardeningproject_seller.API.KakaoAPI
@@ -31,8 +36,14 @@ class LoginSellerMainFragment : Fragment() {
     val kakaoApi = KakaoAPI()
     // 네이버 API 불러오기
     val naverApi = NaverAPI()
+
     // val sharedPref = requireContext().getSharedPreferences("myLogin", Context.MODE_PRIVATE)
-    var user_email : String? = null
+
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,12 +67,19 @@ class LoginSellerMainFragment : Fragment() {
             // 네이버 로그인
             buttonLoginSellerMainNaverLogin.setOnClickListener {
                 Toast.makeText(requireContext(),"naver", Toast.LENGTH_SHORT).show()
-                //naverApi.checkNaverLogin(requireContext())
+                naverApi.checkNaverLogin(requireContext())
                 naverLogin()
             }
             // 구글 로그인
             buttonLoginSellerMainGoogleLogin.setOnClickListener {
-                Toast.makeText(requireContext(),"google", Toast.LENGTH_SHORT).show()
+                googleLogin()
+                signInWithGoogle()
+                val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+                val userEmail = account?.email
+                if (userEmail != null) {
+                    checkEmail(userEmail)
+                }
+
             }
             // 이메일 로그인
             buttonLoginSellerMainEmailLogin.setOnClickListener {
@@ -115,6 +133,38 @@ class LoginSellerMainFragment : Fragment() {
         })
 
     }
+
+    fun googleLogin(){
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+    }
+    private fun signInWithGoogle() {
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val userEmail = account?.email
+            Log.e("email","$userEmail")
+            // userEmail을 이용하여 이메일 처리
+        } catch (e: ApiException) {
+            // 로그인 실패 처리
+        }
+    }
+
     fun checkEmail(loginSellerEmail:String){
         getUserSellerInfoById(loginSellerEmail) {
             // 가져온 데이터가 없다면
@@ -122,6 +172,7 @@ class LoginSellerMainFragment : Fragment() {
                 var joinBundle = Bundle()
                 joinBundle.putString("joinUserEmail",loginSellerEmail)
                 joinBundle.putLong("joinUserType",1)
+
                 mainActivity.replaceFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT, false, joinBundle)
             }
             // 가져온 데이터가 있다면
@@ -161,7 +212,4 @@ class LoginSellerMainFragment : Fragment() {
             }
         }
     }
-
-
-
 }
