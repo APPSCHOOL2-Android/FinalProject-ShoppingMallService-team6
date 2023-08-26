@@ -29,13 +29,13 @@ import com.test.keepgardeningproject_seller.databinding.FragmentLoginSellerMainB
 
 class LoginSellerMainFragment : Fragment() {
 
-    lateinit var fragmentLoginSellerMainBinding: FragmentLoginSellerMainBinding
+    private lateinit var fragmentLoginSellerMainBinding: FragmentLoginSellerMainBinding
     lateinit var mainActivity: MainActivity
 
     // 카카오톡 API 불러오기
-    val kakaoApi = KakaoAPI()
+    private val kakaoApi = KakaoAPI()
     // 네이버 API 불러오기
-    val naverApi = NaverAPI()
+    private val naverApi = NaverAPI()
 
     // val sharedPref = requireContext().getSharedPreferences("myLogin", Context.MODE_PRIVATE)
 
@@ -77,7 +77,7 @@ class LoginSellerMainFragment : Fragment() {
                 val account = GoogleSignIn.getLastSignedInAccount(requireContext())
                 val userEmail = account?.email
                 if (userEmail != null) {
-                    checkEmail(userEmail)
+                    checkEmail(userEmail,3)
                 }
 
             }
@@ -99,7 +99,7 @@ class LoginSellerMainFragment : Fragment() {
             } else if (user != null) {
                 var email = user.kakaoAccount?.email
                 if (email != null) {
-                    checkEmail(email)
+                    checkEmail(email,1)
                 }
                 else{
                     // 데이터가 존재하지 않는 경우 새로 로그인
@@ -119,7 +119,7 @@ class LoginSellerMainFragment : Fragment() {
         NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
             override fun onSuccess(result: NidProfileResponse) {
                 val email = result.profile?.email.toString()
-                checkEmail(email)
+                checkEmail(email,2)
                 // 로그인 및 사용자 정보 처리
             }
 
@@ -145,6 +145,7 @@ class LoginSellerMainFragment : Fragment() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -165,13 +166,13 @@ class LoginSellerMainFragment : Fragment() {
         }
     }
 
-    fun checkEmail(loginSellerEmail:String){
+    fun checkEmail(loginSellerEmail:String, joinUserType:Long){
         getUserSellerInfoById(loginSellerEmail) {
             // 가져온 데이터가 없다면
-            if (it.result.exists() == false) {
-                var joinBundle = Bundle()
+            if (!it.result.exists()) {
+                val joinBundle = Bundle()
                 joinBundle.putString("joinUserEmail",loginSellerEmail)
-                joinBundle.putLong("joinUserType",1)
+                joinBundle.putLong("joinUserType",joinUserType)
 
                 mainActivity.replaceFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT, false, joinBundle)
             }

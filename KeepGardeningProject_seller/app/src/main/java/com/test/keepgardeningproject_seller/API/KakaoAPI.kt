@@ -60,7 +60,7 @@ public class KakaoAPI {
             }
         }
     }
-    // 회원탈퇴 함수
+    // 카카오톡 회원탈퇴 함수
     fun kakaoWithdraw() {
         UserApiClient.instance.unlink { error ->
             if (error != null) {
@@ -69,9 +69,6 @@ public class KakaoAPI {
             } else {
                 // 탈퇴 성공 시 처리
                 Log.i("KakaoAPI", "카카오톡 계정 탈퇴 성공")
-
-                // 탈퇴 후에 수행할 작업을 여기에 추가할 수 있습니다.
-                // 예: 화면 이동, 탈퇴 상태 관리 등
             }
         }
     }

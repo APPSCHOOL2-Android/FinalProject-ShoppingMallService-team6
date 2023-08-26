@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -75,6 +76,21 @@ class UserRepository {
                 }
             }
         }
+        
+        // 사용자 정보 삭제
+        fun deleteUserSellerInfo(userInfo: UserSellerInfo, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val userSellerInfoData = database.getReference("UserSellerInfo")
+            userSellerInfoData.orderByChild("UserSellerIdx").equalTo(userInfo.userSellerIdx.toDouble()).get().addOnCompleteListener {
+                for(data in it.result.children){
+                    // 해당 데이터 삭제
+                    data.ref.removeValue().addOnCompleteListener(callback1)
+                }
+            }
+        }
+
+
+
 
         fun uploadImage(fileName:String,uploadUri: Uri,callback1: (Task<UploadTask.TaskSnapshot>) -> Unit){
             val storage = FirebaseStorage.getInstance()
