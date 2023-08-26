@@ -1,12 +1,15 @@
 package com.test.keepgardeningproject_seller.UI.LoginSellerToEmail
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -60,6 +63,7 @@ class LoginSellerToEmailFragment : Fragment() {
             }
 
             buttonLoginSellerToEmailLogin.setOnClickListener {
+                mainActivity.hideKeyboard()
                 firebaseSubmit()
             }
             textViewLoginSellerToEmailFindPwButton.setOnClickListener {
@@ -167,6 +171,7 @@ class LoginSellerToEmailFragment : Fragment() {
                         //Toast.makeText(requireActivity(), "로그인 오류", Toast.LENGTH_SHORT).show()
                         Snackbar.make(fragmentLoginSellerToEmailBinding.root, "로그인 오류입니다.", Snackbar.LENGTH_SHORT).show()
                     }
+
                 })
         }
     }

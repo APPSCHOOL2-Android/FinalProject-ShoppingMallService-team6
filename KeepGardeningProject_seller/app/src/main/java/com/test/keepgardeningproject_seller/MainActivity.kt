@@ -206,6 +206,12 @@ class MainActivity : AppCompatActivity() {
             inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
+    // 키보드 내리는 메서드
+    fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
+
 
 
 }
