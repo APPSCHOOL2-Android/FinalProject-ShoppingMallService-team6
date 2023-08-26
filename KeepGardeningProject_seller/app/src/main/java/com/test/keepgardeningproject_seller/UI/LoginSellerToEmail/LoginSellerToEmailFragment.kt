@@ -61,6 +61,18 @@ class LoginSellerToEmailFragment : Fragment() {
                     }
                 }
             }
+            textInputLayoutLoginSellerToEmailPassword.editText?.onFocusChangeListener = View.OnFocusChangeListener{_,hasFocus->
+                if(!hasFocus){
+                    val pwCheck = textInputLayoutLoginSellerToEmailPassword.editText?.text.toString()
+                    val pwSize = pwCheck.length
+                    if(pwSize<6){
+                        textInputLayoutLoginSellerToEmailPassword.error = "비밀번호를 6자리 이상 입력해주세요."
+                    }else{
+                        textInputLayoutLoginSellerToEmailPassword.error = null
+                        textInputLayoutLoginSellerToEmailPassword.isErrorEnabled = false
+                    }
+                }
+            }
 
             buttonLoginSellerToEmailLogin.setOnClickListener {
                 mainActivity.hideKeyboard()

@@ -76,7 +76,7 @@ class UserRepository {
                 }
             }
         }
-        
+
         // 사용자 정보 삭제
         fun deleteUserSellerInfo(userInfo: UserSellerInfo, callback1: (Task<Void>) -> Unit) {
             val database = FirebaseDatabase.getInstance()
