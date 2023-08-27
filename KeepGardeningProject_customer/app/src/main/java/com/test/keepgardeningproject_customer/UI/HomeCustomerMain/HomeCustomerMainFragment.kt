@@ -105,9 +105,6 @@ class HomeCustomerMainFragment : Fragment() {
                         R.id.item_hcm_store->{
                             mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT,true,null)
                         }
-                        R.id.item_hcm_favorite->{
-                            mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
-                        }
                     }
                     false
                 }

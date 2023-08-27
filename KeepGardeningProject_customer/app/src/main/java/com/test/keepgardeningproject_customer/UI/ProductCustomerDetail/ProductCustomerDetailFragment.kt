@@ -12,6 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
@@ -35,9 +36,8 @@ class ProductCustomerDetailFragment : Fragment() {
 
     // 뷰모델
     lateinit var productCustomerDetailViewModel: ProductCustomerDetailViewModel
-
-    // 하트
-    var isHearted = false
+    var idx : Long = 1
+    lateinit var price : String
 
     // 탭
     val tabName = arrayOf(
@@ -84,6 +84,7 @@ class ProductCustomerDetailFragment : Fragment() {
                 val dec = DecimalFormat("#,###")
                 val temp = dec.format(it.productPrice!!.toInt())
                 mainbinding.textViewPcdPrice.text = temp + " 원"
+                price = it.productPrice!!
             }
 
             userSellerInfo.observe(mainActivity) {
@@ -92,7 +93,7 @@ class ProductCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 상품 인덱스
-        var idx = arguments?.getLong("selectedProductIdx", 1)!!
+        idx = arguments?.getLong("selectedProductIdx", 1)!!
 
         // 뷰모델 함수 실행
         productCustomerDetailViewModel.getProductInfoByIdx(idx.toDouble())
@@ -107,13 +108,11 @@ class ProductCustomerDetailFragment : Fragment() {
                 }
             }
 
-            // 구매완료 버튼
+            // 구매하기 버튼 바텀 다이얼로그
             buttonPcdBuy.setOnClickListener {
                 val bs = ProductCustomerDetailBottomDialog()
                 bs.show(mainActivity.supportFragmentManager, "구매")
             }
-
-            // 상품 이미지 뷰페이저
 
 
             // 탭레이아웃

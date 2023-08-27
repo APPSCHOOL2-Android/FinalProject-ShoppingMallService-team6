@@ -102,6 +102,8 @@ class HomeCustomerMainHomeFragment : Fragment() {
                 }
                 // 천원샵
                 btnHcmhMenu10.setOnClickListener {
+                    bundle.putString("category","천원샵")
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_SEARCH_FRAGMENT,true,bundle)
                 }
             }
 

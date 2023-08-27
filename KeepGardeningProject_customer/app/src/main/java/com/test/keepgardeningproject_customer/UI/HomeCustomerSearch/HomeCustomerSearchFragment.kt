@@ -33,7 +33,7 @@ class HomeCustomerSearchFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     val categoryList = arrayOf(
-        "전체보기", "관엽식물", "다육식물", "동서양란", "분재", "농산물", "씨앗/묘목", "꽃다발", "원예자재류", "검색결과"
+        "전체보기", "관엽식물", "다육식물", "동서양란", "분재", "농산물", "씨앗/묘목", "꽃다발", "원예자재류", "천원샵", "검색결과"
     )
     // 뷰모델
     lateinit var viewModel: HomeCustomerSearchViewModel
@@ -159,6 +159,10 @@ class HomeCustomerSearchFragment : Fragment() {
                         getListByCategory("원예자재류")
                         setSelection(8)
                     }
+                    "천원샵"->{
+                        getListBy1000()
+                        setSelection(9)
+                    }
                 }
 
 
@@ -182,8 +186,11 @@ class HomeCustomerSearchFragment : Fragment() {
                             7-> getListByCategory("꽃다발")
                             8-> getListByCategory("원예자재류")
 
+                            // 천원샵
+                            9 -> getListBy1000()
+
                             // 검색결과
-                            9-> {}
+                            10-> {}
                         }
                     }
 
@@ -219,6 +226,20 @@ class HomeCustomerSearchFragment : Fragment() {
         val tempImageList = mutableListOf<String>()
         for(product in productList){
             if(product.productCategory == category){
+                tempList.add(product)
+                tempImageList.add(product.productImageList?.get(0)!!)
+            }
+        }
+        rpl = tempList
+        ril = tempImageList
+        fragmentHomeCustomerSearchBinding.recyclerHcsSearchResult.adapter?.notifyDataSetChanged()
+    }
+
+    fun getListBy1000(){
+        val tempList = mutableListOf<ProductClass>()
+        val tempImageList = mutableListOf<String>()
+        for(product in productList){
+            if(product.productPrice?.toInt()!! <= 1000){
                 tempList.add(product)
                 tempImageList.add(product.productImageList?.get(0)!!)
             }
