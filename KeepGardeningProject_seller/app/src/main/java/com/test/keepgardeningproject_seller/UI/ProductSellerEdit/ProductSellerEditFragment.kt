@@ -111,6 +111,20 @@ class ProductSellerEditFragment : Fragment() {
                 }
             }
 
+            buttonProductSellerEditAddImage.setOnClickListener {
+                if (uriList.count() == MAX_IMAGE_NUM) {
+                    Snackbar.make(fragmentProductSellerEditBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                registerForActivityResult.launch(intent)
+
+                var adapter = fragmentProductSellerEditBinding.recyclerViewProductSellerEditImage.adapter as RecyclerAdapterClass
+                adapter.notifyDataSetChanged()
+            }
+
             recyclerViewProductSellerEditImage.run {
                 adapter = RecyclerAdapterClass()
 
@@ -218,6 +232,43 @@ class ProductSellerEditFragment : Fragment() {
 
                     return@setOnClickListener
                 }
+
+
+                Snackbar.make(fragmentProductSellerEditBinding.root, "상품 정보가 수정되었습니다.", Snackbar.LENGTH_SHORT).show()
+
+                for (i in 0 until uriList.count()) {
+                    // 상품 정보 저장
+                    val fileName = if(i<originImageNum) {
+                        fileNameList[i]
+                    } else {
+                        "image/img_${System.currentTimeMillis()}_$i.jpg"
+                    }
+
+                    imageList.add(fileName)
+                }
+
+                val productDataClass = ProductClass(
+                    productIdx.toLong(),
+                    imageList,
+                    productName,
+                    productPrice,
+                    mainActivity.loginSellerInfo.userSellerIdx,
+                    productCategory,
+                    productContent
+                )
+
+                // 상품 정보 저장
+                ProductRepository.modifyProduct(productDataClass) {
+
+                }
+                for (i in 0 until uriList.count()) {
+                    // 이미지 업로드
+                    ProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
+
+                    }
+                }
+
+                SystemClock.sleep(10000)
                 mainActivity.removeFragment(PRODUCT_SELLER_EDIT_FRAGMENT)
             }
         }
@@ -235,6 +286,35 @@ class ProductSellerEditFragment : Fragment() {
         var adapter = fragmentProductSellerEditBinding.recyclerViewProductSellerEditImage.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
     }
+
+    private val registerForActivityResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            when (result.resultCode) {
+                AppCompatActivity.RESULT_OK -> {
+                    val clipData = result.data?.clipData
+                    if (clipData != null) { // 이미지를 여러 개 선택할 경우
+                        val clipDataSize = clipData.itemCount
+                        val selectableCount = MAX_IMAGE_NUM - uriList.count()
+                        if (clipDataSize > selectableCount) { // 최대 선택 가능한 개수를 초과해서 선택한 경우
+                            Snackbar.make(fragmentProductSellerEditBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            // 선택 가능한 경우 ArrayList에 가져온 uri를 넣어준다.
+                            for (i in 0 until clipDataSize) {
+                                uriList.add(clipData.getItemAt(i).uri)
+                            }
+                        }
+                    } else { // 이미지를 한 개만 선택할 경우 null이 올 수 있다.
+                        val uri = result?.data?.data
+                        if (uri != null) {
+                            uriList.add(uri)
+                        }
+                    }
+                    var adapter = fragmentProductSellerEditBinding.recyclerViewProductSellerEditImage.adapter as RecyclerAdapterClass
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
+
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
         inner class ViewHolderClass(rowSellerRegisterBinding: RowSellerRegisterBinding) : RecyclerView.ViewHolder(rowSellerRegisterBinding.root) {
 
