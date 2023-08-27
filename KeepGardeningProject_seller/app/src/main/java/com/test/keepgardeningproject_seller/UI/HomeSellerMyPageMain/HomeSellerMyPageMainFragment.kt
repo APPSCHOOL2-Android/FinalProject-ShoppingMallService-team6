@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerMyPageMainBinding
 
 class HomeSellerMyPageMainFragment : Fragment() {
@@ -22,6 +23,20 @@ class HomeSellerMyPageMainFragment : Fragment() {
         homeSellerMyPageMainBinding = FragmentHomeSellerMyPageMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
         homeSellerMyPageMainBinding.run {
+
+
+
+            textviewHomeSellerMyPageMainName.run {
+                var newEmail = mainActivity.loginSellerInfo.userSellerEmail
+                var newStorename = mainActivity.loginSellerInfo.userSellerStoreName
+                UserRepository.getUserSellerInfoById(newEmail){
+                    for(c1 in it.result.children){
+                        var mynick = c1.child("userSellerNickname").value.toString()
+                        textviewHomeSellerMyPageMainName.text = newStorename + " 상점의 " + mynick + " 님"
+                    }
+                }
+            }
+
             textviewHomeSellerMyPageMainAuction.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_AUCTION_FRAGMENT,true,null)
             }

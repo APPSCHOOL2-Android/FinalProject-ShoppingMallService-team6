@@ -41,6 +41,7 @@ import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMa
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerRegister.ProductSellerRegisterFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
+import com.test.keepgardeningproject_seller.UI.SearchAddress.SearchAddressFragment
 import com.test.keepgardeningproject_seller.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
 
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_SELLER_QNA_FRAGMENT = "ProductSellerQnAFragment"
         val PRODUCT_SELLER_REGISTER_FRAGMENT = "ProductSellerRegisterFragment"
         val PRODUCT_SELLER_REVIEW_FRAGMENT = "ProductSellerReviewFragment"
+        val SEARCH_ADDRESS_FRAGMENT = "SearchAddressFragment"
     }
 
     // 로그인한 사용자의 정보를 담을 객체
@@ -95,9 +97,12 @@ class MainActivity : AppCompatActivity() {
     // 현재 로그인 상태를 판별하는 변수
     var isLogined = false
 
+    //우편번호 찾기에서 받아온 주소
+    var postAddress =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         installSplashScreen()
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -106,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
+        requestPermissions(permissionList,0)
         replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
 
     }
@@ -156,6 +161,7 @@ class MainActivity : AppCompatActivity() {
             PRODUCT_SELLER_QNA_FRAGMENT -> ProductSellerQnAFragment()
             PRODUCT_SELLER_REGISTER_FRAGMENT -> ProductSellerRegisterFragment()
             PRODUCT_SELLER_REVIEW_FRAGMENT -> ProductSellerReviewFragment()
+            SEARCH_ADDRESS_FRAGMENT -> SearchAddressFragment()
 
 
             else -> Fragment()
