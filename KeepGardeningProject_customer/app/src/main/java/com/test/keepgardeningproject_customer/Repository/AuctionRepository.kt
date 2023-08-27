@@ -17,6 +17,7 @@ fun setAuctionIndex(auctionIdx:Long,callback1:(it: Task<Void>)->Unit){
         it.result.ref.setValue(auctionIdx).addOnCompleteListener (callback1)
     }
 }
+
 //경매인덱스 가져옴
 fun getAuctionIdx(callback1: (it: Task<DataSnapshot>) -> Unit){
     val database = FirebaseDatabase.getInstance()
