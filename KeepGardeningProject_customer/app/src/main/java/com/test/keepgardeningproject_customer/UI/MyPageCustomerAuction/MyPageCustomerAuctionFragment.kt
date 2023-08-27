@@ -20,6 +20,7 @@ import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.AuctionRepository
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerAuctionBinding
 import java.lang.RuntimeException
 import java.text.SimpleDateFormat
@@ -77,10 +78,37 @@ class MyPageCustomerAuctionFragment : Fragment() {
             }
 
 
-            //AuctionDA0 ->auctionState(상태), auctionCustomerList(useridx)
-            //AuctionProduct -> auctionProductName(이름),auctionImageList(이미지)
+
+            //이미지,상태,이름
+
+            //내가고른 경매상품의 인덱스
+
+            //AuctionDA0 - auctionCustomerList(useridx)
+
+            //AuctionProduct
+            // -> auctionProductName(이름),auctionImageList(이미지),auctionCloseState(상태),
 
 
+
+            //userSellerIdx = auctionProductstoreIdx(판매자 idx)
+
+
+
+            fun getData(){
+
+                var idx = UserRepository.getUserIndex {
+
+                //useridx가져와서 customerList안에 있는 idx와 비교해서 경매상품가져오기
+                    val idx2 = it.result.value as Long
+                    Log.d("Lim","${idx2}")
+                    AuctionProductRepository.getAuctionProductIndex {
+
+                    }
+
+                }
+
+
+            }
 
 
 

@@ -58,18 +58,18 @@ class PurchaseRepository {
             databaseRef.get().addOnCompleteListener (callback1)
         }
 
-        //결제완료 모든 정보 가져오기
-        fun getPurchaseAll(callback1: (Task<DataSnapshot>) -> Unit){
+        // 사용자의 결제완료 모든 정보 가져오기
+        fun getPurchaseAll(useridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
             val database=  FirebaseDatabase.getInstance()
             val databaseRef = database.getReference("Purchase")
-            databaseRef.orderByChild("purchaseIdx").get().addOnCompleteListener(callback1)
+            databaseRef.orderByChild("purchaseIdx").equalTo(useridx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
-        // 배송완료 모든 정보 가져오기
-        fun getDeliveryPurchaseAll(callback1: (Task<DataSnapshot>) -> Unit){
+        // 사용자의 배송완료 모든 정보 가져오기
+        fun getDeliveryPurchaseAll(useridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
             val database=  FirebaseDatabase.getInstance()
             val databaseRef = database.getReference("DeliveryPurchase")
-            databaseRef.orderByChild("deliveryPurchaseIdx").get().addOnCompleteListener(callback1)
+            databaseRef.orderByChild("purchaseIdx").equalTo(useridx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
         fun getImage(filename:String,callback1: (Task<Uri>) -> Unit){

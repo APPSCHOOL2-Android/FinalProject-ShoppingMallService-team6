@@ -63,6 +63,13 @@ class AuctionProductRepository {
             auctionProductIdxRef.orderByChild("auctionProductStoreIdx").equalTo(storeIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
+        //판매자가 올린 경매상품 정보 가져오기
+        fun getAuctionProductDetailInfoByIdx(auctionProductStoreIdx: Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("AuctionProduct")
+            databaseRef.orderByChild("auctionProductStoreIdx").equalTo(auctionProductStoreIdx.toDouble()).get().addOnCompleteListener (callback1)
+        }
+
 
         // 경매 상품 이미지 가져오기
         fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit) {

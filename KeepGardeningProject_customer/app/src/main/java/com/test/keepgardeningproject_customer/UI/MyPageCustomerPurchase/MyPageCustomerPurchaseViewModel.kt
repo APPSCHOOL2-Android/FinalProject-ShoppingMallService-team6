@@ -29,8 +29,9 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
 
 
     fun getPaymentAll(){
+        var myidx = MainActivity.loginedUserInfo.userIdx as Long
         val templist = mutableListOf<purchaseInfo>()
-        PurchaseRepository.getPurchaseAll {
+        PurchaseRepository.getPurchaseAll(myidx) {
             for(c1 in it.result.children){
                 val purchaseidx = c1.child("purchaseIdx").value as Long
                 val purchasename = c1.child("purchaseTitle").value as String
@@ -43,8 +44,9 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
         }
     }
     fun getDeliveryAll(){
+        var myidx = MainActivity.loginedUserInfo.userIdx as Long
         val templist2 = mutableListOf<purchaseInfo>()
-        PurchaseRepository.getDeliveryPurchaseAll {
+        PurchaseRepository.getDeliveryPurchaseAll(myidx) {
             for(c1 in it.result.children){
                 val purchaseidx = c1.child("purchaseIdx").value as Long
                 val purchasename = c1.child("purchaseTitle").value as String
