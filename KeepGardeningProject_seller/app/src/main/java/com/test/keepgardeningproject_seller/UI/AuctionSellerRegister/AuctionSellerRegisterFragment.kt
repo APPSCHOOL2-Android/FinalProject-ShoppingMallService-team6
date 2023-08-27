@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -238,21 +239,23 @@ class AuctionSellerRegisterFragment : Fragment() {
 
                                     }
                                 }
+
+                                Snackbar.make(
+                                    fragmentAuctionSellerRegisterBinding.root,
+                                    "경매가 등록되었습니다.",
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                                val newBundle = Bundle()
+                                newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
+                                newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
+                                SystemClock.sleep(3000)
+                                mainActivity.replaceFragment(
+                                    MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
+                                    true,
+                                    newBundle
+                                )
                             }
                         }
-                        Snackbar.make(
-                            fragmentAuctionSellerRegisterBinding.root,
-                            "경매가 등록되었습니다.",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        val newBundle = Bundle()
-                        newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
-                        newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
-                        mainActivity.replaceFragment(
-                            MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
-                            true,
-                            newBundle
-                        )
                     }
                 }
                 builder.show()
