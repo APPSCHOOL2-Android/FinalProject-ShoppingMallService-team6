@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -70,6 +71,20 @@ class AuctionProductRepository {
             val fileRef = storage.reference.child(fileName)
 
             fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
+
+        // 경매 상품 정보(글) 수정
+        fun modifyAuctionProduct(auctionProductDataClass: AuctionProductClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("AuctionProduct")
+
+            productDataRef.orderByChild("auctionProductIdx").equalTo(auctionProductDataClass.auctionProductIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    a1.ref.child("auctionProductImageList").setValue(auctionProductDataClass.auctionProductImageList)
+                    a1.ref.child("auctionProductName").setValue(auctionProductDataClass.auctionProductName)
+                    a1.ref.child("auctionProductDetail").setValue(auctionProductDataClass.auctionProductDetail).addOnCompleteListener(callback1)
+                }
+            }
         }
     }
 }
