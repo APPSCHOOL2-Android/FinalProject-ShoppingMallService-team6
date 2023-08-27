@@ -51,7 +51,6 @@ class HomeCustomerMainHomeViewModel : ViewModel() {
             // 가장 마지막에 등록한것부터 보여주기
             tempList.reverse()
             tempImageNameList.reverse()
-            Log.d("###############", tempList.toString())
 
             // mutablelivedata에 담기
             productClassList.value = tempList

@@ -78,7 +78,7 @@ class HomeCustomerMainHomeFragment : Fragment() {
                 }
                 // 경매
                 btnHcmhMenu5.setOnClickListener {
-
+                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_FRAGMENT,true,null)
                 }
                 // 농산물
                 btnHcmhMenu6.setOnClickListener {

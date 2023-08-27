@@ -88,6 +88,7 @@ class ProductCustomerDetailFragment : Fragment() {
             }
 
             userSellerInfo.observe(mainActivity) {
+                // 스토어명
                 mainbinding.textViewPcdStore.text = it.userSellerStoreName
             }
         }
