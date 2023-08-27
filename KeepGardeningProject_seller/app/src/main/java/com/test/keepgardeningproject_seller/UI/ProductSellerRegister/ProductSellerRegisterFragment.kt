@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -238,6 +239,7 @@ class ProductSellerRegisterFragment : Fragment() {
                                 "ProductSellerRegisterFragment"
                             )
                             newBundle.putInt("productIdx", productIdx.toInt())
+                            SystemClock.sleep(3000)
                             mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT, true, newBundle)
                         }
                     }
