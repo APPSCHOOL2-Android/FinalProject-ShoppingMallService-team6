@@ -99,7 +99,7 @@ class HomeSellerAuctionFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
             // 이미지 썸네일 넣기(대표 사진 0번)
             var fileName = homeSellerViewModel.auctionProductImageNameList.value?.get(position)!!
-            AuctionProductRepository.getProductImage(fileName) {
+            AuctionProductRepository.getAuctionProductImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.imageViewRow)
             }
