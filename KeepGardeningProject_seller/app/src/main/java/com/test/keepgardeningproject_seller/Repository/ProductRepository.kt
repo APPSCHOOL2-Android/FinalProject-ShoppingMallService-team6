@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -85,6 +86,24 @@ class ProductRepository {
                     a1.ref.removeValue().addOnCompleteListener(callback1)
                 }
             }
+        }
+
+        // 상품 정보(글) 수정
+        fun modifyProduct(productDataClass: ProductClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("Product")
+
+            productDataRef.orderByChild("productIdx").equalTo(productDataClass.productIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    a1.ref.child("productImageList").setValue(productDataClass.productImageList)
+                    a1.ref.child("productName").setValue(productDataClass.productName)
+                    a1.ref.child("productDetail").setValue(productDataClass.productDetail)
+                    a1.ref.child("productCategory").setValue(productDataClass.productCategory)
+                    a1.ref.child("productPrice").setValue(productDataClass.productPrice).addOnCompleteListener(callback1)
+                }
+            }
+
+            Log.d("lion","modifyProduct")
         }
     }
 }
