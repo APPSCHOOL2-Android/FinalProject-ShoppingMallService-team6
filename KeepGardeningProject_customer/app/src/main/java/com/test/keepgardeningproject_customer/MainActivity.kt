@@ -35,6 +35,7 @@ import com.test.keepgardeningproject_customer.UI.MyPageCustomerWish.MyPageCustom
 import com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer.OrderCheckFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
+import com.test.keepgardeningproject_customer.UI.ProductCustomerQnAWrite.ProductCustomerQnAWriteFragment
 import com.test.keepgardeningproject_customer.UI.SearchAddress.SearchAddressFragment
 import com.test.keepgardeningproject_customer.UI.StoreInfoCustomer.StoreInfoCustomerFragment
 import com.test.keepgardeningproject_customer.UI.StoreInfoCustomerDetail.StoreInfoCustomerDetailFragment
@@ -103,6 +104,7 @@ class MainActivity : AppCompatActivity() {
         val STORE_INFO_CUSTOMER_FRAGMENT = "StoreInfoCustomerFragment"
         val STORE_INFO_CUSTOMER_DETAIL_FRAGMENT = "StoreInfoCustomerDetailFragment"
         val SEARCH_ADDRESS_FRAGMENT = "SearchAddressFragment"
+        val PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT = "ProductCustomerQnAWriteFragment"
 
 
         // 홈화면 상태
@@ -164,6 +166,7 @@ class MainActivity : AppCompatActivity() {
             STORE_INFO_CUSTOMER_FRAGMENT -> StoreInfoCustomerFragment()
             STORE_INFO_CUSTOMER_DETAIL_FRAGMENT -> StoreInfoCustomerDetailFragment()
             SEARCH_ADDRESS_FRAGMENT -> SearchAddressFragment()
+            PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT -> ProductCustomerQnAWriteFragment()
 
             else -> Fragment()
         }

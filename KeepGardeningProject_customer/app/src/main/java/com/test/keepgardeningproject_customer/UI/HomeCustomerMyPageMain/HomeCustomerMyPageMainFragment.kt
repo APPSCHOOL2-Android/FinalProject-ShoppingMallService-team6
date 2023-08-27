@@ -39,7 +39,6 @@ class HomeCustomerMyPageMainFragment : Fragment() {
                         textviewHomeCustomerMyPageMainName.text = mynick.toString() + "님"
                     }
                 }
-
                 setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT,true,null)
                 }
@@ -57,9 +56,7 @@ class HomeCustomerMyPageMainFragment : Fragment() {
             textviewHomeCustomerMyPageMainReview.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_FRAGMENT,true,null)
             }
-            textviewHomeCustomerMyPageMainWish.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
-            }
+
             // 로그아웃 버튼
             buttonHomeCustomerMyPageMainLogOut.setOnClickListener {
                 MainActivity.isLogined = false
@@ -80,7 +77,5 @@ class HomeCustomerMyPageMainFragment : Fragment() {
         super.onResume()
 
     }
-
-
 
 }
