@@ -231,11 +231,13 @@ class MyPageSellerModifyFragment : Fragment() {
                             if (uploadUri != null) {
                                 UserRepository.uploadImage(fileName, uploadUri!!) {
                                     myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                                     Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                 }
                             } else {
                                 UserRepository.uploadImage(fileName, uploadUri!!) {
                                     myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                                     Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                 }
                             }
@@ -332,11 +334,22 @@ class MyPageSellerModifyFragment : Fragment() {
                         )
 
                         UserRepository.modifyUserSellerInfo(myclass1) {
-                            UserRepository.uploadImage(fileName, uploadUri!!) {
-                                myPageSellerModifyViewModel.reset()
-                                mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+
+                            if (uploadUri != null) {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
                             }
                         }
+
                     }
                     //네이버
                     if (logintypes == 2L) {
@@ -427,9 +440,19 @@ class MyPageSellerModifyFragment : Fragment() {
                         )
 
                         UserRepository.modifyUserSellerInfo(myclass2) {
-                            UserRepository.uploadImage(fileName, uploadUri!!) {
-                                myPageSellerModifyViewModel.reset()
-                                mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+
+                            if (uploadUri != null) {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
                             }
                         }
 
@@ -523,15 +546,24 @@ class MyPageSellerModifyFragment : Fragment() {
                         )
 
                         UserRepository.modifyUserSellerInfo(myclass3) {
-                            UserRepository.uploadImage(fileName, uploadUri!!) {
-                                myPageSellerModifyViewModel.reset()
-                                mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+
+                            if (uploadUri != null) {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                UserRepository.uploadImage(fileName, uploadUri!!) {
+                                    myPageSellerModifyViewModel.reset()
+                                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                                    Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     }
 
 
-                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                 }
             }
         }
