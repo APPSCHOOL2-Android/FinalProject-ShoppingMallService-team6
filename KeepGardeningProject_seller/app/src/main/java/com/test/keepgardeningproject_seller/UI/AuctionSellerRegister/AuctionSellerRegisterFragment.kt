@@ -194,60 +194,68 @@ class AuctionSellerRegisterFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                AuctionProductRepository.getAuctionProductIdx {
-                    var auctionProductIdx = it.result.value as Long
-                    // 경매 상품 인덱스 증가
-                    auctionProductIdx++
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setIcon(R.drawable.ic_warning_24px)
+                builder.setTitle("경고")
+                builder.setMessage("경매가 시작되면 \n경매가격, 마감날짜를 \n수정하실 수 없습니다.")
+                builder.setNegativeButton("취소",null)
+                builder.setPositiveButton("등록") { dialogInterface: DialogInterface, i: Int ->
+                    AuctionProductRepository.getAuctionProductIdx {
+                        var auctionProductIdx = it.result.value as Long
+                        // 경매 상품 인덱스 증가
+                        auctionProductIdx++
 
-                    for (i in 0 until uriList.count()) {
+                        for (i in 0 until uriList.count()) {
+                            // 경매 상품 정보 저장
+                            val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
+
+                            imageList.add(fileName)
+                        }
+
+                        val auctionProductDataClass =
+                            com.test.keepgardeningproject_seller.DAO.AuctionProductClass(
+                                auctionProductIdx,
+                                imageList,
+                                auctionProductName,
+                                auctionOpenPrice,
+                                mainActivity.loginSellerInfo.userSellerIdx,
+                                auctionProductOpenDate,
+                                auctionProductCloseDate,
+                                auctionProductContent
+                            )
+
                         // 경매 상품 정보 저장
-                        val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
+                        AuctionProductRepository.addAuctionProductInfo(auctionProductDataClass) {
+                            // 경매 상품 인덱스 저장
+                            AuctionProductRepository.setAuctionProductIdx(auctionProductIdx) {
 
-                        imageList.add(fileName)
-                    }
+                                for (i in 0 until uriList.count()) {
+                                    // 이미지 업로드
+                                    AuctionProductRepository.uploadImage(
+                                        uriList[i]!!,
+                                        imageList[i]
+                                    ) {
 
-                    val auctionProductDataClass = com.test.keepgardeningproject_seller.DAO.AuctionProductClass(
-                        auctionProductIdx,
-                        imageList,
-                        auctionProductName,
-                        auctionOpenPrice,
-                        mainActivity.loginSellerInfo.userSellerIdx,
-                        auctionProductOpenDate,
-                        auctionProductCloseDate,
-                        auctionProductContent
-                    )
-
-                    // 경매 상품 정보 저장
-                    AuctionProductRepository.addAuctionProductInfo(auctionProductDataClass) {
-                        // 경매 상품 인덱스 저장
-                        AuctionProductRepository.setAuctionProductIdx(auctionProductIdx) {
-
-                            for (i in 0 until uriList.count()) {
-                                // 이미지 업로드
-                                AuctionProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
-
+                                    }
                                 }
                             }
-
-                            val builder = MaterialAlertDialogBuilder(mainActivity)
-                            builder.setIcon(R.drawable.ic_warning_24px)
-                            builder.setTitle("경고")
-                            builder.setMessage("경매가 시작되면 \n경매가격, 마감날짜를 \n수정하실 수 없습니다.")
-                            builder.setNegativeButton("취소",null)
-                            builder.setPositiveButton("등록") { dialogInterface: DialogInterface, i: Int ->
-                                Snackbar.make(
-                                    fragmentAuctionSellerRegisterBinding.root,
-                                    "경매가 등록되었습니다.",
-                                    Snackbar.LENGTH_SHORT
-                                ).show()
-                                val newBundle = Bundle()
-                                newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
-                                mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,newBundle)
-                            }
-                            builder.show()
                         }
+                        Snackbar.make(
+                            fragmentAuctionSellerRegisterBinding.root,
+                            "경매가 등록되었습니다.",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        val newBundle = Bundle()
+                        newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
+                        newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
+                        mainActivity.replaceFragment(
+                            MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
+                            true,
+                            newBundle
+                        )
                     }
                 }
+                builder.show()
             }
         }
         return fragmentAuctionSellerRegisterBinding.root
