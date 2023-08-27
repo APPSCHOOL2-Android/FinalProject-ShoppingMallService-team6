@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -31,6 +32,7 @@ import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSeller
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
+import java.text.DecimalFormat
 
 
 class ProductSellerMainFragment : Fragment() {
@@ -40,11 +42,10 @@ class ProductSellerMainFragment : Fragment() {
 
     lateinit var productSellerMainViewModel: ProductSellerMainViewModel
 
-    var productIdx = 0
-
     var fileNameList = mutableListOf<String>()
 
     companion object {
+        var productIdx = 0
         fun newInstance() = ProductSellerMainFragment()
     }
 
@@ -67,14 +68,19 @@ class ProductSellerMainFragment : Fragment() {
                 fragmentProductSellerMainBinding.textViewProductSellerMainProductName.text = it
             }
             productPrice.observe(mainActivity) {
-                fragmentProductSellerMainBinding.textViewProductSellerMainProductPrice.text = it
+                // 숫자 comma 표시하기
+                var decimal = DecimalFormat("#,###")
+                var temp = it.toInt()
+                fragmentProductSellerMainBinding.textViewProductSellerMainProductPrice.text = decimal.format(temp) + "원"
             }
             productCategory.observe(mainActivity) {
                 fragmentProductSellerMainBinding.textViewProductSellerMainCategory.text = "카테고리 > $it"
             }
             productImageNameList.observe(mainActivity) {
                 fileNameList = it
-//                fragmentProductSellerMainBinding.imageViewJoinSellerMain.setImageBitmap()
+            }
+            productMainImage.observe(mainActivity) {
+                fragmentProductSellerMainBinding.imageViewProductSellerMainMainImage.setImageBitmap(it)
             }
             productSellerMainViewModel.getProductInfo(productIdx.toLong())
         }
@@ -174,6 +180,8 @@ class ProductSellerMainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fragmentProductSellerMainBinding.viewPagerProductSellerMainFragment.requestLayout()
+
+        productSellerMainViewModel.getProductInfo(productIdx.toLong())
     }
 }
 
