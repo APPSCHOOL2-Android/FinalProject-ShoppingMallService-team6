@@ -102,8 +102,6 @@ class ProductRepository {
                     a1.ref.child("productPrice").setValue(productDataClass.productPrice).addOnCompleteListener(callback1)
                 }
             }
-
-            Log.d("lion","modifyProduct")
         }
     }
 }
