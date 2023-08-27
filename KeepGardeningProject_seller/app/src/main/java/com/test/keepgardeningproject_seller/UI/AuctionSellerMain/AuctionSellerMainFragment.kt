@@ -111,6 +111,10 @@ class AuctionSellerMainFragment : Fragment() {
             }
             auctionSellerMainViewModel.getAuctionProductInfo(auctionProductIdx.toLong())
         }
+
+        // 액티비티가 생성될 때 데이터 갱신 작업 시작
+        startDataRefreshTask()
+
         fragmentAuctionSellerMainBinding.run {
 
             toolbarAuctionSellerMain.run {
@@ -187,5 +191,50 @@ class AuctionSellerMainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fragmentAuctionSellerMainBinding.viewPagerAuctionSellerMainFragment.requestLayout()
+    }
+
+    private val dataRefreshRunnable = object : Runnable {
+        override fun run() {
+            // 데이터를 갱신하는 작업 수행
+            fetchDataAndUpdateUI()
+
+            // 다음 주기적 갱신을 예약
+            dataRefreshHandler.postDelayed(this, dataRefreshInterval.toLong())
+        }
+    }
+
+    private fun startDataRefreshTask() {
+        // 주기적 갱신 작업을 예약
+        dataRefreshHandler.postDelayed(dataRefreshRunnable, dataRefreshInterval.toLong())
+    }
+
+    private fun stopDataRefreshTask() {
+        // 주기적 갱신 작업을 중단
+        dataRefreshHandler.removeCallbacks(dataRefreshRunnable)
+    }
+
+    private fun fetchDataAndUpdateUI() {
+        // 데이터를 가져와서 UI를 갱신하는 작업 수행
+        var today = Calendar.getInstance()
+        var calculateDate = (date.time - today.time.time)
+
+        var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+        var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+        var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+
+        fragmentAuctionSellerMainBinding.textViewAuctionSellerMainTimeValue.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+        if(calculateDate < 0) {
+            fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 완료"
+        } else {
+            fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 가능"
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // 액티비티가 종료될 때 주기적 갱신 작업 중단
+        stopDataRefreshTask()
     }
 }
