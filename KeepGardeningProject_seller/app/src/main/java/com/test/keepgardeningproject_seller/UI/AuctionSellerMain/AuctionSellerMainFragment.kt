@@ -54,6 +54,8 @@ class AuctionSellerMainFragment : Fragment() {
     private val dataRefreshHandler = Handler()
     private val dataRefreshInterval = 30 * 1000 // 30초 (1분 = 60 * 1000 밀리초)
 
+    val newBundle = Bundle()
+
     companion object {
         var auctionProductIdx = 0
         fun newInstance() = AuctionSellerMainFragment()
@@ -78,6 +80,7 @@ class AuctionSellerMainFragment : Fragment() {
                 fragmentAuctionSellerMainBinding.textViewAuctionSellerMainProductName.text = it
             }
             auctionProductOpenPrice.observe(mainActivity) {
+                newBundle.putString("auctionProductOpenPrice", it)
                 // 숫자 comma 표시하기
                 var decimal = DecimalFormat("#,###")
                 var temp = it.toInt()
@@ -90,6 +93,8 @@ class AuctionSellerMainFragment : Fragment() {
                 fragmentAuctionSellerMainBinding.imageViewAuctionSellerMainMainImage.setImageBitmap(it)
             }
             auctionProductCloseDate.observe(mainActivity) {
+                newBundle.putString("auctionProductCloseDate", it)
+                newBundle.putString("auctionProductOpenDate", it)
                 date = SimpleDateFormat("yyyy/MM/dd HH:mm").parse(it)
                 var today = Calendar.getInstance()
                 var calculateDate = (date.time - today.time.time)
@@ -143,7 +148,7 @@ class AuctionSellerMainFragment : Fragment() {
             textViewAuctionSellerMainProdcutSellerName.text = mainActivity.loginSellerInfo.userSellerStoreName
 
             buttonAuctionSellerMainEdit.setOnClickListener {
-                mainActivity.replaceFragment(AUCTION_SELLER_EDIT_FRAGMENT, true, null)
+                mainActivity.replaceFragment(AUCTION_SELLER_EDIT_FRAGMENT, true, newBundle)
             }
 
             tabAuctionSellerMain.run {
