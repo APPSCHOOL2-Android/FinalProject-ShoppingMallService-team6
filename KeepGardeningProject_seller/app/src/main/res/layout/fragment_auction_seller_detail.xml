@@ -8,11 +8,11 @@
     tools:context=".UI.AuctionSellerDetail.AuctionSellerDetailFragment">
 
     <TextView
-        android:layout_marginTop="@dimen/margin_size_top"
         android:id="@+id/textView_auctionSellerDetail_productContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_square_round_extra_bold"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:text="상품 상세 내용"
         android:textSize="@dimen/text_size_20" />
 
