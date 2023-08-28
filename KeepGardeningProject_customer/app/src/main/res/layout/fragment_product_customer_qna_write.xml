@@ -42,7 +42,7 @@
                 android:id="@+id/textview_pcq_write_productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
+                android:fontFamily="@font/nanum_square_round_bold"
                 android:text="제품 이름"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
@@ -51,6 +51,7 @@
                 android:id="@+id/textview_pcq_write_storeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="상점이름" />
 
@@ -66,6 +67,7 @@
         android:layout_marginLeft="@dimen/margin_size"
         android:layout_marginTop="@dimen/margin_size_top"
         android:layout_marginRight="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_bold"
         android:gravity="top"
         android:text="제목"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -82,6 +84,7 @@
             android:id="@+id/editTextView_pcq_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -90,8 +93,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_size"
-        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginTop="@dimen/margin_size"
         android:layout_marginRight="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_bold"
         android:gravity="top"
         android:text="내용"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -108,6 +112,7 @@
             android:id="@+id/editTextView_pcq_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -116,8 +121,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_size"
-        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginTop="@dimen/margin_size"
         android:layout_marginRight="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_bold"
         android:gravity="top"
         android:text="사진첨부"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -169,8 +175,11 @@
             android:id="@+id/button_pcq_write"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_size"
             android:layout_weight="1"
-            android:text="문의 작성하기" />
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="문의 작성하기"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
