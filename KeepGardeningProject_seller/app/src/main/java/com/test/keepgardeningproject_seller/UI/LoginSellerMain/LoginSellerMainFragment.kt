@@ -77,7 +77,7 @@ class LoginSellerMainFragment : Fragment() {
                 val account = GoogleSignIn.getLastSignedInAccount(requireContext())
                 val userEmail = account?.email
                 if (userEmail != null) {
-                    checkEmail(userEmail,3)
+                    checkEmail(userEmail,MainActivity.GOOGLE_LOGIN)
                 }
 
             }
@@ -99,13 +99,13 @@ class LoginSellerMainFragment : Fragment() {
             } else if (user != null) {
                 var email = user.kakaoAccount?.email
                 if (email != null) {
-                    checkEmail(email,1)
+                    checkEmail(email,MainActivity.KAKAO_LOGIN)
                 }
                 else{
                     // 데이터가 존재하지 않는 경우 새로 로그인
                     var joinBundle = Bundle()
                     joinBundle.putString("joinUserEmail",email)
-                    joinBundle.putLong("joinUserType",1)
+                    joinBundle.putLong("joinUserType",MainActivity.KAKAO_LOGIN)
                     mainActivity.replaceFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT,false,joinBundle)
                 }
 
@@ -119,7 +119,7 @@ class LoginSellerMainFragment : Fragment() {
         NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
             override fun onSuccess(result: NidProfileResponse) {
                 val email = result.profile?.email.toString()
-                checkEmail(email,2)
+                checkEmail(email,MainActivity.NAVER_LOGIN)
                 // 로그인 및 사용자 정보 처리
             }
 

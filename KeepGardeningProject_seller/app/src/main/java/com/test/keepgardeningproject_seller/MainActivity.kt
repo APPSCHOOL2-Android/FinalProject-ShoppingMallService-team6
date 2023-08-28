@@ -88,6 +88,11 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_SELLER_QNA_FRAGMENT = "ProductSellerQnAFragment"
         val PRODUCT_SELLER_REGISTER_FRAGMENT = "ProductSellerRegisterFragment"
         val PRODUCT_SELLER_REVIEW_FRAGMENT = "ProductSellerReviewFragment"
+
+        var EMAIL_LOGIN = 0L
+        var KAKAO_LOGIN = 1L
+        var NAVER_LOGIN = 2L
+        var GOOGLE_LOGIN = 3L
     }
 
     // 로그인한 사용자의 정보를 담을 객체

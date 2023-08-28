@@ -26,8 +26,6 @@ import com.test.keepgardeningproject_seller.databinding.FragmentLoginSellerToEma
 class LoginSellerToEmailFragment : Fragment() {
     lateinit var fragmentLoginSellerToEmailBinding: FragmentLoginSellerToEmailBinding
     lateinit var mainActivity: MainActivity
-    lateinit var email:String
-    lateinit var pw:String
     lateinit var firebaseAuth:FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -133,7 +131,7 @@ class LoginSellerToEmailFragment : Fragment() {
                         //Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
                         UserRepository.getUserSellerInfoById(loginSellerEmail) {
                             // 가져온 데이터가 없다면
-                            if (it.result.exists() == false) {
+                            if (!it.result.exists()) {
                                 val builder = MaterialAlertDialogBuilder(mainActivity)
                                 builder.setTitle("로그인 오류")
                                 builder.setMessage("존재하지 않는 아이디 입니다")

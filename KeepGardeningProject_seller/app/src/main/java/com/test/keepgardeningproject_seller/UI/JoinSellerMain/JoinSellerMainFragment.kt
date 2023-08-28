@@ -137,7 +137,7 @@ class JoinSellerMainFragment : Fragment() {
                 }
 
                 val userinfo = user!!.email?.let { it1 ->
-                    UserSellerInfo(userindex, 0,
+                    UserSellerInfo(userindex, MainActivity.EMAIL_LOGIN,
                         it1, "None", nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
                 }
                 if (userinfo != null) {

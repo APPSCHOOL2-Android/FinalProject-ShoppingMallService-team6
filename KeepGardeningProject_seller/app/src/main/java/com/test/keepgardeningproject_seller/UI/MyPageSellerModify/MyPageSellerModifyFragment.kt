@@ -30,11 +30,17 @@ class MyPageSellerModifyFragment : Fragment() {
                     mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                 }
             }
+
             buttonMsModifyEnd.run {
                 setOnClickListener {
                     mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                 }
             }
+
+            textInputEditTextMsNickName.setText(mainActivity.loginSellerInfo.userSellerNickname)
+            textInputEditTextMsAddressDetail.setText(mainActivity.loginSellerInfo.userSellerPostDetail)
+            textInputEditTextMsStoreName.setText(mainActivity.loginSellerInfo.userSellerStoreName)
+            textInputEditTextMsStoreDetail.setText(mainActivity.loginSellerInfo.userSellerStoreInfo)
         }
 
         return myPageSellerModifyBinding.root

@@ -99,6 +99,7 @@
             android:layout_gravity="bottom"
             android:orientation="vertical">
             <com.google.android.material.button.MaterialButton
+                android:visibility="gone"
                 android:id="@+id/button_homeSellerMyPageMain_modifyPw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
