@@ -61,7 +61,27 @@ class ProductCustomerQnAWriteFragment : Fragment() {
       fragmentProductCustomerQnaWriteBinding = FragmentProductCustomerQnaWriteBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        productCustomerQnAWriteBinding.run {
+        productIdx = arguments?.getLong("productIdx", 0)!!
+
+        viewModel = ViewModelProvider(mainActivity)[ProductCustomerQnAWriteViewModel::class.java]
+        viewModel.run {
+
+            productName.observe(mainActivity) {
+                fragmentProductCustomerQnaWriteBinding.textviewPcqWriteProductName.text = it
+            }
+            productStoreName.observe(mainActivity) {
+                fragmentProductCustomerQnaWriteBinding.textviewPcqWriteStoreName.text = it
+            }
+            productStoreIdx.observe(mainActivity) {
+                storeIdx = it
+//                fragmentProductCustomerQnaWriteBinding.recyclerViewPcqImage.adapter?.notifyDataSetChanged()
+            }
+            productMainImage.observe(mainActivity) {
+                fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
+            }
+            viewModel.getProductInfo(productIdx)
+        }
+
         fragmentProductCustomerQnaWriteBinding.run {
 
             materialToolbarPcqWrite.run {
