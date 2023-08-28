@@ -21,8 +21,20 @@ class AuctionProductRepository {
             val databaseRef = database.getReference("AuctionProduct")
             databaseRef.orderByChild("auctionProductIdx").equalTo(auctionProductIdx.toDouble()!!).get().addOnCompleteListener(callback1)
         }
+        fun getAuctionRroductAll(callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val auctionProductRef = database.getReference("AuctionProduct")
+            auctionProductRef.orderByChild("auctionProductIdx").get().addOnCompleteListener(callback1)
+        }
+
+        fun getAuctionProductByIdx(auctionProductIdx : Double, callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val auctionProductRef = database.getReference("AuctionProduct")
+            auctionProductRef.orderByChild("auctionProductIdx").equalTo(auctionProductIdx).get().addOnCompleteListener(callback1)
+        }
     }
 }
+
 
 
 

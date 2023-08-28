@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -92,6 +94,7 @@ class AuctionSellerRegisterFragment : Fragment() {
             }
 
             datePickerAuctionSellerRegisterEndDate.minDate = System.currentTimeMillis()
+            timePickerAuctionSellerRegisterEndDate.setIs24HourView(true)
 
 
             buttonAuctionSellerRegisterRegister.setOnClickListener {
@@ -192,47 +195,51 @@ class AuctionSellerRegisterFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                AuctionProductRepository.getAuctionProductIdx {
-                    var auctionProductIdx = it.result.value as Long
-                    // 경매 상품 인덱스 증가
-                    auctionProductIdx++
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                builder.setIcon(R.drawable.ic_warning_24px)
+                builder.setTitle("경고")
+                builder.setMessage("경매가 시작되면 \n경매가격, 마감날짜를 \n수정하실 수 없습니다.")
+                builder.setNegativeButton("취소",null)
+                builder.setPositiveButton("등록") { dialogInterface: DialogInterface, i: Int ->
+                    AuctionProductRepository.getAuctionProductIdx {
+                        var auctionProductIdx = it.result.value as Long
+                        // 경매 상품 인덱스 증가
+                        auctionProductIdx++
 
-                    for (i in 0 until uriList.count()) {
+                        for (i in 0 until uriList.count()) {
+                            // 경매 상품 정보 저장
+                            val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
+
+                            imageList.add(fileName)
+                        }
+
+                        val auctionProductDataClass =
+                            com.test.keepgardeningproject_seller.DAO.AuctionProductClass(
+                                auctionProductIdx,
+                                imageList,
+                                auctionProductName,
+                                auctionOpenPrice,
+                                mainActivity.loginSellerInfo.userSellerIdx,
+                                auctionProductOpenDate,
+                                auctionProductCloseDate,
+                                auctionProductContent
+                            )
+
                         // 경매 상품 정보 저장
-                        val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
+                        AuctionProductRepository.addAuctionProductInfo(auctionProductDataClass) {
+                            // 경매 상품 인덱스 저장
+                            AuctionProductRepository.setAuctionProductIdx(auctionProductIdx) {
 
-                        imageList.add(fileName)
-                    }
+                                for (i in 0 until uriList.count()) {
+                                    // 이미지 업로드
+                                    AuctionProductRepository.uploadImage(
+                                        uriList[i]!!,
+                                        imageList[i]
+                                    ) {
 
-                    val auctionProductDataClass = com.test.keepgardeningproject_seller.DAO.AuctionProductClass(
-                        auctionProductIdx,
-                        imageList,
-                        auctionProductName,
-                        auctionOpenPrice,
-                        mainActivity.loginSellerInfo.userSellerIdx,
-                        auctionProductOpenDate,
-                        auctionProductCloseDate,
-                        auctionProductContent
-                    )
-
-                    // 경매 상품 정보 저장
-                    AuctionProductRepository.addAuctionProductInfo(auctionProductDataClass) {
-                        // 경매 상품 인덱스 저장
-                        AuctionProductRepository.setAuctionProductIdx(auctionProductIdx) {
-
-                            for (i in 0 until uriList.count()) {
-                                // 이미지 업로드
-                                AuctionProductRepository.uploadImage(uriList[i]!!, imageList[i]) {
-
+                                    }
                                 }
-                            }
 
-                            val builder = MaterialAlertDialogBuilder(mainActivity)
-                            builder.setIcon(R.drawable.ic_warning_24px)
-                            builder.setTitle("경고")
-                            builder.setMessage("경매가 시작되면 \n경매가격, 마감날짜를 \n수정하실 수 없습니다.")
-                            builder.setNegativeButton("취소",null)
-                            builder.setPositiveButton("등록") { dialogInterface: DialogInterface, i: Int ->
                                 Snackbar.make(
                                     fragmentAuctionSellerRegisterBinding.root,
                                     "경매가 등록되었습니다.",
@@ -240,12 +247,18 @@ class AuctionSellerRegisterFragment : Fragment() {
                                 ).show()
                                 val newBundle = Bundle()
                                 newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
-                                mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,newBundle)
+                                newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
+                                SystemClock.sleep(3000)
+                                mainActivity.replaceFragment(
+                                    MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
+                                    true,
+                                    newBundle
+                                )
                             }
-                            builder.show()
                         }
                     }
                 }
+                builder.show()
             }
         }
         return fragmentAuctionSellerRegisterBinding.root
@@ -298,6 +311,23 @@ class AuctionSellerRegisterFragment : Fragment() {
 
             init {
                 imageViewProduct = rowSellerRegisterBinding.imageViewRowSellerRegister
+
+                // context 메뉴 구성 (context 메뉴 활성화)
+                rowSellerRegisterBinding.root.setOnCreateContextMenuListener { menu, v, menuInfo ->
+
+                    mainActivity.menuInflater.inflate(R.menu.delete_menu, menu)
+
+                    // context menu의 항목 선택시 실행되는 함수
+                    menu[0].setOnMenuItemClickListener {
+
+                        uriList.removeAt(adapterPosition)
+
+                        // recyclerView 갱신
+                        this@RecyclerAdapterClass.notifyDataSetChanged()
+
+                        false
+                    }
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -53,7 +54,7 @@ class AuctionProductRepository {
         fun getAuctionProductInfoByIdx(auctionProductIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
             val database = FirebaseDatabase.getInstance()
             val auctionProductIdxRef = database.getReference("AuctionProduct")
-            auctionProductIdxRef.orderByChild("AuctionProductIdx").equalTo(auctionProductIdx.toDouble()).get().addOnCompleteListener(callback1)
+            auctionProductIdxRef.orderByChild("auctionProductIdx").equalTo(auctionProductIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
         // 해당 스토어의 전체 경매 상품 정보 가져오기
@@ -72,11 +73,25 @@ class AuctionProductRepository {
 
 
         // 경매 상품 이미지 가져오기
-        fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
+        fun getAuctionProductImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
             val storage = FirebaseStorage.getInstance()
             val fileRef = storage.reference.child(fileName)
 
             fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
+
+        // 경매 상품 정보(글) 수정
+        fun modifyAuctionProduct(auctionProductDataClass: AuctionProductClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("AuctionProduct")
+
+            productDataRef.orderByChild("auctionProductIdx").equalTo(auctionProductDataClass.auctionProductIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    a1.ref.child("auctionProductImageList").setValue(auctionProductDataClass.auctionProductImageList)
+                    a1.ref.child("auctionProductName").setValue(auctionProductDataClass.auctionProductName)
+                    a1.ref.child("auctionProductDetail").setValue(auctionProductDataClass.auctionProductDetail).addOnCompleteListener(callback1)
+                }
+            }
         }
     }
 }

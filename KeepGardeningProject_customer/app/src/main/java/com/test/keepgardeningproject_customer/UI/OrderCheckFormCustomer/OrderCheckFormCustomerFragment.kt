@@ -3,27 +3,33 @@ package com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.CartRepository
+import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderCheckFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderCheckFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
 import org.w3c.dom.Text
+import java.text.DecimalFormat
 
 class OrderCheckFormCustomerFragment : Fragment() {
     lateinit var fragmentOrderCheckFormCustomerBinding: FragmentOrderCheckFormCustomerBinding
     lateinit var mainActivity: MainActivity
 
-    private lateinit var viewModel: OrderCheckFormCustomerViewModel
+    private lateinit var orderCheckFormCustomerViewModel: OrderCheckFormCustomerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,54 @@ class OrderCheckFormCustomerFragment : Fragment() {
     ): View? {
         fragmentOrderCheckFormCustomerBinding = FragmentOrderCheckFormCustomerBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        orderCheckFormCustomerViewModel = ViewModelProvider(mainActivity)[OrderCheckFormCustomerViewModel::class.java]
+        orderCheckFormCustomerViewModel.run {
+//            orderCheckFormOrderList.observe(mainActivity) {
+//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
+//            }
+//            orderCheckFormOrderProductList.observe(mainActivity) {
+//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
+//            }
+            orderCheckFormOrderImageList.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
+            }
+            orderCheckFormTotalOrderIdx.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormOrderNumber.text = "No. ${it.toString()}"
+            }
+
+            orderCheckFormDate.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormOrderDate.text = it
+            }
+
+            orderCheckFormReceiverName.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormReceiverName.text = it
+            }
+
+            orderCheckFormReceiverPhone.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormReceiverPhone.text = it
+            }
+
+            orderCheckFormAddress.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormAddress.text = it
+            }
+
+            orderCheckFormDeliveryRequest.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormDeliveryRequest.text = it
+            }
+
+            orderCheckFormOrdererName.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormOrdererName.text = it
+            }
+
+            orderCheckFormOrdererPhone.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormOrdererPhone.text = it
+            }
+
+            orderCheckFormOrdererEmail.observe(mainActivity) {
+                fragmentOrderCheckFormCustomerBinding.textViewOrderCheckFormOrdererEmail.text = it
+            }
+        }
 
         fragmentOrderCheckFormCustomerBinding.run {
             toolbarOrderCheckForm.run {
@@ -43,6 +97,14 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 }
             }
 
+            val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
+
+            // 주문 정보 받아오기
+            orderCheckFormCustomerViewModel.getOrderInfo(totalOrderIdx)
+
+            // 배송지, 주문자 정보 받아오기
+            orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
+
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
@@ -53,7 +115,8 @@ class OrderCheckFormCustomerFragment : Fragment() {
         return fragmentOrderCheckFormCustomerBinding.root
     }
 
-    inner class OrderCheckFormRecyclerViewAdpater : RecyclerView.Adapter<OrderCheckFormRecyclerViewAdpater.OrderCheckFormViewHolder>() {
+    inner class OrderCheckFormRecyclerViewAdpater :
+        RecyclerView.Adapter<OrderCheckFormRecyclerViewAdpater.OrderCheckFormViewHolder>() {
         inner class OrderCheckFormViewHolder(rowOrderCheckFormCustomerBinding: RowOrderCheckFormCustomerBinding) :
             RecyclerView.ViewHolder(rowOrderCheckFormCustomerBinding.root) {
 
@@ -63,6 +126,7 @@ class OrderCheckFormCustomerFragment : Fragment() {
             var rowOption: TextView
             var rowOrderPriceValue: TextView
             var rowProductPriceValue: TextView
+            var rowImage: ImageView
 
             init {
                 rowDeliveryState = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormDeliveryState
@@ -71,6 +135,7 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 rowOption = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormOption
                 rowOrderPriceValue = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormOrderPriceValue
                 rowProductPriceValue = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormProductPriceValue
+                rowImage = rowOrderCheckFormCustomerBinding.imageViewRowOrderCheckFormProductImage
             }
         }
 
@@ -87,16 +152,32 @@ class OrderCheckFormCustomerFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 5
+            return orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.size ?: 0
         }
 
         override fun onBindViewHolder(holder: OrderCheckFormViewHolder, position: Int) {
-            holder.rowDeliveryState.text = "배송완료"
-            holder.rowStoreName.text = "푸른상점"
-            holder.rowProductName.text = "몬스테라"
-            holder.rowOption.text = "옵션 (2개)"
-            holder.rowOrderPriceValue.text = "13,000원"
-            holder.rowProductPriceValue.text = "26,000원"
+            var fileName = orderCheckFormCustomerViewModel.orderCheckFormOrderImageList.value?.get(position)!!
+            CartRepository.getProductMainImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.rowImage)
+            }
+
+            holder.rowDeliveryState.text =
+                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersDeliveryState
+            holder.rowStoreName.text = "상점명"
+            holder.rowProductName.text =
+                orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productName
+            holder.rowOption.text =
+                "옵션 : ${orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductCount}개"
+
+            var decimal = DecimalFormat("#,###")
+            var price1 =
+                orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productPrice?.toInt()
+            var price2 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductPrice
+            Log.i("s222", price1.toString())
+            Log.i("s222", price2.toString())
+            holder.rowOrderPriceValue.text = decimal.format(price1) + "원"
+            holder.rowProductPriceValue.text = decimal.format(price2) + "원"
         }
     }
 

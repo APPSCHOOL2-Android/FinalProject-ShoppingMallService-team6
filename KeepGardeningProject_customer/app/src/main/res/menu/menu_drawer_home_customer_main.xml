@@ -54,11 +54,4 @@
         app:showAsAction="ifRoom" />
 
 
-    <item
-        android:id="@+id/item_hcm_favorite"
-        android:icon="@drawable/img_heart"
-        android:title="찜 목록"
-        app:showAsAction="ifRoom" />
-
-
 </menu>

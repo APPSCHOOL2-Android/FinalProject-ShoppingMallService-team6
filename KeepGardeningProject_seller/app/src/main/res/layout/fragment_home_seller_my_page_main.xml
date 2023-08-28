@@ -102,10 +102,17 @@
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:orientation="vertical">
-
+            <com.google.android.material.button.MaterialButton
+                android:visibility="gone"
+                android:id="@+id/button_homeSellerMyPageMain_modifyPw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="비밀번호 수정" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_homeSellerMyPageMain_logOut"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanum_square_round_bold"
@@ -114,7 +121,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_homeSellerMyPageMain_withdrawal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanum_square_round_bold"

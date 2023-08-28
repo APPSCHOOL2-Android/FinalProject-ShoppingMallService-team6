@@ -90,6 +90,7 @@ class MyPageSellerModifyFragment : Fragment() {
                     mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                 }
             }
+
             buttonMcModifySearch.run {
                 setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT, true, null)
@@ -108,6 +109,7 @@ class MyPageSellerModifyFragment : Fragment() {
                 }
 
             }
+
             buttonMsModifyEnd.run {
                 setOnClickListener {
 
@@ -566,6 +568,11 @@ class MyPageSellerModifyFragment : Fragment() {
 
                 }
             }
+
+            textInputEditTextMsNickName.setText(mainActivity.loginSellerInfo.userSellerNickname)
+            textInputEditTextMsAddressDetail.setText(mainActivity.loginSellerInfo.userSellerPostDetail)
+            textInputEditTextMsStoreName.setText(mainActivity.loginSellerInfo.userSellerStoreName)
+            textInputEditTextMsStoreDetail.setText(mainActivity.loginSellerInfo.userSellerStoreInfo)
         }
 
         return myPageSellerModifyBinding.root

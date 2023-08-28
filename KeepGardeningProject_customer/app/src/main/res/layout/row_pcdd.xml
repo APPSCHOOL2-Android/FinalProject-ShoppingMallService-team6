@@ -12,5 +12,5 @@
         android:layout_height="300dp"
         android:background="@color/colorAccent1"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_favorite_24px" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 </LinearLayout>

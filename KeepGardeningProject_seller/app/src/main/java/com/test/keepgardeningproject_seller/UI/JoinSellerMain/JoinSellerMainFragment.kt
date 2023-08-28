@@ -5,11 +5,9 @@ import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,17 +16,22 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentJoinSellerMainBinding
 
+
 class JoinSellerMainFragment : Fragment() {
     lateinit var fragmentJoinSellerMainBinding: FragmentJoinSellerMainBinding
     lateinit var mainActivity: MainActivity
-
+    private var firebaseAuth: FirebaseAuth? = null
     lateinit var albumLauncher: ActivityResultLauncher<Intent>
 
     // 업로드할 이미지의 Uri
@@ -44,6 +47,8 @@ class JoinSellerMainFragment : Fragment() {
         albumLauncher = albumSetting(fragmentJoinSellerMainBinding.imageViewJoinSellerMain)
 
         fragmentJoinSellerMainBinding.run {
+            // firebaseAuth의 인스턴스를 가져옴
+            firebaseAuth = FirebaseAuth.getInstance()
             toolbarJoinSellerMain.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
@@ -70,7 +75,7 @@ class JoinSellerMainFragment : Fragment() {
             }
             // 중복확인하기
             buttonJoinSellerMainDoubleCheck.setOnClickListener {
-                Toast.makeText(requireContext(), "중복확인", Toast.LENGTH_SHORT).show()
+
             }
 
             imageViewJoinSellerMain.setOnClickListener {
@@ -105,12 +110,25 @@ class JoinSellerMainFragment : Fragment() {
             var storeInfo = textInputEditTextJoinSellerMainStoreDetail.text.toString()
             var postNumber = textInputEditTextJoinSellerMainPostNumber.text.toString()
             var postDetail = textInputEditTextJoinSellerMainStoreAddress.text.toString()
-
+            val user: FirebaseUser? = firebaseAuth!!.currentUser
             UserRepository.getUserSellerIndex {
                 var userindex = it.result.value as Long
 
                 userindex++
 
+                firebaseAuth!!.createUserWithEmailAndPassword(email, pw)
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if(isAdded){
+                            if (task.isSuccessful) {
+                                Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                                mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT,false,null)
+
+                            } else {
+                                Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    }
                 // 배너 이미지 선택 안하면 파일 이름은 None으로 설정
                 val fileName = if (uploadUri == null) {
                     "None"
@@ -118,26 +136,29 @@ class JoinSellerMainFragment : Fragment() {
                     "image/img_${System.currentTimeMillis()}.jpg"
                 }
 
-                val userinfo =
-                    UserSellerInfo(userindex, 0, email, pw, nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
-
-                UserRepository.setUserSellerInfo(userinfo) {
-                    UserRepository.setUserSellerIdx(userindex) {
-                        // 이미지 업로드
-                        if (uploadUri != null) {
-                            UserRepository.uploadStoreImage(uploadUri!!, fileName) {
-                                Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT)
-                                    .show()
+                val userinfo = user!!.email?.let { it1 ->
+                    UserSellerInfo(userindex, MainActivity.EMAIL_LOGIN,
+                        it1, "None", nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
+                }
+                if (userinfo != null) {
+                    UserRepository.setUserSellerInfo(userinfo) {
+                        UserRepository.setUserSellerIdx(userindex) {
+                            // 이미지 업로드
+                            if (uploadUri != null) {
+                                UserRepository.uploadStoreImage(uploadUri!!, fileName) {
+                                    Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT)
+                                        .show()
+                                    mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
+                                    mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
+                                }
+                            } else {
+                                Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                 mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
                                 mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                             }
-                        } else {
-                            Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                            mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
-                            mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
+            //                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
+            //                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                         }
-//                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
-//                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                     }
                 }
             }

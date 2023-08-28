@@ -38,6 +38,8 @@ class HomeSellerFragment : Fragment() {
     var newFragment:Fragment? = null
     var oldFragment:Fragment? = null
 
+    var oldBottom = ""
+
 
     companion object {
         fun newInstance() = HomeSellerFragment()
@@ -77,10 +79,13 @@ class HomeSellerFragment : Fragment() {
                 selectedItemId = R.id.item_bottomMenu_home
 
 
+
+
                 setOnItemSelectedListener {
                     when(it.itemId) {
                         R.id.item_bottomMenu_home -> {
                             replaceFragment(HOME_SELLER_TAB_FRAGMENT, true, false)
+                            oldBottom = "home"
                         }
                         R.id.item_bottomMenu_registerProduct -> {
                             val builder = MaterialAlertDialogBuilder(mainActivity)
@@ -91,10 +96,15 @@ class HomeSellerFragment : Fragment() {
                             builder.setPositiveButton("경매 상품") { dialogInterface: DialogInterface, i: Int ->
                                 mainActivity.replaceFragment(AUCTION_SELLER_REGISTER_FRAGMENT,true,null)
                             }
+                            builder.setOnCancelListener {
+                                selectedItemId = R.id.item_bottomMenu_home
+                            }
                             builder.show()
+                            oldBottom = "home"
                         }
                         R.id.item_bottomMenu_mypage -> {
                             replaceFragment(HOME_SELLER_MY_PAGE_MAIN_FRAGMENT, true, false)
+                            oldBottom = "mypage"
                         }
                     }
                     true
@@ -107,7 +117,13 @@ class HomeSellerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        replaceFragment(HOME_SELLER_TAB_FRAGMENT, false, false)
+
+        if(oldBottom == "mypage") {
+            fragmentHomeSellerBinding.bottomNavigationViewHomeSeller.selectedItemId = R.id.item_bottomMenu_mypage
+        }
+        else {
+            fragmentHomeSellerBinding.bottomNavigationViewHomeSeller.selectedItemId = R.id.item_bottomMenu_home
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
