@@ -77,12 +77,10 @@ class AuctionCustomerDetailInfoFragment : Fragment() {
 
         override fun onBindViewHolder(holder: viewholderclass, position: Int) {
             // 상세정보 이미지
-            var fileNameList = viewModel.auctionProductInfo.value?.auctionProductImageList!!
-            for(fileName in fileNameList){
-                ProductRepository.getProductImage(fileName){
-                    var fileUri = it.result
-                    Glide.with(mainActivity).load(fileUri).into(holder.auctiondetailinfoimg)
-                }
+            var fileName = viewModel.imageList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName){
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.auctiondetailinfoimg)
             }
         }
     }

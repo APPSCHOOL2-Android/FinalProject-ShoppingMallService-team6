@@ -53,5 +53,11 @@
         android:title="스토어 목록"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/item_hcm_auction"
+        android:icon="@drawable/img_auction"
+        android:title="경매장"
+        app:showAsAction="ifRoom" />
+
 
 </menu>

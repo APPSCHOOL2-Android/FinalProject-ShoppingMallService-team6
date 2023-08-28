@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/imageview_row_acd_info_img"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorAccent1"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_launcher_background" />

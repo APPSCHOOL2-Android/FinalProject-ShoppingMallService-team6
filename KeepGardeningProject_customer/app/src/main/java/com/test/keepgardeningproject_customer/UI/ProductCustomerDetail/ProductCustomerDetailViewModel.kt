@@ -8,7 +8,12 @@ import com.test.keepgardeningproject_customer.Repository.ProductRepository
 
 class ProductCustomerDetailViewModel : ViewModel() {
     val productInfo = MutableLiveData<ProductClass>()
+    val imageList = MutableLiveData<MutableList<String>>()
     val userSellerInfo = MutableLiveData<UserSellerInfo>()
+
+    init{
+        imageList.value = mutableListOf<String>()
+    }
 
     fun getProductInfoByIdx(idx: Double) {
         ProductRepository.getProductInfoByIdx(idx) {
@@ -32,6 +37,7 @@ class ProductCustomerDetailViewModel : ViewModel() {
                 )
 
                 productInfo.value = productClass
+                imageList.value = productImageList
             }
         }
     }

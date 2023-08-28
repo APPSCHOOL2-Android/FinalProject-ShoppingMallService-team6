@@ -14,9 +14,11 @@ class AuctionCustomerDetailViewModel : ViewModel() {
     val auctionProductInfo = MutableLiveData<AuctionProductInfo>()
     val userSellerInfo = MutableLiveData<UserSellerInfo>()
     var auctionList = MutableLiveData<MutableList<AuctionInfo>>()
+    val imageList = MutableLiveData<MutableList<String>>()
 
     init{
         auctionList.value = mutableListOf<AuctionInfo>()
+        imageList.value = mutableListOf<String>()
     }
 
     fun getAPByIdx(idx : Double){
@@ -46,6 +48,7 @@ class AuctionCustomerDetailViewModel : ViewModel() {
                 )
 
                 auctionProductInfo.value = p1
+                imageList.value = auctionProductImageList
             }
         }
     }

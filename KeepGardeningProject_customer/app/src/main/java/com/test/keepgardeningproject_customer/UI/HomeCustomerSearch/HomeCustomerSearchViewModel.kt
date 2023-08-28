@@ -12,7 +12,6 @@ class HomeCustomerSearchViewModel : ViewModel() {
     var productClassList = MutableLiveData<MutableList<ProductClass>>()
     // 게시글 이미지 이름 리스트
     var productImageNameList = MutableLiveData<MutableList<String>>()
-
     init {
         productClassList.value = mutableListOf<ProductClass>()
         productImageNameList.value = mutableListOf<String>()
@@ -54,6 +53,7 @@ class HomeCustomerSearchViewModel : ViewModel() {
             // mutablelivedata에 담기
             productClassList.value = tempList
             productImageNameList.value = tempImageNameList
+
         }
     }
 
