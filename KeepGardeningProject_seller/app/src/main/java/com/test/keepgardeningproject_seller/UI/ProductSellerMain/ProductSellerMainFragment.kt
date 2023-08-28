@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -23,10 +26,13 @@ import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLE
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
+import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
+import java.text.DecimalFormat
 
 
 class ProductSellerMainFragment : Fragment() {
@@ -34,7 +40,12 @@ class ProductSellerMainFragment : Fragment() {
     lateinit var fragmentProductSellerMainBinding: FragmentProductSellerMainBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var productSellerMainViewModel: ProductSellerMainViewModel
+
+    var fileNameList = mutableListOf<String>()
+
     companion object {
+        var productIdx = 0
         fun newInstance() = ProductSellerMainFragment()
     }
 
@@ -43,10 +54,36 @@ class ProductSellerMainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        productIdx = arguments?.getInt("productIdx", 0)!!
 
         fragmentProductSellerMainBinding = FragmentProductSellerMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        productSellerMainViewModel = ViewModelProvider(mainActivity)[ProductSellerMainViewModel::class.java]
+        productSellerMainViewModel.run {
+
+            productName.observe(mainActivity) {
+                fragmentProductSellerMainBinding.textViewProductSellerMainProductName.text = it
+            }
+            productPrice.observe(mainActivity) {
+                // 숫자 comma 표시하기
+                var decimal = DecimalFormat("#,###")
+                var temp = it.toInt()
+                fragmentProductSellerMainBinding.textViewProductSellerMainProductPrice.text = decimal.format(temp) + "원"
+            }
+            productCategory.observe(mainActivity) {
+                fragmentProductSellerMainBinding.textViewProductSellerMainCategory.text = "카테고리 > $it"
+            }
+            productImageNameList.observe(mainActivity) {
+                fileNameList = it
+            }
+            productMainImage.observe(mainActivity) {
+                fragmentProductSellerMainBinding.imageViewProductSellerMainMainImage.setImageBitmap(it)
+            }
+            productSellerMainViewModel.getProductInfo(productIdx.toLong())
+        }
 
         fragmentProductSellerMainBinding.run {
 
@@ -65,12 +102,14 @@ class ProductSellerMainFragment : Fragment() {
                     var oldFragment = arguments?.getString("oldFragment")
                     if(oldFragment == "ProductSellerRegisterFragment") {
                         mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
-                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     } else {
-                        mainActivity.removeFragment(MainActivity.PRODUCT_SELLER_MAIN_FRAGMENT)
+                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     }
                 }
             }
+
+            textViewProductSellerMainProdcutSellerName.text = mainActivity.loginSellerInfo.userSellerStoreName
 
             tabLayoutProductSellerMain.run {
                 //ViewPager2 Adapter 셋팅
@@ -86,9 +125,6 @@ class ProductSellerMainFragment : Fragment() {
 
 
                     registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                        override fun onPageSelected(position: Int) {
-                            super.onPageSelected(position)
-                        }
                     })
                 }
 
@@ -114,6 +150,15 @@ class ProductSellerMainFragment : Fragment() {
                     builder.setNegativeButton("취소", null)
                     builder.setPositiveButton("삭제") { dialogInterface: DialogInterface, i: Int ->
                         Snackbar.make(fragmentProductSellerMainBinding.root, "해당 상품이 삭제되었습니다.",Snackbar.LENGTH_LONG).show()
+
+                        // 글 삭제
+                        ProductRepository.removeProduct(productIdx.toLong()) {
+                            // 이미지가 있는 경우 삭제
+                            for(i in 0 until fileNameList.size) {
+                                ProductRepository.removeImage(fileNameList[i]!!) {}
+                            }
+                        }
+                        SystemClock.sleep(500)
                         mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     }
                     builder.show()
@@ -135,6 +180,8 @@ class ProductSellerMainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fragmentProductSellerMainBinding.viewPagerProductSellerMainFragment.requestLayout()
+
+        productSellerMainViewModel.getProductInfo(productIdx.toLong())
     }
 }
 

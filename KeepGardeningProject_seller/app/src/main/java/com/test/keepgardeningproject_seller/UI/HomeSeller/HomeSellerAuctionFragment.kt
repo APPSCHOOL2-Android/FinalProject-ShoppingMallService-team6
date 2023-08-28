@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
+import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
@@ -26,6 +28,8 @@ class HomeSellerAuctionFragment : Fragment() {
 
     lateinit var homeSellerViewModel: HomeSellerViewModel
 
+    var auctionProductList = mutableListOf<AuctionProductClass>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +40,7 @@ class HomeSellerAuctionFragment : Fragment() {
         homeSellerViewModel = ViewModelProvider(mainActivity)[HomeSellerViewModel::class.java]
         homeSellerViewModel.run{
             auctionProductClassList.observe(mainActivity){
+                auctionProductList = it
                 fragmentHomeSellerAuctionBinding.recyclerViewHomeSellerAuction.adapter?.notifyDataSetChanged()
             }
             auctionProductImageNameList.observe(mainActivity){
@@ -71,6 +76,7 @@ class HomeSellerAuctionFragment : Fragment() {
                 rowHomeSellerBinding.root.setOnClickListener {
                     val newBundle = Bundle()
                     newBundle.putString("oldFragment", "HomeSellerAuctionFragment")
+                    newBundle.putInt("auctionProductIdx", auctionProductList[adapterPosition].auctionProductIdx.toInt())
                     mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,newBundle)
                 }
             }
@@ -99,7 +105,7 @@ class HomeSellerAuctionFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
             // 이미지 썸네일 넣기(대표 사진 0번)
             var fileName = homeSellerViewModel.auctionProductImageNameList.value?.get(position)!!
-            AuctionProductRepository.getProductImage(fileName) {
+            AuctionProductRepository.getAuctionProductImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.imageViewRow)
             }

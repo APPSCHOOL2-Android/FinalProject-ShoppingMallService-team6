@@ -7,7 +7,9 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,17 +30,34 @@ import com.test.keepgardeningproject_seller.UI.AuctionSellerDetail.AuctionSeller
 import com.test.keepgardeningproject_seller.UI.AuctionSellerInfo.AuctionSellerInfoFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ViewPager2Adapter
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerMainBinding
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 class AuctionSellerMainFragment : Fragment() {
 
     lateinit var fragmentAuctionSellerMainBinding: FragmentAuctionSellerMainBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var auctionSellerMainViewModel: AuctionSellerMainViewModel
+
+    var fileNameList = mutableListOf<String>()
+    var date: Date = Calendar.getInstance().time
+
+    private val dataRefreshHandler = Handler()
+    private val dataRefreshInterval = 30 * 1000 // 30초 (1분 = 60 * 1000 밀리초)
+
+    val newBundle = Bundle()
+
     companion object {
+        var auctionProductIdx = 0
         fun newInstance() = AuctionSellerMainFragment()
     }
 
@@ -51,6 +70,55 @@ class AuctionSellerMainFragment : Fragment() {
 
         fragmentAuctionSellerMainBinding = FragmentAuctionSellerMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        auctionProductIdx = arguments?.getInt("auctionProductIdx", 0)!!
+
+        auctionSellerMainViewModel = ViewModelProvider(mainActivity)[AuctionSellerMainViewModel::class.java]
+        auctionSellerMainViewModel.run {
+
+            auctionProductName.observe(mainActivity) {
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainProductName.text = it
+            }
+            auctionProductOpenPrice.observe(mainActivity) {
+                newBundle.putString("auctionProductOpenPrice", it)
+                // 숫자 comma 표시하기
+                var decimal = DecimalFormat("#,###")
+                var temp = it.toInt()
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainOpenPriceValue.text = decimal.format(temp) + "원"
+            }
+            auctionProductImageNameList.observe(mainActivity) {
+                fileNameList = it
+            }
+            auctionProductMainImage.observe(mainActivity) {
+                fragmentAuctionSellerMainBinding.imageViewAuctionSellerMainMainImage.setImageBitmap(it)
+            }
+            auctionProductCloseDate.observe(mainActivity) {
+                newBundle.putString("auctionProductCloseDate", it)
+                newBundle.putString("auctionProductOpenDate", it)
+                date = SimpleDateFormat("yyyy/MM/dd HH:mm").parse(it)
+                var today = Calendar.getInstance()
+                var calculateDate = (date.time - today.time.time)
+
+                var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+                var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+                var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainTimeValue.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+                if(calculateDate < 0) {
+                    fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 완료"
+                } else {
+                    fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 가능"
+                }
+
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainPeriodValueOpenDate.text = auctionProductOpenDate.value.toString()
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainPeriodValueCloseDate.text = auctionProductCloseDate.value.toString()
+            }
+            auctionSellerMainViewModel.getAuctionProductInfo(auctionProductIdx.toLong())
+        }
+
+        // 액티비티가 생성될 때 데이터 갱신 작업 시작
+        startDataRefreshTask()
 
         fragmentAuctionSellerMainBinding.run {
 
@@ -77,9 +145,10 @@ class AuctionSellerMainFragment : Fragment() {
                 }
             }
 
+            textViewAuctionSellerMainProdcutSellerName.text = mainActivity.loginSellerInfo.userSellerStoreName
 
             buttonAuctionSellerMainEdit.setOnClickListener {
-                mainActivity.replaceFragment(AUCTION_SELLER_EDIT_FRAGMENT, true, null)
+                mainActivity.replaceFragment(AUCTION_SELLER_EDIT_FRAGMENT, true, newBundle)
             }
 
             tabAuctionSellerMain.run {
@@ -127,5 +196,50 @@ class AuctionSellerMainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         fragmentAuctionSellerMainBinding.viewPagerAuctionSellerMainFragment.requestLayout()
+    }
+
+    private val dataRefreshRunnable = object : Runnable {
+        override fun run() {
+            // 데이터를 갱신하는 작업 수행
+            fetchDataAndUpdateUI()
+
+            // 다음 주기적 갱신을 예약
+            dataRefreshHandler.postDelayed(this, dataRefreshInterval.toLong())
+        }
+    }
+
+    private fun startDataRefreshTask() {
+        // 주기적 갱신 작업을 예약
+        dataRefreshHandler.postDelayed(dataRefreshRunnable, dataRefreshInterval.toLong())
+    }
+
+    private fun stopDataRefreshTask() {
+        // 주기적 갱신 작업을 중단
+        dataRefreshHandler.removeCallbacks(dataRefreshRunnable)
+    }
+
+    private fun fetchDataAndUpdateUI() {
+        // 데이터를 가져와서 UI를 갱신하는 작업 수행
+        var today = Calendar.getInstance()
+        var calculateDate = (date.time - today.time.time)
+
+        var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+        var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+        var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+
+        fragmentAuctionSellerMainBinding.textViewAuctionSellerMainTimeValue.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+        if(calculateDate < 0) {
+            fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 완료"
+        } else {
+            fragmentAuctionSellerMainBinding.textViewAuctionSellerMainStateValue.text = "입찰 가능"
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // 액티비티가 종료될 때 주기적 갱신 작업 중단
+        stopDataRefreshTask()
     }
 }
