@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +36,7 @@ class AuctionCustomerDetailFragment : Fragment() {
     // 뷰모델
     lateinit var viewModel: AuctionCustomerDetailViewModel
     // 선택한 인덱스
-    var idx: Long = 1
+    var selectedIdx: Long = 1
     var openPrice : Int = 1
 
     override fun onCreateView(
@@ -89,7 +88,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                 var maxPrice = 0
                 var priceList = mutableListOf<Int>()
                 for(i in it){
-                    if(i.auctionAuctionProductIndex == idx){
+                    if(i.auctionAuctionProductIndex == selectedIdx){
                         priceList.add(i.auctionBidPrice?.toInt()!!)
                     }
                 }
@@ -109,10 +108,10 @@ class AuctionCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 경매상품 인덱스
-        idx = arguments?.getLong("selectedAuctionProductIdx", 1)!!
+        selectedIdx = arguments?.getLong("selectedAuctionProductIdx", 1)!!
 
         // 상품 정보 불러오기
-        viewModel.getAPByIdx(idx.toDouble())
+        viewModel.getAPByIdx(selectedIdx.toDouble())
 
         // 상품 경매내역 불러오기
         viewModel.getAuction()
@@ -132,7 +131,7 @@ class AuctionCustomerDetailFragment : Fragment() {
             var acdl = AuctionCustomerDetailAuctionFragment()
             acdl.apply {
                 arguments = Bundle().apply {
-                    putLong("idx",idx)
+                    putLong("idx",selectedIdx)
                 }
             }
             fragmentList.add(acdl)
@@ -182,7 +181,7 @@ class AuctionCustomerDetailFragment : Fragment() {
 
                                     // 저장할 데이터 담기
                                     auctionIndex++
-                                    var auctionAuctionProductIndex = idx
+                                    var auctionAuctionProductIndex = selectedIdx
                                     var auctionCustomerIdx = MainActivity.loginedUserInfo.userIdx
                                     var auctionBidNickname = MainActivity.loginedUserInfo.userNickname
 
