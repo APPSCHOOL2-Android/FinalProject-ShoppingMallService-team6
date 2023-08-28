@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_size"
     android:orientation="vertical"
     tools:context=".UI.ProductCustomerQnAWrite.ProductCustomerQnAWriteFragment">
 
@@ -18,14 +17,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size"
         android:orientation="horizontal">
 
 
         <ImageView
 
             android:id="@+id/imageview_pcq_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/ic_launcher_background" />
 
 
@@ -61,6 +63,9 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size"
         android:gravity="top"
         android:text="제목"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -68,7 +73,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextView_pcq_title"
@@ -81,6 +89,9 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size"
         android:gravity="top"
         android:text="내용"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -88,7 +99,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextView_pcq_content"
@@ -101,6 +115,9 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size"
         android:gravity="top"
         android:text="사진첨부"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -109,7 +126,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_size_middle">
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,16 +159,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size"
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginRight="@dimen/margin_size"
         android:orientation="horizontal"
         android:weightSum="1">
 
         <com.google.android.material.button.MaterialButton
-            android:id = "@+id/button_pcq_write"
+            android:id="@+id/button_pcq_write"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_size"
             android:layout_weight="1"
-            android:text="리뷰 작성하기" />
+            android:text="문의 작성하기" />
 
 
     </LinearLayout>

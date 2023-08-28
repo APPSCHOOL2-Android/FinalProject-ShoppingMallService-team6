@@ -46,25 +46,6 @@
             android:layout_margin="@dimen/margin_size"
             android:orientation="vertical">
 
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:text="별점"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
-
-
-            <RatingBar
-                android:id="@+id/ratingbar_rc_review_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_size"
-                android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
