@@ -2,15 +2,22 @@ package com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.keepgardeningproject_customer.DAO.AuctionInfo
 import com.test.keepgardeningproject_customer.DAO.AuctionProductInfo
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.DAO.UserSellerInfo
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_customer.Repository.AuctionRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 
 class AuctionCustomerDetailViewModel : ViewModel() {
     val auctionProductInfo = MutableLiveData<AuctionProductInfo>()
     val userSellerInfo = MutableLiveData<UserSellerInfo>()
+    var auctionList = MutableLiveData<MutableList<AuctionInfo>>()
+
+    init{
+        auctionList.value = mutableListOf<AuctionInfo>()
+    }
 
     fun getAPByIdx(idx : Double){
         AuctionProductRepository.getAuctionProductByIdx(idx){
@@ -72,6 +79,32 @@ class AuctionCustomerDetailViewModel : ViewModel() {
 
                 userSellerInfo.value = userSellerInfoTemp
             }
+        }
+    }
+
+    // 관련 경매내역 불러오기
+    fun getAuction(){
+        AuctionRepository.getAuctionAll{
+            var tempList = mutableListOf<AuctionInfo>()
+            for (c1 in it.result.children) {
+                var auctionIdx = c1.child("auctionIdx").value as Long
+                var auctionAuctionProductIndex= c1.child("auctionAuctionProductIndex").value as Long
+                var auctionCustomerIdx= c1.child("auctionCustomerIdx").value as Long
+                var auctionBidNickname = c1.child("auctionBidNickname").value as String
+                var auctionBidPrice = c1.child("auctionBidPrice").value as String
+
+                val auctionInfo = AuctionInfo(
+                    auctionIdx,
+                    auctionAuctionProductIndex,
+                    auctionCustomerIdx,
+                    auctionBidNickname,
+                    auctionBidPrice
+                )
+
+                tempList.add(auctionInfo)
+            }
+
+            auctionList.value = tempList
         }
     }
 }

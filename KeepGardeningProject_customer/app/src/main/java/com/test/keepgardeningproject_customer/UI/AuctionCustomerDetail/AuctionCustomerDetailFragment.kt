@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,14 +19,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_customer.DAO.AuctionInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.AuctionRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
 import com.test.keepgardeningproject_customer.databinding.DialogAcdBinding
 
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailBinding
-import java.nio.file.attribute.AclEntry.Builder
 import java.text.DecimalFormat
 
 class AuctionCustomerDetailFragment : Fragment() {
@@ -40,6 +38,7 @@ class AuctionCustomerDetailFragment : Fragment() {
     lateinit var viewModel: AuctionCustomerDetailViewModel
     // 선택한 인덱스
     var idx: Long = 1
+    var openPrice : Int = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,10 +71,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                 val dec = DecimalFormat("#,###")
                 val temp = dec.format(it.auctionProductOpenPrice!!.toInt())
                 binding.textviewAcdOpenprice.text = temp + " 원"
-
-                // 현재가격
-                val temp2 = dec.format(it.auctionProductOpenPrice!!.toInt())
-                binding.textviewAcdCurrentprice.text = temp2 + " 원"
+                openPrice = it.auctionProductOpenPrice!!.toInt()
 
                 // 경매상태 : 경매가능
 
@@ -87,12 +83,41 @@ class AuctionCustomerDetailFragment : Fragment() {
                 // 스토어명
                 binding.textviewAcdStore.text = it.userSellerStoreName
             }
+
+            auctionList.observe(mainActivity){
+                // 현재가격
+                var maxPrice = 0
+                var priceList = mutableListOf<Int>()
+                for(i in it){
+                    if(i.auctionAuctionProductIndex == idx){
+                        priceList.add(i.auctionBidPrice?.toInt()!!)
+                    }
+                }
+
+                // 최대인 값으로 설정
+                if(priceList.size == 0){
+                    maxPrice = openPrice
+                }else{
+                    maxPrice = priceList.max()
+                }
+
+
+                val dec = DecimalFormat("#,###")
+                val temp = dec.format(maxPrice)
+                binding.textviewAcdCurrentprice.text = temp + " 원"
+            }
         }
 
         // 받아온 경매상품 인덱스
         idx = arguments?.getLong("selectedAuctionProductIdx", 1)!!
+
+        // 상품 정보 불러오기
         viewModel.getAPByIdx(idx.toDouble())
 
+        // 상품 경매내역 불러오기
+        viewModel.getAuction()
+
+        // 뷰바인딩
         auctionCustomerDetailBinding.run {
 
             //탭 이름
@@ -103,7 +128,14 @@ class AuctionCustomerDetailFragment : Fragment() {
             // 탭레이아웃
             fragmentList.clear()
             fragmentList.add(AuctionCustomerDetailInfoFragment())
-            fragmentList.add(AuctionCustomerDetailAuctionFragment())
+
+            var acdl = AuctionCustomerDetailAuctionFragment()
+            acdl.apply {
+                arguments = Bundle().apply {
+                    putLong("idx",idx)
+                }
+            }
+            fragmentList.add(acdl)
             pager2.adapter = TabsAdapterClass(mainActivity)
             val tabLayoutMediator = TabLayoutMediator(tabs,pager2){ tab: TabLayout.Tab, i: Int ->
                 tab.text = tabName[i]
@@ -136,24 +168,36 @@ class AuctionCustomerDetailFragment : Fragment() {
                         dialogAcdBinding.editTextTextDialogAcdPrice.requestFocus()
                         // 입찰하기 버튼
                         dialogBuilder.setPositiveButton("확인", ){ dialogInterface: DialogInterface, i: Int ->
-                            var auctionPrice = dialogAcdBinding.editTextTextDialogAcdPrice.text.toString()
+                            var auctionPrice = dialogAcdBinding.editTextTextDialogAcdPrice.text.toString().toInt()
 
-                            AuctionRepository.getAuctionIdx {
-                                // 현재의 사용자 순서값 가져온다.
-                                var auctionIndex = it.result.value as Long
+                            // 입찰금액이 현재 금액보다 낮을경우
+                            if(auctionPrice <= openPrice){
+                                Snackbar.make(auctionCustomerDetailBinding.root, "현재금액보다 높은 금액만 입찰이 가능합니다.", Snackbar.LENGTH_SHORT).show()
+                            }
+                            // 입찰금액이 현재 금액보다 높을경우
+                            else{
+                                AuctionRepository.getAuctionIdx {
+                                    // 현재의 사용자 순서값 가져온다.
+                                    var auctionIndex = it.result.value as Long
 
-                                // 저장할 데이터 담기
-                                var auctionAuctionProductIndex = idx
-                                var auctionState = "입찰완료"
-                                var auctionCustomerList = ArrayList<Long>()
+                                    // 저장할 데이터 담기
+                                    auctionIndex++
+                                    var auctionAuctionProductIndex = idx
+                                    var auctionCustomerIdx = MainActivity.loginedUserInfo.userIdx
+                                    var auctionBidNickname = MainActivity.loginedUserInfo.userNickname
 
-                                auctionCustomerList.add(MainActivity.loginedUserInfo.userIdx!!)
+                                    var auctionInfo = AuctionInfo(
+                                        auctionIdx = auctionIndex,
+                                        auctionAuctionProductIndex = auctionAuctionProductIndex,
+                                        auctionCustomerIdx = auctionCustomerIdx,
+                                        auctionBidNickname = auctionBidNickname,
+                                        auctionBidPrice = auctionPrice.toString()
+                                    )
 
-                                var auctionInfo = AuctionInfo(auctionIndex, auctionAuctionProductIndex, auctionState, auctionCustomerList)
-
-                                AuctionRepository.setAuctionProduct(auctionInfo){
-                                    AuctionRepository.setAuctionIndex(auctionIndex){
-                                        Snackbar.make(auctionCustomerDetailBinding.root, "입찰등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                                    AuctionRepository.setAuctionProduct(auctionInfo){
+                                        AuctionRepository.setAuctionIndex(auctionIndex){
+                                            Snackbar.make(auctionCustomerDetailBinding.root, "입찰등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                                        }
                                     }
                                 }
                             }
