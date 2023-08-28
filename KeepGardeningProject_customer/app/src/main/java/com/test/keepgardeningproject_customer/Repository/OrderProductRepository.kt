@@ -9,6 +9,13 @@ import com.test.keepgardeningproject_customer.DAO.TotalOrderClass
 
 class OrderProductRepository {
     companion object {
+        //userindex와 ordercustomerindex를 비교해서 데이터 가져오기
+        fun getIndexorderInfo(useridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("OrdersProduct")
+            databaseRef.orderByChild("ordersCustomerIdx").equalTo(useridx.toDouble()).get().addOnCompleteListener(callback1)
+        }    
+        
         // userIdx를 통해 장바구니에 있는 상품 정보를 가져온다.
         fun getCartbyUserIdx(cartUserIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
             val database = FirebaseDatabase.getInstance()
@@ -45,3 +52,4 @@ class OrderProductRepository {
         }
     }
 }
+

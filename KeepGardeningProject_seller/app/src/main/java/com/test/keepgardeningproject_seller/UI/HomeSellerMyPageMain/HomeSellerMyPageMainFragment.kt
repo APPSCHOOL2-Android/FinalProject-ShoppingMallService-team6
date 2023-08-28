@@ -32,7 +32,18 @@ class HomeSellerMyPageMainFragment : Fragment() {
         var naverAPI = NaverAPI()
         var googleAPI = GoogleAPI()
         homeSellerMyPageMainBinding.run {
-            textviewHomeSellerMyPageMainName.setText(mainActivity.loginSellerInfo.userSellerNickname)
+            textviewHomeSellerMyPageMainName.run {
+                var newEmail = mainActivity.loginSellerInfo.userSellerEmail
+                var newStorename = mainActivity.loginSellerInfo.userSellerStoreName
+                UserRepository.getUserSellerInfoById(newEmail){
+                    for(c1 in it.result.children){
+                        var mynick = c1.child("userSellerNickname").value.toString()
+                        textviewHomeSellerMyPageMainName.text = newStorename + " 상점의 " + mynick + " 님"
+                    }
+                }
+            }
+
+
             textviewHomeSellerMyPageMainAuction.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_AUCTION_FRAGMENT,true,null)
             }

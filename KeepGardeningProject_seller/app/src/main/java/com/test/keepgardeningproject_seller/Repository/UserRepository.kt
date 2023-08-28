@@ -62,7 +62,7 @@ class UserRepository {
         fun modifyUserSellerInfo(userInfo: UserSellerInfo,callback1: (Task<Void>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val userSellerInfoData = database.getReference("UserSellerInfo")
-            userSellerInfoData.orderByChild("UserSellerIdx").equalTo(userInfo.userSellerIdx.toDouble()).get().addOnCompleteListener {
+            userSellerInfoData.orderByChild("userSellerIdx").equalTo(userInfo.userSellerIdx.toDouble()).get().addOnCompleteListener {
                 for(data in it.result.children){
                     data.ref.child("userSellerEmail").setValue(userInfo.userSellerEmail)
                     data.ref.child("userSellerPw").setValue(userInfo.userSellerPw)
@@ -96,7 +96,7 @@ class UserRepository {
 
         fun uploadImage(fileName:String,uploadUri: Uri,callback1: (Task<UploadTask.TaskSnapshot>) -> Unit){
             val storage = FirebaseStorage.getInstance()
-            val imageRef = storage.reference.child(fileName)
+            var imageRef = storage.reference.child(fileName)
             imageRef.putFile(uploadUri!!).addOnCompleteListener(callback1)
         }
 

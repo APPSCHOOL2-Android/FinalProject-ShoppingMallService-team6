@@ -1,5 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerAuction
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -11,22 +12,26 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.navercorp.nid.oauth.NidOAuthPreferencesManager.state
+import com.test.keepgardeningproject_seller.DAO.auctionInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.MY_PAGE_SELLER_AUCTION_FRAGMENT
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_seller.Repository.AuctionSellerDetailRepository
+import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerAuctionBinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerAuctionBinding
 import java.lang.RuntimeException
+import java.net.URL
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Date
 
 
-//가짜데이터 모델
-data class Models(val type:Int,val img:Int,val state:String,val title:String){
-    companion object{
-        const val AUCTION_COMPLETE_TYPE = 0
-        const val AUCTION_PROCEED_TYPE = 1
-    }
-}
 class MyPageSellerAuctionFragment : Fragment() {
 
     lateinit var myPageSellerAuctionBinding: FragmentMyPageSellerAuctionBinding
@@ -34,22 +39,21 @@ class MyPageSellerAuctionFragment : Fragment() {
 
     private lateinit var viewModel: MyPageSellerAuctionViewModel
 
-    //가짜 데이터
-    val datas  = listOf(
-        Models(Models.AUCTION_PROCEED_TYPE,R.mipmap.ic_launcher,"경매중","몬스테라"),
-        Models(Models.AUCTION_PROCEED_TYPE,R.mipmap.ic_launcher,"경매중","장미"),
-        Models(Models.AUCTION_COMPLETE_TYPE,R.mipmap.ic_launcher,"경매완료","목련"),
-        Models(Models.AUCTION_COMPLETE_TYPE,R.mipmap.ic_launcher,"경매완료","해바라기"),
-        Models(Models.AUCTION_PROCEED_TYPE,R.mipmap.ic_launcher,"경매중","개나리")
-    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         myPageSellerAuctionBinding = FragmentMyPageSellerAuctionBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
+        viewModel = ViewModelProvider(mainActivity)[MyPageSellerAuctionViewModel::class.java]
 
+        viewModel.run {
+            sellerList.observe(mainActivity){
+                myPageSellerAuctionBinding.recyclerviewAs.adapter?.notifyDataSetChanged()
+            }
+        }
         myPageSellerAuctionBinding.run {
+            //getData()
             recyclerviewAs.run {
                 adapter = ResultrecyclerAdapter()
                 layoutManager = LinearLayoutManager(context)
@@ -62,6 +66,8 @@ class MyPageSellerAuctionFragment : Fragment() {
                     mainActivity.removeFragment(MY_PAGE_SELLER_AUCTION_FRAGMENT)
                 }
             }
+            var myidx =  mainActivity.loginSellerInfo.userSellerIdx
+            viewModel.getPostALl(myidx)
         }
         return myPageSellerAuctionBinding.root
     }
@@ -77,6 +83,10 @@ class MyPageSellerAuctionFragment : Fragment() {
                 textViewAuctionName = rowbinding.textViewAsProductName
                 textViewAuctionState = rowbinding.textviewAsState
                 imageviewAuctionimg = rowbinding.imageviewAsImg
+
+                rowbinding.root.setOnClickListener {
+                    //해당하는 경매상세정보 이동
+                }
             }
         }
 
@@ -93,25 +103,87 @@ class MyPageSellerAuctionFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return datas.size
+            return viewModel.sellerList.value?.size!!
+
+
         }
 
         override fun onBindViewHolder(holder: ResultrecyclerAdapter.viewholderclass, position: Int) {
 
-            holder.textViewAuctionState.text = datas[position].state
-            holder.textViewAuctionName.text = datas[position].title
-            holder.imageviewAuctionimg.setImageResource(R.mipmap.ic_launcher)
+            holder.textViewAuctionState.text = viewModel.sellerList.value?.get(position)?.auctionDetailState.toString()
+            holder.textViewAuctionName.text =viewModel.sellerList.value?.get(position)?.auctionDetailTitle.toString()
+            AuctionSellerDetailRepository.getImage(viewModel.sellerList.value?.get(position)?.auctionDetailImg.toString()){
+                //이미지뷰에 사진넣기
+                val url = URL(it.result.toString())
+                Glide.with(context!!).load(url)
+                    .override(200,200)
+                    .into(holder.imageviewAuctionimg)
 
-            //경매중인 아이템뷰들만 경매상세정보로 이동
-            if(datas[position].type == 1){
-                holder.itemView.setOnClickListener{
-                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_DETAIL_FRAGMENT,true,null)
-                }
             }
+
 
         }
     }
 
 
 
+
+
+    fun getData(){
+
+            var idx = mainActivity.loginSellerInfo.userSellerIdx
+            Log.d("Lim","${idx}")
+
+            AuctionSellerDetailRepository.getAuctionSellerDetailIdx {
+                var idx2 = it.result.value as Long
+                idx2++
+                Log.d("Lim","${idx2}")
+                AuctionProductRepository.getAuctionProductDetailInfoByIdx(idx){
+                    for(c1 in it.result.children){
+                        var newname = c1.child("auctionProductName").value.toString()
+                        var newimg = c1.child("auctionProductImageList").value as ArrayList<String>
+                        var productIdx = c1.child("auctionProductIdx").value as Long
+                        var imgone = newimg[0]
+                        var state = c1.child("auctionProductCloseDate").value.toString()
+                        var newstate = getTime(state)
+                        var newclass = auctionInfo(idx,imgone,newname,newstate,productIdx)
+
+                        AuctionSellerDetailRepository.setAuctionSellerDetailInfo(newclass){
+                            AuctionSellerDetailRepository.setAuctioSellerDetailIdx(idx2){
+                                Log.d("Lim","${newclass}")
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+    }
+
+
+    fun getTime(state:String):String{
+        var date: Date = Calendar.getInstance().time
+        date = SimpleDateFormat("yyyy/MM/dd HH:mm") .parse(state)
+        //현재시간
+        var today = Calendar.getInstance()
+        //경매종료시간 -현재시간
+        var calculateDate = (date.time - today.time.time)
+
+//        var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+//        var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+//        var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+//
+//        fragmentAuctionSellerMainBinding.textViewAuctionSellerMainTimeValue.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+        if(calculateDate < 0) {
+            val state  = "경매완료"
+            return state
+        } else {
+            val state  = "경매중"
+            return state
+        }
+    }
+
 }
+
