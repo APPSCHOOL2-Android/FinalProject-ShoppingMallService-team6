@@ -42,6 +42,8 @@ class MyPageCustomerPurchaseFragment : Fragment() {
     lateinit var purchaseviewModel: MyPageCustomerPurchaseViewModel
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,7 +64,8 @@ class MyPageCustomerPurchaseFragment : Fragment() {
         }
 
         fragmentMyPageCustomerPurchaseBinding.run {
-
+//            purchaseviewModel.getData()
+//            purchaseviewModel.getData2()
             toolbarPc.run {
                 setTitle("구매내역")
                 setNavigationIcon(R.drawable.ic_back_24px)
@@ -109,9 +112,11 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 rowPostListBinding.root.setOnClickListener {
 
                     //구매자 인덱스
-                    val productidx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
+                    val purchaseInfoIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseInfoIdx
+                    val purchaseIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
                     val newBundle = Bundle()
-                    newBundle.putLong("readPostIdx", productidx!!)
+                    newBundle.putLong("purchaseInfoIdx", purchaseInfoIdx!!)
+                    newBundle.putLong("purchaseIdx", purchaseIdx!!)
                     mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, newBundle)
                 }
             }
@@ -164,9 +169,13 @@ class MyPageCustomerPurchaseFragment : Fragment() {
 
                 rowButton.setOnClickListener {
                     //구매자 인덱스
-                    val productIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
+                    val totalorderIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.totalorderIdx
+                    val purchaseInfoIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseInfoIdx
+                    val purchaseIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
                     val newBundle = Bundle()
-                    newBundle.putLong("readPostIdx", productIdx!!)
+                    newBundle.putLong("totalOrderIdx", totalorderIdx!!)
+                    newBundle.putLong("purchaseInfoIdx", purchaseInfoIdx!!)
+                    newBundle.putLong("purchaseIdx", purchaseIdx!!)
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT, true, newBundle)
 
                 }

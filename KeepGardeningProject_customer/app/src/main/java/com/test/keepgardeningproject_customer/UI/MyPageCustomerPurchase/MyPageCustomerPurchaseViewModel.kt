@@ -33,26 +33,36 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
         val templist = mutableListOf<purchaseInfo>()
         PurchaseRepository.getPurchaseAll(myidx) {
             for(c1 in it.result.children){
+                val orderproductidx = c1.child("orderproductIdx").value as Long
+                val orderidx = c1.child("ordersIdx").value as Long
                 val purchaseidx = c1.child("purchaseIdx").value as Long
-                val purchasename = c1.child("purchaseTitle").value as String
                 val purchaseimg = c1.child("purchaseImg").value as String
+                val purchaseinfoidx = c1.child("purchaseInfoIdx").value as Long
                 val purchasestate = c1.child("purchaseState").value as String
-                var newclass = purchaseInfo(purchaseidx,purchasename, purchaseimg,purchasestate)
+                val purchasename = c1.child("purchaseTitle").value as String
+                val totalorderidx = c1.child("totalorderIdx").value as Long
+                var newclass = purchaseInfo(orderproductidx,orderidx,purchaseidx,totalorderidx,purchaseinfoidx,
+                purchasename,purchaseimg,purchasestate)
                 templist.add(newclass)
             }
             paymentList.value = templist
         }
-    }
+   }
     fun getDeliveryAll(){
         var myidx = MainActivity.loginedUserInfo.userIdx as Long
         val templist2 = mutableListOf<purchaseInfo>()
         PurchaseRepository.getDeliveryPurchaseAll(myidx) {
             for(c1 in it.result.children){
+                val orderproductidx = c1.child("orderproductIdx").value as Long
+                val orderidx = c1.child("ordersIdx").value as Long
                 val purchaseidx = c1.child("purchaseIdx").value as Long
-                val purchasename = c1.child("purchaseTitle").value as String
                 val purchaseimg = c1.child("purchaseImg").value as String
+                val purchaseinfoidx = c1.child("purchaseInfoIdx").value as Long
                 val purchasestate = c1.child("purchaseState").value as String
-                var newclass2 = purchaseInfo(purchaseidx,purchasename, purchaseimg,purchasestate)
+                val purchasename = c1.child("purchaseTitle").value as String
+                val totalorderidx = c1.child("totalorderIdx").value as Long
+                var newclass2 = purchaseInfo(orderproductidx,orderidx,purchaseidx,totalorderidx,purchaseinfoidx,
+                    purchasename,purchaseimg,purchasestate)
                 templist2.add(newclass2)
             }
             deliveryList.value = templist2
@@ -68,24 +78,30 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
 
     //결제완료 데이터 추가
     fun getData() {
-        var idx = MainActivity.loginedUserInfo.userIdx!!
+        var useridx = MainActivity.loginedUserInfo.userIdx!!
         PurchaseRepository.getPurchaseIndex {
-            var idx2 = it.result.value as Long
-            idx2++
+            //idx2 == purchaseInfoIdx:Long
+            var purchaseinfoidx = it.result.value as Long
+            purchaseinfoidx++
             //useridx로 결제한 상품을 가져옴
-            OrderProductRepository.getIndexorderInfo(idx) {
+            OrderProductRepository.getIndexorderInfo(useridx) {
                 for (c1 in it.result.children) {
                     var newstate = c1.child("ordersDeliveryState").value.toString()
-                    ProductRepository.getProductInfoByIdx(idx.toDouble()) {
+                    var newordersidx = c1.child("ordersIdx").value as Long
+                    var newproductidx =  c1.child("ordersProductIdx").value as Long
+                    var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
+                    ProductRepository.getProductInfoByIdx(useridx.toDouble()) {
                         for (c2 in it.result.children) {
                             //결제한 상품의 이름,이미지,상태
                             var newname = c2.child("productName").value.toString()
                             var imglist = c2.child("productImageList").value as ArrayList<String>
                             var newimg = imglist[0]
+
                             if(newstate== "결제완료"){
-                                var newclass = purchaseInfo(idx,newname,newimg,newstate)
+                                var newclass = purchaseInfo(newproductidx,newordersidx,useridx,newtotalorderidx,purchaseinfoidx,
+                                newname,newimg,newstate)
                                 PurchaseRepository.setPurchaseInfo(newclass) {
-                                    PurchaseRepository.setPurchaseIndex(idx2) {
+                                    PurchaseRepository.setPurchaseIndex(purchaseinfoidx) {
                                         Log.d("Limidx","${newclass}")
                                     }
                                 }
@@ -103,24 +119,27 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
 
     //베송완료 데이터 추가
     fun getData2() {
-        var idx = MainActivity.loginedUserInfo.userIdx!!
+        var useridx = MainActivity.loginedUserInfo.userIdx!!
         PurchaseRepository.getPurchaseDeliveryIndex {
-            var idx2 = it.result.value as Long
-            idx2++
+            var purchaseinfoidx = it.result.value as Long
+            purchaseinfoidx++
             //useridx로 결제한 상품을 가져옴
-            OrderProductRepository.getIndexorderInfo(idx) {
+            OrderProductRepository.getIndexorderInfo(useridx) {
                 for (c1 in it.result.children) {
                     var newstate = c1.child("ordersDeliveryState").value.toString()
-                    ProductRepository.getProductInfoByIdx(idx.toDouble()) {
+                    var newordersidx = c1.child("ordersIdx").value as Long
+                    var newproductidx =  c1.child("ordersProductIdx").value as Long
+                    var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
+                    ProductRepository.getProductInfoByIdx(useridx.toDouble()) {
                         for (c2 in it.result.children) {
                             //결제한 상품의 이름,이미지,상태
                             var newname = c2.child("productName").value.toString()
                             var imglist = c2.child("productImageList").value as ArrayList<String>
                             var newimg = imglist[0]
                             if(newstate == "배송완료"){
-                                var newclass = purchaseInfo(idx,newname,newimg,newstate)
+                                var newclass = purchaseInfo(newproductidx,newordersidx,useridx,newtotalorderidx,purchaseinfoidx,newname,newimg,newstate)
                                 PurchaseRepository.setDeliveryInfo(newclass) {
-                                    PurchaseRepository.setDeliveryIndex(idx2) {
+                                    PurchaseRepository.setDeliveryIndex(purchaseinfoidx) {
                                         Log.d("Lim","${newclass}")
                                     }
                                 }
