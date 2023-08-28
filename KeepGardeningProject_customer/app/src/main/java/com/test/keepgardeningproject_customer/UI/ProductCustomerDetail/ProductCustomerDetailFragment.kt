@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
+import com.test.keepgardeningproject_customer.MainActivity.Companion.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository.Companion.getProductSellerInfoByIdx
@@ -113,6 +114,17 @@ class ProductCustomerDetailFragment : Fragment() {
             buttonPcdBuy.setOnClickListener {
                 val bs = ProductCustomerDetailBottomDialog()
                 bs.show(mainActivity.supportFragmentManager, "구매")
+            }
+
+            buttonPcdQna.setOnClickListener {
+                if(!MainActivity.isLogined) {
+                    mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                } else {
+                    // 로그인이 이미 된경우
+                    val newBundle = Bundle()
+                    newBundle.putLong("productIdx", idx)
+                    mainActivity.replaceFragment(PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
+                }
             }
 
 
