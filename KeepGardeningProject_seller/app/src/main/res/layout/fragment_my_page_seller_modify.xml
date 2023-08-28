@@ -25,42 +25,6 @@
             android:padding="@dimen/padding_size_middle">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:endIconMode="password_toggle"
-                android:hint="비밀번호"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:inputType="text|textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_passwordCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="비밀번호확인"
-                app:endIconMode="password_toggle"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_passwordCheck"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:inputType="text|textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_ms_nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,6 +98,7 @@
                 android:transitionGroup="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textMultiLine"

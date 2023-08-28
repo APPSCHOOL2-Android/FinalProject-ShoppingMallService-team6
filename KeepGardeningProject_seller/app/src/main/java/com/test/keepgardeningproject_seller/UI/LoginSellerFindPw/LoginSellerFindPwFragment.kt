@@ -1,12 +1,13 @@
 package com.test.keepgardeningproject_seller.UI.LoginSellerFindPw
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentLoginSellerFindPwBinding
@@ -15,6 +16,7 @@ class LoginSellerFindPwFragment : Fragment() {
 
     lateinit var fragmentLoginSellerFindPwBinding: FragmentLoginSellerFindPwBinding
     lateinit var mainActivity: MainActivity
+    private var firebaseAuth: FirebaseAuth? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,6 +24,7 @@ class LoginSellerFindPwFragment : Fragment() {
         mainActivity = activity as MainActivity
         fragmentLoginSellerFindPwBinding = FragmentLoginSellerFindPwBinding.inflate(inflater)
         fragmentLoginSellerFindPwBinding.run {
+            firebaseAuth = FirebaseAuth.getInstance()
             toolbarLoginSellerFindPw.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener{
@@ -45,12 +48,23 @@ class LoginSellerFindPwFragment : Fragment() {
                 }
             }
             buttonLoginSellerFindPwCertification.setOnClickListener {
+                FindPw(textInputEditTextLoginSellerFindPwEmail.text.toString())
                 Toast.makeText(requireContext(),"이메일 인증하기 버튼 클릭", Toast.LENGTH_SHORT).show()
             }
         }
 
 
         return fragmentLoginSellerFindPwBinding.root
+    }
+    fun FindPw(email:String){
+        firebaseAuth!!.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Snackbar.make(fragmentLoginSellerFindPwBinding.root, "재설정 이메일 발송\n이메일을 확인해주세요", Snackbar.LENGTH_SHORT).show()
+                mainActivity.removeFragment(MainActivity.LOGIN_SELLER_FIND_PW_FRAGMENT)
+            } else {
+                Snackbar.make(fragmentLoginSellerFindPwBinding.root, "계정을 확인할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 
 
