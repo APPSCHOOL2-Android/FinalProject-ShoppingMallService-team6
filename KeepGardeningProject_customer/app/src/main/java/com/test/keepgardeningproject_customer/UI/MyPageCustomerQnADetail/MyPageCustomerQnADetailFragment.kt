@@ -47,7 +47,14 @@ class MyPageCustomerQnADetailFragment : Fragment() {
 
                 setNavigationOnClickListener {
 
-                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT)
+                    var oldFragment = arguments?.getString("oldFragment")
+
+                    if(oldFragment == "ProductCustomerQnAWriteFragment") {
+                        mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT)
+                        mainActivity.removeFragment(MainActivity.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT)
+                    } else {
+                        mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT)
+                    }
 
                 }
 
@@ -65,18 +72,9 @@ class MyPageCustomerQnADetailFragment : Fragment() {
 
             }
 
-            val numStars = arguments?.getFloat("contentRating")
-
-            numStars?.let{
-
-                ratingbarRcReviewDetail.rating = it
-
-            }
-
             editTextViewQcDetailTitle.hint = arguments?.getString("contentTitle")
 
             editTextViewQcDetailContent.hint = arguments?.getString("contentQnA")
-
 
         }
 
