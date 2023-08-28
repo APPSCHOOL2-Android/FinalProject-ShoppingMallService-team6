@@ -119,6 +119,91 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                 layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
 
+            buttonPcqWrite.setOnClickListener {
+
+                var qnaTitle = editTextViewPcqTitle.text.toString()
+                var qnaContent = editTextViewPcqContent.text.toString()
+
+                val calendar = Calendar.getInstance()
+                val currentYear = calendar.get(Calendar.YEAR)
+                val currentMonth = calendar.get(Calendar.MONTH) + 1
+                val currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+                var qnaDate = "$currentYear.$currentMonth.$currentDayOfMonth"
+
+                if(qnaTitle.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("문의 제목을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(editTextViewPcqTitle)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+                if(qnaContent.isEmpty()) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("문의 내용을 입력해주세요.")
+                    builder.setNegativeButton("취소", null)
+                    builder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(editTextViewPcqContent)
+                    }
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                if(uriList.size == 0) {
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setMessage("이미지를 1개 이상 선택해주세요.")
+                    builder.setPositiveButton("확인",null)
+                    builder.show()
+
+                    return@setOnClickListener
+                }
+
+                QnARepository.getQnAIdx {
+                    var qnaIdx = it.result.value as Long
+                    // 상품 인덱스 증가
+                    qnaIdx++
+
+                    for (i in 0 until uriList.count()) {
+                        // 상품 정보 저장
+                        val fileName = "image/img_${System.currentTimeMillis()}_$i.jpg"
+
+                        imageList.add(fileName)
+                    }
+
+                    val qnaDataClass = QnAClass(qnaIdx, "상품", productIdx, MainActivity.loginedUserInfo.userIdx!!.toLong(), storeIdx, qnaTitle, qnaContent, "None", qnaDate, imageList)
+
+                    // 상품 정보 저장
+                    QnARepository.addQnAInfo(qnaDataClass) {
+                        // 상품 인덱스 저장
+                        QnARepository.setQnAIdx(qnaIdx) {
+
+                            for (i in 0 until uriList.count()) {
+                                // 이미지 업로드
+                                QnARepository.uploadImage(uriList[i]!!, imageList[i]) {
+
+                                }
+                            }
+
+                            SystemClock.sleep(3000)
+                            val newBundle = Bundle()
+                            newBundle.putString("oldFragment", "ProductCustomerQnAWriteFragment")
+                            mainActivity.replaceFragment(MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT, true, newBundle)
+                        }
+                    }
+                }
+                Snackbar.make(fragmentProductCustomerQnaWriteBinding.root, "문의가 등록되었습니다.", Snackbar.LENGTH_SHORT).show()
+
+            }
+
+        }
+        return fragmentProductCustomerQnaWriteBinding.root
+    }
+
     override fun onResume() {
         super.onResume()
 
