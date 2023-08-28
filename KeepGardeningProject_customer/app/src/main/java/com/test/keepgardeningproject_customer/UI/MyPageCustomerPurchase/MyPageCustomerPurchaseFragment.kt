@@ -114,9 +114,11 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                     //구매자 인덱스
                     val purchaseInfoIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseInfoIdx
                     val purchaseIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
+                    val totalorderIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.totalorderIdx
                     val newBundle = Bundle()
                     newBundle.putLong("purchaseInfoIdx", purchaseInfoIdx!!)
                     newBundle.putLong("purchaseIdx", purchaseIdx!!)
+                    newBundle.putLong("totalOrderIdx", totalorderIdx!!)
                     mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, newBundle)
                 }
             }
@@ -169,19 +171,16 @@ class MyPageCustomerPurchaseFragment : Fragment() {
 
                 rowButton.setOnClickListener {
                     //구매자 인덱스
-                    val totalorderIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.totalorderIdx
+
                     val purchaseInfoIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseInfoIdx
                     val purchaseIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
                     val newBundle = Bundle()
-                    newBundle.putLong("totalOrderIdx", totalorderIdx!!)
                     newBundle.putLong("purchaseInfoIdx", purchaseInfoIdx!!)
                     newBundle.putLong("purchaseIdx", purchaseIdx!!)
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT, true, newBundle)
 
                 }
             }
-
-
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder {
