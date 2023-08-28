@@ -7,6 +7,8 @@ import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +18,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +32,7 @@ import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
+import com.test.keepgardeningproject_customer.Repository.TotalOrderRepository
 import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
@@ -50,6 +54,7 @@ class OrderFormCustomerFragment : Fragment() {
     val userIdx = MainActivity.loginedUserInfo.userIdx!!
     var totalOrderPrice = 0L
     var selectedPayment = ""
+
 
     private lateinit var orderFormCustomerViewModel: OrderFormCustomerViewModel
 
@@ -137,6 +142,8 @@ class OrderFormCustomerFragment : Fragment() {
     }
 
     inner class OrderFormRecyclerViewAdpater : RecyclerView.Adapter<OrderFormRecyclerViewAdpater.OrderFormViewHolder>() {
+        // private val storeRequestList = mutableListOf<String>()
+
         inner class OrderFormViewHolder(rowOrderFormCustomerBinding: RowOrderFormCustomerBinding) :
             RecyclerView.ViewHolder(rowOrderFormCustomerBinding.root) {
 
@@ -154,6 +161,22 @@ class OrderFormCustomerFragment : Fragment() {
                 rowProductCount = rowOrderFormCustomerBinding.textViewRowOrderFormProductCount
                 rowStoreRequest = rowOrderFormCustomerBinding.editTextRowOrderFormRequest
                 rowProductImage = rowOrderFormCustomerBinding.imageViewRowOrderFormProductImage
+
+//                rowStoreRequest.addTextChangedListener(object : TextWatcher {
+//                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                    }
+//
+//                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                        val position = adapterPosition
+//                        if (position != RecyclerView.NO_POSITION) {
+//                            storeRequestList[position] = s.toString()
+//                        }
+//                    }
+//
+//                    override fun afterTextChanged(s: Editable?) {
+//                    }
+//
+//                })
             }
         }
 
@@ -190,6 +213,11 @@ class OrderFormCustomerFragment : Fragment() {
 
             holder.rowProductCount.text = "${orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartCount}개"
         }
+
+        // 함수를 추가하여 storeRequestList를 외부에서 접근할 수 있게 만듭니다.
+//        fun getstoreRequestList(): List<String> {
+//            return storeRequestList
+//        }
     }
 
     fun next() {
@@ -310,13 +338,16 @@ class OrderFormCustomerFragment : Fragment() {
             val coroutineScope = CoroutineScope(Dispatchers.Main)
 
             // 전체 주문 인덱스 번호를 가져온다.
-            OrderProductRepository.getTotalOrderIdx {
+            TotalOrderRepository.getTotalOrderIdx {
                 var totalOrderIdx = it.result.value as Long
                 totalOrderIdx++
 
                 // 개별 주문 인덱스 번호를 가져온다.
                 OrderProductRepository.getOrdersProductIdx {
                     var ordersIdx = it.result.value as Long
+                    val adapter = OrderFormRecyclerViewAdpater()
+//                    val storeRequestList = adapter.getstoreRequestList()
+//                    var listIdx = 0
 
                     // 주문서에 있는 개별 상품만큼 반복
                     for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
@@ -333,6 +364,8 @@ class OrderFormCustomerFragment : Fragment() {
                             "결제완료",
                             totalOrderIdx
                         )
+
+//                        listIdx++
 
                         OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
                             // 개별 주문 인덱스 번호 저장
@@ -386,8 +419,8 @@ class OrderFormCustomerFragment : Fragment() {
                     selectedPayment
                 )
 
-                OrderProductRepository.addTotalOrdertInfo(totalOrderClass) {
-                    OrderProductRepository.setTotalOrderIdx(totalOrderIdx) {
+                TotalOrderRepository.addTotalOrdertInfo(totalOrderClass) {
+                    TotalOrderRepository.setTotalOrderIdx(totalOrderIdx) {
                         val bundle = Bundle()
                         bundle.putLong("totalOrderIdx", totalOrderIdx)
                         mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)

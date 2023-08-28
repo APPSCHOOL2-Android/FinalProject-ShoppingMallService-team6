@@ -8,6 +8,7 @@ import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.Repository.TotalOrderRepository
 
 class OrderCheckFormCustomerViewModel : ViewModel() {
     var orderCheckFormOrderList = MutableLiveData<MutableList<OrdersProductClass>>()
@@ -30,7 +31,7 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
         val tempImageList = mutableListOf<String>()
         val tempProductList = mutableListOf<ProductClass>()
 
-        OrderProductRepository.getOrdersbyTotalOrderIdx(totalOrderIdx) {
+        TotalOrderRepository.getOrdersbyTotalOrderIdx(totalOrderIdx) {
             Log.i("s222", "getOrder")
             for (c1 in it.result.children) {
                 val ordersIdx = c1.child("ordersIdx").value as Long
@@ -91,7 +92,7 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
 
     // 배송지 정보와 주문자 정보를 가져온다.
     fun getDeliveryAndOrdererInfo(totalOrderIdx: Long) {
-        OrderProductRepository.getTotalOrder(totalOrderIdx) {
+        TotalOrderRepository.getTotalOrder(totalOrderIdx) {
             for (c1 in it.result.children) {
                 orderCheckFormTotalOrderIdx.value = totalOrderIdx
                 orderCheckFormDate.value = c1.child("totalOrderDate").value as String
