@@ -170,6 +170,7 @@
                                 android:id="@+id/editText_orderForm_ordererName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:inputType="text|textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -198,6 +199,7 @@
                                 android:id="@+id/editText_orderForm_ordererPhone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:enabled="true"
                                 android:inputType="phone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -226,6 +228,7 @@
                                 android:id="@+id/editText_orderForm_ordererEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 android:inputType="text" />
                         </com.google.android.material.textfield.TextInputLayout>
 

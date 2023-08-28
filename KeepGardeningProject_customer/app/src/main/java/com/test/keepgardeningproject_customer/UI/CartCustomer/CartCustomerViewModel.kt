@@ -15,7 +15,7 @@ import kotlin.concurrent.thread
 
 class CartCustomerViewModel : ViewModel() {
     var cartCount = MutableLiveData<Int>()
-    var productName = MutableLiveData<String>()
+    //var productName = MutableLiveData<String>()
     var productPrice = MutableLiveData<String>()
 
     var cartList = MutableLiveData<MutableList<CartClass>>()
@@ -72,7 +72,7 @@ class CartCustomerViewModel : ViewModel() {
                 val cartUserIdx = c1.child("cartUserIdx").value as Long
                 val cartCount = c1.child("cartCount").value as Long
 
-                val cart = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartName, cartPrice, cartCount)
+                val cart = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartName, cartPrice, cartCount, cartImage)
                 tempList.add(cart)
                 tempImageList.add(cartImage)
             }
