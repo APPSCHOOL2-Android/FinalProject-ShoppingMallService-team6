@@ -99,7 +99,20 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                 }
             }
 
+            buttonPcqAddImage.setOnClickListener {
+                if (uriList.count() == MAX_IMAGE_NUM) {
+                    Snackbar.make(fragmentProductCustomerQnaWriteBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                registerForActivityResult.launch(intent)
+
+                var adapter = fragmentProductCustomerQnaWriteBinding.recyclerViewPcqImage.adapter as RecyclerAdapterClass
+                adapter.notifyDataSetChanged()
+            }
+
             recyclerViewPcqImage.run {
                 adapter = RecyclerAdapterClass()
 
@@ -112,6 +125,36 @@ class ProductCustomerQnAWriteFragment : Fragment() {
         var adapter = fragmentProductCustomerQnaWriteBinding.recyclerViewPcqImage.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
     }
+
+    private val registerForActivityResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            when (result.resultCode) {
+                AppCompatActivity.RESULT_OK -> {
+                    val clipData = result.data?.clipData
+                    if (clipData != null) { // 이미지를 여러 개 선택할 경우
+                        val clipDataSize = clipData.itemCount
+                        val selectableCount = MAX_IMAGE_NUM - uriList.count()
+                        if (clipDataSize > selectableCount) { // 최대 선택 가능한 개수를 초과해서 선택한 경우
+                            Snackbar.make(fragmentProductCustomerQnaWriteBinding.root, "이미지는 최대 ${MAX_IMAGE_NUM}장까지 첨부할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            // 선택 가능한 경우 ArrayList에 가져온 uri를 넣어준다.
+                            for (i in 0 until clipDataSize) {
+                                uriList.add(clipData.getItemAt(i).uri)
+                            }
+                        }
+                    } else { // 이미지를 한 개만 선택할 경우 null이 올 수 있다.
+                        val uri = result?.data?.data
+                        if (uri != null) {
+                            uriList.add(uri)
+                        }
+                    }
+                    var adapter = fragmentProductCustomerQnaWriteBinding.recyclerViewPcqImage.adapter as RecyclerAdapterClass
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
         inner class ViewHolderClass(rowRegisterImageBinding: RowRegisterImageBinding) : RecyclerView.ViewHolder(rowRegisterImageBinding.root) {
 
