@@ -388,7 +388,9 @@ class OrderFormCustomerFragment : Fragment() {
 
                 OrderProductRepository.addTotalOrdertInfo(totalOrderClass) {
                     OrderProductRepository.setTotalOrderIdx(totalOrderIdx) {
-                        //mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, null)
+                        val bundle = Bundle()
+                        bundle.putLong("totalOrderIdx", totalOrderIdx)
+                        mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
                     }
                 }
             }

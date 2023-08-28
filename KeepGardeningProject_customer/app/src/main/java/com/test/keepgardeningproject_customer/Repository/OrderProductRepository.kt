@@ -79,5 +79,17 @@ class OrderProductRepository {
             totalOrderDataRef.push().setValue(totalOrderClass).addOnCompleteListener(callback1)
         }
 
+        fun getOrdersbyTotalOrderIdx(totalOrderIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val ordersProductDataRef = database.getReference("OrdersProduct")
+            ordersProductDataRef.orderByChild("ordersTotalOrderIdx").equalTo(totalOrderIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
+
+        fun getTotalOrder(totalOrderIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val totalOrderDataRef = database.getReference("TotalOrder")
+            totalOrderDataRef.orderByChild("totalOrderIdx").equalTo(totalOrderIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
+
     }
 }
