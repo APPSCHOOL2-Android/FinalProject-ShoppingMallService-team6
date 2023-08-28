@@ -17,12 +17,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:fontFamily="@font/nanum_square_round_regular"
                 android:id="@+id/textView_pcdd_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/padding_size_middle"
-                android:text="상품상세설명 입니다!\n사게팝니다" />
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="65dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:lineSpacingExtra="8sp"
+                android:text="상품상세설명 입니다!\n사게팝니다"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_pcdd"
