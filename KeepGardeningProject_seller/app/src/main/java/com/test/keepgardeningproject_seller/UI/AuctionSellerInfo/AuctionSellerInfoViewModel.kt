@@ -1,19 +1,9 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerInfo
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.DAO.AuctionClass
-import com.test.keepgardeningproject_seller.DAO.ProductClass
-import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.AuctionRepository
-import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
 
 class AuctionSellerInfoViewModel : ViewModel() {
 
@@ -45,16 +35,12 @@ class AuctionSellerInfoViewModel : ViewModel() {
                     auctionCustomerIdx)
 
                 tempList.add(a1)
-                Log.d("lion","tempList : ${tempList.size}")
             }
-
-            Log.d("lion","tempList : $tempList")
 
             // 가장 마지막에 등록한것부터 보여주기
             tempList.reverse()
 
             auctionClassList.value = tempList
-            Log.d("lion","${auctionClassList.value}")
         }
     }
 }
