@@ -74,7 +74,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
@@ -99,7 +99,7 @@
                         android:text="받으시는 분" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/textView_orderCheckForm_addressUserName"
+                        android:id="@+id/textView_orderCheckForm_receiverName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -122,7 +122,7 @@
                         android:text="연락처" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/textView_orderCheckForm_addressPhone"
+                        android:id="@+id/textView_orderCheckForm_ReceiverPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -145,7 +145,7 @@
                         android:text="배송지" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/textView_orderCheckForm_addressDetail"
+                        android:id="@+id/textView_orderCheckForm_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -168,7 +168,7 @@
                         android:text="배송 메시지" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/textView_orderCheckForm_deliveryMessage"
+                        android:id="@+id/textView_orderCheckForm_deliveryRequest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -181,7 +181,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
