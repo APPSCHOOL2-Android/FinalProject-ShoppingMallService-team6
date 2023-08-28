@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -61,7 +62,7 @@ class UserRepository {
         fun modifyUserSellerInfo(userInfo: UserSellerInfo,callback1: (Task<Void>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val userSellerInfoData = database.getReference("UserSellerInfo")
-            userSellerInfoData.orderByChild("UserSellerIdx").equalTo(userInfo.userSellerIdx.toDouble()).get().addOnCompleteListener {
+            userSellerInfoData.orderByChild("userSellerIdx").equalTo(userInfo.userSellerIdx.toDouble()).get().addOnCompleteListener {
                 for(data in it.result.children){
                     data.ref.child("userSellerEmail").setValue(userInfo.userSellerEmail)
                     data.ref.child("userSellerPw").setValue(userInfo.userSellerPw)
@@ -76,9 +77,26 @@ class UserRepository {
             }
         }
 
+        // 사용자 정보 삭제
+        fun deleteUserSellerInfo(userInfoIdx: Long, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val userSellerInfoDataRef = database.getReference("UserSellerInfo")
+
+            userSellerInfoDataRef.orderByChild("userSellerIdx").equalTo(userInfoIdx.toDouble()).get().addOnCompleteListener {
+                for(c1 in it.result.children){
+                    c1.ref.removeValue().addOnCompleteListener(callback1)
+                }
+            }
+        }
+
+
+
+
+
+
         fun uploadImage(fileName:String,uploadUri: Uri,callback1: (Task<UploadTask.TaskSnapshot>) -> Unit){
             val storage = FirebaseStorage.getInstance()
-            val imageRef = storage.reference.child(fileName)
+            var imageRef = storage.reference.child(fileName)
             imageRef.putFile(uploadUri!!).addOnCompleteListener(callback1)
         }
 

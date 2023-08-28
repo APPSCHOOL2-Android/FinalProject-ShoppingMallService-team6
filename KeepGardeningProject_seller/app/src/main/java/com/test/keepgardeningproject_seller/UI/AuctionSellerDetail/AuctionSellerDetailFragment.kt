@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerDetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.UI.AuctionSellerInfo.AuctionSellerInfoFragment
+import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
+import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainViewModel
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerDetailBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerDetailBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerInfoBinding
@@ -21,6 +29,10 @@ class AuctionSellerDetailFragment : Fragment() {
 
     lateinit var fragmentAuctionSellerDetailBinding: FragmentAuctionSellerDetailBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var auctionSellerMainViewModel: AuctionSellerMainViewModel
+
+    var fileNameList = mutableListOf<String>()
 
     companion object {
         fun newInstance() = AuctionSellerDetailFragment()
@@ -35,6 +47,19 @@ class AuctionSellerDetailFragment : Fragment() {
 
         fragmentAuctionSellerDetailBinding = FragmentAuctionSellerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        auctionSellerMainViewModel = ViewModelProvider(mainActivity)[AuctionSellerMainViewModel::class.java]
+        auctionSellerMainViewModel.run {
+
+            auctionProductDetail.observe(mainActivity) {
+                fragmentAuctionSellerDetailBinding.textViewAuctionSellerDetailProductContent.text = it
+            }
+            auctionProductImageNameList.observe(mainActivity) {
+                fileNameList = it
+                fragmentAuctionSellerDetailBinding.recyclerViewAuctionSellerDetail.adapter?.notifyDataSetChanged()
+            }
+            auctionSellerMainViewModel.getAuctionProductInfo(auctionProductIdx.toLong())
+        }
 
         fragmentAuctionSellerDetailBinding.run {
             recyclerViewAuctionSellerDetail.run {
@@ -89,11 +114,16 @@ class AuctionSellerDetailFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return fileNameList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.imageViewProductDetail.setImageResource(R.drawable.ic_launcher_foreground)
+
+            var fileName = auctionSellerMainViewModel.auctionProductImageNameList.value?.get(position)!!
+            AuctionProductRepository.getAuctionProductImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imageViewProductDetail)
+            }
         }
     }
 

@@ -20,6 +20,7 @@ import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentCartCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowCartCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderCheckFormCustomerBinding
+import java.text.DecimalFormat
 
 class CartCustomerFragment : Fragment() {
     lateinit var fragmentCartCustomerBinding: FragmentCartCustomerBinding
@@ -61,7 +62,9 @@ class CartCustomerFragment : Fragment() {
             }
 
             buttonCartPay.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT, true, null)
+                val bundle = Bundle()
+                bundle.putString("fromWhere", "cartPage")
+                mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT, true, bundle)
             }
 
             // 현재 사용자의 장바구니 정보를 가져온다.
@@ -127,8 +130,14 @@ class CartCustomerFragment : Fragment() {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.rowProductImage)
             }
+
             holder.rowProductName.text = cartCustomerViewModel.cartList.value?.get(position)?.cartName
-            holder.rowPriceValue.text = "${cartCustomerViewModel.cartList.value?.get(position)?.cartPrice}원"
+
+            // 가격 표시 형식 맞추기
+            var decimal = DecimalFormat("#,###")
+            var price = cartCustomerViewModel.cartList.value?.get(position)?.cartPrice?.toInt()
+            holder.rowPriceValue.text = decimal.format(price) + "원"
+
             holder.rowCountValue.text = cartCustomerViewModel.cartList.value?.get(position)?.cartCount.toString()
         }
     }

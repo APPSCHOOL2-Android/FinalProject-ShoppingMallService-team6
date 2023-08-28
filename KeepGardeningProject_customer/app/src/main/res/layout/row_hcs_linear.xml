@@ -9,6 +9,7 @@
         android:id="@+id/image_hcs_linear"
         android:layout_width="@dimen/homeCustomerSearch_recycler_linear_item_image_size"
         android:layout_height="@dimen/homeCustomerSearch_recycler_linear_item_image_size"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <LinearLayout

@@ -30,6 +30,12 @@ class ProductRepository {
             productDataRef.orderByChild("productIdx").get().addOnCompleteListener(callback1)
         }
 
+        fun getProductInfoByCategory(category : String, callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("Product")
+            productDataRef.orderByChild("productCategory")
+        }
+
         fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit){
             val storage = FirebaseStorage.getInstance()
             val fileRef = storage.reference.child(fileName)

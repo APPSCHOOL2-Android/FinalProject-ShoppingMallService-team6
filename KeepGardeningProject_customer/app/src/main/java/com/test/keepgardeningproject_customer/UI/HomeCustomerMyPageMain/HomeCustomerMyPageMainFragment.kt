@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,12 +32,14 @@ class HomeCustomerMyPageMainFragment : Fragment() {
 
             textviewHomeCustomerMyPageMainName.run {
 
-                //메인액티비티에서 받아옴
-                textviewHomeCustomerMyPageMainName.text = MainActivity.loginedUserInfo.userNickname.toString()
-
+                var newemail = MainActivity.loginedUserInfo.userEmail.toString()
+                UserRepository.getUserInfoById(newemail){
+                    for(a1 in it.result.children){
+                        var mynick = a1.child("userNickname").value
+                        textviewHomeCustomerMyPageMainName.text = mynick.toString() + "님"
+                    }
+                }
                 setOnClickListener {
-
-                    //logintype 받아서 번들로 넘겨줌
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_MODIFY_FRAGMENT,true,null)
                 }
             }
@@ -53,9 +56,7 @@ class HomeCustomerMyPageMainFragment : Fragment() {
             textviewHomeCustomerMyPageMainReview.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_FRAGMENT,true,null)
             }
-            textviewHomeCustomerMyPageMainWish.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_WISH_FRAGMENT,true,null)
-            }
+
             // 로그아웃 버튼
             buttonHomeCustomerMyPageMainLogOut.setOnClickListener {
                 MainActivity.isLogined = false
@@ -72,7 +73,9 @@ class HomeCustomerMyPageMainFragment : Fragment() {
         return fragmentHomeCustomerMyPageMainBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
 
-
+    }
 
 }

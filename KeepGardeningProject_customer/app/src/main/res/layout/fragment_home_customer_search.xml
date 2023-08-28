@@ -15,10 +15,13 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchbar_hcs"
+    <SearchView
+        android:id="@+id/searchView_hcs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@color/semiwhite"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <ScrollView
         android:layout_width="match_parent"

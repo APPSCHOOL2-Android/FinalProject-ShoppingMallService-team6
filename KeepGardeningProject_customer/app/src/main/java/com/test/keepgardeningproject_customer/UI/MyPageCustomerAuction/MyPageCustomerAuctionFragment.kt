@@ -1,6 +1,9 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerAuction
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +11,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_customer.Repository.AuctionRepository
+import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerAuctionBinding
 import java.lang.RuntimeException
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.Calendar
 
 class MyPageCustomerAuctionFragment : Fragment() {
 
@@ -22,6 +34,7 @@ class MyPageCustomerAuctionFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var mypagecustomerauctionviewModel: MyPageCustomerAuctionViewModel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +77,68 @@ class MyPageCustomerAuctionFragment : Fragment() {
 
             }
 
+
+
+            //이미지,상태,이름
+
+            //내가고른 경매상품의 인덱스
+
+            //AuctionDA0 - auctionCustomerList(useridx)
+
+            //AuctionProduct
+            // -> auctionProductName(이름),auctionImageList(이미지),auctionCloseState(상태),
+
+
+
+            //userSellerIdx = auctionProductstoreIdx(판매자 idx)
+
+
+
+            fun getData(){
+
+                var idx = UserRepository.getUserIndex {
+
+                //useridx가져와서 customerList안에 있는 idx와 비교해서 경매상품가져오기
+                    val idx2 = it.result.value as Long
+                    Log.d("Lim","${idx2}")
+                    AuctionProductRepository.getAuctionProductIndex {
+
+                    }
+
+                }
+
+
+            }
+
+
+
+
+
+
+            var newformatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
+
+            //현재시간 가져오기
+            var now = System.currentTimeMillis()
+
+
+            AuctionProductRepository.getAuctionProductIndex {
+                val idx = it.result.value as Long
+                Log.d("lim","${idx}")
+                AuctionProductRepository.getAuctionProductInfo(idx) {
+                    for(c1 in it.result.children){
+                        //이름,상태,이미지
+                        var newname = c1.child("auctionProductName").value.toString()
+                        var newdate = c1.child("auctionProductCloseDate").value.toString()
+                        var newimg = c1.child("auctionProductImageList").value.toString()
+
+                        Log.d("Lim","${newname}")
+                        Log.d("Lim","${newdate}")
+                        Log.d("Lim","${newimg}")
+
+
+                    }
+                }
+            }
 
         }
 
@@ -164,3 +239,4 @@ data class Models(var type:Int,var img:Int,var state:String,var title:String){
         val Auction_TYPE2 = 2
     }
 }
+

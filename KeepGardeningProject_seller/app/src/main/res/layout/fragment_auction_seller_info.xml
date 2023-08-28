@@ -35,17 +35,6 @@
             android:textColor="@color/gray" />
 
         <TextView
-            android:id="@+id/textView_auctionSellerInfo_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:text="입찰일시"
-            android:textAlignment="center"
-            android:textColor="@color/gray" />
-
-        <TextView
             android:id="@+id/textView_auctionSellerInfo_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

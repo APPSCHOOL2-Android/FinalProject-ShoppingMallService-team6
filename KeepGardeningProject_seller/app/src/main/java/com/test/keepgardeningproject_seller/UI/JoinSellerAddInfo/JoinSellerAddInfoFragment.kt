@@ -16,7 +16,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.test.keepgardeningproject_seller.API.GoogleAPI
 import com.test.keepgardeningproject_seller.API.KakaoAPI
+import com.test.keepgardeningproject_seller.API.NaverAPI
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.Repository.UserRepository
@@ -40,6 +42,8 @@ class JoinSellerAddInfoFragment : Fragment() {
         // 앨범 설정
         albumLauncher = albumSetting(fragmentJoinSellerAddInfoBinding.imageViewJoinSellerMain)
         var kakaoApi = KakaoAPI()
+        val googleAPI = GoogleAPI()
+        val naverAPI = NaverAPI()
         fragmentJoinSellerAddInfoBinding.run {
             var joinUserType = arguments?.getLong("joinUserType")
             if (joinUserType != null) {
@@ -64,7 +68,8 @@ class JoinSellerAddInfoFragment : Fragment() {
 
             }
             buttonJoinSellerAddInfoFindPostNumber.setOnClickListener {
-                kakaoApi.kakaoWithdraw()
+                googleAPI.googleLogOut(requireContext())
+                naverAPI.naverWithdraw()
             }
         }
 
@@ -104,11 +109,11 @@ class JoinSellerAddInfoFragment : Fragment() {
                         // 이미지 업로드
                         if (uploadUri != null) {
                             UserRepository.uploadStoreImage(uploadUri!!, fileName) {
-                                Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                                //Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                 mainActivity.removeFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT)
                             }
                         } else {
-                            Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                            //Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                             mainActivity.removeFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT)
                         }
 //

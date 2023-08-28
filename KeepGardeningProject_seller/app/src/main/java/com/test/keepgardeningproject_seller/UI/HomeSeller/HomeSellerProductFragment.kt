@@ -1,6 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.HomeSeller
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
+import com.test.keepgardeningproject_seller.UI.AuctionSellerRegister.AuctionSellerRegisterFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerProductBinding
 import com.test.keepgardeningproject_seller.databinding.RowHomeSellerBinding
 import java.text.DecimalFormat
@@ -26,6 +29,8 @@ class HomeSellerProductFragment : Fragment() {
 
     lateinit var homeSellerViewModel: HomeSellerViewModel
 
+    var productList = mutableListOf<ProductClass>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,14 +41,14 @@ class HomeSellerProductFragment : Fragment() {
 
         homeSellerViewModel = ViewModelProvider(mainActivity)[HomeSellerViewModel::class.java]
         homeSellerViewModel.run{
-            productClassList.observe(mainActivity){
+            productClassList.observe(mainActivity) {
+                productList = it
                 fragmentHomeSellerProductBinding.recyclerViewHomeSellerProduct.adapter?.notifyDataSetChanged()
             }
-            productImageNameList.observe(mainActivity){
+            productImageNameList.observe(mainActivity) {
                 fragmentHomeSellerProductBinding.recyclerViewHomeSellerProduct.adapter?.notifyDataSetChanged()
             }
         }
-        homeSellerViewModel.getProductInfoAll(mainActivity.loginSellerInfo.userSellerIdx)
 
         fragmentHomeSellerProductBinding.run {
             recyclerViewHomeSellerProduct.run {
@@ -53,8 +58,19 @@ class HomeSellerProductFragment : Fragment() {
             }
         }
 
+        homeSellerViewModel.resetProductList()
+        homeSellerViewModel.getProductInfoAll(mainActivity.loginSellerInfo.userSellerIdx)
 
         return fragmentHomeSellerProductBinding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeSellerViewModel.resetProductList()
+        homeSellerViewModel.getProductInfoAll(mainActivity.loginSellerInfo.userSellerIdx)
+
+        var adapter = fragmentHomeSellerProductBinding.recyclerViewHomeSellerProduct.adapter as RecyclerAdapterClass
+        adapter.notifyDataSetChanged()
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
@@ -73,6 +89,7 @@ class HomeSellerProductFragment : Fragment() {
                 rowHomeSellerBinding.root.setOnClickListener {
                     val newBundle = Bundle()
                     newBundle.putString("oldFragment", "HomeSellerProductFragment")
+                    newBundle.putInt("productIdx", productList[adapterPosition].productIdx.toInt())
                     mainActivity.replaceFragment(PRODUCT_SELLER_MAIN_FRAGMENT,true,newBundle)
                 }
             }
@@ -102,7 +119,7 @@ class HomeSellerProductFragment : Fragment() {
 
             // 이미지 썸네일 넣기(대표 사진 0번)
             var fileName = homeSellerViewModel.productImageNameList.value?.get(position)!!
-            ProductRepository.getProductImage(fileName){
+            ProductRepository.getProductImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.imageViewRow)
             }

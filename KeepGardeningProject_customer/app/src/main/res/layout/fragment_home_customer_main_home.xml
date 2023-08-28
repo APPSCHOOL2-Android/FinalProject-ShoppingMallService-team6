@@ -28,7 +28,7 @@
                 android:transitionGroup="true">
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu6"
+                    android:id="@+id/btn_hcmh_menu1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -43,16 +43,16 @@
                         android:src="@drawable/img_plant" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="다육식물"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu7"
+                    android:id="@+id/btn_hcmh_menu2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -67,16 +67,16 @@
                         android:src="@drawable/img_orchid" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="동서양란"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu8"
+                    android:id="@+id/btn_hcmh_menu3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -91,16 +91,16 @@
                         android:src="@drawable/img_monstera" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="관엽식물"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu9"
+                    android:id="@+id/btn_hcmh_menu4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -115,16 +115,16 @@
                         android:src="@drawable/img_bonsai" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="분재"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu10"
+                    android:id="@+id/btn_hcmh_menu5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -139,10 +139,10 @@
                         android:src="@drawable/img_auction" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="경매"
                         android:textColor="@color/black" />
                 </LinearLayout>
@@ -156,7 +156,7 @@
                 android:transitionGroup="true">
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu1"
+                    android:id="@+id/btn_hcmh_menu6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -171,16 +171,16 @@
                         android:src="@drawable/img_commodity" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="농산물"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu2"
+                    android:id="@+id/btn_hcmh_menu7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -195,16 +195,16 @@
                         android:src="@drawable/img_seed" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="다육식물"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:text="씨앗/묘목"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu3"
+                    android:id="@+id/btn_hcmh_menu8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -219,16 +219,16 @@
                         android:src="@drawable/img_bouquet" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="꽃다발"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu4"
+                    android:id="@+id/btn_hcmh_menu9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -243,16 +243,16 @@
                         android:src="@drawable/img_pot" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="원예자재류"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/btn_hcmh_menu5"
+                    android:id="@+id/btn_hcmh_menu10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -267,10 +267,10 @@
                         android:src="@drawable/img_money" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:fontFamily="@font/nanum_square_round_regular"
                         android:id="@+id/textView_hcmh_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
                         android:text="천원샵"
                         android:textColor="@color/black" />
                 </LinearLayout>

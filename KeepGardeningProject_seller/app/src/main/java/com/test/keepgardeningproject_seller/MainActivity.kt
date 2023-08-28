@@ -41,6 +41,7 @@ import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMa
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerRegister.ProductSellerRegisterFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
+import com.test.keepgardeningproject_seller.UI.SearchAddress.SearchAddressFragment
 import com.test.keepgardeningproject_seller.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
 
@@ -88,6 +89,13 @@ class MainActivity : AppCompatActivity() {
         val PRODUCT_SELLER_QNA_FRAGMENT = "ProductSellerQnAFragment"
         val PRODUCT_SELLER_REGISTER_FRAGMENT = "ProductSellerRegisterFragment"
         val PRODUCT_SELLER_REVIEW_FRAGMENT = "ProductSellerReviewFragment"
+
+        val SEARCH_ADDRESS_FRAGMENT = "SearchAddressFragment"
+        var EMAIL_LOGIN = 0L
+        var KAKAO_LOGIN = 1L
+        var NAVER_LOGIN = 2L
+        var GOOGLE_LOGIN = 3L
+
     }
 
     // 로그인한 사용자의 정보를 담을 객체
@@ -95,9 +103,12 @@ class MainActivity : AppCompatActivity() {
     // 현재 로그인 상태를 판별하는 변수
     var isLogined = false
 
+    //우편번호 찾기에서 받아온 주소
+    var postAddress =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         installSplashScreen()
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -106,9 +117,9 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
+        requestPermissions(permissionList,0)
         replaceFragment(LOGIN_SELLER_MAIN_FRAGMENT ,false,null)
-
+        loginSellerInfo = UserSellerInfo(0,-1,"","","","","","","","")
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -156,6 +167,7 @@ class MainActivity : AppCompatActivity() {
             PRODUCT_SELLER_QNA_FRAGMENT -> ProductSellerQnAFragment()
             PRODUCT_SELLER_REGISTER_FRAGMENT -> ProductSellerRegisterFragment()
             PRODUCT_SELLER_REVIEW_FRAGMENT -> ProductSellerReviewFragment()
+            SEARCH_ADDRESS_FRAGMENT -> SearchAddressFragment()
 
 
             else -> Fragment()
@@ -206,21 +218,13 @@ class MainActivity : AppCompatActivity() {
             inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
+    // 키보드 내리는 메서드
+    fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
+
 
 
 }
 
-// 사용자 정보를 담을 클래스
-data class UserClass(var UserIdx:Long,
-                     var UserLoginType:String,
-                     var UserEmail:String,
-                     var UserPw:String,
-                     var UserNickName:String,
-                     var UserStoreIdx:Long?)
-// 상점 정보를 담을 클래스
-data class StoreClass(var StoreIdx : Long,
-                      var StoreName : String,
-                      var StoreDetail : String,
-                      var StoreImageTitle : String?,
-                      var StorePostAddress:String?,
-                      var StorePostAddressDetail:String?)

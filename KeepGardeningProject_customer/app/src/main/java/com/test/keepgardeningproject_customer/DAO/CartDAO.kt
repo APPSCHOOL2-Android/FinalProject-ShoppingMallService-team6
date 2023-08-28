@@ -9,5 +9,6 @@ data class CartClass(
     var cartProductIdx: Long,
     var cartName: String,
     var cartPrice: Long,
-    var cartCount: Long
+    var cartCount: Long,
+    var cartImage: String
 )

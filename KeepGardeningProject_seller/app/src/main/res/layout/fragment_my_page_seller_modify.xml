@@ -25,42 +25,6 @@
             android:padding="@dimen/padding_size_middle">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:endIconMode="password_toggle"
-                android:hint="비밀번호"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:inputType="text|textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_passwordCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="비밀번호확인"
-                app:endIconMode="password_toggle"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_passwordCheck"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:inputType="text|textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout_ms_nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,68 +43,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textView_ms_storeBanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_size_top"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:text="상점 배너"
-                    android:textSize="@dimen/text_size_16" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/imageView_ms_storeImg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_storeName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="상점명"
-                app:endIconMode="clear_text"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditText_ms_storeName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="true"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:inputType="text|textMultiLine" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="@dimen/margin_size_top"
-                android:id="@+id/textInputLayout_ms_storeDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="상점 설명"
-                android:transitionGroup="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|textMultiLine"
-                    android:fontFamily="@font/nanum_square_round_regular" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,7 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="100"
                     android:hint="우편번호"
-                    android:enabled="false"
                     android:transitionGroup="true">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -162,7 +63,7 @@
                         android:layout_marginRight="@dimen/margin_size"
                         android:enabled="true"
                         android:fontFamily="@font/nanum_square_round_regular"
-                        android:inputType="text|textPassword" />
+                        android:inputType="text|textEmailAddress|textMultiLine" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -193,6 +94,84 @@
                     android:inputType="text|textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:id="@+id/textInputLayout_ms_storeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상점 설명"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textMultiLine"
+                    android:fontFamily="@font/nanum_square_round_regular" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ms_storeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="상점 배너"
+                    android:textSize="@dimen/text_size_16" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView_ms_storeImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:scaleType="center"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="상점 설명"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="상점명"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_ms_modifyEnd"
                 android:layout_width="match_parent"
@@ -200,6 +179,7 @@
                 android:layout_marginTop="@dimen/margin_size_top"
                 android:fontFamily="@font/nanum_square_round_bold"
                 android:text="수정 완료"/>
+
 
 
         </LinearLayout>

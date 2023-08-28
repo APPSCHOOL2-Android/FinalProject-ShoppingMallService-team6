@@ -12,7 +12,7 @@
         android:id="@+id/textView_productSellerDetail_productDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_square_round_extra_bold"
+        android:fontFamily="@font/nanum_square_round_regular"
         android:text="상세 내역"
         android:textSize="@dimen/text_size_20" />
 

@@ -28,9 +28,10 @@ class NaverAPI {
         }
         NaverIdLoginSDK.authenticate(context, oauthLoginCallback)
     }
-    fun naverLogOut(){
-        NaverIdLoginSDK.logout()
-    }
+//    fun naverLogOut(){
+//        NaverIdLoginSDK.logout()
+//    }
+    // 네이버 회원탈퇴
     fun naverWithdraw(){
         NidOAuthLogin().callDeleteTokenApi(object : OAuthLoginCallback {
             override fun onSuccess() {
@@ -39,8 +40,6 @@ class NaverAPI {
             override fun onFailure(httpStatus: Int, message: String) {
                 // 서버에서 토큰 삭제에 실패했어도 클라이언트에 있는 토큰은 삭제되어 로그아웃된 상태입니다.
                 // 클라이언트에 토큰 정보가 없기 때문에 추가로 처리할 수 있는 작업은 없습니다.
-                Log.d(TAG, "errorCode: ${NaverIdLoginSDK.getLastErrorCode().code}")
-                Log.d(TAG, "errorDesc: ${NaverIdLoginSDK.getLastErrorDescription()}")
             }
             override fun onError(errorCode: Int, message: String) {
                 // 서버에서 토큰 삭제에 실패했어도 클라이언트에 있는 토큰은 삭제되어 로그아웃된 상태입니다.

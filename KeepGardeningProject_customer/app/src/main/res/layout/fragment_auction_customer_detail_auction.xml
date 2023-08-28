@@ -18,8 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:textSize="@dimen/text_size_16"
-            android:text="번호"/>
+            android:text="번호"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_acda_nickname"
@@ -27,17 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:textSize="@dimen/text_size_16"
-            android:text="닉네임" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textview_acda_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:textSize="@dimen/text_size_16"
-            android:text="입찰일시" />
+            android:text="닉네임"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_acda_price"
@@ -45,14 +38,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:textSize="@dimen/text_size_16"
-            android:text="입찰금액" />
+            android:text="입찰금액"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_ac_detail_auction"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

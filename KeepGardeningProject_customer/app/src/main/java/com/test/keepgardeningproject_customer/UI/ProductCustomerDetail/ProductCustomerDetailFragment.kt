@@ -12,6 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
@@ -30,11 +31,13 @@ class ProductCustomerDetailFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     // 뷰페이저 프래그먼트
-    lateinit var productCustomerDetailDetailFragment : ProductCustomerDetailDetailFragment
-    lateinit var productCustomerDetailReviewFragment : ProductCustomerDetailReviewFragment
+    lateinit var productCustomerDetailDetailFragment: ProductCustomerDetailDetailFragment
+    lateinit var productCustomerDetailReviewFragment: ProductCustomerDetailReviewFragment
 
     // 뷰모델
     lateinit var productCustomerDetailViewModel: ProductCustomerDetailViewModel
+    var idx : Long = 1
+    lateinit var price : String
 
     // 탭
     val tabName = arrayOf(
@@ -47,16 +50,18 @@ class ProductCustomerDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentProductCustomerDetailBinding = FragmentProductCustomerDetailBinding.inflate(inflater)
+        fragmentProductCustomerDetailBinding =
+            FragmentProductCustomerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
         productCustomerDetailDetailFragment = ProductCustomerDetailDetailFragment()
         productCustomerDetailReviewFragment = ProductCustomerDetailReviewFragment()
 
-        productCustomerDetailViewModel = ViewModelProvider(mainActivity)[ProductCustomerDetailViewModel::class.java]
+        productCustomerDetailViewModel =
+            ViewModelProvider(mainActivity)[ProductCustomerDetailViewModel::class.java]
 
-        productCustomerDetailViewModel.run{
+        productCustomerDetailViewModel.run {
             var mainbinding = fragmentProductCustomerDetailBinding
-            productInfo.observe(mainActivity){
+            productInfo.observe(mainActivity) {
 
                 // 카테고리 설정
                 mainbinding.textViewPcdCategory.text = "카테고리 > " + it.productCategory
@@ -64,7 +69,7 @@ class ProductCustomerDetailFragment : Fragment() {
                 // 이미지뷰 설정
                 var fileNameList = it.productImageList
                 var fileName = fileNameList?.get(0)!!
-                ProductRepository.getProductImage(fileName){
+                ProductRepository.getProductImage(fileName) {
                     val fileUri = it.result
                     Glide.with(mainActivity).load(fileUri).into(mainbinding.imagePcd)
                 }
@@ -79,22 +84,24 @@ class ProductCustomerDetailFragment : Fragment() {
                 val dec = DecimalFormat("#,###")
                 val temp = dec.format(it.productPrice!!.toInt())
                 mainbinding.textViewPcdPrice.text = temp + " 원"
+                price = it.productPrice!!
             }
 
-            userSellerInfo.observe(mainActivity){
+            userSellerInfo.observe(mainActivity) {
+                // 스토어명
                 mainbinding.textViewPcdStore.text = it.userSellerStoreName
             }
         }
 
         // 받아온 상품 인덱스
-        var idx = arguments?.getLong("selectedProductIdx",1)!!
+        idx = arguments?.getLong("selectedProductIdx", 1)!!
 
         // 뷰모델 함수 실행
         productCustomerDetailViewModel.getProductInfoByIdx(idx.toDouble())
 
-        fragmentProductCustomerDetailBinding.run{
+        fragmentProductCustomerDetailBinding.run {
             // 툴바
-            toolbarPcd.run{
+            toolbarPcd.run {
                 title = "상품상세정보"
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
@@ -102,13 +109,11 @@ class ProductCustomerDetailFragment : Fragment() {
                 }
             }
 
-            // 구매완료 버튼
-            buttonPcdBuy.setOnClickListener{
+            // 구매하기 버튼 바텀 다이얼로그
+            buttonPcdBuy.setOnClickListener {
                 val bs = ProductCustomerDetailBottomDialog()
-                bs.show(mainActivity.supportFragmentManager,"구매")
+                bs.show(mainActivity.supportFragmentManager, "구매")
             }
-
-            // 상품 이미지 뷰페이저
 
 
             // 탭레이아웃
@@ -116,10 +121,12 @@ class ProductCustomerDetailFragment : Fragment() {
             fragmentList.add(productCustomerDetailReviewFragment)
 
             viewPagerPcdTab.adapter = TabAdapterClass(mainActivity)
-            val tabLayoutMediator = TabLayoutMediator(tabsPcd, viewPagerPcdTab){ tab: TabLayout.Tab, i: Int ->
-                tab.text = tabName[i]
-            }
+            val tabLayoutMediator =
+                TabLayoutMediator(tabsPcd, viewPagerPcdTab) { tab: TabLayout.Tab, i: Int ->
+                    tab.text = tabName[i]
+                }
             tabLayoutMediator.attach()
+
         }
 
         return fragmentProductCustomerDetailBinding.root
@@ -128,12 +135,14 @@ class ProductCustomerDetailFragment : Fragment() {
     //tab 전환시 layout를 다시 요청
     override fun onResume() {
         super.onResume()
-        fragmentProductCustomerDetailBinding.viewPagerPcdTab.requestLayout()
+        fragmentProductCustomerDetailBinding.run {
+            viewPagerPcdTab.requestLayout()
+        }
     }
 
 
-
-    inner class TabAdapterClass(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
+    inner class TabAdapterClass(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int {
             return 2
         }

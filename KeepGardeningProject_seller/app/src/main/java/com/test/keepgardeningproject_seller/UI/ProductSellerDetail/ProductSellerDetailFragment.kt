@@ -1,7 +1,10 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerDetail
 
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +12,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.ProductRepository
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerDetailBinding
+import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerDetailBinding
 
 class ProductSellerDetailFragment : Fragment() {
 
     lateinit var fragmentProductSellerDetailBinding: FragmentProductSellerDetailBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var productSellerMainViewModel: ProductSellerMainViewModel
+
+    var fileNameList = mutableListOf<String>()
 
     companion object {
         fun newInstance() = ProductSellerDetailFragment()
@@ -32,6 +44,19 @@ class ProductSellerDetailFragment : Fragment() {
 
         fragmentProductSellerDetailBinding = FragmentProductSellerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        productSellerMainViewModel = ViewModelProvider(mainActivity)[ProductSellerMainViewModel::class.java]
+        productSellerMainViewModel.run {
+
+            productDetail.observe(mainActivity) {
+                fragmentProductSellerDetailBinding.textViewProductSellerDetailProductDetail.text = it
+            }
+            productImageNameList.observe(mainActivity) {
+                fileNameList = it
+                fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter?.notifyDataSetChanged()
+            }
+            productSellerMainViewModel.getProductInfo(productIdx.toLong())
+        }
 
         fragmentProductSellerDetailBinding.run {
             recyclerViewProductSellerDetail.run {
@@ -53,6 +78,8 @@ class ProductSellerDetailFragment : Fragment() {
         super.onResume()
 
         fragmentProductSellerDetailBinding.root.requestLayout()
+
+        productSellerMainViewModel.getProductInfo(productIdx.toLong())
 
         var adapter = fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
@@ -85,11 +112,16 @@ class ProductSellerDetailFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return fileNameList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.imageViewProductDetail.setImageResource(R.drawable.ic_launcher_foreground)
+
+            var fileName = productSellerMainViewModel.productImageNameList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imageViewProductDetail)
+            }
         }
     }
 

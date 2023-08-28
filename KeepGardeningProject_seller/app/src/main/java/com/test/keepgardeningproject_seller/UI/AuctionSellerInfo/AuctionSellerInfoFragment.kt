@@ -68,13 +68,11 @@ class AuctionSellerInfoFragment : Fragment() {
 
             var textViewRowIndex : TextView
             var textViewRowNickname : TextView
-            var textViewRowTime : TextView
             var textViewRowPrice : TextView
 
             init {
                 textViewRowIndex = rowAuctionSellerInfoBinding.textViewRowAuctionSellerInfoUserIndex
                 textViewRowNickname = rowAuctionSellerInfoBinding.textViewRowAuctionSellerInfoUserNickName
-                textViewRowTime = rowAuctionSellerInfoBinding.textViewRowAuctionSellerInfoTime
                 textViewRowPrice = rowAuctionSellerInfoBinding.textViewRowAuctionSellerInfoPrice
             }
         }
