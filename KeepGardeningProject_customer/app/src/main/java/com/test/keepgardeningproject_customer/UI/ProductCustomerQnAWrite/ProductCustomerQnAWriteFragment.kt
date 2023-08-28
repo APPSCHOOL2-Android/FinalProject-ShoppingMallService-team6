@@ -43,6 +43,16 @@ class ProductCustomerQnAWriteFragment : Fragment() {
     lateinit var fragmentProductCustomerQnaWriteBinding: FragmentProductCustomerQnaWriteBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var viewModel: ProductCustomerQnAWriteViewModel
+
+    var imageList = ArrayList<String>()
+    var uriList = ArrayList<Uri>()
+
+    val MAX_IMAGE_NUM = 3
+
+    var productIdx: Long = 0
+    var storeIdx: Long = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,14 +80,59 @@ class ProductCustomerQnAWriteFragment : Fragment() {
             }
 
                 }
+            recyclerViewPcqImage.run {
+                adapter = RecyclerAdapterClass()
+
+                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
 
+    override fun onResume() {
+        super.onResume()
 
+        var adapter = fragmentProductCustomerQnaWriteBinding.recyclerViewPcqImage.adapter as RecyclerAdapterClass
+        adapter.notifyDataSetChanged()
+    }
+    inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
+        inner class ViewHolderClass(rowRegisterImageBinding: RowRegisterImageBinding) : RecyclerView.ViewHolder(rowRegisterImageBinding.root) {
+
+            var imageViewProduct : ImageView
+
+            init {
+                imageViewProduct = rowRegisterImageBinding.imageViewRowSellerRegister
+
+                // context 메뉴 구성 (context 메뉴 활성화)
+                rowRegisterImageBinding.root.setOnCreateContextMenuListener { menu, v, menuInfo ->
+
+                    mainActivity.menuInflater.inflate(R.menu.menu_delete_image, menu)
+
+                    // context menu의 항목 선택시 실행되는 함수
+                    menu[0].setOnMenuItemClickListener {
+
+                        uriList.removeAt(adapterPosition)
+
+                        // recyclerView 갱신
+                        this@RecyclerAdapterClass.notifyDataSetChanged()
+
+                        false
+                    }
+                }
+            }
         }
 
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
+            var rowBinding = RowRegisterImageBinding.inflate(layoutInflater)
+            var viewHolder = ViewHolderClass(rowBinding)
 
+            return viewHolder
+        }
 
-        return productCustomerQnAWriteBinding.root
+        override fun getItemCount(): Int {
+            return uriList.count()
+        }
+
+        override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+            Glide.with(mainActivity).load(uriList[position]).into(holder.imageViewProduct)
+        }
     }
 
 
