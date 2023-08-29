@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.play.integrity.internal.m
 import com.google.firebase.database.ktx.values
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
@@ -30,6 +31,14 @@ class HomeCustomerMyPageMainFragment : Fragment() {
         homeCustomerMainFragment.mainActivity = activity as MainActivity
         fragmentHomeCustomerMyPageMainBinding.run {
 
+
+            toolbarHcpm.run {
+                setTitle("마이페이지")
+                setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.HOME_CUSTOMER_MY_PAGE_MAIN)
+                }
+            }
             textviewHomeCustomerMyPageMainName.run {
 
                 var newemail = MainActivity.loginedUserInfo.userEmail.toString()
