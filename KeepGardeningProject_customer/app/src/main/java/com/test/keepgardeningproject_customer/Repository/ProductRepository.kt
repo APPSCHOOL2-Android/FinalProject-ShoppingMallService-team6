@@ -46,7 +46,7 @@ class ProductRepository {
         fun getProductSellerInfoByIdx(storeIdx : Double, callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val productDataRef = database.getReference("UserSellerInfo")
-            productDataRef.orderByChild("userSellerIdx").get().addOnCompleteListener(callback1)
+            productDataRef.orderByChild("userSellerIdx").equalTo(storeIdx).get().addOnCompleteListener(callback1)
         }
 
     }

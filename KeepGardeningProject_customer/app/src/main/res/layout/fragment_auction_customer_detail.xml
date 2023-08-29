@@ -88,6 +88,7 @@
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="right"
                             android:text="남은시간"
+                            android:textColor="@color/Red"
                             android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
@@ -97,7 +98,8 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="right"
-                            android:text="12시 10분 30일 30초" />
+                            android:text="12시 10분 30일 30초"
+                            android:textColor="@color/Red" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -175,7 +177,8 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="right"
-                            android:text="입찰가능" />
+                            android:text="입찰가능"
+                            android:textColor="@color/colorAccent3" />
                     </LinearLayout>
                 </LinearLayout>
 

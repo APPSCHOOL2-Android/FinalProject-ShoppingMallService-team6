@@ -68,6 +68,7 @@ class HomeCustomerSearchFragment : Fragment() {
 //                ril = productThumbnailFileNameList
 //                fragmentHomeCustomerSearchBinding.recyclerHcsSearchResult.adapter?.notifyDataSetChanged()
             }
+
         }
 
         fragmentHomeCustomerSearchBinding.run{
@@ -94,7 +95,7 @@ class HomeCustomerSearchFragment : Fragment() {
                         Log.d("^^^^^^^^^^^^^^^^^^^",query.toString())
                         val resultList = mutableListOf<ProductClass>()
                         val resultImageFileNameList = mutableListOf<String>()
-                        for(product in productList){
+                        for((index,product) in productList.withIndex()){
                             if(product.productName?.contains(query) == true){
                                 resultList.add(product)
                                 resultImageFileNameList.add(product.productImageList?.get(0)!!)
@@ -224,7 +225,7 @@ class HomeCustomerSearchFragment : Fragment() {
     fun getListByCategory(category : String){
         val tempList = mutableListOf<ProductClass>()
         val tempImageList = mutableListOf<String>()
-        for(product in productList){
+        for((index,product) in productList.withIndex()){
             if(product.productCategory == category){
                 tempList.add(product)
                 tempImageList.add(product.productImageList?.get(0)!!)
@@ -238,7 +239,7 @@ class HomeCustomerSearchFragment : Fragment() {
     fun getListBy1000(){
         val tempList = mutableListOf<ProductClass>()
         val tempImageList = mutableListOf<String>()
-        for(product in productList){
+        for((index,product) in productList.withIndex()){
             if(product.productPrice?.toInt()!! <= 1000){
                 tempList.add(product)
                 tempImageList.add(product.productImageList?.get(0)!!)
@@ -305,12 +306,8 @@ class HomeCustomerSearchFragment : Fragment() {
             var temp = rpl[position].productPrice!!.toInt()
             holder.textViewHcsGridPrice.text = decimal.format(temp) + " 원"
 
-            // 스토어 이름
-            ProductRepository.getProductSellerInfoByIdx(rpl[position].productStoreIdx!!.toDouble()){
-                for(c1 in it.result.children){
-                    holder.textViewHcsGridStore.text = c1.child("userSellerStoreName").value as String?
-                }
-            }
+            // 카테고리 이름
+            holder.textViewHcsGridStore.text = rpl[position].productCategory
 
         }
     }
@@ -372,11 +369,7 @@ class HomeCustomerSearchFragment : Fragment() {
             holder.textViewHcsLinearPrice.text = decimal.format(temp) + " 원"
 
             // 스토어 이름
-            ProductRepository.getProductSellerInfoByIdx(rpl[position].productStoreIdx!!.toDouble()){
-                for(c1 in it.result.children){
-                    holder.textViewHcsLinearStore.text = c1.child("userSellerStoreName").value as String?
-                }
-            }
+            holder.textViewHcsLinearStore.text = rpl[position].productCategory
         }
     }
 }

@@ -49,6 +49,22 @@ class MyPageSellerModifyFragment : Fragment() {
         myPageSellerModifyBinding = FragmentMyPageSellerModifyBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
         albumLauncher = albumSetting(myPageSellerModifyBinding.imageViewMsStoreImg)
+
+      /*
+        myPageSellerModifyViewModel =
+            ViewModelProvider(mainActivity)[MyPageSellerModifyViewModel::class.java]
+        savedInstanceState
+        myPageSellerModifyViewModel.run {
+            newPasswordData.observe(mainActivity) {
+                myPageSellerModifyBinding.textInputEditTextMsPassword.setText(it)
+            }
+            newPasswordCheckData.observe(mainActivity) {
+                myPageSellerModifyBinding.textInputEditTextMsPasswordCheck.setText(it)
+            }
+            newNickNameData.observe(mainActivity) {
+                myPageSellerModifyBinding.textInputEditTextMsNickName.setText(it)
+                */
+
         myPageSellerModifyViewModel = ViewModelProvider(this).get(MyPageSellerModifyViewModel::class.java)
         myPageSellerModifyBinding.run {
             var userInfo = mainActivity.loginSellerInfo
@@ -62,6 +78,7 @@ class MyPageSellerModifyFragment : Fragment() {
                 setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT, true, null)
                 }
+
             }
             buttonMsModifyEnd.setOnClickListener {
                 var nickname = textInputEditTextMsNickName.text.toString()
@@ -89,8 +106,6 @@ class MyPageSellerModifyFragment : Fragment() {
                 }
                 mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
             }
-
-
 
 
         }

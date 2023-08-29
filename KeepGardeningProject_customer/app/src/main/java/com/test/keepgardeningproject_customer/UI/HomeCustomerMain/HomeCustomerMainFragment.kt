@@ -105,6 +105,9 @@ class HomeCustomerMainFragment : Fragment() {
                         R.id.item_hcm_store->{
                             mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT,true,null)
                         }
+                        R.id.item_hcm_auction->{
+                            mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_FRAGMENT,true,null)
+                        }
                     }
                     false
                 }
