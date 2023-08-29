@@ -10,7 +10,6 @@ data class OrdersProductClass (
     var ordersCustomerIdx: Long,
     // 주문한 상품 인덱스
     var ordersProductIdx: Long,
-    var ordersStoreRequest: String?,
     var ordersProductCount: Long,
     var ordersProductPrice: Long,
     var ordersDeliveryState: String,

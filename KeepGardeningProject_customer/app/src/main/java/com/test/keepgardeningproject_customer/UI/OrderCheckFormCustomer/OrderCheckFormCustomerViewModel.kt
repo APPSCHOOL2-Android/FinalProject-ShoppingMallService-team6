@@ -44,7 +44,6 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                 val ordersIdx = c1.child("ordersIdx").value as Long
                 val ordersCustomerIdx = c1.child("ordersCustomerIdx").value as Long
                 val ordersProductIdx = c1.child("ordersProductIdx").value as Long
-                val ordersStoreRequest = c1.child("ordersStoreRequest").value as String?
                 val ordersProductCount = c1.child("ordersProductCount").value as Long
                 val ordersProductPrice = c1.child("ordersProductPrice").value as Long
                 val ordersDeliveryState = c1.child("ordersDeliveryState").value as String
@@ -54,7 +53,6 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                     ordersIdx,
                     ordersCustomerIdx,
                     ordersProductIdx,
-                    ordersStoreRequest,
                     ordersProductCount,
                     ordersProductPrice,
                     ordersDeliveryState,
