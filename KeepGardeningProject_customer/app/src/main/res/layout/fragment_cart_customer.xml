@@ -20,22 +20,23 @@
         android:orientation="horizontal"
         android:padding="@dimen/padding_size_small">
 
-        <CheckBox
-            android:id="@+id/checkBox_cart_checkRemove"
+        <TextView
+            android:id="@+id/textView_cart_count"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="전체 2개"
+            android:gravity="center_vertical"
+            android:text="상품갯수"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_cart_selectDelete"
+            android:id="@+id/button_cart_deleteAll"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="선택삭제"
+            android:text="전체삭제"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#000000" />
     </LinearLayout>
