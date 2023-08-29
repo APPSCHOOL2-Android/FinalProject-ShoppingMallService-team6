@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:transitionGroup="true"
     tools:context=".UI.MyPageSellerQnADetail.MyPageSellerQnADetailFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/materialToolbar_qs_detail"
         style="@style/Theme.KeepGardeningProject_seller.Toolbar"
-        android:id = "@+id/materialToolbar_qs_detail"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <com.google.android.material.textview.MaterialTextView
