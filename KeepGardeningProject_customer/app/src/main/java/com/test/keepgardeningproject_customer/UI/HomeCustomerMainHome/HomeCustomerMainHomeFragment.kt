@@ -57,7 +57,7 @@ class HomeCustomerMainHomeFragment : Fragment() {
                             }
                         }
                     }
-                    
+
                     tempList.distinct()
                     favoriteList = tempList
 

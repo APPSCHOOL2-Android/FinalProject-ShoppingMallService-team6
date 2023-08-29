@@ -51,18 +51,15 @@ class AuctionCustomerDetailAuctionFragment : Fragment() {
         viewModel.run{
             auctionList.observe(mainActivity){
                 aal = it
-                aal.sortBy {
-                    true
-                }
-                aal.reverse()
-                cal.clear()
+                val temp = mutableListOf<AuctionInfo>()
                 for(i in aal){
-                    Log.d("%%%%%",idx.toString())
                     if(i.auctionAuctionProductIndex == idx){
-                        cal.add(i)
+                        temp.add(i)
                         auctionCustomerDetailAuctionBinding.recyclerviewAcDetailAuction.adapter?.notifyDataSetChanged()
                     }
                 }
+
+                cal = temp.sortedByDescending{it.auctionBidPrice?.toInt()}.toMutableList()
             }
         }
 
