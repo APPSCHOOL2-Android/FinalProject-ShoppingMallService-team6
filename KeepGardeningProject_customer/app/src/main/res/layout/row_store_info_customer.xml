@@ -51,34 +51,12 @@
 
                 <ImageView
                     android:id="@+id/imageView_rowStoreInfo_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/ic_launcher" />
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/app" />
 
-                <ImageView
-                    android:id="@+id/imageView_rowStoreInfo_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:id="@+id/imageView_rowStoreInfo_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:id="@+id/imageView_rowStoreInfo_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:adjustViewBounds="true"
-                    app:srcCompat="@mipmap/ic_launcher" />
             </LinearLayout>
 
         </LinearLayout>

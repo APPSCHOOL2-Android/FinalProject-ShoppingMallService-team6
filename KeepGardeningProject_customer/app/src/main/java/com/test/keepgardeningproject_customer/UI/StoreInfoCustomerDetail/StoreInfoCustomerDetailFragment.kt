@@ -6,27 +6,59 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.Repository.StoreRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerDetailBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcsLinearBinding
 import com.test.keepgardeningproject_customer.databinding.RowStoreInfoCustomerBinding
+import java.text.DecimalFormat
 
 class StoreInfoCustomerDetailFragment : Fragment() {
     lateinit var fragmentStoreInfoCustomerDetailBinding: FragmentStoreInfoCustomerDetailBinding
     lateinit var mainActivity: MainActivity
 
-    private lateinit var viewModel: StoreInfoCustomerDetailViewModel
+    private lateinit var storeInfoCustomerDetailViewModel: StoreInfoCustomerDetailViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         fragmentStoreInfoCustomerDetailBinding = FragmentStoreInfoCustomerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        storeInfoCustomerDetailViewModel = ViewModelProvider(mainActivity)[StoreInfoCustomerDetailViewModel::class.java]
+        storeInfoCustomerDetailViewModel.run {
+            storeName.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.textViewStoreInfoDetailStoreName.text = it
+            }
+            storeAddress.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.textViewStoreInfoDetailAddress.text = it
+            }
+            storeDetail.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.textViewStoreInfoDetailInfo.text = it
+            }
+            storeImage.observe(mainActivity) {
+                if (it == "None") {
+                    fragmentStoreInfoCustomerDetailBinding.imageViewStoreInfoDetailMain.setImageResource(R.mipmap.app)
+                }
+            }
+            storeBitmap.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.imageViewStoreInfoDetailMain.setImageBitmap(it)
+            }
+            productList.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.recyclerViewStoreInfoDetail.adapter?.notifyDataSetChanged()
+            }
+            productImageList.observe(mainActivity) {
+                fragmentStoreInfoCustomerDetailBinding.recyclerViewStoreInfoDetail.adapter?.notifyDataSetChanged()
+            }
+        }
 
         fragmentStoreInfoCustomerDetailBinding.run {
             toolbarStoreInfoDetail.run {
@@ -41,26 +73,37 @@ class StoreInfoCustomerDetailFragment : Fragment() {
                 adapter = StoreInfoDetailRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
             }
+
+            imageViewStoreInfoDetailMain.setImageResource(R.mipmap.app)
         }
+
+        val storeIdx = arguments?.getLong("storeIdx")!!
+        storeInfoCustomerDetailViewModel.getStoreInfo(storeIdx)
+        storeInfoCustomerDetailViewModel.getStoreProduct(storeIdx)
 
         return fragmentStoreInfoCustomerDetailBinding.root
     }
 
     inner class StoreInfoDetailRecyclerViewAdpater : RecyclerView.Adapter<StoreInfoDetailRecyclerViewAdpater.StoreInfoDetailViewHolder>() {
         inner class StoreInfoDetailViewHolder(rowHcsLinearBinding: RowHcsLinearBinding) :
-            RecyclerView.ViewHolder(rowHcsLinearBinding.root) {
+                RecyclerView.ViewHolder(rowHcsLinearBinding.root) {
 
+            var rowProductImage: ImageView
             var rowProductName: TextView
             var rowStoreName: TextView
             var rowPrice: TextView
 
             init {
+                rowProductImage = rowHcsLinearBinding.imageHcsLinear
                 rowProductName = rowHcsLinearBinding.textViewHcsLinearTitle
                 rowStoreName = rowHcsLinearBinding.textViewHcsLinearStore
                 rowPrice = rowHcsLinearBinding.textViewHcsLinearPrice
 
                 rowHcsLinearBinding.root.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT, true, null)
+                    val selectedProductIdx = storeInfoCustomerDetailViewModel.productList.value?.get(adapterPosition)?.productIdx!!
+                    val bundle = Bundle()
+                    bundle.putLong("selectedProductIdx", selectedProductIdx)
+                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT, true, bundle)
                 }
             }
         }
@@ -70,22 +113,40 @@ class StoreInfoCustomerDetailFragment : Fragment() {
             val storeInfoDetailViewHolder = StoreInfoDetailViewHolder(rowHcsLinearBinding)
 
             rowHcsLinearBinding.root.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
             )
 
             return storeInfoDetailViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return storeInfoCustomerDetailViewModel.productList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: StoreInfoDetailViewHolder, position: Int) {
-            holder.rowProductName.text = "상품명"
-            holder.rowStoreName.text = "000스토어"
-            holder.rowPrice.text = "10,000원"
+            // 상품명
+            holder.rowProductName.text = storeInfoCustomerDetailViewModel.productList.value?.get(position)?.productName
 
+            // 상품 가격
+            var decimal = DecimalFormat("#,###")
+            var price = storeInfoCustomerDetailViewModel.productList.value?.get(position)?.productPrice?.toLong()
+            holder.rowPrice.text = decimal.format(price) + " 원"
+
+            // 스토어 이름
+            val storeIdx = storeInfoCustomerDetailViewModel.productList.value?.get(position)?.productStoreIdx!!
+            StoreRepository.getProductSellerInfoByIdx(storeIdx) {
+                for (c1 in it.result.children) {
+                    holder.rowStoreName.text = c1.child("userSellerStoreName").value as String
+                }
+            }
+
+
+            var fileName = storeInfoCustomerDetailViewModel.productImageList.value?.get(position)!!
+            StoreRepository.getImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.rowProductImage)
+            }
         }
     }
 }
