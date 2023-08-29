@@ -134,6 +134,7 @@ class ProductCustomerDetailFragment : Fragment() {
                 bs.show(mainActivity.supportFragmentManager, "구매")
             }
 
+            // 문의 작성 버튼 클릭
             buttonPcdQna.setOnClickListener {
                 if(!MainActivity.isLogined) {
                     mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
@@ -141,6 +142,7 @@ class ProductCustomerDetailFragment : Fragment() {
                     // 로그인이 이미 된경우
                     val newBundle = Bundle()
                     newBundle.putLong("productIdx", idx)
+                    newBundle.putString("oldFragment", "Product")
                     mainActivity.replaceFragment(PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
                 }
             }
