@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +53,9 @@ class AuctionCustomerDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // 시간지연
+
         auctionCustomerDetailBinding = FragmentAuctionCustomerDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
