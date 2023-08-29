@@ -19,6 +19,7 @@ import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerFragme
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerSearch.HomeCustomerSearchFragment
+import com.test.keepgardeningproject_customer.UI.JoinCustomerAddInfoFragment.JoinCustomerAddInfoFragment
 import com.test.keepgardeningproject_customer.UI.JoinCustomerMain.JoinCustomerMainFragment
 import com.test.keepgardeningproject_customer.UI.LoginCustomerFindPw.LoginCustomerFindPwFragment
 import com.test.keepgardeningproject_customer.UI.LoginCustomerMain.LoginCustomerMainFragment
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         val HOME_CUSTOMER_SEARCH_FRAGMENT = "HomeCustomerSearchFragment"
         val HOME_CUSTOMER_MY_PAGE_MAIN = "HomeCustomerMyPageMainFragment"
         val JOIN_CUSTOMER_MAIN_FRAGMENT = "JoinCustomerMainFragment"
-
+        val JOIN_CUSTOMER_ADD_INFO_FRAGMENT = "JoinCustomerAddInfoFragment"
         val LOGIN_CUSTOMER_MAIN_FRAGMENT = "LoginCustomerMainFragment"
         val LOGIN_CUSTOMER_FIND_PW_FRAGMENT = "LoginCustomerFindPwFragment"
         val LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT ="LoginCustomerToEmailFragment"
@@ -109,6 +110,11 @@ class MainActivity : AppCompatActivity() {
 
         // 홈화면 상태
         //var homeCustomerMainChosedFragment = R.id.item_hcm_home
+
+        var EMAIL_LOGIN = 0L
+        var KAKAO_LOGIN = 1L
+        var NAVER_LOGIN = 2L
+        var GOOGLE_LOGIN = 3L
     }
 
 
@@ -148,7 +154,7 @@ class MainActivity : AppCompatActivity() {
             HOME_CUSTOMER_MY_PAGE_MAIN -> HomeCustomerMyPageMainFragment()
             JOIN_CUSTOMER_MAIN_FRAGMENT -> JoinCustomerMainFragment()
             LOGIN_CUSTOMER_FIND_PW_FRAGMENT -> LoginCustomerFindPwFragment()
-
+            JOIN_CUSTOMER_ADD_INFO_FRAGMENT -> JoinCustomerAddInfoFragment()
             LOGIN_CUSTOMER_MAIN_FRAGMENT -> LoginCustomerMainFragment()
             LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT -> LoginCustomerToEmailFragment()
             MY_PAGE_CUSTOMER_AUCTION_FRAGMENT->MyPageCustomerAuctionFragment()
@@ -215,6 +221,11 @@ class MainActivity : AppCompatActivity() {
             SystemClock.sleep(200)
             inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
+    }
+    // 키보드 내리는 메서드
+    fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 
 

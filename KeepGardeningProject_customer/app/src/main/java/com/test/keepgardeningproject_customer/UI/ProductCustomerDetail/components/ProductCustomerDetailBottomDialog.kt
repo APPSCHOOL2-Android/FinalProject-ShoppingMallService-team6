@@ -1,13 +1,16 @@
 package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailViewModel
 import com.test.keepgardeningproject_customer.databinding.DialogPcdBinding
@@ -75,16 +78,36 @@ class ProductCustomerDetailBottomDialog : BottomSheetDialogFragment() {
             }
 
             // 장바구니
-            buttonPcdDialogBuy.setOnClickListener{
+            buttonPcdDialogCart.setOnClickListener{
+                CartRepository.getCartIdx {
+                    var cartIdx = it.result.value as Long
+                    cartIdx++
 
+                    val cartClass = CartClass(
+                            cartIdx,
+                            MainActivity.loginedUserInfo.userIdx!!,
+                            productCustomerDetailViewModel.productInfo.value?.productIdx!!,
+                            productCustomerDetailViewModel.productInfo.value?.productName!!,
+                            (price * count).toLong(),
+                            count.toLong(),
+                            productCustomerDetailViewModel.productInfo.value?.productImageList?.get(0)!!
+                    )
+
+                    CartRepository.addCartInfo(cartClass) {
+                        CartRepository.setCartIdx(cartIdx) {
+                            dismiss()
+                        }
+                    }
+                }
             }
 
             // 구매하기
             buttonPcdDialogBuy.setOnClickListener{
                 var bundle = Bundle()
                 // 선택한 상품 productIdx 전달
-                bundle.putLong("productIdx", productCustomerDetailFragment.idx)
+                bundle.putLong("productIdx", productCustomerDetailViewModel.productInfo.value?.productIdx!!)
                 bundle.putInt("count",count)
+                bundle.putString("fromWhere", "productPage")
                 mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT,true,bundle)
                 
                 // 다이얼로그 없애기ㅡ

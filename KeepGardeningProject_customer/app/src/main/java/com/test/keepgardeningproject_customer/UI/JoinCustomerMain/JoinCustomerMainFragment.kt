@@ -1,13 +1,27 @@
 package com.test.keepgardeningproject_customer.UI.JoinCustomerMain
 
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
+import com.test.keepgardeningproject_customer.MainActivity.Companion.loginedUserInfo
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentJoinCustomerMainBinding
@@ -15,14 +29,21 @@ import com.test.keepgardeningproject_customer.databinding.FragmentJoinCustomerMa
 class JoinCustomerMainFragment : Fragment() {
     lateinit var fragmentJoinCustomerMainBinding: FragmentJoinCustomerMainBinding
     lateinit var mainActivity: MainActivity
+    private var firebaseAuth: FirebaseAuth? = null
+    lateinit var albumLauncher: ActivityResultLauncher<Intent>
 
+    // 업로드할 이미지의 Uri
+    var uploadUri: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mainActivity = activity as MainActivity
         fragmentJoinCustomerMainBinding = FragmentJoinCustomerMainBinding.inflate(inflater)
+
         fragmentJoinCustomerMainBinding.run {
+            // firebaseAuth의 인스턴스를 가져옴
+            firebaseAuth = FirebaseAuth.getInstance()
             toolbarJoinCustomerMain.run {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
@@ -30,6 +51,7 @@ class JoinCustomerMainFragment : Fragment() {
                 }
                 setTitle("회원가입 하기")
             }
+
 
             // 이메일 포커스 주기
             textInputLayoutJoinCustomerMainEmail.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -48,43 +70,53 @@ class JoinCustomerMainFragment : Fragment() {
             }
             // 중복확인하기
             buttonJoinCustomerMainDoubleCheck.setOnClickListener {
-                Toast.makeText(requireContext(),"중복확인",Toast.LENGTH_SHORT).show()
+
             }
+
+
+
             // 로그인 화면으로
             buttonJoinCustomerMainJoin.setOnClickListener {
                 userSubmit()
-            }
 
+            }
         }
         return fragmentJoinCustomerMainBinding.root
     }
 
-    fun userSubmit(){
+    fun userSubmit() {
         fragmentJoinCustomerMainBinding.run {
 
-            //이메일,패스워드,닉네임
+            //이메일,패스워드,닉네임,배너,상점명, 상점설명, 우편번호, 상세주소
             var email = textInputEditTextJoinCustomerMainEmail.text.toString()
             var pw = textInputEditTextJoinCustomerMainPassword.text.toString()
             var nickNames = textInputEditTextJoinCustomerMainNickName.text.toString()
-
+            val user: FirebaseUser? = firebaseAuth!!.currentUser
             UserRepository.getUserIndex {
                 var userindex = it.result.value as Long
 
                 userindex++
-                val userinfo = UserInfo(userindex,0,email,pw,nickNames)
-
-                UserRepository.setUserInfo(userinfo){
-                    UserRepository.setUserIdx(userindex){
-                        mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
-                        mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
-                    }
+                val userinfo = user!!.email?.let { it1 ->
+                    UserInfo(userindex,MainActivity.EMAIL_LOGIN,email,"None",nickNames)
                 }
+                firebaseAuth!!.createUserWithEmailAndPassword(email, pw)
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if(isAdded){
+                            if (task.isSuccessful) {
+                                Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT,false,null)
 
+                            } else {
+                                Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
+                            }
+                        }
 
+                    }
+
+                if (userinfo != null) {
+                    loginedUserInfo = userinfo
+                }
             }
-
-
-
         }
     }
 

@@ -49,7 +49,6 @@ class LoginSellerFindPwFragment : Fragment() {
             }
             buttonLoginSellerFindPwCertification.setOnClickListener {
                 FindPw(textInputEditTextLoginSellerFindPwEmail.text.toString())
-                Toast.makeText(requireContext(),"이메일 인증하기 버튼 클릭", Toast.LENGTH_SHORT).show()
             }
         }
 

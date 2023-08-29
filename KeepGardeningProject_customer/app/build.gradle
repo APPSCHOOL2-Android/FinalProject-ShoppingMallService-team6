@@ -66,6 +66,22 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
+    // 카카오톡 로그인
+    implementation "com.kakao.sdk:v2-user:2.15.0"
+    // 네이버 로그인
+    implementation 'com.navercorp.nid:oauth:5.7.0' // jdk 11
+    implementation("com.navercorp.nid:oauth:5.7.0") // jdk 11
+    // 구글 로그인
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    // 다이얼로그
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
 
 
 }

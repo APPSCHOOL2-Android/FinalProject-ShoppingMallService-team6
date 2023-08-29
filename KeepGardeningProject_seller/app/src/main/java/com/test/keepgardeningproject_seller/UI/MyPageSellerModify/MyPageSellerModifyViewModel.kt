@@ -7,9 +7,6 @@ import androidx.lifecycle.ViewModel
 
 class MyPageSellerModifyViewModel : ViewModel() {
 
-
-    val newPasswordData = MutableLiveData<String>()
-    val newPasswordCheckData = MutableLiveData<String>()
     val newNickNameData = MutableLiveData<String>()
     var newBannerData = MutableLiveData<Bitmap>()
     val newStoreNameData = MutableLiveData<String>()
@@ -18,8 +15,6 @@ class MyPageSellerModifyViewModel : ViewModel() {
     val newAddressDetailData = MutableLiveData<String>()
 
     fun reset(){
-        newPasswordData.value = ""
-        newPasswordCheckData.value = ""
         newNickNameData.value = ""
         newStoreNameData.value = ""
         newStoreDetailData.value = ""

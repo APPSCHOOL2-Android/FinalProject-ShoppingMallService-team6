@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,13 +13,10 @@
         android:layout_height="wrap_content" />
 
 
-    <ImageView
-        android:id="@+id/imageview_qc_detail"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/margin_size"
-        android:src="@drawable/ic_launcher_background" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_qc_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,9 +24,10 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id = "@+id/textview_qc_current_time"
+            android:id="@+id/textview_qc_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
             android:layout_marginEnd="@dimen/margin_size"
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="2023.08.16"
@@ -46,32 +45,14 @@
             android:layout_margin="@dimen/margin_size"
             android:orientation="vertical">
 
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:text="별점"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
-
-
-            <RatingBar
-                android:id="@+id/ratingbar_rc_review_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_size"
-                android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:text="제목"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:fontFamily="@font/nanum_square_round_bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -80,17 +61,20 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextView_qc_detail_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size"
                 android:gravity="top"
                 android:text="내용"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:fontFamily="@font/nanum_square_round_bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -99,7 +83,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextView_qc_detail_content"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,11 +92,13 @@
                 android:id="@+id/textview_qc_detail_replyState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size"
                 android:gravity="top"
                 android:text="답변완료"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:fontFamily="@font/nanum_square_round_bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -120,7 +107,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextView_qc_detail_answer"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

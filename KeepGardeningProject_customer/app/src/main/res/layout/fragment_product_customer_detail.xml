@@ -104,10 +104,21 @@
         android:padding="@dimen/padding_size_middle">
 
         <Button
+            android:id="@+id/button_pcd_qna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="문의하기"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/button_pcd_buy"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_size_small"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="구매하기"
