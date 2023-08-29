@@ -12,6 +12,5 @@ data class QnAClass(
     var QnATitle: String,
     var QnAContent: String,
     var QnAAnswer: String,
-    var QnADate: String,
-    var QnAImageList: ArrayList<String>
+    var QnADate: String
 )

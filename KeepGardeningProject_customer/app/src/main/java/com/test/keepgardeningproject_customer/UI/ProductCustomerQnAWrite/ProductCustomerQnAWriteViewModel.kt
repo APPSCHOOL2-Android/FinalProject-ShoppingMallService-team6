@@ -33,7 +33,6 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                 var productImageList = c1.child("productImageList").value as ArrayList<String>
                 productName.value = c1.child("productName").value as String
                 productStoreIdx.value = c1.child("productStoreIdx").value as Long
-                Log.d("lion", "store index : ${productStoreIdx.value}")
 
                 for (i in 0 until productImageList.size) {
                     tempImageNameList.add(productImageList[i])

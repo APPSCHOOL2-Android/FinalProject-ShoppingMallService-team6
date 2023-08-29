@@ -12,10 +12,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.carousel.CarouselLayoutManager
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerQnADetailBinding
+import com.test.keepgardeningproject_customer.databinding.RowQnaImageBinding
 
 
 class MyPageCustomerQnADetailFragment : Fragment() {
@@ -75,14 +81,6 @@ class MyPageCustomerQnADetailFragment : Fragment() {
                     }
                 }
             }
-            qnaImageNameList.observe(mainActivity) {
-//                binding.recyclerViewQcImage.adapter?.notifyDataSetChanged()
-            }
-            qnaImageUriList.observe(mainActivity) {
-                uriList = it
-                Log.d("lion","uri : $uriList")
-//                binding.recyclerViewQcImage.adapter?.notifyDataSetChanged()
-            }
             viewModel.getQnAInfo(qnaIdx)
         }
 
@@ -122,13 +120,6 @@ class MyPageCustomerQnADetailFragment : Fragment() {
                 isEnabled = false
                 setTextColor(Color.BLACK)
             }
-
-
-//            recyclerViewQcImage.run {
-//                adapter = RecyclerViewAdapter()
-//                layoutManager = CarouselLayoutManager()
-//            }
-
         }
 
         return binding.root
@@ -143,36 +134,5 @@ class MyPageCustomerQnADetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getQnAInfo(qnaIdx)
-//        binding.recyclerViewQcImage.adapter?.notifyDataSetChanged()
     }
-
-//    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>(){
-//        inner class ViewHolderClass(rowBinding: RowQnaImageBinding) : RecyclerView.ViewHolder(rowBinding.root){
-//
-//            var carouselImageView : ImageView
-//
-//            init {
-//                carouselImageView = rowBinding.carouselImageViewRowQnAImage
-//            }
-//
-//        }
-//
-//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
-//            val rowBinding = RowQnaImageBinding.inflate(layoutInflater)
-//            val viewHolderClass = ViewHolderClass(rowBinding)
-//
-//            return viewHolderClass
-//        }
-//
-//        override fun getItemCount(): Int {
-//            Log.d("lion","size : ${uriList.size}")
-//            return uriList.size
-//        }
-//
-//        override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-////            holder.carouselImageView.setImageURI(uriList[position])
-//            Glide.with(mainActivity).load(uriList[position]).into(holder.carouselImageView)
-//        }
-//    }
-
 }

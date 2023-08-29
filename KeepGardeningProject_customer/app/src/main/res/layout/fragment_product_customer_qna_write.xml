@@ -117,50 +117,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_size"
-        android:layout_marginTop="@dimen/margin_size"
-        android:layout_marginRight="@dimen/margin_size"
-        android:fontFamily="@font/nanum_square_round_bold"
-        android:gravity="top"
-        android:text="사진첨부"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_size"
-        android:layout_marginTop="@dimen/margin_size_top"
-        android:layout_marginRight="@dimen/margin_size">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_pcq_addImage"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/semiwhite"
-                app:cornerRadius="10dp"
-                app:icon="@drawable/ic_add_24px"
-                app:iconGravity="textEnd"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_pcq_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp" />
-        </LinearLayout>
-    </ScrollView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
