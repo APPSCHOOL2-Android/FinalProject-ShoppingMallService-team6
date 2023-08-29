@@ -103,6 +103,30 @@ class MyPageSellerQnADetailFragment : Fragment() {
                 isEnabled = false
                 setTextColor(Color.BLACK)
             }
+
+            buttonQsAnswerChange.setOnClickListener {
+                val qnaDataClass = QnAClass(
+                    qnaIdx.toLong(),
+                    viewModel.qnaProductType.value.toString(),
+                    viewModel.qnaProductIdx.value!!.toLong(),
+                    viewModel.qnaCustomerIdx.value!!.toLong(),
+                    mainActivity.loginSellerInfo.userSellerIdx,
+                    viewModel.qnaTitle.value.toString(),
+                    viewModel.qnaContent.value.toString(),
+                    editTextViewQsDetailAnswer.text.toString(),
+                    viewModel.qnaDate.value.toString()
+                )
+
+                // 문의 답변 저장
+                QnARepository.modifyQnAAnswer(qnaDataClass) {
+                    Log.d("lion","$qnaDataClass")
+                }
+
+//                viewModel.getQnAInfo(qnaIdx.toLong())
+
+                Snackbar.make(fragmentMyPageSellerQnADetailBinding.root, "문의 답변이 등록되었습니다.", Snackbar.LENGTH_SHORT).show()
+                mainActivity.removeFragment(MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT)
+            }
         }
 
         return fragmentMyPageSellerQnADetailBinding.root
