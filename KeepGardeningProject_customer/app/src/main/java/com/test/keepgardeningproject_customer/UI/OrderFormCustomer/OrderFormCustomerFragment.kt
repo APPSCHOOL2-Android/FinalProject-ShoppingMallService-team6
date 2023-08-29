@@ -361,7 +361,6 @@ class OrderFormCustomerFragment : Fragment() {
                             product.cartPrice,
                             "결제완료",
                             totalOrderIdx,
-                            product.cartImage
                         )
 
                         OrderProductRepository.addOrdersProductInfo(ordersProductClass) {

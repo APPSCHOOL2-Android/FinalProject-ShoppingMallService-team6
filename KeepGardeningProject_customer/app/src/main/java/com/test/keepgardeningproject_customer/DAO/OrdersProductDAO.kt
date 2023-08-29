@@ -14,6 +14,5 @@ data class OrdersProductClass (
     var ordersProductPrice: Long,
     var ordersDeliveryState: String,
     // 개별 주문이 속한 총 주문의 인덱스
-    var ordersTotalOrderIdx: Long,
-    var ordersProductImage: String
+    var ordersTotalOrderIdx: Long
 )

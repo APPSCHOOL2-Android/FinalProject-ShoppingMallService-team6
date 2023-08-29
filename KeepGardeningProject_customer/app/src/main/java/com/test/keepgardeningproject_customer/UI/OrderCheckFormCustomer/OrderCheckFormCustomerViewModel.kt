@@ -49,7 +49,6 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                 val ordersProductPrice = c1.child("ordersProductPrice").value as Long
                 val ordersDeliveryState = c1.child("ordersDeliveryState").value as String
                 val ordersTotalOrderIdx = c1.child("ordersTotalOrderIdx").value as Long
-                val ordersProductImage = c1.child("ordersProductImage").value as String
 
                 val ordersProductClass = OrdersProductClass(
                     ordersIdx,
@@ -58,8 +57,7 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                     ordersProductCount,
                     ordersProductPrice,
                     ordersDeliveryState,
-                    ordersTotalOrderIdx,
-                    ordersProductImage
+                    ordersTotalOrderIdx
                 )
 
                 tempOrderList.add(ordersProductClass)
