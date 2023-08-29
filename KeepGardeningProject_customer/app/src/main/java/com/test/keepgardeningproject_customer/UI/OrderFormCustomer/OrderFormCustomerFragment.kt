@@ -18,10 +18,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.textfield.TextInputEditText
@@ -128,6 +130,22 @@ class OrderFormCustomerFragment : Fragment() {
                     else -> radioButtonOrderFormDeposit
                 }
                 selectedPayment = selectedRadioButton.text.toString()
+            }
+
+            checkBoxOrderFormAllAgree.run {
+                setOnCheckedChangeListener { compoundButton, b ->
+                    // 각 체크박스를 가지고 있는 레이아웃을 통해 그 안에 있는 View들의 체크상태를 변경한다.
+                    for (v1 in checkBoxGroupOrderFormAgree.children) {
+                        // 형변환
+                        v1 as MaterialCheckBox
+                        // 취미 전체가 체크 되어 있다면
+                        if (b) {
+                            v1.checkedState = MaterialCheckBox.STATE_CHECKED
+                        } else {
+                            v1.checkedState = MaterialCheckBox.STATE_UNCHECKED
+                        }
+                    }
+                }
             }
 
             buttonOrderFormSubmitOrder.setOnClickListener {
