@@ -121,7 +121,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
             RecyclerView.ViewHolder(rowOrderCheckFormCustomerBinding.root) {
 
             var rowDeliveryState: TextView
-            var rowStoreName: TextView
             var rowProductName: TextView
             var rowOption: TextView
             var rowOrderPriceValue: TextView
@@ -130,7 +129,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
 
             init {
                 rowDeliveryState = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormDeliveryState
-                rowStoreName = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormStoreName
                 rowProductName = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormProductName
                 rowOption = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormOption
                 rowOrderPriceValue = rowOrderCheckFormCustomerBinding.textViewRowOrderCheckFormOrderPriceValue
@@ -164,7 +162,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
 
             holder.rowDeliveryState.text =
                 orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersDeliveryState
-            holder.rowStoreName.text = "상점명"
             holder.rowProductName.text =
                 orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productName
             holder.rowOption.text =
@@ -174,8 +171,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
             var price1 =
                 orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productPrice?.toInt()
             var price2 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductPrice
-            Log.i("s222", price1.toString())
-            Log.i("s222", price2.toString())
             holder.rowOrderPriceValue.text = decimal.format(price1) + "원"
             holder.rowProductPriceValue.text = decimal.format(price2) + "원"
         }

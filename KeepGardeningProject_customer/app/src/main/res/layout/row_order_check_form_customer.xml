@@ -22,7 +22,8 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderCheckForm_productImage"
-            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_orderPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_orderPrice"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/imageView_rowOrderCheckForm_productImage"
@@ -46,18 +47,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_rowOrderCheckForm_storeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:text="상점명"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderCheckForm_productImage"
-            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_deliveryState" />
-
-        <TextView
             android:id="@+id/textView_rowOrderCheckForm_productName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +55,7 @@
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="상품명"
             app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderCheckForm_productImage"
-            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_storeName" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_deliveryState" />
 
         <TextView
             android:id="@+id/textView_rowOrderCheckForm_option"
@@ -116,7 +105,8 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_orderPriceValue" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderCheckForm_orderPriceValue"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
