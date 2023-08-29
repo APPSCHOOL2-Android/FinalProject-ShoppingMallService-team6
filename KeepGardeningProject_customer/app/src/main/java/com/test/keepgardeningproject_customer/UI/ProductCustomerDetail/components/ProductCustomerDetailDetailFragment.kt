@@ -25,6 +25,7 @@ class ProductCustomerDetailDetailFragment : Fragment() {
 
     var fileNameList = mutableListOf<String>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,13 +58,16 @@ class ProductCustomerDetailDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductCustomerDetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {
         super.onResume()
         fragmentProductCustomerDetailDetailBinding.root.requestLayout()
         viewModel = ViewModelProvider(mainActivity).get(ProductCustomerDetailViewModel::class.java)
+//        viewModel.getProductInfoByIdx(sidx.toDouble())
+
+//        var adapter = fragmentProductCustomerDetailDetailBinding.recyclerPcdd.adapter as RecyclerAdapterPCDD
+//        adapter.notifyDataSetChanged()
     }
 
 
