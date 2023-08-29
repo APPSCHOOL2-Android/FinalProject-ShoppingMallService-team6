@@ -79,6 +79,8 @@ class AuctionSellerInfoFragment : Fragment() {
         var adapter = fragmentAuctionSellerInfoBinding.recyclerViewAuctionSellerInfo.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
 
+        auctionSellerInfoViewModel.getAuctionInfo(auctionProductIdx.toLong())
+
         fragmentAuctionSellerInfoBinding.root.requestLayout()
     }
 
