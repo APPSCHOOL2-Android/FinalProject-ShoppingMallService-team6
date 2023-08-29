@@ -73,7 +73,6 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
     fun resetList(){
        paymentList.value = mutableListOf<purchaseInfo>()
        deliveryList.value = mutableListOf<purchaseInfo>()
-
     }
 
     //결제완료 데이터 추가

@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
+import java.util.Date
 
 class MyPageCustomerAuctionFragment : Fragment() {
 
@@ -34,7 +36,7 @@ class MyPageCustomerAuctionFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var mypagecustomerauctionviewModel: MyPageCustomerAuctionViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,21 +45,18 @@ class MyPageCustomerAuctionFragment : Fragment() {
         fragmentAuctionCustomerBinding =
             FragmentMyPageCustomerAuctionBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
+        mypagecustomerauctionviewModel = ViewModelProvider(mainActivity)[MyPageCustomerAuctionViewModel::class.java]
 
-        val datas = listOf<Models>(
-            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","몬스테라",),
-            Models(Models.BID_TYPE,R.mipmap.ic_launcher,"[입찰완료]","해바라기"),
-            Models(Models.Auction_TYPE2,R.mipmap.ic_launcher,"[경매중]","목화",),
-            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","장미",),
-            Models(Models.AUCTION_TYPE,R.mipmap.ic_launcher,"[경매완료]","목련",),
-            Models(Models.BID_TYPE,R.mipmap.ic_launcher,"[입찰완료]","할미꽃",) ,
-            Models(Models.Auction_TYPE2,R.mipmap.ic_launcher,"[경매중]","개나리",)
-        )
+        mypagecustomerauctionviewModel.run {
+           getauctiondetailList.observe(mainActivity) {
+               fragmentAuctionCustomerBinding.recyclerviewAc.adapter?.notifyDataSetChanged()
+           }
+        }
 
         fragmentAuctionCustomerBinding.run {
-
+            mypagecustomerauctionviewModel.getData()
             recyclerviewAc.run {
-                adapter = ResultRecyclerviewAdapter(datas)
+                adapter = ResultRecyclerviewAdapter()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(
                     MaterialDividerItemDecoration(
@@ -77,154 +76,22 @@ class MyPageCustomerAuctionFragment : Fragment() {
 
             }
 
-
-
-            //이미지,상태,이름
-
-            //내가고른 경매상품의 인덱스
-
-            //AuctionDA0 - auctionCustomerList(useridx)
-
-            //AuctionProduct
-            // -> auctionProductName(이름),auctionImageList(이미지),auctionCloseState(상태),
-
-
-
-            //userSellerIdx = auctionProductstoreIdx(판매자 idx)
-
-
-
-            fun getData(){
-
-                var idx = UserRepository.getUserIndex {
-
-                //useridx가져와서 customerList안에 있는 idx와 비교해서 경매상품가져오기
-                    val idx2 = it.result.value as Long
-                    Log.d("Lim","${idx2}")
-                    AuctionProductRepository.getAuctionProductIndex {
-
-                    }
-
-                }
-
-
-            }
-
-
-
-
-
-
-            var newformatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
-
-            //현재시간 가져오기
-            var now = System.currentTimeMillis()
-
-
-            AuctionProductRepository.getAuctionProductIndex {
-                val idx = it.result.value as Long
-                Log.d("lim","${idx}")
-                AuctionProductRepository.getAuctionProductInfo(idx) {
-                    for(c1 in it.result.children){
-                        //이름,상태,이미지
-                        var newname = c1.child("auctionProductName").value.toString()
-                        var newdate = c1.child("auctionProductCloseDate").value.toString()
-                        var newimg = c1.child("auctionProductImageList").value.toString()
-
-                        Log.d("Lim","${newname}")
-                        Log.d("Lim","${newdate}")
-                        Log.d("Lim","${newimg}")
-
-
-                    }
-                }
-            }
-
         }
 
         return fragmentAuctionCustomerBinding.root
     }
 
-    inner class ResultRecyclerviewAdapter(private val list:List<Models>):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    inner class ResultRecyclerviewAdapter():RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            val view :View?
-            //결제완료 및 배송완료 분기처리
-            return when(viewType){
-                Models.AUCTION_TYPE->{
-                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction,parent,false)
-                   AuctionTypeViewHolder(view)
-                }
-               Models.BID_TYPE->{
-                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction_button,parent,false)
-                   BidTypeViewHolder(view)
-                }
-                Models.Auction_TYPE2->{
-                    view = LayoutInflater.from(parent.context).inflate(R.layout.row_my_page_customer_auction,parent,false)
-                    AuctionTypeViewHolder(view)
-                }
-                else ->throw RuntimeException("뷰 타입 에러")
-            }
+            TODO("Not yet implemented")
         }
 
         override fun getItemCount(): Int {
-            return list.size
+            TODO("Not yet implemented")
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            val obj = list[position]
-            when (obj.type) {
-                Models.AUCTION_TYPE -> {
-                    (holder as AuctionTypeViewHolder).txtAcState.text = obj.state
-                    holder.txtAcName.text = obj.title
-                    holder.imageviewAcimg.setImageResource(obj.img)
-                    holder.itemView.setOnClickListener{
-                        //경매상세정보로 이동
-                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
-                    }
-
-                }
-                Models.BID_TYPE-> {
-                    (holder as BidTypeViewHolder).txtBdState.text = obj.state
-                    holder.txtBdName.text = obj.title
-                    holder.imageviewBdimg.setImageResource(obj.img)
-                    holder.butoonBdbuy.setText("구매하기")
-                    holder.butoonBdbuy.setOnClickListener {
-                        //구매하기로 이동
-                        mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT,true,null)
-                    }
-                }
-                Models.Auction_TYPE2-> {
-                    (holder as AuctionTypeViewHolder).txtAcState.text = obj.state
-                    holder.txtAcName.text = obj.title
-                    holder.imageviewAcimg.setImageResource(obj.img)
-                    holder.itemView.setOnClickListener{
-
-                        //경매상세정보로 이동
-                        mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
-                    }
-
-                }
-            }
-        }
-
-
-        // 여기서 받는 position은 데이터의 index다.
-        override fun getItemViewType(position: Int): Int {
-            return list[position].type
-        }
-
-        //뷰홀더에 들어가 아이템 설정
-        inner class AuctionTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txtAcState: TextView = itemView.findViewById(R.id.textview_ac_state)
-            val txtAcName :TextView = itemView.findViewById(R.id.textView_ac_productName)
-            val imageviewAcimg :ImageView = itemView.findViewById(R.id.imageview_ac_img1)
-        }
-
-        inner class BidTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txtBdState: TextView = itemView.findViewById(R.id.textview_ac_state2)
-            val txtBdName :TextView = itemView.findViewById(R.id.textView_ac_productName2)
-            val imageviewBdimg :ImageView = itemView.findViewById(R.id.imageview_ac_img2)
-            val butoonBdbuy : Button = itemView.findViewById(R.id.button_ac_buy)
+            TODO("Not yet implemented")
         }
 
 
@@ -232,11 +99,35 @@ class MyPageCustomerAuctionFragment : Fragment() {
 
 
 }
-data class Models(var type:Int,var img:Int,var state:String,var title:String){
-    companion object{
-        val AUCTION_TYPE = 0
-        val BID_TYPE = 1
-        val Auction_TYPE2 = 2
-    }
-}
 
+
+
+
+
+
+
+//var newformatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
+//
+////현재시간 가져오기
+//var now = System.currentTimeMillis()
+//
+//
+//AuctionProductRepository.getAuctionProductIndex {
+//    val idx = it.result.value as Long
+//    Log.d("lim","${idx}")
+//    AuctionProductRepository.getAuctionProductInfo(idx) {
+//        for(c1 in it.result.children){
+//            //이름,상태,이미지
+//            var newname = c1.child("auctionProductName").value.toString()
+//            var newdate = c1.child("auctionProductCloseDate").value.toString()
+//            var newimg = c1.child("auctionProductImageList").value.toString()
+//
+//            Log.d("Lim","${newname}")
+//            Log.d("Lim","${newdate}")
+//            Log.d("Lim","${newimg}")
+//
+//
+//        }
+//    }
+//}
+data class auctionCustomerDetail(var name:String,var img:String,var state:String)
