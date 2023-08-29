@@ -47,6 +47,7 @@ class JoinSellerMainFragment : Fragment() {
         albumLauncher = albumSetting(fragmentJoinSellerMainBinding.imageViewJoinSellerMain)
 
         fragmentJoinSellerMainBinding.run {
+            FirebaseAuth.getInstance().signOut()
             // firebaseAuth의 인스턴스를 가져옴
             firebaseAuth = FirebaseAuth.getInstance()
             toolbarJoinSellerMain.run {
@@ -101,7 +102,6 @@ class JoinSellerMainFragment : Fragment() {
 
     fun userSubmit() {
         fragmentJoinSellerMainBinding.run {
-
             //이메일,패스워드,닉네임,배너,상점명, 상점설명, 우편번호, 상세주소
             var email = textInputEditTextJoinSellerMainEmail.text.toString()
             var pw = textInputEditTextJoinSellerMainPassword.text.toString()
@@ -110,45 +110,36 @@ class JoinSellerMainFragment : Fragment() {
             var storeInfo = textInputEditTextJoinSellerMainStoreDetail.text.toString()
             var postNumber = textInputEditTextJoinSellerMainPostNumber.text.toString()
             var postDetail = textInputEditTextJoinSellerMainStoreAddress.text.toString()
+            var loginType = MainActivity.EMAIL_LOGIN
             val user: FirebaseUser? = firebaseAuth!!.currentUser
             UserRepository.getUserSellerIndex {
                 var userindex = it.result.value as Long
-
+                var userinfo = mainActivity.loginSellerInfo
                 userindex++
-
-                firebaseAuth!!.createUserWithEmailAndPassword(email, pw)
-                    .addOnCompleteListener(requireActivity()) { task ->
-                        if(isAdded){
-                            if (task.isSuccessful) {
-                                Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                                mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT,false,null)
-
-                            } else {
-                                Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                    }
                 // 배너 이미지 선택 안하면 파일 이름은 None으로 설정
                 val fileName = if (uploadUri == null) {
                     "None"
                 } else {
                     "image/img_${System.currentTimeMillis()}.jpg"
                 }
+                firebaseAuth!!.createUserWithEmailAndPassword(email, pw).addOnCompleteListener(requireActivity()) { task ->
+                        if(isAdded){
+                            if (task.isSuccessful) {
+                                Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
 
-                val userinfo = user?.email?.let { it1 ->
-                    UserSellerInfo(userindex, MainActivity.EMAIL_LOGIN,
-                        it1, "None", nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
+                            } else {
+                                Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
+                            }
+                        }
                 }
-
+                userinfo = UserSellerInfo(userindex,loginType,email,"None",nickNames,fileName, storeName,storeInfo,postNumber,postDetail)
                 if (userinfo != null) {
                     UserRepository.setUserSellerInfo(userinfo) {
                         UserRepository.setUserSellerIdx(userindex) {
                             // 이미지 업로드
                             if (uploadUri != null) {
                                 UserRepository.uploadStoreImage(uploadUri!!, fileName) {
-                                    Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT)
-                                        .show()
+                                    Snackbar.make(fragmentJoinSellerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                                     mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
                                     mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                                 }
@@ -157,8 +148,6 @@ class JoinSellerMainFragment : Fragment() {
                                 mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
                                 mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                             }
-            //                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_TO_EMAIL_FRAGMENT)
-            //                        mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
                         }
                     }
                 }
