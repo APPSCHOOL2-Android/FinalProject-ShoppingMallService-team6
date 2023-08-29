@@ -52,6 +52,7 @@ class ProductCustomerQnAWriteFragment : Fragment() {
 
     var productIdx: Long = 0
     var storeIdx: Long = 0
+    var oldFragment = ""
 
 
     override fun onCreateView(
@@ -61,24 +62,46 @@ class ProductCustomerQnAWriteFragment : Fragment() {
       fragmentProductCustomerQnaWriteBinding = FragmentProductCustomerQnaWriteBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        productIdx = arguments?.getLong("productIdx", 0)!!
+        oldFragment = arguments?.getString("oldFragment").toString()
+        if(oldFragment == "Product") {
+            productIdx = arguments?.getLong("productIdx", 0)!!
+        } else {
+            productIdx = arguments?.getLong("auctionIdx", 0)!!
+        }
 
         viewModel = ViewModelProvider(mainActivity)[ProductCustomerQnAWriteViewModel::class.java]
         viewModel.run {
 
-            productName.observe(mainActivity) {
-                fragmentProductCustomerQnaWriteBinding.textviewPcqWriteProductName.text = it
+            if(oldFragment == "Product") {
+                productName.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.textviewPcqWriteProductName.text = it
+                }
+                productStoreName.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.textviewPcqWriteStoreName.text = it
+                }
+                productStoreIdx.observe(mainActivity) {
+                    storeIdx = it
+                }
+                productMainImage.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
+                }
+                viewModel.getProductInfo(productIdx)
             }
-            productStoreName.observe(mainActivity) {
-                fragmentProductCustomerQnaWriteBinding.textviewPcqWriteStoreName.text = it
+            else {
+                auctionProductName.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.textviewPcqWriteProductName.text = it
+                }
+                auctionProductStoreName.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.textviewPcqWriteStoreName.text = it
+                }
+                auctionProductStoreIdx.observe(mainActivity) {
+                    storeIdx = it
+                }
+                auctionProductMainImage.observe(mainActivity) {
+                    fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
+                }
+                viewModel.getAuctionProductInfo(productIdx)
             }
-            productStoreIdx.observe(mainActivity) {
-                storeIdx = it
-            }
-            productMainImage.observe(mainActivity) {
-                fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
-            }
-            viewModel.getProductInfo(productIdx)
         }
 
         fragmentProductCustomerQnaWriteBinding.run {
@@ -139,7 +162,31 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                     qnaIdx++
 
 
-                    val qnaDataClass = QnAClass(qnaIdx, "상품", productIdx, MainActivity.loginedUserInfo.userIdx!!.toLong(), storeIdx, qnaTitle, qnaContent, "None", qnaDate)
+                    val qnaDataClass:QnAClass = if(oldFragment == "Product") {
+                        QnAClass(
+                            qnaIdx,
+                            "상품",
+                            productIdx,
+                            MainActivity.loginedUserInfo.userIdx!!.toLong(),
+                            storeIdx,
+                            qnaTitle,
+                            qnaContent,
+                            "None",
+                            qnaDate
+                        )
+                    } else {
+                        QnAClass(
+                            qnaIdx,
+                            "경매",
+                            productIdx,
+                            MainActivity.loginedUserInfo.userIdx!!.toLong(),
+                            storeIdx,
+                            qnaTitle,
+                            qnaContent,
+                            "None",
+                            qnaDate
+                        )
+                    }
 
                     // 상품 정보 저장
                     QnARepository.addQnAInfo(qnaDataClass) {
