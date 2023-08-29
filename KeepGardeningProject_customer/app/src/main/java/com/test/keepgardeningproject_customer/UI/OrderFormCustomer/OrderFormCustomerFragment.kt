@@ -419,7 +419,6 @@ class OrderFormCustomerFragment : Fragment() {
                     }
                 }
             }
-            getData()
         }
     }
 
