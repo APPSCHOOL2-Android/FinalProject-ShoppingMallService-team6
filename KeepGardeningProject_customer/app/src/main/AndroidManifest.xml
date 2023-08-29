@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KeepGardeningProject_customer"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true">
         <activity
             android:name=".MainActivity"
             android:exported="true">
