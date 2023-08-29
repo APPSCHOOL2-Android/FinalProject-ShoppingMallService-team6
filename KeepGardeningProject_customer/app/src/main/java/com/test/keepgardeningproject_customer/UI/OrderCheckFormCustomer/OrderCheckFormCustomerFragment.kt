@@ -97,19 +97,20 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 }
             }
 
-            val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
-
-            // 주문 정보 받아오기
-            orderCheckFormCustomerViewModel.getOrderInfo(totalOrderIdx)
-
-            // 배송지, 주문자 정보 받아오기
-            orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
-
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
+
+            val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
+
+            // 주문 정보 받아오기
+            orderCheckFormCustomerViewModel.getOrderInfo(totalOrderIdx)
+            recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
+
+            // 배송지, 주문자 정보 받아오기
+            orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
         }
 
         return fragmentOrderCheckFormCustomerBinding.root
