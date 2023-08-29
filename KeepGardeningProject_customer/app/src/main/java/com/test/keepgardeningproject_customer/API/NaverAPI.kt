@@ -1,4 +1,4 @@
-package com.test.keepgardeningproject_seller.API
+package com.test.keepgardeningproject_customer.API
 
 import android.content.ContentValues.TAG
 import android.content.Context
