@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.kakao.sdk.user.model.User
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.MainActivity.Companion.loginedUserInfo
@@ -96,9 +97,8 @@ class JoinCustomerMainFragment : Fragment() {
                 var userindex = it.result.value as Long
 
                 userindex++
-                val userinfo = user!!.email?.let { it1 ->
-                    UserInfo(userindex,MainActivity.EMAIL_LOGIN,email,"None",nickNames)
-                }
+
+
                 firebaseAuth!!.createUserWithEmailAndPassword(email, pw)
                     .addOnCompleteListener(requireActivity()) { task ->
                         if(isAdded){
@@ -112,9 +112,18 @@ class JoinCustomerMainFragment : Fragment() {
                         }
 
                     }
-
+                val userinfo = user?.email?.let { it1 ->
+                    UserInfo(userindex,MainActivity.EMAIL_LOGIN,email,"None",nickNames)
+                }
                 if (userinfo != null) {
                     loginedUserInfo = userinfo
+                    UserRepository.setUserInfo(loginedUserInfo){
+                        UserRepository.setUserIdx(userindex){
+                            Snackbar.make(fragmentJoinCustomerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
+                            mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
+                            mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
+                        }
+                    }
                 }
             }
         }

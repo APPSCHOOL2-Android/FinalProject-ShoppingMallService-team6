@@ -136,10 +136,11 @@ class JoinSellerMainFragment : Fragment() {
                     "image/img_${System.currentTimeMillis()}.jpg"
                 }
 
-                val userinfo = user!!.email?.let { it1 ->
+                val userinfo = user?.email?.let { it1 ->
                     UserSellerInfo(userindex, MainActivity.EMAIL_LOGIN,
                         it1, "None", nickNames, fileName, storeName, storeInfo, postNumber, postDetail)
                 }
+
                 if (userinfo != null) {
                     UserRepository.setUserSellerInfo(userinfo) {
                         UserRepository.setUserSellerIdx(userindex) {

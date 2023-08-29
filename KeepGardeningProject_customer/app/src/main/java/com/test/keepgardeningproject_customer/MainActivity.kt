@@ -46,7 +46,6 @@ import kotlin.concurrent.thread
 class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding: ActivityMainBinding
-
     var newFragment: Fragment? = null
     var oldFragment: Fragment? = null
 
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity() {
 //        var loginType:Int = -1
 //        var isLogin :Boolean = false
 //        var loginType_kakao :Int  = 0
-
         // 로그인관련 정보
         var isLogined :Boolean = false
         var loginedUserInfo = UserInfo(
