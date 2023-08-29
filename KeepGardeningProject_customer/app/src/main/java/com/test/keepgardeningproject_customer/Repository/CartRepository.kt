@@ -10,27 +10,36 @@ import com.test.keepgardeningproject_customer.DAO.CartClass
 
 class CartRepository {
     companion object {
+        // 현재 장바구니 인덱스를 가져온다.
+        fun getCartIdx(callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val cartIdxRef = database.getReference("CartIdx")
+            cartIdxRef.get().addOnCompleteListener(callback1)
+        }
+
+        // 장바구니 인덱스를 저장한다.
+        fun setCartIdx(cartIdx: Long, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val cartIdxRef = database.getReference("CartIdx")
+            cartIdxRef.get().addOnCompleteListener {
+                it.result.ref.setValue(cartIdx).addOnCompleteListener(callback1)
+            }
+        }
+
+        // 장바구니에 상품을 추가한다.
+        fun addCartInfo(cartClass: CartClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val cartDataRef = database.getReference("Cart")
+
+            cartDataRef.push().setValue(cartClass).addOnCompleteListener(callback1)
+        }
+
         // userIdx를 통해 장바구니에 있는 상품 정보를 가져온다.
         fun getCartbyUserIdx(cartUserIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
             val database = FirebaseDatabase.getInstance()
             val cartDataRef = database.getReference("Cart")
             cartDataRef.orderByChild("cartUserIdx").equalTo(cartUserIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
-
-        // productIdx를 통해 장바구니에 담긴 상품 정보를 가져온다.
-//        fun getProductbyIdx(produtIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
-//            val database = FirebaseDatabase.getInstance()
-//            val productDataRef = database.getReference("Product")
-//            productDataRef.orderByChild("productIdx").equalTo(produtIdx.toDouble()).get().addOnCompleteListener(callback1)
-//        }
-
-        // 전체 상품 정보를 가져온다.
-//        fun getProductAll(callback1: (Task<DataSnapshot>) -> Unit) {
-//            val database = FirebaseDatabase.getInstance()
-//            val postDataRef = database.getReference("Product")
-//            postDataRef.orderByChild("productIdx").get().addOnCompleteListener(callback1)
-//        }
-
 
         // 상품의 메인 이미지를 가져온다.
         fun getProductMainImage(fileName: String, callback1: (Task<Uri>) -> Unit) {
@@ -79,5 +88,15 @@ class CartRepository {
         }
 
         // 상품 전체 삭제
+        fun deleteAllCart(userIdx: Long) {
+            val database = FirebaseDatabase.getInstance()
+            val cartDataRef = database.getReference("Cart")
+
+            cartDataRef.orderByChild("cartUserIdx").equalTo(userIdx.toDouble()).get().addOnCompleteListener {
+                for (c1 in it.result.children) {
+                    c1.ref.removeValue()
+                }
+            }
+        }
     }
 }

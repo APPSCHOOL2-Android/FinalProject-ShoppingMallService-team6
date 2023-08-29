@@ -25,12 +25,19 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
     var orderCheckFormOrdererPhone = MutableLiveData<String>()
     var orderCheckFormOrdererEmail = MutableLiveData<String>()
 
+    init {
+        orderCheckFormOrderList.value = mutableListOf<OrdersProductClass>()
+        orderCheckFormOrderImageList.value = mutableListOf<String>()
+        orderCheckFormOrderProductList.value = mutableListOf<ProductClass>()
+    }
+
     // 주문 정보를 가져온다.
     fun getOrderInfo(totalOrderIdx: Long) {
         val tempOrderList = mutableListOf<OrdersProductClass>()
         val tempImageList = mutableListOf<String>()
         val tempProductList = mutableListOf<ProductClass>()
 
+        // 전체 주문 정보 가져오기
         TotalOrderRepository.getOrdersbyTotalOrderIdx(totalOrderIdx) {
             Log.i("s222", "getOrder")
             for (c1 in it.result.children) {
@@ -56,7 +63,9 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
 
                 tempOrderList.add(ordersProductClass)
                 Log.i("s222", tempOrderList.toString())
+                // 상품 인덱스를 통해 상품 정보 가져오기
                 ProductRepository.getProductInfoByIdx(ordersProductIdx.toDouble()) {
+                    Log.i("s222", "getp")
                     for (p1 in it.result.children) {
                         var productIdx = p1.child("productIdx").value as Long
                         var productImageList = p1.child("productImageList").value as ArrayList<String>?
