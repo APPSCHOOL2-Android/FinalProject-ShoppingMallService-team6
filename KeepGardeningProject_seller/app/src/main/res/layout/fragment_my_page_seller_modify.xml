@@ -52,8 +52,9 @@
                     android:id="@+id/textInputLayout_ms_addressNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100"
-                    android:hint="우편번호"
+                    android:layout_weight="1"
+                    android:hint="주소"
+                    android:enabled="false"
                     android:transitionGroup="true">
 
                     <com.google.android.material.textfield.TextInputEditText
