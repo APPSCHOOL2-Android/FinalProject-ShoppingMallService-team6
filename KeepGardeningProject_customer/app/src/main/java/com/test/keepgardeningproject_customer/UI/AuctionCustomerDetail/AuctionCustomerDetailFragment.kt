@@ -241,6 +241,15 @@ class AuctionCustomerDetailFragment : Fragment() {
             buttonAcdQnas.run {
                 setOnClickListener {
                     //문의작성으로 이동
+                    if(!MainActivity.isLogined) {
+                        mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                    } else {
+                        // 로그인이 이미 된경우
+                        val newBundle = Bundle()
+                        newBundle.putLong("auctionIdx", selectedIdx)
+                        newBundle.putString("oldFragment", "Auction")
+                        mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
+                    }
                 }
             }
 

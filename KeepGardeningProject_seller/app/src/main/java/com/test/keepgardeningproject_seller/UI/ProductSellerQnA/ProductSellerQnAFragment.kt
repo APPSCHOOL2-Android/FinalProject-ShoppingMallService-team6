@@ -11,8 +11,12 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.keepgardeningproject_seller.DAO.QnAClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment
+import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnAViewModel
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerQnABinding
@@ -23,12 +27,14 @@ class ProductSellerQnAFragment : Fragment() {
 
     lateinit var fragmentProductSellerQnABinding: FragmentProductSellerQnABinding
     lateinit var mainActivity: MainActivity
+    private lateinit var viewModel: ProductSellerQnAViewModel
 
     companion object {
         fun newInstance() = ProductSellerQnAFragment()
     }
 
-    private lateinit var viewModel: ProductSellerQnAViewModel
+    var qnaList = mutableListOf<QnAClass>()
+    var qnaAuctionList = mutableListOf<QnAClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,11 +44,26 @@ class ProductSellerQnAFragment : Fragment() {
         fragmentProductSellerQnABinding = FragmentProductSellerQnABinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        viewModel = ViewModelProvider(mainActivity)[ProductSellerQnAViewModel::class.java]
+        viewModel.run {
+            qnaClassList.observe(mainActivity) {
+                qnaList = it
+                for (i in 0 until qnaList.size) {
+                    if(it.get(i).QnAProductType == "상품") {
+                        qnaAuctionList.add(qnaList[i])
+                    }
+                }
+                fragmentProductSellerQnABinding.recyclerViewProductSellerQnA.adapter?.notifyDataSetChanged()
+            }
+        }
+        viewModel.getQnAInfoAll(productIdx.toLong())
+
         fragmentProductSellerQnABinding.run {
             recyclerViewProductSellerQnA.run {
                 adapter = RecyclerAdapterClass()
 
                 layoutManager = LinearLayoutManager(mainActivity)
+                adapter?.notifyDataSetChanged()
             }
         }
 
@@ -51,10 +72,15 @@ class ProductSellerQnAFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        fragmentProductSellerQnABinding.root.requestLayout()
+
+        qnaList.clear()
 
         var adapter = fragmentProductSellerQnABinding.recyclerViewProductSellerQnA.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
+
+        viewModel.getQnAInfoAll(productIdx.toLong())
+
+        fragmentProductSellerQnABinding.root.requestLayout()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -66,14 +92,20 @@ class ProductSellerQnAFragment : Fragment() {
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
         inner class ViewHolderClass(rowProductSellerQnaBinding: RowProductSellerQnaBinding) : RecyclerView.ViewHolder(rowProductSellerQnaBinding.root) {
 
-            var imageViewRow : ImageView
             var textViewRowTitle : TextView
             var textViewRowContent : TextView
+            var textViewRowDate : TextView
 
             init {
-                imageViewRow = rowProductSellerQnaBinding.imageViewProductSellerQnA
-                textViewRowTitle = rowProductSellerQnaBinding.textViewProductSellerQnAReviewTitle
-                textViewRowContent = rowProductSellerQnaBinding.textViewProductSellerQnAReviewContent
+                textViewRowTitle = rowProductSellerQnaBinding.textViewProductSellerQnAQnaTitle
+                textViewRowContent = rowProductSellerQnaBinding.textViewProductSellerQnAQnaContent
+                textViewRowDate = rowProductSellerQnaBinding.textViewProductSellerQnAQnaDate
+
+                rowProductSellerQnaBinding.root.setOnClickListener {
+                    val newBundle = Bundle()
+                    newBundle.putInt("qnaIdx", qnaAuctionList[adapterPosition].QnAIdx!!.toInt())
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT, true, newBundle)
+                }
             }
         }
 
@@ -94,13 +126,13 @@ class ProductSellerQnAFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return qnaAuctionList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.imageViewRow.setImageResource(R.drawable.img_bonsai)
-            holder.textViewRowTitle.text = "문의 제목"
-            holder.textViewRowContent.text = "문의 내용"
+            holder.textViewRowTitle.text = qnaAuctionList.get(position)?.QnATitle
+            holder.textViewRowContent.text = qnaAuctionList.get(position)?.QnAContent
+            holder.textViewRowDate.text = qnaAuctionList.get(position)?.QnADate
         }
     }
 
