@@ -55,23 +55,28 @@ class OrderFormCustomerViewModel : ViewModel() {
     fun getProductFromProduct(productIdx: Long, count: Long) {
         val tempList = mutableListOf<CartClass>()
         val tempImageList = mutableListOf<String>()
-
+        Log.i("cccc", productIdx.toString())
+        Log.i("cccc", count.toString())
         ProductRepository.getProductInfoByIdx(productIdx.toDouble()) {
             for (c1 in it.result.children) {
                 val cartIdx = 0L
-                val cartImage = c1.child("productImage").value as String
+                val cartImage = c1.child("productImageList").value as ArrayList<String>
                 val cartName = c1.child("productName").value as String
-                val cartPrice = c1.child("productPrice").value as Long
-                val cartProductIdx = c1.child("ProductIdx").value as Long
+                val cartPrice = c1.child("productPrice").value as String
+                val cartProductIdx = c1.child("productIdx").value as Long
                 val cartUserIdx = MainActivity.loginedUserInfo.userIdx!!
                 val cartCount = count
 
-                val cart = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartName, cartPrice, cartCount, cartImage)
+                val cart = CartClass(cartIdx, cartUserIdx, cartProductIdx, cartName, cartPrice.toLong() * cartCount, cartCount, cartImage[0])
+                Log.i("cccc", cart.toString())
                 tempList.add(cart)
-                tempImageList.add(cartImage)
+                tempImageList.add(cartImage[0])
             }
             orderFormProductList.value = tempList
             orderFormProductImageList.value = tempImageList
+
+            getPaymentPrice()
+            getOrdererInfo()
         }
     }
 
