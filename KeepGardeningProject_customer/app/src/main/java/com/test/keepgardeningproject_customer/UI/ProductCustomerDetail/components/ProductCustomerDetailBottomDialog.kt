@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
@@ -75,15 +76,24 @@ class ProductCustomerDetailBottomDialog : BottomSheetDialogFragment() {
             // 문의하기
             buttonPcdDialogInquiry.setOnClickListener {
 
+
+                // 다이얼로그 없애기ㅡ
+                dismiss()
             }
 
             // 장바구니
             buttonPcdDialogCart.setOnClickListener{
-                CartRepository.getCartIdx {
-                    var cartIdx = it.result.value as Long
-                    cartIdx++
+                // 로그인 안되어 있는경우
+                if(MainActivity.isLogined == false){
+                    mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                }
+                // 로그인 되어있는 경우
+                else{
+                    CartRepository.getCartIdx {
+                        var cartIdx = it.result.value as Long
+                        cartIdx++
 
-                    val cartClass = CartClass(
+                        val cartClass = CartClass(
                             cartIdx,
                             MainActivity.loginedUserInfo.userIdx!!,
                             productCustomerDetailViewModel.productInfo.value?.productIdx!!,
@@ -91,11 +101,13 @@ class ProductCustomerDetailBottomDialog : BottomSheetDialogFragment() {
                             (price * count).toLong(),
                             count.toLong(),
                             productCustomerDetailViewModel.productInfo.value?.productImageList?.get(0)!!
-                    )
+                        )
 
-                    CartRepository.addCartInfo(cartClass) {
-                        CartRepository.setCartIdx(cartIdx) {
-                            dismiss()
+                        CartRepository.addCartInfo(cartClass) {
+                            CartRepository.setCartIdx(cartIdx) {
+                                Snackbar.make(dialogPcdBinding.root, "장바구니에 추가되었습니다.", Snackbar.LENGTH_SHORT).show()
+                                dismiss()
+                            }
                         }
                     }
                 }
@@ -103,12 +115,19 @@ class ProductCustomerDetailBottomDialog : BottomSheetDialogFragment() {
 
             // 구매하기
             buttonPcdDialogBuy.setOnClickListener{
-                var bundle = Bundle()
-                // 선택한 상품 productIdx 전달
-                bundle.putLong("productIdx", productCustomerDetailViewModel.productInfo.value?.productIdx!!)
-                bundle.putInt("count",count)
-                bundle.putString("fromWhere", "productPage")
-                mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT,true,bundle)
+                // 로그인 안되어 있는경우
+                if(MainActivity.isLogined == false){
+                    mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                }
+                // 로그인 되어있는 경우
+                else{
+                    var bundle = Bundle()
+                    // 선택한 상품 productIdx 전달
+                    bundle.putLong("productIdx", MainActivity.chosedProductIdx)
+                    bundle.putInt("count",count)
+                    bundle.putString("fromWhere", "productPage")
+                    mainActivity.replaceFragment(MainActivity.ORDER_FORM_CUSTOMER_FRAGMENT,true,bundle)
+                }
                 
                 // 다이얼로그 없애기ㅡ
                 dismiss()

@@ -35,6 +35,7 @@
             android:id="@+id/textview_row_acd_auction_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="입찰금액"

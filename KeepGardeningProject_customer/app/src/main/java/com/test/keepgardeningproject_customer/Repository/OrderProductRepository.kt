@@ -50,6 +50,13 @@ class OrderProductRepository {
             // 개별 주문 정보 업로드
             ordersProductDataRef.push().setValue(ordersProductClass).addOnCompleteListener(callback1)
         }
+
+        // 전체 주문 정보를 가져온다.
+        fun getOrdersProductAll(callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val ordersProductRef = database.getReference("OrdersProduct")
+            ordersProductRef.orderByChild("ordersIdx").get().addOnCompleteListener(callback1)
+        }
     }
 }
 

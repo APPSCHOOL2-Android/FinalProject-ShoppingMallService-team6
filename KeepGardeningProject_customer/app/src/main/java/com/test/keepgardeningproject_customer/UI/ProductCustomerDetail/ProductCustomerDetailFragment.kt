@@ -40,7 +40,7 @@ class ProductCustomerDetailFragment : Fragment() {
 
     // 뷰모델
     lateinit var productCustomerDetailViewModel: ProductCustomerDetailViewModel
-    var idx : Long = 1
+    var idx : Long = MainActivity.chosedProductIdx
     lateinit var price : String
 
     // 탭
@@ -99,8 +99,7 @@ class ProductCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 상품 인덱스
-        idx = arguments?.getLong("selectedProductIdx", 1)!!
-
+        idx = MainActivity.chosedProductIdx
         // 뷰모델 함수 실행
         productCustomerDetailViewModel.getProductInfoByIdx(idx.toDouble())
 
