@@ -33,5 +33,16 @@ class QnARepository {
             productDataRef.orderByChild("qnAProductIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
+        // 문의 답변 수정
+        fun modifyQnAAnswer(qnaDataClass: QnAClass, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val qnaDataRef = database.getReference("QnA")
+
+            qnaDataRef.orderByChild("qnAIdx").equalTo(qnaDataClass.QnAIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    a1.ref.child("qnAAnswer").setValue(qnaDataClass.QnAAnswer).addOnCompleteListener(callback1)
+                }
+            }
+        }
     }
 }
