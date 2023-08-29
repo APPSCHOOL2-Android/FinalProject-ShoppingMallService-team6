@@ -36,8 +36,6 @@ class MyPageCustomerQnADetailFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     var qnaIdx:Long = 0
-    var uriList = mutableListOf<Uri>()
-    private val handler = Handler()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(

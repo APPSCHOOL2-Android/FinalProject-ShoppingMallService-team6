@@ -12,8 +12,6 @@ import kotlin.concurrent.thread
 
 class MyPageCustomerQnADetailViewModel : ViewModel() {
 
-    private val handler = Handler()
-
     var qnaTitle = MutableLiveData<String>()
     var qnaContent = MutableLiveData<String>()
     var qnaAnswer = MutableLiveData<String>()
@@ -30,5 +28,4 @@ class MyPageCustomerQnADetailViewModel : ViewModel() {
             }
         }
     }
-
 }
