@@ -66,7 +66,7 @@ class LoginSellerMainFragment : Fragment() {
             }
             // 네이버 로그인
             buttonLoginSellerMainNaverLogin.setOnClickListener {
-                Toast.makeText(requireContext(),"naver", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(),"naver", Toast.LENGTH_SHORT).show()
                 naverApi.checkNaverLogin(requireContext())
                 naverLogin()
             }

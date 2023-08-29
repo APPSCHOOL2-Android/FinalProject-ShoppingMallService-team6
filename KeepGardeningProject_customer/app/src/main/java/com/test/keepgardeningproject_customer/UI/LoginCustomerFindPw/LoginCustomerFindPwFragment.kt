@@ -41,7 +41,6 @@ class LoginCustomerFindPwFragment : Fragment() {
             buttonLoginCustomerFindPwCertification.setOnClickListener {
                 if(checkEmailRight()){
                     FindPw(textInputEditTextLoginCustomerFindPwEmail.text.toString())
-                    mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_FIND_PW_FRAGMENT)
                 }
 
             }

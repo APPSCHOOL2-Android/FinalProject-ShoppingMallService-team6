@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.UserInfo
+import com.kakao.sdk.user.model.User
 import com.test.keepgardeningproject_seller.DAO.UserDAO
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
@@ -50,20 +51,6 @@ class MyPageSellerModifyFragment : Fragment() {
         mainActivity = activity as MainActivity
         albumLauncher = albumSetting(myPageSellerModifyBinding.imageViewMsStoreImg)
 
-      /*
-        myPageSellerModifyViewModel =
-            ViewModelProvider(mainActivity)[MyPageSellerModifyViewModel::class.java]
-        savedInstanceState
-        myPageSellerModifyViewModel.run {
-            newPasswordData.observe(mainActivity) {
-                myPageSellerModifyBinding.textInputEditTextMsPassword.setText(it)
-            }
-            newPasswordCheckData.observe(mainActivity) {
-                myPageSellerModifyBinding.textInputEditTextMsPasswordCheck.setText(it)
-            }
-            newNickNameData.observe(mainActivity) {
-                myPageSellerModifyBinding.textInputEditTextMsNickName.setText(it)
-                */
 
         myPageSellerModifyViewModel = ViewModelProvider(this).get(MyPageSellerModifyViewModel::class.java)
         myPageSellerModifyBinding.run {
@@ -101,8 +88,7 @@ class MyPageSellerModifyFragment : Fragment() {
                             Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                         }
                     }
-
-                    mainActivity.loginSellerInfo = userInfoTemp
+                    mainActivity.loginSellerInfo = UserSellerInfo(userInfo.userSellerIdx,userInfo.userSellerLoginType,userInfo.userSellerEmail,userInfo.userSellerPw,nickname,userInfo.userSellerBanner,storeName,storeDetail, addressNumber,addressDetail)
                 }
                 mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
             }
@@ -147,25 +133,8 @@ class MyPageSellerModifyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        myPageSellerModifyBinding.run {
-            var userInfo = mainActivity.loginSellerInfo
-            textInputEditTextMsNickName.setText(userInfo.userSellerNickname)
-            textInputEditTextMsAddressNumber.setText(userInfo.userSellerPostNumber)
-            textInputEditTextMsAddressDetail.setText(userInfo.userSellerPostDetail)
-            textInputEditTextMsStoreName.setText(userInfo.userSellerStoreName)
-            textInputEditTextMsStoreDetail.setText(userInfo.userSellerStoreInfo)
-        }
-        myPageSellerModifyBinding.imageViewMsStoreImg.run {
-            setOnClickListener {
-                val newIntent =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                newIntent.setType("image/*")
-                val mimeType = arrayOf("image/*")
-                newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
-                albumLauncher.launch(newIntent)
-            }
-        }
-        myPageSellerModifyBinding.textInputEditTextMsAddressNumber.setText(mainActivity.postAddress)
+
+        //myPageSellerModifyBinding.textInputEditTextMsAddressNumber.setText(mainActivity)
 
     }
 

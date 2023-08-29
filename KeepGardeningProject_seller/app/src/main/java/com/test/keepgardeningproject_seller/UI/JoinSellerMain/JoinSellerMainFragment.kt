@@ -33,7 +33,7 @@ class JoinSellerMainFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     private var firebaseAuth: FirebaseAuth? = null
     lateinit var albumLauncher: ActivityResultLauncher<Intent>
-
+    lateinit var fileName : String
     // 업로드할 이미지의 Uri
     var uploadUri: Uri? = null
     override fun onCreateView(
@@ -58,7 +58,7 @@ class JoinSellerMainFragment : Fragment() {
                 setTitle("회원가입 하기")
             }
 
-
+            textInputEditTextJoinSellerMainPostNumber.setText(mainActivity.postAddress)
             // 이메일 포커스 주기
             textInputLayoutJoinSellerMainEmail.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
@@ -94,7 +94,10 @@ class JoinSellerMainFragment : Fragment() {
             // 로그인 화면으로
             buttonJoinSellerMainJoin.setOnClickListener {
                 userSubmit()
-
+            }
+            buttonJoinSellerMainFindPostNumber.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT,true,null)
+                textInputEditTextJoinSellerMainPostNumber.setText(mainActivity.postAddress)
             }
         }
         return fragmentJoinSellerMainBinding.root
@@ -117,7 +120,7 @@ class JoinSellerMainFragment : Fragment() {
                 var userinfo = mainActivity.loginSellerInfo
                 userindex++
                 // 배너 이미지 선택 안하면 파일 이름은 None으로 설정
-                val fileName = if (uploadUri == null) {
+                fileName = if (uploadUri == null) {
                     "None"
                 } else {
                     "image/img_${System.currentTimeMillis()}.jpg"
@@ -193,5 +196,26 @@ class JoinSellerMainFragment : Fragment() {
         }
 
         return albumLauncher
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fragmentJoinSellerMainBinding.run {
+            textInputEditTextJoinSellerMainPostNumber.setText(mainActivity.postAddress)
+            var email = textInputEditTextJoinSellerMainEmail.text.toString()
+            var pw = textInputEditTextJoinSellerMainPassword.text.toString()
+            var nickNames = textInputEditTextJoinSellerMainNickName.text.toString()
+            var storeName = textInputEditTextJoinSellerMainStoreName.text.toString()
+            var storeInfo = textInputEditTextJoinSellerMainStoreDetail.text.toString()
+            var postNumber = textInputEditTextJoinSellerMainPostNumber.text.toString()
+            var postDetail = textInputEditTextJoinSellerMainStoreAddress.text.toString()
+            var loginType = MainActivity.EMAIL_LOGIN
+            UserRepository.getUserSellerIndex {
+                var userindex = it.result.value as Long
+                mainActivity.loginSellerInfo = UserSellerInfo(userindex,loginType,email,"None",nickNames,fileName, storeName,storeInfo,postNumber,postDetail)
+            }
+
+        }
+
     }
 }

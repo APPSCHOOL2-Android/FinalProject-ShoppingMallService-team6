@@ -103,6 +103,18 @@ class UserRepository {
             }
         }
 
+        // 사용자 정보 삭제
+        fun deleteUserCustoemrInfo(userInfoIdx: Long, callback1: (Task<Void>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val userSellerInfoDataRef = database.getReference("UserInfo")
+
+            userSellerInfoDataRef.orderByChild("userIdx").equalTo(userInfoIdx.toDouble()).get().addOnCompleteListener {
+                for(c1 in it.result.children){
+                    c1.ref.removeValue().addOnCompleteListener(callback1)
+                }
+            }
+        }
+
 
 
 

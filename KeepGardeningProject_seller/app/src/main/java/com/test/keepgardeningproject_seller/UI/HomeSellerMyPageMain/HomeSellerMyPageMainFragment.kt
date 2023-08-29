@@ -1,13 +1,19 @@
 package com.test.keepgardeningproject_seller.UI.HomeSellerMyPageMain
 
+import android.app.Dialog
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.test.keepgardeningproject_seller.API.GoogleAPI
 import com.test.keepgardeningproject_seller.API.KakaoAPI
 import com.test.keepgardeningproject_seller.API.NaverAPI
@@ -21,11 +27,12 @@ class HomeSellerMyPageMainFragment : Fragment() {
 
     lateinit var homeSellerMyPageMainBinding: FragmentHomeSellerMyPageMainBinding
     lateinit var mainActivity: MainActivity
-
+    lateinit var firebaseAuth : FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        firebaseAuth = FirebaseAuth.getInstance()
         homeSellerMyPageMainBinding = FragmentHomeSellerMyPageMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
         var kakaoAPI = KakaoAPI()
@@ -72,7 +79,8 @@ class HomeSellerMyPageMainFragment : Fragment() {
             }
 
             buttonHomeSellerMyPageMainLogOut.setOnClickListener {
-                mainActivity.removeFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT)
+                // mainActivity.removeFragment(MainActivity.HOME_SELLER_MY_PAGE_MAIN_FRAGMENT)
+                mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT,false,null)
             }
 
             buttonHomeSellerMyPageMainWithdrawal.setOnClickListener {
@@ -101,30 +109,30 @@ class HomeSellerMyPageMainFragment : Fragment() {
         }
         return homeSellerMyPageMainBinding.root
     }
-    fun withDrawDiaglog(){
-        val dialog = MaterialDialog(requireContext())
-            .title(text = "회원탈퇴 ")
-            .message(text = "정말 탈퇴하실건가요?")
-            .positiveButton(text = "네") { dialog ->
-                // OK 버튼을 눌렀을 때 동작
-                // 여기에 원하는 로직을 추가
-                UserRepository.deleteUserSellerInfo(mainActivity.loginSellerInfo.userSellerIdx){task ->
-                    if (task.isSuccessful) {
-                        mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT,false,null)
-                    } else {
-                        // 삭제 실패한 경우 처리
-                    }
-                }
-                dialog.dismiss() // 다이얼로그 닫기
-            }
-            .negativeButton(text = "아니요") { dialog ->
-                // Cancel 버튼을 눌렀을 때 동작
-                // 여기에 원하는 로직을 추가
-                dialog.dismiss() // 다이얼로그 닫기
-            }
+    fun withDrawDiaglog() {
 
-// 다이얼로그 표시
-        dialog.show()
+        val builder = MaterialAlertDialogBuilder(mainActivity)
+        builder.setMessage("정말 탈퇴하실건가요?")
+        builder.setPositiveButton("취소", null)
+        builder.setNegativeButton("확인") { dialogInterface: DialogInterface, i: Int ->
+            UserRepository.deleteUserSellerInfo(mainActivity.loginSellerInfo.userSellerIdx) { task ->
+                if (task.isSuccessful) {
+                    if(mainActivity.loginSellerInfo.userSellerLoginType == MainActivity.EMAIL_LOGIN){
+                        val currentUser = firebaseAuth.currentUser!!
+                        currentUser.delete().addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("구분", "User account deleted.")
+                            }
+                        }
+                    }
+
+                } else {
+                    // 삭제 실패한 경우 처리
+                }
+                mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT, false, null)
+            }
+        }
+        builder.show()
     }
 
 
