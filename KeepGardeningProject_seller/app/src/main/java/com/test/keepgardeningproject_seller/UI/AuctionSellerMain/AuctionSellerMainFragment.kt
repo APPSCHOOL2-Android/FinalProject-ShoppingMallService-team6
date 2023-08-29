@@ -86,6 +86,12 @@ class AuctionSellerMainFragment : Fragment() {
                 var temp = it.toInt()
                 fragmentAuctionSellerMainBinding.textViewAuctionSellerMainOpenPriceValue.text = decimal.format(temp) + "원"
             }
+            auctionCurrentPrice.observe(mainActivity) {
+                // 숫자 comma 표시하기
+                var decimal = DecimalFormat("#,###")
+                var temp = it.toInt()
+                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainNowPriceValue.text = decimal.format(temp) + "원"
+            }
             auctionProductImageNameList.observe(mainActivity) {
                 fileNameList = it
             }
