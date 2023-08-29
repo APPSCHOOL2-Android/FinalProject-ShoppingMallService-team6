@@ -356,7 +356,6 @@ class OrderFormCustomerFragment : Fragment() {
                             ordersIdx,
                             userIdx,
                             product.cartProductIdx,
-                            "",
                             product.cartCount,
                             product.cartPrice,
                             "결제완료",
@@ -444,7 +443,7 @@ class OrderFormCustomerFragment : Fragment() {
                     var newordersidx = c1.child("ordersIdx").value as Long
                     var newproductidx =  c1.child("ordersProductIdx").value as Long
                     var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
-                    ProductRepository.getProductInfoByIdx(useridx.toDouble()) {
+                    ProductRepository.getProductInfoByIdx(newproductidx.toDouble()) {
                         for (c2 in it.result.children) {
                             //결제한 상품의 이름,이미지,상태
                             var newname = c2.child("productName").value.toString()
