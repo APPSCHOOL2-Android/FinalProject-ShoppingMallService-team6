@@ -192,6 +192,7 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                             SystemClock.sleep(3000)
                             val newBundle = Bundle()
                             newBundle.putString("oldFragment", "ProductCustomerQnAWriteFragment")
+                            newBundle.putLong("qnaIdx", qnaIdx)
                             mainActivity.replaceFragment(MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT, true, newBundle)
                         }
                     }
