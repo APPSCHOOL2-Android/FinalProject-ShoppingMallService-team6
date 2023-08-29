@@ -41,5 +41,20 @@ class QnARepository {
             val imageRef = storage.reference.child(fileName)
             imageRef.putFile(uploadUri).addOnCompleteListener(callback1)
         }
+
+        // 해당 인덱스 문의 정보 가져오기
+        fun getQnAInfoByIdx(qnaIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val qnaDataRef = database.getReference("QnA")
+            qnaDataRef.orderByChild("qnAIdx").equalTo(qnaIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
+
+        // 문의 이미지 가져오기
+        fun getQnAImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
+            val storage = FirebaseStorage.getInstance()
+            val fileRef = storage.reference.child(fileName)
+
+            fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
     }
 }
