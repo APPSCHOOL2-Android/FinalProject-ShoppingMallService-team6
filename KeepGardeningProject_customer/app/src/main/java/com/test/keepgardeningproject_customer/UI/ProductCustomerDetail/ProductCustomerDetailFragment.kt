@@ -109,6 +109,20 @@ class ProductCustomerDetailFragment : Fragment() {
                 setNavigationOnClickListener {
                     mainActivity.removeFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT)
                 }
+
+                inflateMenu(R.menu.menu_product_cart)
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.item_product_cart -> {
+                            if (MainActivity.isLogined == true) {
+                                mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                            } else {
+                                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT, true, null)
+                            }
+                        }
+                    }
+                    true
+                }
             }
 
             // 구매하기 버튼 바텀 다이얼로그
