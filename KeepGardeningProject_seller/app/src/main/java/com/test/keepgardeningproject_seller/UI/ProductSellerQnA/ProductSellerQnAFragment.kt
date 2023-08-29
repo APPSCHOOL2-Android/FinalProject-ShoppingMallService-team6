@@ -101,6 +101,11 @@ class ProductSellerQnAFragment : Fragment() {
                 textViewRowContent = rowProductSellerQnaBinding.textViewProductSellerQnAQnaContent
                 textViewRowDate = rowProductSellerQnaBinding.textViewProductSellerQnAQnaDate
 
+                rowProductSellerQnaBinding.root.setOnClickListener {
+                    val newBundle = Bundle()
+                    newBundle.putInt("qnaIdx", qnaAuctionList[adapterPosition].QnAIdx!!.toInt())
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT, true, newBundle)
+                }
             }
         }
 
