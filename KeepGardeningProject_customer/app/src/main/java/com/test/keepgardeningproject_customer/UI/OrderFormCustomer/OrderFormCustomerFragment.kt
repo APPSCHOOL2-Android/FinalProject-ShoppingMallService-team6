@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
@@ -337,7 +338,7 @@ class OrderFormCustomerFragment : Fragment() {
 
             val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-            // 전체 주문 인덱스 번호를 가져온다.
+            // 총 주문 인덱스 번호를 가져온다.
             TotalOrderRepository.getTotalOrderIdx {
                 var totalOrderIdx = it.result.value as Long
                 totalOrderIdx++
@@ -359,7 +360,8 @@ class OrderFormCustomerFragment : Fragment() {
                             product.cartCount,
                             product.cartPrice,
                             "결제완료",
-                            totalOrderIdx
+                            totalOrderIdx,
+                            product.cartImage
                         )
 
                         OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
@@ -401,7 +403,7 @@ class OrderFormCustomerFragment : Fragment() {
                     totalOrderIdx,
                     userIdx,
                     orderDate,
-                    totalOrderPrice,
+                    orderFormCustomerViewModel.orderFormTotalPrice.value!!,
                     editTextOrderFormOrdererPhone.text.toString(),
                     editTextOrderFormReceiverName.text.toString(),
                     editTextOrderFormReceiverPhone.text.toString(),
@@ -411,11 +413,21 @@ class OrderFormCustomerFragment : Fragment() {
                     selectedPayment
                 )
 
+                // 총 주문 정보 저장
                 TotalOrderRepository.addTotalOrdertInfo(totalOrderClass) {
+                    // 총 주문 정보 인덱스 설정
                     TotalOrderRepository.setTotalOrderIdx(totalOrderIdx) {
                         val bundle = Bundle()
                         bundle.putLong("totalOrderIdx", totalOrderIdx)
                         mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
+                        CartRepository.deleteAllCart(userIdx) {
+                        }
+                        // 장바구니 상품 삭제
+//                        CartRepository.deleteAllCart(userIdx) {
+//                            val bundle = Bundle()
+//                            bundle.putLong("totalOrderIdx", totalOrderIdx)
+//                            mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
+//                        }
                     }
                 }
             }

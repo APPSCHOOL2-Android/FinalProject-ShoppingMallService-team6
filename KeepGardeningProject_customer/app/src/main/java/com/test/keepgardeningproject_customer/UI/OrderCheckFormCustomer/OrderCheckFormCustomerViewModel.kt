@@ -25,17 +25,18 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
     var orderCheckFormOrdererPhone = MutableLiveData<String>()
     var orderCheckFormOrdererEmail = MutableLiveData<String>()
 
-    init {
-        orderCheckFormOrderList.value = mutableListOf<OrdersProductClass>()
-        orderCheckFormOrderImageList.value = mutableListOf<String>()
-        orderCheckFormOrderProductList.value = mutableListOf<ProductClass>()
-    }
+//    init {
+//        orderCheckFormOrderList.value = mutableListOf<OrdersProductClass>()
+//        orderCheckFormOrderImageList.value = mutableListOf<String>()
+//        orderCheckFormOrderProductList.value = mutableListOf<ProductClass>()
+//    }
 
     // 주문 정보를 가져온다.
     fun getOrderInfo(totalOrderIdx: Long) {
         val tempOrderList = mutableListOf<OrdersProductClass>()
         val tempImageList = mutableListOf<String>()
         val tempProductList = mutableListOf<ProductClass>()
+        var tempProductList2 = mutableListOf<ProductClass>()
 
         // 전체 주문 정보 가져오기
         TotalOrderRepository.getOrdersbyTotalOrderIdx(totalOrderIdx) {
@@ -48,6 +49,7 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                 val ordersProductPrice = c1.child("ordersProductPrice").value as Long
                 val ordersDeliveryState = c1.child("ordersDeliveryState").value as String
                 val ordersTotalOrderIdx = c1.child("ordersTotalOrderIdx").value as Long
+                val ordersProductImage = c1.child("ordersProductImage").value as String
 
                 val ordersProductClass = OrdersProductClass(
                     ordersIdx,
@@ -56,7 +58,8 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
                     ordersProductCount,
                     ordersProductPrice,
                     ordersDeliveryState,
-                    ordersTotalOrderIdx
+                    ordersTotalOrderIdx,
+                    ordersProductImage
                 )
 
                 tempOrderList.add(ordersProductClass)
@@ -85,8 +88,7 @@ class OrderCheckFormCustomerViewModel : ViewModel() {
 
                         tempProductList.add(productClass)
                         Log.i("s222", "tempProductList : ${tempProductList.toString()}")
-                        tempImageList.add(productImageList!![0])
-                        Log.i("s222", "tempImageList: ${tempImageList.toString()}")
+                        tempImageList.add(productImageList?.get(0)!!)
                     }
                     orderCheckFormOrderProductList.value = tempProductList
                     orderCheckFormOrderImageList.value = tempImageList

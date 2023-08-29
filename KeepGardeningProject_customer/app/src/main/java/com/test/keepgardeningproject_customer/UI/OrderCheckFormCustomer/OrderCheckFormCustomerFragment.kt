@@ -97,20 +97,19 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 }
             }
 
+            val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
+
+            // 주문 정보 받아오기
+            orderCheckFormCustomerViewModel.getOrderInfo(totalOrderIdx)
+
+            // 배송지, 주문자 정보 받아오기
+            orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
+
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
-
-            val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
-
-            // 주문 정보 받아오기
-            orderCheckFormCustomerViewModel.getOrderInfo(totalOrderIdx)
-            recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
-
-            // 배송지, 주문자 정보 받아오기
-            orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
         }
 
         return fragmentOrderCheckFormCustomerBinding.root
@@ -161,16 +160,17 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 Glide.with(mainActivity).load(fileUri).into(holder.rowImage)
             }
 
-            holder.rowDeliveryState.text =
-                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersDeliveryState
             holder.rowProductName.text =
                 orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productName
+
+            holder.rowDeliveryState.text =
+                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersDeliveryState
+
             holder.rowOption.text =
                 "옵션 : ${orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductCount}개"
 
             var decimal = DecimalFormat("#,###")
-            var price1 =
-                orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productPrice?.toInt()
+            var price1 = orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productPrice?.toInt()
             var price2 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductPrice
             holder.rowOrderPriceValue.text = decimal.format(price1) + "원"
             holder.rowProductPriceValue.text = decimal.format(price2) + "원"
