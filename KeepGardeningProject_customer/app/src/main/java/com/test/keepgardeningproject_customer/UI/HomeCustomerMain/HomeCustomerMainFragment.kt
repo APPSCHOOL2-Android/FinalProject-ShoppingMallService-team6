@@ -44,7 +44,11 @@ class HomeCustomerMainFragment : Fragment() {
 
                 // 장바구니
                 imageHcmOrder.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                    if (MainActivity.isLogined == true) {
+                        mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                    } else {
+                        mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT, true, null)
+                    }
                 }
 
                 // 알람
