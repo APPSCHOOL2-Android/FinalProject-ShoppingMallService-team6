@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerInfo
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +12,25 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.keepgardeningproject_seller.DAO.AuctionClass
+import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
+import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerInfoBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerInfoBinding
 import com.test.keepgardeningproject_seller.databinding.RowProductSellerQnaBinding
+import java.text.DecimalFormat
 
 class AuctionSellerInfoFragment : Fragment() {
 
     lateinit var fragmentAuctionSellerInfoBinding: FragmentAuctionSellerInfoBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var auctionSellerInfoViewModel: AuctionSellerInfoViewModel
+
+    var auctionInfoList = mutableListOf<AuctionClass>()
 
     companion object {
         fun newInstance() = AuctionSellerInfoFragment()
@@ -35,6 +45,15 @@ class AuctionSellerInfoFragment : Fragment() {
 
         fragmentAuctionSellerInfoBinding = FragmentAuctionSellerInfoBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        auctionSellerInfoViewModel = ViewModelProvider(mainActivity)[AuctionSellerInfoViewModel::class.java]
+        auctionSellerInfoViewModel.run{
+            auctionClassList.observe(mainActivity){
+                auctionInfoList = it
+                fragmentAuctionSellerInfoBinding.recyclerViewAuctionSellerInfo.adapter?.notifyDataSetChanged()
+            }
+        }
+        auctionSellerInfoViewModel.getAuctionInfo(auctionProductIdx.toLong())
 
         fragmentAuctionSellerInfoBinding.run {
             recyclerViewAuctionSellerInfo.run {
@@ -94,10 +113,20 @@ class AuctionSellerInfoFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return auctionSellerInfoViewModel.auctionClassList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+            // 인덱스 표시
+            holder.textViewRowIndex.text = position.toString()
+
+            // 입찰자 닉네임 표시
+            holder.textViewRowNickname.text = auctionSellerInfoViewModel.auctionClassList.value?.get(position)?.auctionBidNickname
+
+            // 입찰가 표시
+            var decimal = DecimalFormat("#,###")
+            var temp = auctionSellerInfoViewModel.auctionClassList.value?.get(position)?.auctionBidPrice?.toInt()
+            holder.textViewRowPrice.text = decimal.format(temp) + "원"
         }
     }
 
