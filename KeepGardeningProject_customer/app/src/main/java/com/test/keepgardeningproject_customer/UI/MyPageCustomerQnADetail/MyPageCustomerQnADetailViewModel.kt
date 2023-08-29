@@ -57,26 +57,16 @@ class MyPageCustomerQnADetailViewModel : ViewModel() {
             Log.d("lion","name list : ${qnaImageNameList.value}")
 
 
-            for(fileName in qnaImageNameList.value!!) {
-                QnARepository.getQnAImage(fileName) { uri ->
+//            for(fileName in qnaImageNameList.value!!) {
+//                QnARepository.getQnAImage(fileName) { uri ->
+//
+//                    qnaImageUriList.value!!.add(uri.result)
+//                    Log.d("lion", "get : ${qnaImageUriList.value}")
+//
+//                }
+//            }
 
-                    tempImageUriList.add(uri.result)
-                    Log.d("lion", "get : ${tempImageUriList}")
-
-                }
-            }
-
-            // 스레드 슬립 대신 Handler와 postDelayed 사용
-            handler.postDelayed({
-                qnaImageUriList.value = tempImageUriList
-                Log.d("lion", "get list : ${qnaImageUriList.value}")
-            }, 3000)
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        // Handler 메시지 큐에서 대기 중인 작업을 제거
-        handler.removeCallbacksAndMessages(null)
-    }
 }
