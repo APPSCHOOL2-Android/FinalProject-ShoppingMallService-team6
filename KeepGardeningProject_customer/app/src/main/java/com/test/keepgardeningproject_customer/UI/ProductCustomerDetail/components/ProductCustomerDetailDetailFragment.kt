@@ -31,6 +31,7 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         fragmentProductCustomerDetailDetailBinding = FragmentProductCustomerDetailDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
