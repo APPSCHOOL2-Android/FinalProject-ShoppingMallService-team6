@@ -105,8 +105,9 @@ class CartCustomerViewModel : ViewModel() {
 
     // 상품 전체 삭제하기
     fun deleteAllCart(userIdx: Long) {
-        CartRepository.deleteAllCart(userIdx)
-        getProductInCart(userIdx)
+        CartRepository.deleteAllCart(userIdx) {
+            getProductInCart(userIdx)
+        }
     }
 
     // 상품 이미지 불러오기
