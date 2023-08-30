@@ -88,13 +88,13 @@ class CartRepository {
         }
 
         // 상품 전체 삭제
-        fun deleteAllCart(userIdx: Long) {
+        fun deleteAllCart(userIdx: Long, callback1: (Task<Void>) -> Unit) {
             val database = FirebaseDatabase.getInstance()
             val cartDataRef = database.getReference("Cart")
 
             cartDataRef.orderByChild("cartUserIdx").equalTo(userIdx.toDouble()).get().addOnCompleteListener {
                 for (c1 in it.result.children) {
-                    c1.ref.removeValue()
+                    c1.ref.removeValue().addOnCompleteListener(callback1)
                 }
             }
         }

@@ -18,12 +18,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
@@ -128,6 +131,22 @@ class OrderFormCustomerFragment : Fragment() {
                     else -> radioButtonOrderFormDeposit
                 }
                 selectedPayment = selectedRadioButton.text.toString()
+            }
+
+            checkBoxOrderFormAllAgree.run {
+                setOnCheckedChangeListener { compoundButton, b ->
+                    // 각 체크박스를 가지고 있는 레이아웃을 통해 그 안에 있는 View들의 체크상태를 변경한다.
+                    for (v1 in checkBoxGroupOrderFormAgree.children) {
+                        // 형변환
+                        v1 as MaterialCheckBox
+                        // 취미 전체가 체크 되어 있다면
+                        if (b) {
+                            v1.checkedState = MaterialCheckBox.STATE_CHECKED
+                        } else {
+                            v1.checkedState = MaterialCheckBox.STATE_UNCHECKED
+                        }
+                    }
+                }
             }
 
             buttonOrderFormSubmitOrder.setOnClickListener {
@@ -319,7 +338,7 @@ class OrderFormCustomerFragment : Fragment() {
 
             val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-            // 전체 주문 인덱스 번호를 가져온다.
+            // 총 주문 인덱스 번호를 가져온다.
             TotalOrderRepository.getTotalOrderIdx {
                 var totalOrderIdx = it.result.value as Long
                 totalOrderIdx++
@@ -338,11 +357,10 @@ class OrderFormCustomerFragment : Fragment() {
                             ordersIdx,
                             userIdx,
                             product.cartProductIdx,
-                            "",
                             product.cartCount,
                             product.cartPrice,
                             "결제완료",
-                            totalOrderIdx
+                            totalOrderIdx,
                         )
 
                         OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
@@ -384,7 +402,7 @@ class OrderFormCustomerFragment : Fragment() {
                     totalOrderIdx,
                     userIdx,
                     orderDate,
-                    totalOrderPrice,
+                    orderFormCustomerViewModel.orderFormTotalPrice.value!!,
                     editTextOrderFormOrdererPhone.text.toString(),
                     editTextOrderFormReceiverName.text.toString(),
                     editTextOrderFormReceiverPhone.text.toString(),
@@ -394,11 +412,21 @@ class OrderFormCustomerFragment : Fragment() {
                     selectedPayment
                 )
 
+                // 총 주문 정보 저장
                 TotalOrderRepository.addTotalOrdertInfo(totalOrderClass) {
+                    // 총 주문 정보 인덱스 설정
                     TotalOrderRepository.setTotalOrderIdx(totalOrderIdx) {
                         val bundle = Bundle()
                         bundle.putLong("totalOrderIdx", totalOrderIdx)
                         mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
+                        CartRepository.deleteAllCart(userIdx) {
+                        }
+                        // 장바구니 상품 삭제
+//                        CartRepository.deleteAllCart(userIdx) {
+//                            val bundle = Bundle()
+//                            bundle.putLong("totalOrderIdx", totalOrderIdx)
+//                            mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
+//                        }
                     }
                 }
             }
@@ -412,5 +440,6 @@ class OrderFormCustomerFragment : Fragment() {
             editTextOrderFormAddress.setText(mainActivity.address)
         }
     }
+
 
 }
