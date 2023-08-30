@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/margin_size"
     android:orientation="vertical"
-    tools:context=".UI.MyPageCustomerReviewWrite.MyPageCustomerReviewWriteFragment">
+    tools:context=".UI.MyPageCustomerReviewWrite.MyPageCustomerReviewWrite">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_auctionSellerEdit_addImage"
+                android:id="@+id/button_rc_addImage"
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"

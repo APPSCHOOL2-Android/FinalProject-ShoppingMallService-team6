@@ -11,7 +11,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import com.google.firebase.database.FirebaseDatabase
 import com.test.keepgardeningproject_customer.DAO.UserInfo
+import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.UI.AlertCustomer.AlertCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomer.AuctionCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailFragment

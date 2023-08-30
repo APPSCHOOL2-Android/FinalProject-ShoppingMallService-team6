@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.DAO.purchaseInfo
@@ -62,6 +63,7 @@ class MyPageCustomerPurchaseFragment : Fragment() {
             }
 
         }
+
 
         fragmentMyPageCustomerPurchaseBinding.run {
 //            purchaseviewModel.getData()
@@ -172,11 +174,13 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 rowButton.setOnClickListener {
                     //구매자 인덱스
 
-                    val purchaseInfoIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseInfoIdx
-                    val purchaseIdx = purchaseviewModel.paymentList.value?.get(adapterPosition)?.purchaseIdx
+                    //2023.08.29일 오준용 수정함.
+                    val ordersProductIdx = purchaseviewModel.deliveryList.value?.get(adapterPosition)?.orderproductIdx
+                    val ordersIdx= purchaseviewModel.deliveryList.value?.get(adapterPosition)?.totalorderIdx
                     val newBundle = Bundle()
-                    newBundle.putLong("purchaseInfoIdx", purchaseInfoIdx!!)
-                    newBundle.putLong("purchaseIdx", purchaseIdx!!)
+                    newBundle.putLong("ordersProductIdx", ordersProductIdx!!)
+                    newBundle.putLong("ordersIdx", ordersIdx!!)
+
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT, true, newBundle)
 
                 }
