@@ -3,7 +3,6 @@ package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnA
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.play.integrity.internal.t
 import com.test.keepgardeningproject_customer.DAO.QnaInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.ProductRepository

@@ -12,7 +12,12 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.keepgardeningproject_seller.DAO.QnAClass
+import com.test.keepgardeningproject_seller.DAO.ReviewClass
 import com.test.keepgardeningproject_seller.MainActivity
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
+import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
+import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerReviewBinding
 import com.test.keepgardeningproject_seller.databinding.RowProductSellerReviewBinding
 
@@ -27,6 +32,8 @@ class ProductSellerReviewFragment : Fragment() {
 
     private lateinit var viewModel: ProductSellerReviewViewModel
 
+    var reviewList = mutableListOf<ReviewClass>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +41,16 @@ class ProductSellerReviewFragment : Fragment() {
 
         fragmentProductSellerReviewBinding = FragmentProductSellerReviewBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+        viewModel = ViewModelProvider(mainActivity)[ProductSellerReviewViewModel::class.java]
+        viewModel.run {
+            reviewClassList.observe(mainActivity) {
+                reviewList.clear()
+                reviewList = it
+                fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter?.notifyDataSetChanged()
+            }
+        }
+        viewModel.getReviewInfoAll(productIdx.toLong())
 
         fragmentProductSellerReviewBinding.run {
 
@@ -48,10 +65,13 @@ class ProductSellerReviewFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        fragmentProductSellerReviewBinding.root.requestLayout()
 
         var adapter = fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
+
+        viewModel.getReviewInfoAll(productIdx.toLong())
+
+        fragmentProductSellerReviewBinding.root.requestLayout()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,13 +83,11 @@ class ProductSellerReviewFragment : Fragment() {
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
         inner class ViewHolderClass(rowProductSellerReviewBinding: RowProductSellerReviewBinding) : RecyclerView.ViewHolder(rowProductSellerReviewBinding.root) {
 
-            var imageViewRow : ImageView
             var textViewRowReviewTitle : TextView
             var ratingBarRow : RatingBar
             var textViewRowReviewContent : TextView
 
             init {
-                imageViewRow = rowProductSellerReviewBinding.imageViewProductSellerReview
                 textViewRowReviewTitle = rowProductSellerReviewBinding.textViewProductSellerReviewReviewTitle
                 ratingBarRow = rowProductSellerReviewBinding.ratingBarProductSellerReview
                 textViewRowReviewContent = rowProductSellerReviewBinding.textViewProductSellerReviewReviewContent
@@ -93,10 +111,13 @@ class ProductSellerReviewFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 2
+            return reviewList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
+            holder.textViewRowReviewTitle.text = reviewList[position].reviewTitle
+            holder.textViewRowReviewContent.text = reviewList[position].reviewContent
+            holder.ratingBarRow.rating = reviewList[position].rating.toFloat()
         }
     }
 

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_EDIT_FRAGMENT
@@ -96,7 +97,7 @@ class AuctionSellerMainFragment : Fragment() {
                 fileNameList = it
             }
             auctionProductMainImage.observe(mainActivity) {
-                fragmentAuctionSellerMainBinding.imageViewAuctionSellerMainMainImage.setImageBitmap(it)
+                Glide.with(mainActivity).load(it).into(fragmentAuctionSellerMainBinding.imageViewAuctionSellerMainMainImage)
             }
             auctionProductCloseDate.observe(mainActivity) {
                 newBundle.putString("auctionProductCloseDate", it)

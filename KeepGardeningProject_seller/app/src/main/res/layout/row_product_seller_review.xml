@@ -16,12 +16,6 @@
             android:orientation="horizontal"
             android:padding="@dimen/padding_size_middle">
 
-            <ImageView
-                android:id="@+id/imageView_productSellerReview"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:srcCompat="@drawable/img_bonsai" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,6 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/margin_size_top"
                     android:numStars="5"
                     android:rating="3"
                     android:stepSize="1" />
@@ -53,6 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/margin_size_top"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="리뷰 내용"
                     android:textSize="@dimen/text_size_16" />

@@ -72,7 +72,6 @@ class MyPageCustomerQnAFragment : Fragment() {
             MyPageCustomerQuestionRecyclerView.run{
                 adapter = QnaRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
 
             }
 

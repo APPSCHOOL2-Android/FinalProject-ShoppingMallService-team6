@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_customer.UI.ProductCustomerQnAWrite
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,7 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
     var productName = MutableLiveData<String>()
     var productStoreIdx = MutableLiveData<Long>()
     var productStoreName = MutableLiveData<String>()
-    var productMainImage = MutableLiveData<Bitmap>()
+    var productMainImage = MutableLiveData<Uri>()
 
     // 상품 이미지 이름 리스트
     var productImageNameList = MutableLiveData<MutableList<String>>()
@@ -54,15 +55,7 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
             }
 
             ProductRepository.getProductImage(productImageNameList.value!![0]) {
-                thread {
-                    // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성
-                    val url = URL(it.result.toString())
-                    // 접속
-                    val httpURLConnection = url.openConnection() as HttpURLConnection
-                    // 이미지 객체를 생성
-                    val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
-                    productMainImage.postValue(bitmap)
-                }
+                productMainImage.value = it.result
             }
         }
     }
@@ -70,7 +63,7 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
     var auctionProductName = MutableLiveData<String>()
     var auctionProductStoreIdx = MutableLiveData<Long>()
     var auctionProductStoreName = MutableLiveData<String>()
-    var auctionProductMainImage = MutableLiveData<Bitmap>()
+    var auctionProductMainImage = MutableLiveData<Uri>()
 
     // 상품 이미지 이름 리스트
     var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
@@ -103,21 +96,12 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                 ProductRepository.getProductSellerInfoByIdx(auctionProductStoreIdx.value!!.toDouble()) {
                     for (c1 in it.result.children) {
                         auctionProductStoreName.value = c1.child("userSellerStoreName").value as String
-                        Log.d("lion", "store name : ${auctionProductStoreName.value}")
                     }
                 }
             }
 
             ProductRepository.getProductImage(auctionProductImageNameList.value!![0]) {
-                thread {
-                    // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성
-                    val url = URL(it.result.toString())
-                    // 접속
-                    val httpURLConnection = url.openConnection() as HttpURLConnection
-                    // 이미지 객체를 생성
-                    val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
-                    auctionProductMainImage.postValue(bitmap)
-                }
+                auctionProductMainImage.value = it.result
             }
         }
     }

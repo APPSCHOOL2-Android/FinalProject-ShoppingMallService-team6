@@ -83,7 +83,7 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                     storeIdx = it
                 }
                 productMainImage.observe(mainActivity) {
-                    fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
+                    Glide.with(mainActivity).load(it).into(fragmentProductCustomerQnaWriteBinding.imageviewPcqImage)
                 }
                 viewModel.getProductInfo(productIdx)
             }
@@ -98,7 +98,7 @@ class ProductCustomerQnAWriteFragment : Fragment() {
                     storeIdx = it
                 }
                 auctionProductMainImage.observe(mainActivity) {
-                    fragmentProductCustomerQnaWriteBinding.imageviewPcqImage.setImageBitmap(it)
+                    Glide.with(mainActivity).load(it).into(fragmentProductCustomerQnaWriteBinding.imageviewPcqImage)
                 }
                 viewModel.getAuctionProductInfo(productIdx)
             }
