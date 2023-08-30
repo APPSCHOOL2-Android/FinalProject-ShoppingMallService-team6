@@ -51,7 +51,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -136,7 +136,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -150,6 +150,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
                         android:orientation="horizontal">
 
                         <TextView
@@ -239,7 +240,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -254,47 +255,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/margin_size_top"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/button_orderForm_basicAddress"
-                            style="@style/Widget.Material3.Button.OutlinedButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="기본 배송지" />
-
-                        <Space
-                            android:layout_width="10dp"
-                            android:layout_height="match_parent" />
-
-                        <Button
-                            android:id="@+id/button_orderForm_pickAddress"
-                            style="@style/Widget.Material3.Button.OutlinedButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="배송지 선택" />
-
-                        <Space
-                            android:layout_width="10dp"
-                            android:layout_height="match_parent" />
-
-                        <Button
-                            android:id="@+id/button_orderForm_newAddress"
-                            style="@style/Widget.Material3.Button.OutlinedButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="신규입력" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
                         <TextView
@@ -456,7 +416,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:orientation="vertical">
 
                     <LinearLayout
