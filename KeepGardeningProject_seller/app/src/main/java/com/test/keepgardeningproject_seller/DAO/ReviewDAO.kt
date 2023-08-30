@@ -13,3 +13,12 @@ data class ReviewClass(
     val reviewTitle:String,
     val reviewContent:String
 )
+
+data class reviewInfo(
+    var reviewIdx: Long,
+    var reviewImg:String,
+    var reviewUserName:String,
+    var reviewProductName: String,
+    var reviewRating:Long,
+    var reviewTitle: String,
+)

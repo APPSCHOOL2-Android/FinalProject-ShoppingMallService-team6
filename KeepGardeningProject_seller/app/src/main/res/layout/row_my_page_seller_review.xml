@@ -17,51 +17,53 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_gravity="center"
+                android:id="@+id/imageview_rs_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_launcher_foreground" />
 
+
             <LinearLayout
-                android:layout_marginLeft="@dimen/margin_size_top"
-                android:layout_width="wrap_content"
+                android:layout_width="205dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_size_top"
                 android:orientation="vertical">
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_marginTop="@dimen/margin_size_top"
                     android:id="@+id/textview_rs_storeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="상점이름" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_marginTop="@dimen/margin_size_5"
-                    android:id="@+id/textview_rc_productName"
+                    android:id="@+id/textview_rs_productName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="상품이름" />
 
                 <RatingBar
-                    android:layout_marginTop="@dimen/margin_size_5"
                     android:id="@+id/ProductReviewStars"
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:numStars="5"
                     android:rating="3"
                     android:stepSize="1" />
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_marginTop="@dimen/margin_size_5"
                     android:id="@+id/textview_rs_productComment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_5"
                     android:text="한줄 평" />
 
 
