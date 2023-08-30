@@ -79,6 +79,8 @@ class AuctionSellerInfoFragment : Fragment() {
         var adapter = fragmentAuctionSellerInfoBinding.recyclerViewAuctionSellerInfo.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
 
+        auctionSellerInfoViewModel.getAuctionInfo(auctionProductIdx.toLong())
+
         fragmentAuctionSellerInfoBinding.root.requestLayout()
     }
 
@@ -118,7 +120,7 @@ class AuctionSellerInfoFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
             // 인덱스 표시
-            holder.textViewRowIndex.text = position.toString()
+            holder.textViewRowIndex.text = (position+1).toString()
 
             // 입찰자 닉네임 표시
             holder.textViewRowNickname.text = auctionSellerInfoViewModel.auctionClassList.value?.get(position)?.auctionBidNickname

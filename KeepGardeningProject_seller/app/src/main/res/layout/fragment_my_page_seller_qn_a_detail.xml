@@ -4,133 +4,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:transitionGroup="true"
     tools:context=".UI.MyPageSellerQnADetail.MyPageSellerQnADetailFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/materialToolbar_qs_detail"
         style="@style/Theme.KeepGardeningProject_seller.Toolbar"
-        android:id = "@+id/materialToolbar_qs_detail"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
-    <ImageView
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textview_qc_detail_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_size"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_marginTop="@dimen/margin_size_top"
+        android:layout_marginEnd="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_regular"
+        android:text="2023.08.16"
+        android:textAlignment="textEnd"
+        android:textSize="@dimen/text_size_20" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-
-        <com.google.android.material.textview.MaterialTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_size"
-            android:text="2023.08.16"
-            android:textAlignment="textEnd"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:textSize="@dimen/text_size_20"/>
+            android:layout_marginLeft="@dimen/padding_size_middle"
+            android:layout_marginRight="@dimen/padding_size_middle"
+            android:orientation="vertical">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_size"
-        android:orientation="vertical">
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="별점"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:textSize="@dimen/text_size_20"/>
-
-        <RatingBar
-            android:id="@+id/ratingbar_qs_review_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:numStars="5"
-            android:rating="3"
-            android:saveEnabled="false"
-            android:stepSize="1" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:text="제목"
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:textSize="@dimen/text_size_20" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextView_qs_detail_title"
-                android:enabled="false"
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"/>
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:gravity="top"
+                android:text="제목"
+                android:textSize="@dimen/text_size_20" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="내용"
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:textSize="@dimen/text_size_20" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextView_qs_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextView_qs_detail_content"
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:fontFamily="@font/nanum_square_round_regular"/>
+                android:layout_marginTop="@dimen/margin_size"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="내용"
+                android:textSize="@dimen/text_size_20" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:textColor="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id = "@+id/textview_qc_detail_replyState"
-            android:text="답변완료"
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:textSize="@dimen/text_size_20" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextView_qs_detail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextView_qs_detail_answer"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_qc_detail_replyState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"/>
+                android:layout_marginTop="@dimen/margin_size"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="답변완료"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_20" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextView_qs_detail_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular" />
 
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <Button
+                android:id="@+id/button_qs_answerChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="답변 등록하기" />
 
-    </LinearLayout>
-
-
-
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

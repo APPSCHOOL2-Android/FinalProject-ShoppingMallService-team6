@@ -4,7 +4,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.keepgardeningproject_seller.DAO.AuctionClass
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
+import com.test.keepgardeningproject_seller.Repository.AuctionRepository
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import java.net.HttpURLConnection
 import java.net.URL
@@ -14,6 +16,7 @@ class AuctionSellerMainViewModel : ViewModel() {
 
     var auctionProductName = MutableLiveData<String>()
     var auctionProductOpenPrice = MutableLiveData<String>()
+    var auctionCurrentPrice = MutableLiveData<String>()
     var auctionProductOpenDate = MutableLiveData<String>()
     var auctionProductCloseDate = MutableLiveData<String>()
     var auctionProductDetail = MutableLiveData<String>()
@@ -22,6 +25,7 @@ class AuctionSellerMainViewModel : ViewModel() {
     // 경매 상품 이미지 이름 리스트
     var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
 
+
     init {
         auctionProductImageNameList.value = mutableListOf<String>()
     }
@@ -29,6 +33,7 @@ class AuctionSellerMainViewModel : ViewModel() {
 
     fun getAuctionProductInfo(auctionProductIdx: Long) {
         val tempImageNameList = mutableListOf<String>()
+        val tempPriceList = mutableListOf<String>()
 
         AuctionProductRepository.getAuctionProductInfoByIdx(auctionProductIdx) {
             for (c1 in it.result.children) {
@@ -48,6 +53,20 @@ class AuctionSellerMainViewModel : ViewModel() {
 //            tempImageNameList.reverse()
 
             auctionProductImageNameList.value = tempImageNameList
+
+
+            AuctionRepository.getAuctionProductInfoAll(auctionProductIdx) {
+                for (c1 in it.result.children) {
+                    var auctionBidPrice = c1.child("auctionBidPrice").value as String
+
+                    tempPriceList.add(auctionBidPrice)
+                }
+
+                // 가장 마지막에 등록한것부터 보여주기
+                tempPriceList.reverse()
+
+                auctionCurrentPrice.value = tempPriceList[0]
+            }
 
             ProductRepository.getProductImage(auctionProductImageNameList.value!![0]) {
                 thread {

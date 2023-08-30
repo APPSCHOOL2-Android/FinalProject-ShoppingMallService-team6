@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
 import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +42,9 @@ class AuctionSellerRegisterFragment : Fragment() {
     var uriList = ArrayList<Uri>()
 
     val MAX_IMAGE_NUM = 3
+
+    lateinit var dialog: AlertDialog
+    val dialogAutoDismissTime = 3000L // 3초 후에 다이얼로그 닫힘
 
     companion object {
         fun newInstance() = AuctionSellerRegisterFragment()
@@ -240,20 +245,30 @@ class AuctionSellerRegisterFragment : Fragment() {
                                     }
                                 }
 
-                                Snackbar.make(
-                                    fragmentAuctionSellerRegisterBinding.root,
-                                    "경매가 등록되었습니다.",
-                                    Snackbar.LENGTH_SHORT
-                                ).show()
-                                val newBundle = Bundle()
-                                newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
-                                newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
-                                SystemClock.sleep(3000)
-                                mainActivity.replaceFragment(
-                                    MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
-                                    true,
-                                    newBundle
-                                )
+                                val builder = MaterialAlertDialogBuilder(mainActivity)
+                                builder.setMessage("LOADING...")
+                                dialog = builder.create()
+                                dialog.show()
+
+                                // 일정 시간 후에 다이얼로그 닫기
+                                val handler = Handler()
+                                handler.postDelayed({
+                                    dialog.dismiss()
+                                    Snackbar.make(
+                                        fragmentAuctionSellerRegisterBinding.root,
+                                        "경매가 등록되었습니다.",
+                                        Snackbar.LENGTH_SHORT
+                                    ).show()
+                                    val newBundle = Bundle()
+                                    newBundle.putString("oldFragment", "AuctionSellerRegisterFragment")
+                                    newBundle.putInt("auctionProductIdx", auctionProductIdx.toInt())
+                                    mainActivity.replaceFragment(
+                                        MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
+                                        true,
+                                        newBundle
+                                    )
+                                }, dialogAutoDismissTime)
+
                             }
                         }
                     }
