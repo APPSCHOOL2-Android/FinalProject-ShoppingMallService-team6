@@ -15,9 +15,8 @@ class ProductSellerReviewViewModel : ViewModel() {
         reviewClassList.value = mutableListOf<ReviewClass>()
     }
 
-
-    val tempList = mutableListOf<ReviewClass>()
     fun getReviewInfoAll(productIdx: Long) {
+        val tempList = mutableListOf<ReviewClass>()
 
         ReviewRepository.getReviewInfoAllByProduct(productIdx) {
             for (c1 in it.result.children) {
