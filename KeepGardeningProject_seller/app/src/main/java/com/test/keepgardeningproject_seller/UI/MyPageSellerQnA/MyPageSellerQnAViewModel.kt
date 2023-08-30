@@ -47,11 +47,13 @@ class MyPageSellerQnAViewModel : ViewModel() {
                                     var  newAnswer = "미답변"
                                     var newclass = qnaInfo(qnaIdx,newAnswer,newimg,name,productName,qnaTitle,productidx)
                                     templist.add(newclass)
+                                    templist.reverse()
                                     qnalist.value = templist
                                 }else{
                                     var newAnswer2 = "답변완료"
                                     var newclass2 = qnaInfo(qnaIdx,newAnswer2,newimg,name,productName,qnaTitle,productidx)
                                     templist.add(newclass2)
+                                    templist.reverse()
                                     qnalist.value = templist
 
                                 }
