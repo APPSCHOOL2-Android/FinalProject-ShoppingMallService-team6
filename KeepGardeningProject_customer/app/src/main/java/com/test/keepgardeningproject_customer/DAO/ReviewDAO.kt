@@ -4,13 +4,12 @@ class ReviewDAO {
 }
 
 data class Review(
+    val reviewIdx: Long,
     val userIdx: String,
-    val purchaseInfoIdx:String,
     val productIdx:Long,
     val productName:String,
     val storeName:String,
-    val imageList:MutableList<String>,
-    val rating:Float,
+    val rating:Long,
     val reviewTitle:String,
     val reviewContent:String
 )

@@ -143,7 +143,7 @@ class MyPageCustomerReviewFragment : Fragment() {
             holder.ProductName.text = reviewList[position].productName
             holder.StoreName.text = reviewList[position].storeName
             holder.Comment.text = reviewList[position].reviewTitle
-            holder.rating.rating = reviewList[position].rating
+            holder.rating.rating = reviewList[position].rating.toFloat()
 
             holder.moveBtn.setOnClickListener {
 
@@ -151,7 +151,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
                 newBundle = Bundle().apply{
 
-                    putFloat("contentRating",reviewList[position].rating)
+                    putFloat("contentRating", reviewList[position].rating.toFloat())
                     putInt("contentImage",imageResourceId)
                     putString("contentTitle",reviewList[position].reviewTitle)
                     putString("contentReview",reviewList[position].reviewContent)
