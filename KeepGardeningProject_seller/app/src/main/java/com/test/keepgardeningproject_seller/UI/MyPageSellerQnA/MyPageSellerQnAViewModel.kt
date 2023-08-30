@@ -42,7 +42,7 @@ class MyPageSellerQnAViewModel : ViewModel() {
                         UserRepository.getUserNameByIdx(qnaCustomerIdx){
                             for(b1 in it.result.children){
                                 var name = b1.child("userNickname").value as String
-                                Log.d("Lim name","${name}")
+                               
                                 if(qnaAnswer=="None"){
                                     var  newAnswer = "미답변"
                                     var newclass = qnaInfo(qnaIdx,newAnswer,newimg,name,productName,qnaTitle,productidx)
