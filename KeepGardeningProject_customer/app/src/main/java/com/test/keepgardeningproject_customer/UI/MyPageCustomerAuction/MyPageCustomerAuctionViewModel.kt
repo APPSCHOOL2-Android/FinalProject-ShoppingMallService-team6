@@ -45,6 +45,7 @@ class MyPageCustomerAuctionViewModel : ViewModel() {
 
 
                         templist.add(newclass)
+                        templist.reverse()
                         getauctiondetailList.value = templist
                     }
                 }

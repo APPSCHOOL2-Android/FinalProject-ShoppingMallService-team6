@@ -63,6 +63,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                                 newname, newimg, newstate
                             )
                             templist.add(newclass)
+                            templist.reverse()
                             paymentList.value = templist
 
                         }
@@ -72,6 +73,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                                 newname, newimg, newstate
                             )
                             templist2.add(newclass2)
+                            templist2.reverse()
                             deliveryList.value = templist2
 
                         }
