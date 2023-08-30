@@ -231,4 +231,9 @@ class StoreInfoCustomerDetailFragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        storeInfoCustomerDetailViewModel.reset()
+    }
 }
