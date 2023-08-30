@@ -79,7 +79,7 @@ class UserRepository {
         fun getUserInfoByUserIdx(userIdx: Long?,callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val userDataRef  = database.getReference("UserInfo")
-            userDataRef.orderByChild("UserIdx").equalTo(userIdx!!.toDouble()).get().addOnCompleteListener(callback1)
+            userDataRef.orderByChild("userIdx").equalTo(userIdx!!.toDouble()).get().addOnCompleteListener(callback1)
         }
 
         //이메일로 통해 사용자 정보 가져옴

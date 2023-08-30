@@ -42,6 +42,7 @@ class MyPageSellerAuctionViewModel : ViewModel() {
 
                 var newclass = auctionInfo(idx, imgone, newname, newstate, productIdx)
                 myList.add(newclass)
+                myList.reverse()
             }
 
             sellerList.value = myList

@@ -49,12 +49,14 @@ class MyPageCustomerQnAViewModel : ViewModel() {
                                     var newanswer = "미답변"
                                     var newclass = QnaInfo(qnaIdx,qnanewimg,qnastorename.toString(),qnaTitle,qnaContent,qnaProductIdx,storeidx,newanswer)
                                     templist.add(newclass)
+                                    templist.reverse()
                                     qnalist.value = templist
 
                                 }else{
                                     var newanswer2 = "답변완료"
                                     var newclass = QnaInfo(qnaIdx,qnanewimg,qnastorename.toString(),qnaTitle,qnaContent,qnaProductIdx,storeidx,newanswer2)
                                     templist.add(newclass)
+                                    templist.reverse()
                                     qnalist.value = templist
                                 }
 
