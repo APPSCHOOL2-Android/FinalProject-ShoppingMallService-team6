@@ -92,10 +92,11 @@ class JoinCustomerMainFragment : Fragment() {
             var email = textInputEditTextJoinCustomerMainEmail.text.toString()
             var pw = textInputEditTextJoinCustomerMainPassword.text.toString()
             var nickNames = textInputEditTextJoinCustomerMainNickName.text.toString()
+            var loginType = MainActivity.EMAIL_LOGIN
             val user: FirebaseUser? = firebaseAuth!!.currentUser
             UserRepository.getUserIndex {
                 var userindex = it.result.value as Long
-
+                var userInfo = loginedUserInfo
                 userindex++
 
 
@@ -104,7 +105,7 @@ class JoinCustomerMainFragment : Fragment() {
                         if(isAdded){
                             if (task.isSuccessful) {
                                 Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT,false,null)
+                                //mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT,false,null)
 
                             } else {
                                 Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
@@ -112,21 +113,35 @@ class JoinCustomerMainFragment : Fragment() {
                         }
 
                     }
-                val userinfo = user?.email?.let { it1 ->
-                    UserInfo(userindex,MainActivity.EMAIL_LOGIN,email,"None",nickNames)
-                }
-                if (userinfo != null) {
-                    loginedUserInfo = userinfo
+                userInfo = UserInfo(userindex, loginType,email,"None",nickNames)
+                if (userInfo != null) {
+                    loginedUserInfo = userInfo
                     UserRepository.setUserInfo(loginedUserInfo){
                         UserRepository.setUserIdx(userindex){
                             Snackbar.make(fragmentJoinCustomerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                             mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
-                            mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
+                            //mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
                         }
                     }
                 }
             }
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fragmentJoinCustomerMainBinding.run {
+            var email = textInputEditTextJoinCustomerMainEmail.text.toString()
+            val pw = "None"
+            val nickname = textInputEditTextJoinCustomerMainNickName.text.toString()
+            val loginType = MainActivity.EMAIL_LOGIN
+            UserRepository.getUserIndex {
+                var userIndex = it.result.value as Long
+                loginedUserInfo = UserInfo(userIndex,loginType,email,pw,nickname)
+            }
+        }
+
     }
 
 

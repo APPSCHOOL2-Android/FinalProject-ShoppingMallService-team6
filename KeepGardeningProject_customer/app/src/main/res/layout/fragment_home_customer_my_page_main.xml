@@ -117,6 +117,14 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_findPw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:text="비밀번호 찾기" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_homeCustomerMyPageMain_logOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
