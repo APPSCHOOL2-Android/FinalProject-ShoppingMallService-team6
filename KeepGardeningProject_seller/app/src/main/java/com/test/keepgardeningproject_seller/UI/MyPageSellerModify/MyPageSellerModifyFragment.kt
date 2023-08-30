@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.UserInfo
 import com.kakao.sdk.user.model.User
 import com.test.keepgardeningproject_seller.DAO.UserDAO
@@ -30,7 +31,9 @@ import com.test.keepgardeningproject_seller.Repository.AuctionSellerDetailReposi
 import com.test.keepgardeningproject_seller.Repository.UserRepository
 
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerModifyBinding
+import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.concurrent.thread
 
 class MyPageSellerModifyFragment : Fragment() {
 
@@ -41,7 +44,6 @@ class MyPageSellerModifyFragment : Fragment() {
 
 
     var uploadUri: Uri? = null
-    private lateinit var myPageSellerModifyViewModel: MyPageSellerModifyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +53,6 @@ class MyPageSellerModifyFragment : Fragment() {
         mainActivity = activity as MainActivity
         albumLauncher = albumSetting(myPageSellerModifyBinding.imageViewMsStoreImg)
 
-
-        myPageSellerModifyViewModel = ViewModelProvider(this).get(MyPageSellerModifyViewModel::class.java)
         myPageSellerModifyBinding.run {
             toolbarMs.run {
                 setTitle("내 정보 수정")
@@ -67,36 +67,52 @@ class MyPageSellerModifyFragment : Fragment() {
             textInputEditTextMsAddressDetail.setText(userInfo.userSellerPostDetail)
             textInputEditTextMsStoreName.setText(userInfo.userSellerStoreName)
             textInputEditTextMsStoreDetail.setText(userInfo.userSellerStoreInfo)
-            val fileName = if (uploadUri == null) "None" else "image/img_${System.currentTimeMillis()}.jpg"
+
             buttonMcModifySearch.run {
                 setOnClickListener {
                     mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT, true, null)
                 }
 
             }
+
+            imageViewMsStoreImg.setOnClickListener {
+                // 앨범에서 사진을 선택할 수 있는 Activity를 실행한다.
+                val newIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                // 실행할 액티비티의 마임타입 설정(이미지로 설정해준다)
+                newIntent.setType("image/*")
+                // 선택할 파일의 타입을 지정(안드로이드  OS가 이미지에 대한 사전 작업을 할 수 있도록)
+                val mimeType = arrayOf("image/*")
+                newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
+                // 액티비티를 실행한다.
+                albumLauncher.launch(newIntent)
+
+            }
+            var userbanner = userInfo.userSellerBanner!!
+            Log.e("테스트 합니다.","${userInfo.userSellerBanner}")
+            UserRepository.getBannerImage(userbanner){
+                val fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(imageViewMsStoreImg)
+            }
+
             buttonMsModifyEnd.setOnClickListener {
                 var nickname = textInputEditTextMsNickName.text.toString()
                 var addressNumber = textInputEditTextMsAddressNumber.text.toString()
                 var addressDetail = textInputEditTextMsAddressDetail.text.toString()
                 var storeName = textInputEditTextMsStoreName.text.toString()
                 var storeDetail = textInputEditTextMsStoreDetail.text.toString()
-                var userInfoTemp = UserSellerInfo(userInfo.userSellerIdx,userInfo.userSellerLoginType,userInfo.userSellerEmail,userInfo.userSellerPw,nickname,userInfo.userSellerBanner,storeName,storeDetail, addressNumber,addressDetail)
-                UserRepository.modifyUserSellerInfo(userInfoTemp) {
-                    if (uploadUri != null) {
-                        UserRepository.uploadImage(fileName, uploadUri!!) {
-                            myPageSellerModifyViewModel.reset()
-                            mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
-                            Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                        }
-                    } else {
-                        UserRepository.uploadImage(fileName, uploadUri!!) {
-                            myPageSellerModifyViewModel.reset()
-                            mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
-                            Snackbar.make(myPageSellerModifyBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
-                        }
+                val fileName = if (uploadUri == null) "None" else "image/img_${System.currentTimeMillis()}.jpg"
+                if (uploadUri != null) {
+                    UserRepository.uploadImage(fileName, uploadUri!!) {
+                        mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
                     }
-                    mainActivity.loginSellerInfo = UserSellerInfo(userInfo.userSellerIdx,userInfo.userSellerLoginType,userInfo.userSellerEmail,userInfo.userSellerPw,nickname,userInfo.userSellerBanner,storeName,storeDetail, addressNumber,addressDetail)
                 }
+                val userInfoTemp = UserSellerInfo(userInfo.userSellerIdx,userInfo.userSellerLoginType,userInfo.userSellerEmail,userInfo.userSellerPw,nickname,fileName,storeName,storeDetail, addressNumber,addressDetail)
+                UserRepository.modifyUserSellerInfo(userInfoTemp) {
+                    if(it.isSuccessful){
+                        mainActivity.loginSellerInfo = userInfoTemp
+                    }
+                }
+                mainActivity.loginSellerInfo = userInfoTemp
                 mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
             }
 
@@ -135,13 +151,6 @@ class MyPageSellerModifyFragment : Fragment() {
         }
         return albumLauncher
 
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        //myPageSellerModifyBinding.textInputEditTextMsAddressNumber.setText(mainActivity)
 
     }
 
