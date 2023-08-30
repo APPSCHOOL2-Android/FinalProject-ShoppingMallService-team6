@@ -94,7 +94,7 @@ class MyPageCustomerQnAFragment : Fragment() {
 
             init{
                 rowPostListState = rowPostListBinding.textviewQcReplyState
-                rowPostListStoreName = rowPostListBinding.textviewQcProductName
+                rowPostListStoreName = rowPostListBinding.textviewQcStoreName
                 rowPostProductName = rowPostListBinding.textviewQcProductName
                 rowPostComment = rowPostListBinding.textviewQcComment
                 rowPostImg = rowPostListBinding.imageviewQcImg
@@ -102,11 +102,10 @@ class MyPageCustomerQnAFragment : Fragment() {
 
 
                 rowArrow.setOnClickListener {
-
                     val qnaidx = viewmodel.qnalist.value?.get(adapterPosition)?.qnaIdx
                     val newBundle = Bundle()
                     newBundle.putLong("qnaIdx", qnaidx!!)
-                    mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT, true, newBundle)
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT, true, newBundle)
 
                 }
             }

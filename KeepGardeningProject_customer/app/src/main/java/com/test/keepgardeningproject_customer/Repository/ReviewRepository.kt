@@ -59,6 +59,17 @@ class ReviewRepository {
 
         }
 
+        fun getUserReview(userIdx:String,callback1: (Task<DataSnapshot>) -> Unit){
+
+            val database = FirebaseDatabase.getInstance()
+
+            val reviewRef = database.getReference("Review").child(userIdx)
+
+            reviewRef.get().addOnCompleteListener(callback1)
+
+
+        }
+
 
 
     }

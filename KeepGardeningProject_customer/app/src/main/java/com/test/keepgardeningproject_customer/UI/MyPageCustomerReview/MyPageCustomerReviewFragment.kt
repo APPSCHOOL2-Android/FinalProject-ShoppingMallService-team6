@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_customer.DAO.MypageReview
 import com.test.keepgardeningproject_customer.DAO.MypageReviewDetail
+import com.test.keepgardeningproject_customer.DAO.Review
 import com.test.keepgardeningproject_customer.DAO.TestDAO
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
@@ -66,16 +67,24 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             val userIdx = MainActivity.loginedUserInfo.userIdx.toString()
 
-
             ReviewRepository.getUserReview(userIdx){
+
+                var reviewList = mutableListOf<Review>()
+
+                for(c1 in it.result.children){
+
+                    reviewList.add(c1.value as Review)
+
+                }
 
                 MyPageReviewRecyclerView.run{
 
-                    adapter = ReviewRecyclerViewAdapter(it)
+                    adapter = ReviewRecyclerViewAdapter(reviewList)
                     layoutManager = LinearLayoutManager(context)
 
-
                 }
+
+
 
             }
 
@@ -90,7 +99,7 @@ class MyPageCustomerReviewFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    inner class ReviewRecyclerViewAdapter(val reviewList: MutableList<MypageReview>) :
+    inner class ReviewRecyclerViewAdapter(val reviewList: MutableList<Review>) :
         RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>() {
         inner class ReviewViewHolder(rowCustomerReviewBinding: RowMyPageCustomerReviewBinding) :
             RecyclerView.ViewHolder(rowCustomerReviewBinding.root) {
@@ -134,7 +143,7 @@ class MyPageCustomerReviewFragment : Fragment() {
             holder.ProductName.text = reviewList[position].productName
             holder.StoreName.text = reviewList[position].storeName
             holder.Comment.text = reviewList[position].reviewTitle
-            holder.rating.rating = reviewList[position].ratings
+            holder.rating.rating = reviewList[position].rating
 
             holder.moveBtn.setOnClickListener {
 
@@ -142,7 +151,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
                 newBundle = Bundle().apply{
 
-                    putFloat("contentRating",reviewList[position].ratings)
+                    putFloat("contentRating",reviewList[position].rating)
                     putInt("contentImage",imageResourceId)
                     putString("contentTitle",reviewList[position].reviewTitle)
                     putString("contentReview",reviewList[position].reviewContent)
