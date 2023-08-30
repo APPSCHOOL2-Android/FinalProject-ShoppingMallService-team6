@@ -100,7 +100,12 @@ class ProductCustomerDetailReviewFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolderPCDR, position: Int) {
             holder.textViewPcdrRatingNum.text = RL[position].rating.toString()
             holder.ratingBarPcdr.rating = RL[position].rating.toFloat()
-            holder.textViewPcdrUserName.text = "작성자 : " + RL[position].storeName
+            viewModel.run{
+                this.getName(RL[position].userIdx.toLong())
+                userName.observe(mainActivity){
+                    holder.textViewPcdrUserName.text = "작성자 : " + it
+                }
+            }
             holder.textViewPcdrTitle.text = RL[position].reviewTitle
             holder.textViewPcdrContent.text = RL[position].reviewContent
         }
