@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
             MY_PAGE_CUSTOMER_QNA_FRAGMENT -> MyPageCustomerQnAFragment()
             MY_PAGE_CUSTOMER_QNA_DETAIL_FRAGMENT -> MyPageCustomerQnADetailFragment()
             MY_PAGE_CUSTOMER_REVIEW_FRAGMENT -> MyPageCustomerReviewFragment()
-            MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT ->MyPageCustomerReviewWrite()
+            MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT -> MyPageCustomerReviewWrite()
             MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT-> MyPageCustomerReviewDetailFragment()
             ORDER_CHECK_FORM_CUSTOMER_FRAGMENT -> OrderCheckFormCustomerFragment()
             ORDER_FORM_CUSTOMER_FRAGMENT -> OrderFormCustomerFragment()
