@@ -12,5 +12,18 @@ data class QnAClass(
     var QnATitle: String,
     var QnAContent: String,
     var QnAAnswer: String,
-    var QnADate: String
+    var QnADate: String,
+    var QnAImageList: ArrayList<String>
+)
+
+data class QnaInfo(
+    var qnaIdx :Long,
+    var qnaImgList :String,
+    var qnaStoreName:String,
+    var qnaName:String,
+    var qnaDetail:String,
+    var qnaProductIdx:Long,
+    var qnaStoreIdx:Long,
+    var qnaAnswer:String
+
 )

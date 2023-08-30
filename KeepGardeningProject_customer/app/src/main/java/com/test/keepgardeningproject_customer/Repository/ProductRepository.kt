@@ -49,5 +49,12 @@ class ProductRepository {
             productDataRef.orderByChild("userSellerIdx").equalTo(storeIdx).get().addOnCompleteListener(callback1)
         }
 
+        fun getProductQnaInfoByIdx(productidx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("Product")
+            databaseRef.orderByChild("productIdx").equalTo(productidx.toDouble()!!).get().addOnCompleteListener(callback1)
+
+        }
+
     }
 }
