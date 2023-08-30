@@ -4,20 +4,26 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
+import com.test.keepgardeningproject_seller.Repository.QnARepository
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerQuaBinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerReviewBinding
+import java.net.URL
 
 class MyPageSellerQnAFragment : Fragment() {
 
@@ -40,10 +46,18 @@ class MyPageSellerQnAFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        val view = binding.root
+        viewModel = ViewModelProvider(mainActivity)[MyPageSellerQnAViewModel::class.java]
 
+        var useridx = mainActivity.loginSellerInfo.userSellerIdx
+
+        viewModel.run {
+            qnalist.observe(mainActivity){
+                binding.recyclerViewSellerQuestion.adapter?.notifyDataSetChanged()
+            }
+        }
         binding.run{
 
+            viewModel.getData(useridx)
             materialToolbarSellerQuestion.run{
 
                 title = "문의내역"
@@ -51,134 +65,95 @@ class MyPageSellerQnAFragment : Fragment() {
                 setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
 
                 setNavigationOnClickListener {
-
+                    viewModel.resetList()
                     mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_QNA_FRAGMENT)
 
                 }
 
             }
 
-            buttonQsAnswerAll.run{
-
-                setOnClickListener {
-
-                    val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
-
-                    //클릭한 버튼을 제외한 버튼들 전부 회색 처리
-
-                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(colorPrimary)
-
-                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-
-                    buttonQsNotAnswered.backgroundTintList= ColorStateList.valueOf(Color.GRAY)
-
-                }
-
-            }
-
-            buttonQsAnswered.run{
-
-                setOnClickListener {
-
-                    val colorPrimary = ContextCompat.getColor(context, R.color.colorAccent3)
-
-                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(colorPrimary)
-
-                    buttonQsNotAnswered.backgroundTintList= ColorStateList.valueOf(Color.GRAY)
-
-                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-
-                }
-
-            }
-
-            buttonQsNotAnswered.run{
-
-                setOnClickListener {
-
-                    val colorPrimary = ContextCompat.getColor(context, R.color.Red)
-
-                    buttonQsNotAnswered.backgroundTintList = ColorStateList.valueOf(colorPrimary)
-
-                    buttonQsAnswered.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-
-                    buttonQsAnswerAll.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-
-                }
-
-
-            }
-
-
             recyclerViewSellerQuestion.run{
 
-                adapter = QuestionRecyclerViewAdapter()
+                adapter = QnaRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
 
             }
 
         }
 
-        return view
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyPageSellerQnAViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    inner class QnaRecyclerViewAdapter : RecyclerView.Adapter<QnaRecyclerViewAdapter.AllViewHolder>(){
+        inner class AllViewHolder(rowPostListBinding: RowMyPageSellerQuaBinding) : RecyclerView.ViewHolder(rowPostListBinding.root){
 
-    inner class QuestionRecyclerViewAdapter :
-        RecyclerView.Adapter<QuestionRecyclerViewAdapter.ReviewViewHolder>() {
-        inner class ReviewViewHolder(rowCustomerQnABinding: RowMyPageSellerQuaBinding) :
-            RecyclerView.ViewHolder(rowCustomerQnABinding.root) {
+            val rowPostListState:TextView
+            val rowPostListStoreName: TextView
+            val rowPostImg :ImageView
+            var rowPostProductName:TextView
+            val rowPostComment:TextView
+            val rowArrow:ImageButton
 
-            val ProductName: TextView
-            val StoreName: TextView
-            val Comment: TextView
+            init{
+                rowPostListState = rowPostListBinding.textviewQsReplyState
+                rowPostListStoreName = rowPostListBinding.textviewQsStoreName
+                rowPostProductName = rowPostListBinding.textviewQsProductName
+                rowPostComment = rowPostListBinding.textviewQsComment
+                rowPostImg = rowPostListBinding.imageviewQsImg
+                rowArrow  = rowPostListBinding.buttonQsDetail
 
-            val detailBtn: ImageView
 
 
-            init {
+                rowArrow.setOnClickListener {
+                    val qnaidx = viewModel.qnalist.value?.get(adapterPosition)?.qnaidx!!.toInt()
+                    val newBundle = Bundle()
+                    newBundle.putInt("qnaIdx", qnaidx!!)
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT, true, newBundle)
 
-                ProductName = rowCustomerQnABinding.textviewQsProductName
-                StoreName = rowCustomerQnABinding.textviewQsStoreName
-                Comment = rowCustomerQnABinding.textviewQsReplyState
-                detailBtn = rowCustomerQnABinding.buttonQsDetail
+                }
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
-            val rowCustomerReviewBinding = RowMyPageSellerQuaBinding.inflate(layoutInflater)
-            val ViewHolder = ReviewViewHolder(rowCustomerReviewBinding)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):QnaRecyclerViewAdapter.AllViewHolder {
+            val rowPostListBinding = RowMyPageSellerQuaBinding.inflate(layoutInflater)
+            val allViewHolder = AllViewHolder(rowPostListBinding)
 
-            rowCustomerReviewBinding.root.layoutParams = ViewGroup.LayoutParams(
+            rowPostListBinding.root.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
 
-            return ViewHolder
+            return allViewHolder
         }
 
-        override fun getItemCount(): Int {
-            return 20
-        }
+        override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
+            holder.rowPostListState.text = viewModel.qnalist.value!!.get(position).qnaAnswer
+            holder.rowPostListStoreName.text = viewModel.qnalist.value!!.get(position).userName
 
-        override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-            holder.ProductName.text = "스파이더맨"
+            holder.rowPostProductName.text = viewModel.qnalist.value!!.get(position).productname
+            holder.rowPostComment.text = viewModel.qnalist.value!!.get(position).qnaTitle
+           QnARepository.getQnaImage(viewModel.qnalist.value?.get(position)?.qnaimg.toString()){
 
-            holder.detailBtn.setOnClickListener {
-
-                mainActivity.replaceFragment(
-                    MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT,
-                    true,
-                    null
-                )
-
+                //이미지뷰에 사진넣기
+                val url = URL(it.result.toString())
+                Glide.with(context!!).load(url)
+                    .override(200,200)
+                    .into(holder.rowPostImg)
             }
 
         }
+
+        override fun getItemCount(): Int {
+            return viewModel.qnalist.value?.size!!
+        }
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.resetList()
     }
 
 }

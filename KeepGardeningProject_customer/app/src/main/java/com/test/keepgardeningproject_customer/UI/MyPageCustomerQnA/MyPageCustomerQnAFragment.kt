@@ -127,7 +127,7 @@ class MyPageCustomerQnAFragment : Fragment() {
             holder.rowPostListState.text = viewmodel.qnalist.value!!.get(position).qnaAnswer
             holder.rowPostListStoreName.text = viewmodel.qnalist.value!!.get(position).qnaStoreName
 
-            Log.d("qnastorename","${viewmodel.qnalist.value!!.get(position).qnaStoreName}")
+
             holder.rowPostProductName.text = viewmodel.qnalist.value!!.get(position).qnaName
             holder.rowPostComment.text = viewmodel.qnalist.value!!.get(position).qnaDetail
             PurchaseRepository.getImage(viewmodel.qnalist.value?.get(position)?.qnaImgList.toString()){

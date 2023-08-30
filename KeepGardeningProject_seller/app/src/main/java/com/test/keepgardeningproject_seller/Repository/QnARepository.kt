@@ -44,5 +44,23 @@ class QnARepository {
                 }
             }
         }
+
+
+        fun getQnAInfoByidx(useridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            var database = FirebaseDatabase.getInstance()
+            var databaseRef = database.getReference("QnA")
+            databaseRef.orderByChild("qnAStoreIdx").equalTo(useridx.toDouble()).get().addOnCompleteListener (callback1)
+        }
+        fun getQnAInfoByidx2(useridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            var database = FirebaseDatabase.getInstance()
+            var databaseRef = database.getReference("QnA")
+            databaseRef.orderByChild("qnACustomerIdx").equalTo(useridx.toDouble()).get().addOnCompleteListener (callback1)
+        }
+
+        fun getQnaImage(filename:String,callback1: (Task<Uri>) -> Unit){
+            val storage = FirebaseStorage.getInstance()
+            var storageRef = storage.reference.child(filename)
+            storageRef.downloadUrl.addOnCompleteListener (callback1)
+        }
     }
 }

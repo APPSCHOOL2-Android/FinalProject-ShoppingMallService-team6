@@ -46,10 +46,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                 var newordersidx = c1.child("ordersIdx").value as Long
                 var newproductidx = c1.child("ordersProductIdx").value as Long
                 var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
-                Log.d("lim useridx", "${newstate}")
-                Log.d("lim ordersidx", "${newordersidx}")
-                Log.d("lim productidx", "${newproductidx}")
-                Log.d("lim totalorderidx", "${newtotalorderidx}")
+
 
                 ProductRepository.getProductInfoByIdx(newproductidx.toDouble()) {
                     for (c2 in it.result.children) {
@@ -58,8 +55,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                         var imglist = c2.child("productImageList").value as ArrayList<String>
                         var newimg = imglist[0]
 
-                        Log.d("lim newname", "${newname}")
-                        Log.d("lim newimg", "${newimg}")
+
 
                         if (newstate == "결제완료") {
                             var newclass = purchaseInfo(
@@ -68,7 +64,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                             )
                             templist.add(newclass)
                             paymentList.value = templist
-                            Log.d("lim paymentlist", "${paymentList.value}")
+
                         }
                         if (newstate == "배송완료") {
                             var newclass2 = purchaseInfo(
@@ -77,7 +73,7 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                             )
                             templist2.add(newclass2)
                             deliveryList.value = templist2
-                            Log.d("lim deliverylist", "${deliveryList.value}")
+
                         }
 
 

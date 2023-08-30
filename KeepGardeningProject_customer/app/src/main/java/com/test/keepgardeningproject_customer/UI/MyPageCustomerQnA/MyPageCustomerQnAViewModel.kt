@@ -26,12 +26,11 @@ class MyPageCustomerQnAViewModel : ViewModel() {
     fun getData(){
         var templist = mutableListOf<QnaInfo>()
         var useridx =  MainActivity.loginedUserInfo.userIdx!!
-        Log.d("lim useridx","${useridx}")
+
         QnARepository.getQnAByUserIdx(useridx){
             for(c1 in it.result.children){
                 var qnaAnswer = c1.child("qnAAnswer").value as String
 
-                Log.d("lim answer","${qnaAnswer}")
 
                 var qnaContent = c1.child("qnAContent").value as String
                 var qnaTitle = c1.child("qnATitle").value as String
@@ -42,7 +41,7 @@ class MyPageCustomerQnAViewModel : ViewModel() {
                         var imglist = c2.child("productImageList").value as ArrayList<String>
                         var qnanewimg = imglist[0]
                         var storeidx = c2.child("productStoreIdx").value as Long
-                        Log.d("Lim storeidx","${storeidx}")
+
                         StoreRepository.getSellerStorenameByIdx(storeidx){
                             for(c3 in it.result.children){
                                 var qnastorename  = c3.child("userSellerStoreName").value
@@ -60,7 +59,7 @@ class MyPageCustomerQnAViewModel : ViewModel() {
                                     qnalist.value = templist
                                 }
 
-                                Log.d("Lim QNA","${qnalist.value}")
+
                             }
 
                         }

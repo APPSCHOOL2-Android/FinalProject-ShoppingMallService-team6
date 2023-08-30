@@ -42,7 +42,7 @@ class MyPageCustomerAuctionViewModel : ViewModel() {
                         var productidx = c1.child("auctionProductIdx").value as Long
 
                         var newclass = auctionCustomerDetail(name,newimg,newstate,auctionbidPrice,productidx)
-                        Log.d("Lim class","${newclass}")
+
 
                         templist.add(newclass)
                         getauctiondetailList.value = templist

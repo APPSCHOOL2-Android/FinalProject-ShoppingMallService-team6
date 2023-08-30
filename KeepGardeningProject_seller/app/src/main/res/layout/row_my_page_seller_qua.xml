@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id = "@+id/ProductQuestionRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -39,17 +40,19 @@
                         android:textColor="@color/colorPrimary" />
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/imageview_qs_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_5"
                         android:src="@drawable/ic_launcher_foreground" />
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_marginLeft="@dimen/margin_size_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_marginLeft="@dimen/margin_size"
+                    android:layout_marginTop="@dimen/margin_size"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
@@ -58,6 +61,7 @@
                         android:id="@+id/textview_qs_storeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_size"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="상점이름" />
 
@@ -65,7 +69,7 @@
                         android:id="@+id/textview_qs_productName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_marginTop="@dimen/margin_size"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="상품이름"
                         android:textSize="@dimen/text_size_16"
@@ -75,7 +79,7 @@
                         android:id="@+id/textview_qs_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:layout_marginTop="@dimen/margin_size"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="질문내역" />
 
