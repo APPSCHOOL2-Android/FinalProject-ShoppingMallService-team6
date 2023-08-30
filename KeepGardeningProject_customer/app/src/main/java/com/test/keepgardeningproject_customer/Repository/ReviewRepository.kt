@@ -1,54 +1,64 @@
 package com.test.keepgardeningproject_customer.Repository
 
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.test.keepgardeningproject_customer.DAO.MypageReview
+import com.test.keepgardeningproject_customer.DAO.Review
 
 class ReviewRepository {
 
     companion object{
 
-        fun getUserReview(
-            userIdx: String,
-            callback1: (MutableList<MypageReview>) -> Unit
-        ) {
+        //제품 이름 얻어오기
+
+        fun getProductNameByProductIdx(productIdx:Long,callback1:(Task<DataSnapshot>)->Unit){
+
             val database = FirebaseDatabase.getInstance()
-            val reviewRef = database.getReference("Review").child(userIdx).child("reviewList")
 
-            reviewRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val reviewList: MutableList<MypageReview> = mutableListOf()
+            val productRef = database.getReference("Product")
 
-                    for (reviewSnapshot in snapshot.children) {
-                        val productName = reviewSnapshot.child("productName").getValue(String::class.java)
-                        val ratings = reviewSnapshot.child("ratings").getValue(Double::class.java)
-                        val reviewContent = reviewSnapshot.child("reviewContent").getValue(String::class.java)
-                        val reviewImage = reviewSnapshot.child("reviewImage").getValue(Int::class.java)
-                        val reviewTitle = reviewSnapshot.child("reviewTitle").getValue(String::class.java)
-                        val storeName = reviewSnapshot.child("storeName").getValue(String::class.java)
-                        val userIdx = reviewSnapshot.child("userIdx").getValue(String::class.java)
+            productRef.orderByChild("productIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener(callback1)
 
-                        if (productName != null && ratings != null && reviewContent != null &&
-                            reviewImage != null && reviewTitle != null && storeName != null && userIdx != null
-                        ) {
-                            val review = MypageReview(
-                                userIdx, storeName, productName, ratings.toFloat(),
-                                reviewImage, reviewTitle, reviewContent
-                            )
-                            reviewList.add(review)
-                        }
-                    }
-
-                    callback1(reviewList)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // 오류 처리
-                }
-            })
         }
+
+        //상점 이름 얻어오기
+        fun getStoreNameByStoreIdx(target_Idx: Long,callback1:(Task<DataSnapshot>)->Unit){
+
+            val database = FirebaseDatabase.getInstance()
+
+            val storeRef = database.getReference("UserSellerInfo")
+
+            storeRef.orderByChild("userSellerIdx").equalTo(target_Idx.toDouble()).get().addOnCompleteListener(callback1)
+
+        }
+
+
+        //리뷰 데이터베이스에 올리기
+        fun uploadReview(userIdx:String,review: Review){
+
+            val database = FirebaseDatabase.getInstance()
+
+            val reviewRef = database.getReference("Review")
+
+            reviewRef.child(userIdx).push().setValue(review)
+
+        }
+
+        //Review->user ->review1,review2,review3....이다. review들을 얻어오는 함수이다.
+
+        fun getReviewByuserIdx(userIdx:String,callback1: (Task<DataSnapshot>) -> Unit){
+
+            val database = FirebaseDatabase.getInstance()
+
+            val reviewRef = database.getReference("Review")
+
+            reviewRef.orderByChild("userIdx").equalTo(userIdx).get().addOnCompleteListener(callback1)
+
+        }
+
 
 
     }
