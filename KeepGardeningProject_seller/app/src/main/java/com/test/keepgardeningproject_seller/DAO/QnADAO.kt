@@ -14,3 +14,13 @@ data class QnAClass(
     var QnAAnswer: String,
     var QnADate: String
 )
+
+data class qnaInfo(
+    var qnaidx:Long,
+    var qnaAnswer:String,
+    var qnaimg :String,
+    var userName:String,
+    var productname:String,
+    var qnaTitle:String,
+    var productIdx:Long
+)

@@ -120,5 +120,12 @@ class UserRepository {
 
             fileRef.downloadUrl.addOnCompleteListener(callback1)
         }
+
+        fun getUserNameByIdx(idx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("UserInfo")
+
+            databaseRef.orderByChild("userIdx").equalTo(idx.toDouble()).get().addOnCompleteListener(callback1)
+        }
     }
 }
