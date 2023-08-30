@@ -115,10 +115,21 @@ class UserRepository {
 
         //  상점 배너 이미지 가져오기
         fun getBannerImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
-            val storage = FirebaseStorage.getInstance()
-            val fileRef = storage.reference.child(fileName)
+            if(fileName != "None"){
+                val storage = FirebaseStorage.getInstance()
+                val fileRef = storage.reference.child(fileName)
 
-            fileRef.downloadUrl.addOnCompleteListener(callback1)
+                fileRef.downloadUrl.addOnCompleteListener(callback1)
+            }
+
+
+        }
+
+        fun getUserNameByIdx(idx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("UserInfo")
+
+            databaseRef.orderByChild("userIdx").equalTo(idx.toDouble()).get().addOnCompleteListener(callback1)
         }
     }
 }

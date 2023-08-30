@@ -36,10 +36,9 @@
                     android:id="@+id/textview_pc_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:layout_marginRight="@dimen/padding_size_tiny"
                     android:text="[결제완료]"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="@dimen/text_size_20"
+                    android:textSize="@dimen/text_size_16"
                     app:fontFamily="@font/nanum_square_round_extra_bold" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -47,8 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="몬스테라"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="@dimen/text_size_20"
+                    android:textSize="@dimen/text_size_16"
                     app:fontFamily="@font/nanum_square_round_bold" />
 
                 <Space

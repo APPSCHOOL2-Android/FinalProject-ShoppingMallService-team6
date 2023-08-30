@@ -59,6 +59,13 @@ class ProductRepository {
             productDataRef.orderByChild("productStoreIdx").equalTo(storeIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
+        // 전체 상품 가져오기 overload 함수
+        fun getProductInfoAll(callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("Product")
+            productDataRef.orderByChild("productIdx").get().addOnCompleteListener(callback1)
+        }
+
         // 상품 이미지 가져오기
         fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
             val storage = FirebaseStorage.getInstance()

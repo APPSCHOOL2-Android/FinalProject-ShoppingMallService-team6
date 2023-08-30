@@ -3,6 +3,7 @@ package com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -46,7 +47,10 @@ class OrderCheckFormCustomerFragment : Fragment() {
 //            orderCheckFormOrderProductList.observe(mainActivity) {
 //                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
 //            }
-            orderCheckFormOrderImageList.observe(mainActivity) {
+//            orderCheckFormOrderImageList.observe(mainActivity) {
+//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
+//            }
+            orderCheckFormOrderList.observe(mainActivity) {
                 fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
             }
             orderCheckFormTotalOrderIdx.observe(mainActivity) {
@@ -97,6 +101,12 @@ class OrderCheckFormCustomerFragment : Fragment() {
                 }
             }
 
+            recyclerViewOrderCheckForm.run {
+                adapter = OrderCheckFormRecyclerViewAdpater()
+                layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
+            }
+
             val totalOrderIdx = arguments?.getLong("totalOrderIdx")!!
 
             // 주문 정보 받아오기
@@ -104,12 +114,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
 
             // 배송지, 주문자 정보 받아오기
             orderCheckFormCustomerViewModel.getDeliveryAndOrdererInfo(totalOrderIdx)
-
-            recyclerViewOrderCheckForm.run {
-                adapter = OrderCheckFormRecyclerViewAdpater()
-                layoutManager = LinearLayoutManager(context)
-                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
-            }
         }
 
         return fragmentOrderCheckFormCustomerBinding.root
@@ -154,24 +158,24 @@ class OrderCheckFormCustomerFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: OrderCheckFormViewHolder, position: Int) {
-            var fileName = orderCheckFormCustomerViewModel.orderCheckFormOrderImageList.value?.get(position)!!
+            var fileName = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListImage!!
             CartRepository.getProductMainImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.rowImage)
             }
 
             holder.rowProductName.text =
-                orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productName
+                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListproductName
 
             holder.rowDeliveryState.text =
-                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersDeliveryState
+                orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListdeliveryState
 
             holder.rowOption.text =
-                "옵션 : ${orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductCount}개"
+                "옵션 : ${orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListOption}개"
 
             var decimal = DecimalFormat("#,###")
-            var price1 = orderCheckFormCustomerViewModel.orderCheckFormOrderProductList.value?.get(position)?.productPrice?.toInt()
-            var price2 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.ordersProductPrice
+            var price1 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListOrderPrice?.toInt()
+            var price2 = orderCheckFormCustomerViewModel.orderCheckFormOrderList.value?.get(position)?.orderCheckFormListProductPrice?.toInt()
             holder.rowOrderPriceValue.text = decimal.format(price1) + "원"
             holder.rowProductPriceValue.text = decimal.format(price2) + "원"
         }
@@ -192,5 +196,10 @@ class OrderCheckFormCustomerFragment : Fragment() {
             this, // LifecycleOwner
             callback
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        orderCheckFormCustomerViewModel.resetList()
     }
 }

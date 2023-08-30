@@ -13,52 +13,6 @@
         android:layout_height="wrap_content"
         style="@style/Theme.KeepGardeningProject_seller.Toolbar"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <!--결제완료가 선택된 것이 디폴트이므로, 결제완료의 색상은 녹색으로 설정-->
-
-        <com.google.android.material.button.MaterialButton
-            android:backgroundTint="@color/colorPrimary"
-            android:id = "@+id/button_seller_product_paid"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_size_5"
-            android:text = "결제완료" />
-
-        <com.google.android.material.button.MaterialButton
-            android:backgroundTint="@color/gray"
-            android:id = "@+id/button_seller_product_ready"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_size_5"
-            android:text = "상품준비" />
-
-        <com.google.android.material.button.MaterialButton
-            android:backgroundTint="@color/gray"
-            android:id = "@+id/button_seller_product_delivery"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_size_5"
-            android:text = "배송중" />
-
-        <com.google.android.material.button.MaterialButton
-            android:backgroundTint="@color/gray"
-            android:id = "@+id/button_seller_product_delivered"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_size_5"
-            android:text = "배송완료" />
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_marginTop="@dimen/margin_size_top"
         android:layout_width="match_parent"

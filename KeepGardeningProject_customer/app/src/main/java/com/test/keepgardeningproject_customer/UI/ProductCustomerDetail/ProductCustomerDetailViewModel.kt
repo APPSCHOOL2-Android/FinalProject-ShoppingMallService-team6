@@ -3,16 +3,20 @@ package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.ProductClass
+import com.test.keepgardeningproject_customer.DAO.Review
 import com.test.keepgardeningproject_customer.DAO.UserSellerInfo
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.Repository.ReviewRepository
 
 class ProductCustomerDetailViewModel : ViewModel() {
     val productInfo = MutableLiveData<ProductClass>()
     val imageList = MutableLiveData<MutableList<String>>()
     val userSellerInfo = MutableLiveData<UserSellerInfo>()
+    val reviewList = MutableLiveData<MutableList<Review>>()
 
-    init{
+    init {
         imageList.value = mutableListOf<String>()
+        reviewList.value = mutableListOf<Review>()
     }
 
     fun getProductInfoByIdx(idx: Double) {
@@ -71,6 +75,37 @@ class ProductCustomerDetailViewModel : ViewModel() {
 
                 userSellerInfo.value = userSellerInfoTemp
             }
+        }
+    }
+
+    fun getReviewByProduct(_productIdx: Long) {
+        val tempList = mutableListOf<Review>()
+        ReviewRepository.getReviewByProductIdx(_productIdx) {
+            for (c1 in it.result.children) {
+                val reviewIdx = c1.child("reviewIdx").value as Long
+                val userIdx = c1.child("userIdx").value as String
+                val productIdx = c1.child("productIdx").value as Long
+                val productName = c1.child("productName").value as String
+                val storeName = c1.child("storeName").value as String
+                val rating = c1.child("rating").value as Long
+                val reviewTitle = c1.child("reviewTitle").value as String
+                val reviewContent = c1.child("reviewContent").value as String
+
+                val p1 = Review(
+                    reviewIdx,
+                    userIdx,
+                    productIdx,
+                    productName,
+                    storeName,
+                    rating,
+                    reviewTitle,
+                    reviewContent
+                )
+                tempList.add(p1)
+            }
+
+            tempList.reverse()
+            reviewList.value = tempList
         }
     }
 }

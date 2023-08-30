@@ -16,7 +16,7 @@ class StoreInfoCustomerDetailViewModel : ViewModel() {
     var storeName = MutableLiveData<String>()
     var storeAddress = MutableLiveData<String>()
     var storeDetail = MutableLiveData<String>()
-    val storeBitmap = MutableLiveData<Bitmap>()
+    var storeBitmap = MutableLiveData<Bitmap>()
 
     val productList = MutableLiveData<MutableList<ProductClass>>()
     val productImageList = MutableLiveData<MutableList<String>>()
@@ -24,6 +24,15 @@ class StoreInfoCustomerDetailViewModel : ViewModel() {
     init {
         productList.value = mutableListOf<ProductClass>()
         productImageList.value = mutableListOf<String>()
+    }
+
+    fun reset() {
+        productList.value = mutableListOf<ProductClass>()
+        productImageList.value = mutableListOf<String>()
+        storeImage = MutableLiveData<String>()
+        storeName = MutableLiveData<String>()
+        storeAddress = MutableLiveData<String>()
+        storeDetail = MutableLiveData<String>()
     }
 
     // 인덱스를 통해 스토어 불러오기

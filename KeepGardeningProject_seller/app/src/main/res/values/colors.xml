@@ -12,4 +12,5 @@
     <color name="kakaoColor">#FEE500</color>
     <color name="naverColor">#03C75A</color>
     <color name="googleColor">#FFFFFF</color>
+    <color name="deepblue">#6495ED</color>
 </resources>

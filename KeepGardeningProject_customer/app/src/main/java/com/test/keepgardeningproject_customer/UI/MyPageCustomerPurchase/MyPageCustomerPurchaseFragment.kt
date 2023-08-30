@@ -137,7 +137,7 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 //이미지뷰에 사진넣기
                 val url = URL(it.result.toString())
                 Glide.with(context!!).load(url)
-                    .override(200,200)
+                    .override(300,300)
                     .into(holder.imageviewPtimg)
             }
         }
@@ -193,7 +193,7 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 //이미지뷰에 사진넣기
                 val url = URL(it.result.toString())
                 Glide.with(context!!).load(url)
-                    .override(200,200)
+                    .override(300,300)
                     .into(holder.imageviewPtimg)
             }
 
