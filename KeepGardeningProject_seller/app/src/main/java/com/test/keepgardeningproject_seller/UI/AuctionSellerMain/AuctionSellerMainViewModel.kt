@@ -3,6 +3,7 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerMain
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.DAO.AuctionClass
@@ -25,10 +26,12 @@ class AuctionSellerMainViewModel : ViewModel() {
 
     // 경매 상품 이미지 이름 리스트
     var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
+    var auctionProductPriceList = MutableLiveData<MutableList<String>>()
 
 
     init {
         auctionProductImageNameList.value = mutableListOf<String>()
+        auctionProductPriceList.value = mutableListOf<String>()
     }
 
 
@@ -66,7 +69,8 @@ class AuctionSellerMainViewModel : ViewModel() {
                 // 가장 마지막에 등록한것부터 보여주기
                 tempPriceList.reverse()
 
-                auctionCurrentPrice.value = tempPriceList[0]
+                auctionProductPriceList.value = tempPriceList
+
             }
 
             ProductRepository.getProductImage(auctionProductImageNameList.value!![0]) {
