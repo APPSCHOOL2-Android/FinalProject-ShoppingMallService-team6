@@ -32,7 +32,6 @@ import com.test.keepgardeningproject_customer.UI.MyPageCustomerQnADetail.MyPageC
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerReview.MyPageCustomerReviewFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerReviewDetail.MyPageCustomerReviewDetailFragment
 import com.test.keepgardeningproject_customer.UI.MyPageCustomerReviewWrite.MyPageCustomerReviewWrite
-import com.test.keepgardeningproject_customer.UI.MyPageCustomerWish.MyPageCustomerWishFragment
 import com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer.OrderCheckFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
@@ -100,7 +99,6 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_CUSTOMER_REVIEW_FRAGMENT = "MyPageCustomerReviewFragment"
         val MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT = "MyPageCustomerReviewWriteFragment"
         val MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT = "MyPageCustomerReviewDetailFragment"
-        val MY_PAGE_CUSTOMER_WISH_FRAGMENT = "MyPageCustomerWishFragment"
         val ORDER_CHECK_FORM_CUSTOMER_FRAGMENT = "OrderCheckFromCustomerFragment"
         val ORDER_FORM_CUSTOMER_FRAGMENT = "OrderFormCustomerFragment"
         val PRODUCT_CUSTOMER_DETAIL_FRAGMENT ="ProductCustomerDetailFragment"
@@ -167,7 +165,6 @@ class MainActivity : AppCompatActivity() {
             MY_PAGE_CUSTOMER_REVIEW_FRAGMENT -> MyPageCustomerReviewFragment()
             MY_PAGE_CUSTOMER_REVIEW_WRITE_FRAGMENT ->MyPageCustomerReviewWrite()
             MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT-> MyPageCustomerReviewDetailFragment()
-            MY_PAGE_CUSTOMER_WISH_FRAGMENT -> MyPageCustomerWishFragment()
             ORDER_CHECK_FORM_CUSTOMER_FRAGMENT -> OrderCheckFormCustomerFragment()
             ORDER_FORM_CUSTOMER_FRAGMENT -> OrderFormCustomerFragment()
             PRODUCT_CUSTOMER_DETAIL_FRAGMENT-> ProductCustomerDetailFragment()
