@@ -76,6 +76,8 @@ class CartCustomerViewModel : ViewModel() {
                 tempList.add(cart)
                 tempImageList.add(cartImage)
             }
+            tempList.reverse()
+            tempImageList.reverse()
             cartList.value = tempList
             cartImageList.value = tempImageList
             cartCount.value = cartList.value!!.size

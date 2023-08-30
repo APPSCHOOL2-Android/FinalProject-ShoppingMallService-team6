@@ -31,10 +31,10 @@
             android:layout_height="80dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/app" />
 
         <TextView
             android:id="@+id/textView_rowOrderCheckForm_deliveryState"
