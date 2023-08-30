@@ -46,5 +46,11 @@ class StoreRepository {
             val productDataRef = database.getReference("UserSellerInfo")
             productDataRef.orderByChild("userSellerIdx").equalTo(storeIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
+
+        fun getSellerStorenameByIdx(userselleridx:Long,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("UserSellerInfo")
+            productDataRef.orderByChild("userSellerIdx").equalTo(userselleridx.toDouble()).get().addOnCompleteListener(callback1)
+        }
     }
 }

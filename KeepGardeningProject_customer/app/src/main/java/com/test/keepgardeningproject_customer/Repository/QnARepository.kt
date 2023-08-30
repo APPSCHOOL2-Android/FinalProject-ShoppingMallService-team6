@@ -56,5 +56,11 @@ class QnARepository {
 
             fileRef.downloadUrl.addOnCompleteListener(callback1)
         }
+
+        fun getQnAByUserIdx(qnaIdx: Long, callback1: (Task<DataSnapshot>) -> Unit) {
+            val database = FirebaseDatabase.getInstance()
+            val qnaDataRef = database.getReference("QnA")
+            qnaDataRef.orderByChild("qnACustomerIdx").equalTo(qnaIdx.toDouble()).get().addOnCompleteListener(callback1)
+        }
     }
 }
