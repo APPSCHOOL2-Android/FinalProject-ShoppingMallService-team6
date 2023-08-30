@@ -9,13 +9,17 @@ import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 
+
 class NaverAPI {
     fun checkNaverLogin(context: Context){
+        // 네이버 로그인 SDK 초기화
+        NaverIdLoginSDK.initialize(context, "el7gHNDTrFweYrwQdjFT", "Kp1DmQI6qv", "킵 가드닝")
+
         val oauthLoginCallback = object : OAuthLoginCallback {
+
             override fun onSuccess() {
                 // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
                 Log.e("로그인 성공","로그인 성공")
-
             }
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -27,10 +31,9 @@ class NaverAPI {
             }
         }
         NaverIdLoginSDK.authenticate(context, oauthLoginCallback)
+
     }
-//    fun naverLogOut(){
-//        NaverIdLoginSDK.logout()
-//    }
+
     // 네이버 회원탈퇴
     fun naverWithdraw(){
         NidOAuthLogin().callDeleteTokenApi(object : OAuthLoginCallback {

@@ -63,6 +63,7 @@ class MyPageSellerAuctionFragment : Fragment() {
                 setTitle("경매내역")
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
+                    viewModel.resetList()
                     mainActivity.removeFragment(MY_PAGE_SELLER_AUCTION_FRAGMENT)
                 }
             }
@@ -85,7 +86,11 @@ class MyPageSellerAuctionFragment : Fragment() {
                 imageviewAuctionimg = rowbinding.imageviewAsImg
 
                 rowbinding.root.setOnClickListener {
-                    //해당하는 경매상세정보 이동
+
+                    var bundle = Bundle()
+                    var productidx = viewModel.sellerList.value?.get(adapterPosition)!!.auctionProductIdx
+                    bundle.putLong("productidx",productidx)
+                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,bundle)
                 }
             }
         }
@@ -146,14 +151,13 @@ class MyPageSellerAuctionFragment : Fragment() {
                         var imgone = newimg[0]
                         var state = c1.child("auctionProductCloseDate").value.toString()
                         var newstate = getTime(state)
-                        var newclass = auctionInfo(idx,imgone,newname,newstate,productIdx)
+                        var newclass = auctionInfo(idx,imgone,newname,newstate,productIdx,idx2)
 
                         AuctionSellerDetailRepository.setAuctionSellerDetailInfo(newclass){
                             AuctionSellerDetailRepository.setAuctioSellerDetailIdx(idx2){
                                 Log.d("Lim","${newclass}")
                             }
                         }
-
                     }
 
                 }
@@ -183,6 +187,11 @@ class MyPageSellerAuctionFragment : Fragment() {
             val state  = "경매중"
             return state
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.resetList()
     }
 
 }

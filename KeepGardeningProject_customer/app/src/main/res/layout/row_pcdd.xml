@@ -9,8 +9,6 @@
     <ImageView
         android:id="@+id/image_pcdd_row"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/colorAccent1"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/img_sample" />
 </LinearLayout>

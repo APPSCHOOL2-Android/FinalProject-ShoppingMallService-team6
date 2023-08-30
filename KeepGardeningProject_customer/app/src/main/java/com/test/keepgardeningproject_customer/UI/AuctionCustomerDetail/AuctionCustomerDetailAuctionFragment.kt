@@ -17,6 +17,7 @@ import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailAuctionBinding
 import com.test.keepgardeningproject_customer.databinding.RowAuctionCustomerDetailAuctionBinding
+import java.text.DecimalFormat
 
 
 class AuctionCustomerDetailAuctionFragment : Fragment() {
@@ -50,6 +51,11 @@ class AuctionCustomerDetailAuctionFragment : Fragment() {
         viewModel.run{
             auctionList.observe(mainActivity){
                 aal = it
+                aal.sortBy {
+                    true
+                }
+                aal.reverse()
+                cal.clear()
                 for(i in aal){
                     Log.d("%%%%%",idx.toString())
                     if(i.auctionAuctionProductIndex == idx){
@@ -106,9 +112,17 @@ class AuctionCustomerDetailAuctionFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: viewholderclass, position: Int) {
-            holder.auctionOrderPrice.text = cal[position].auctionBidPrice!!
+
+            // 입찰금액
+            var decimal = DecimalFormat("#,###")
+            var temp = cal[position].auctionBidPrice!!.toInt()
+            holder.auctionOrderPrice.text = decimal.format(temp) + " 원"
+            
+            // 닉네임
             holder.auctionNicknames.text = cal[position].auctionBidNickname!!
-            holder.auctionNum.text = "${position}"
+            
+            // 입찰순위
+            holder.auctionNum.text = "${position + 1} 순위"
         }
     }
 

@@ -9,12 +9,10 @@ import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailInfoBinding
 import com.test.keepgardeningproject_customer.databinding.RowAuctionCustomerDetailInfoBinding
 
@@ -25,12 +23,16 @@ class AuctionCustomerDetailInfoFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var viewModel: AuctionCustomerDetailViewModel
+
+    var imageNameList = mutableListOf<String>()
+
     var idx: Long = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         auctionCustomerDetailInfoBinding = FragmentAuctionCustomerDetailInfoBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
@@ -38,18 +40,21 @@ class AuctionCustomerDetailInfoFragment : Fragment() {
         viewModel.auctionProductInfo.observe(mainActivity){
             var binding = auctionCustomerDetailInfoBinding
             binding.textViewAcDetail.text = it.auctionProductDetail
+
+            imageNameList = it.auctionProductImageList!!
+            auctionCustomerDetailInfoBinding.recyclerviewAcDetailInfo.adapter?.notifyDataSetChanged()
         }
 
         auctionCustomerDetailInfoBinding.run {
             recyclerviewAcDetailInfo.run {
-                adapter = recyclerviewAdaper()
+                adapter = RecyclerviewAdaper()
                 layoutManager = LinearLayoutManager(context)
             }
         }
         return auctionCustomerDetailInfoBinding.root
     }
 
-    inner class recyclerviewAdaper : RecyclerView.Adapter<recyclerviewAdaper.viewholderclass>() {
+    inner class RecyclerviewAdaper : RecyclerView.Adapter<RecyclerviewAdaper.viewholderclass>() {
         inner class viewholderclass(rowbinding: RowAuctionCustomerDetailInfoBinding) :
             RecyclerView.ViewHolder(rowbinding.root) {
             var auctiondetailinfoimg: ImageView
@@ -77,19 +82,27 @@ class AuctionCustomerDetailInfoFragment : Fragment() {
 
         override fun onBindViewHolder(holder: viewholderclass, position: Int) {
             // 상세정보 이미지
-            var fileNameList = viewModel.auctionProductInfo.value?.auctionProductImageList!!
-            for(fileName in fileNameList){
-                ProductRepository.getProductImage(fileName){
-                    var fileUri = it.result
-                    Glide.with(mainActivity).load(fileUri).into(holder.auctiondetailinfoimg)
-                }
+            var fileName = viewModel.imageList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName){
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.auctiondetailinfoimg)
             }
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(AuctionCustomerDetailViewModel::class.java)
     }
 
     override fun onResume() {
         super.onResume()
         auctionCustomerDetailInfoBinding.root.requestLayout()
+
+        viewModel = ViewModelProvider(mainActivity).get(AuctionCustomerDetailViewModel::class.java)
+
+//        var adapter = auctionCustomerDetailInfoBinding.recyclerviewAcDetailInfo.adapter as RecyclerviewAdaper
+//        adapter.notifyDataSetChanged()
     }
 
 }

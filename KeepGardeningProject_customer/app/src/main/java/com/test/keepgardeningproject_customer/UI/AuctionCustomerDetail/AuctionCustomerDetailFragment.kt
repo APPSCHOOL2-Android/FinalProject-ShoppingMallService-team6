@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +26,9 @@ import com.test.keepgardeningproject_customer.databinding.DialogAcdBinding
 
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailBinding
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 class AuctionCustomerDetailFragment : Fragment() {
 
@@ -36,13 +41,24 @@ class AuctionCustomerDetailFragment : Fragment() {
     // 뷰모델
     lateinit var viewModel: AuctionCustomerDetailViewModel
     // 선택한 인덱스
-    var selectedIdx: Long = 1
+    var selectedIdx = MainActivity.chosedAuctionProductIdx
+
+    // 경매가격
     var openPrice : Int = 1
+    var nowPrice : Int = 1
+
+    // 시간
+    var date: Date = Calendar.getInstance().time
+    private val dataRefreshHandler = Handler()
+    private val dataRefreshInterval = 30 * 1000 // 30초 (1분 = 60 * 1000 밀리초)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // 시간지연
+
         auctionCustomerDetailBinding = FragmentAuctionCustomerDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
@@ -72,10 +88,30 @@ class AuctionCustomerDetailFragment : Fragment() {
                 binding.textviewAcdOpenprice.text = temp + " 원"
                 openPrice = it.auctionProductOpenPrice!!.toInt()
 
+                // 현재가격
+
+
                 // 경매상태 : 경매가능
 
                 // 경매기간
                 binding.textviewAcdPeriodnow.text = it.auctionProductOpenDate + " ~ " + it.auctionProductCloseDate
+
+                // 남은시간
+                date = SimpleDateFormat("yyyy/MM/dd HH:mm").parse(it.auctionProductCloseDate)
+                var today = Calendar.getInstance()
+                var calculateDate = (date.time - today.time.time)
+
+                var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+                var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+                var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+
+                binding.textviewAcdHour.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+                if(calculateDate < 0) {
+                    binding.textviewAcdStatenow.text = "입찰 완료"
+                } else {
+                    binding.textviewAcdStatenow.text = "입찰 가능"
+                }
             }
 
             userSellerInfo.observe(mainActivity){
@@ -100,7 +136,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                     maxPrice = priceList.max()
                 }
 
-
+                nowPrice = maxPrice
                 val dec = DecimalFormat("#,###")
                 val temp = dec.format(maxPrice)
                 binding.textviewAcdCurrentprice.text = temp + " 원"
@@ -108,7 +144,7 @@ class AuctionCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 경매상품 인덱스
-        selectedIdx = arguments?.getLong("selectedAuctionProductIdx", 1)!!
+        selectedIdx = MainActivity.chosedAuctionProductIdx
 
         // 상품 정보 불러오기
         viewModel.getAPByIdx(selectedIdx.toDouble())
@@ -170,7 +206,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                             var auctionPrice = dialogAcdBinding.editTextTextDialogAcdPrice.text.toString().toInt()
 
                             // 입찰금액이 현재 금액보다 낮을경우
-                            if(auctionPrice <= openPrice){
+                            if(auctionPrice <= nowPrice){
                                 Snackbar.make(auctionCustomerDetailBinding.root, "현재금액보다 높은 금액만 입찰이 가능합니다.", Snackbar.LENGTH_SHORT).show()
                             }
                             // 입찰금액이 현재 금액보다 높을경우
@@ -196,6 +232,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                                     AuctionRepository.setAuctionProduct(auctionInfo){
                                         AuctionRepository.setAuctionIndex(auctionIndex){
                                             Snackbar.make(auctionCustomerDetailBinding.root, "입찰등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                                            viewModel.getAuction()
                                         }
                                     }
                                 }
@@ -235,5 +272,49 @@ class AuctionCustomerDetailFragment : Fragment() {
     }
 
 
+    private val dataRefreshRunnable = object : Runnable {
+        override fun run() {
+            // 데이터를 갱신하는 작업 수행
+            fetchDataAndUpdateUI()
+
+            // 다음 주기적 갱신을 예약
+            dataRefreshHandler.postDelayed(this, dataRefreshInterval.toLong())
+        }
+    }
+
+    private fun startDataRefreshTask() {
+        // 주기적 갱신 작업을 예약
+        dataRefreshHandler.postDelayed(dataRefreshRunnable, dataRefreshInterval.toLong())
+    }
+
+    private fun stopDataRefreshTask() {
+        // 주기적 갱신 작업을 중단
+        dataRefreshHandler.removeCallbacks(dataRefreshRunnable)
+    }
+
+    private fun fetchDataAndUpdateUI() {
+        // 데이터를 가져와서 UI를 갱신하는 작업 수행
+        var today = Calendar.getInstance()
+        var calculateDate = (date.time - today.time.time)
+
+        var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
+        var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
+        var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
+
+        auctionCustomerDetailBinding.textviewAcdHour.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
+
+        if(calculateDate < 0) {
+            auctionCustomerDetailBinding.textviewAcdStatenow.text = "입찰 완료"
+        } else {
+            auctionCustomerDetailBinding.textviewAcdStatenow.text = "입찰 가능"
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // 액티비티가 종료될 때 주기적 갱신 작업 중단
+        stopDataRefreshTask()
+    }
 
 }

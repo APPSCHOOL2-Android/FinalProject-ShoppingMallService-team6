@@ -45,6 +45,9 @@ class CartCustomerFragment : Fragment() {
             cartImageList.observe(mainActivity) {
                 fragmentCartCustomerBinding.recyclerViewCart.adapter?.notifyDataSetChanged()
             }
+            cartCount.observe(mainActivity) {
+                fragmentCartCustomerBinding.textViewCartCount.text = "전체 ${it}개"
+            }
         }
 
         fragmentCartCustomerBinding.run {
@@ -59,6 +62,10 @@ class CartCustomerFragment : Fragment() {
             recyclerViewCart.run {
                 adapter = CartRecyclerViewAdpater()
                 layoutManager = LinearLayoutManager(context)
+            }
+
+            buttonCartDeleteAll.setOnClickListener {
+                cartCustomerViewModel.deleteAllCart(userIdx!!)
             }
 
             buttonCartPay.setOnClickListener {

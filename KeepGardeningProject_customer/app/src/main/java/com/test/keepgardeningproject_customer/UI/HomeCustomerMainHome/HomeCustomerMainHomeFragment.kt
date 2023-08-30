@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,7 +26,10 @@ class HomeCustomerMainHomeFragment : Fragment() {
     lateinit var fragmentHomeCustomerMainHomeBinding: FragmentHomeCustomerMainHomeBinding
     lateinit var mainActivity: MainActivity
 
-    lateinit var homeCustomerMainHomeViewModel : HomeCustomerMainHomeViewModel
+    lateinit var viewModel : HomeCustomerMainHomeViewModel
+
+    lateinit var productList : MutableList<ProductClass>
+    lateinit var favoriteList : MutableList<ProductClass>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,20 +39,40 @@ class HomeCustomerMainHomeFragment : Fragment() {
         fragmentHomeCustomerMainHomeBinding = FragmentHomeCustomerMainHomeBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 인기상품 동기화
-
-
         // 추천상품 동기화
-        homeCustomerMainHomeViewModel = ViewModelProvider(mainActivity)[HomeCustomerMainHomeViewModel::class.java]
-        homeCustomerMainHomeViewModel.run{
+        viewModel = ViewModelProvider(mainActivity)[HomeCustomerMainHomeViewModel::class.java]
+        viewModel.run{
             productClassList.observe(mainActivity){
-                fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
+                productList = it
+
+                ordersProductIdxList.observe(mainActivity){
+                    var idxList = it
+                    idxList.distinct()
+                    val tempList = mutableListOf<ProductClass>()
+
+                    for((index,product) in productList.withIndex()){
+                        for(idx in idxList){
+                            if(product.productIdx == idx && !tempList.contains(product)){
+                                tempList.add(product)
+                            }
+                        }
+                    }
+                    
+                    tempList.distinct()
+                    favoriteList = tempList
+
+                    fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
+                    fragmentHomeCustomerMainHomeBinding.recyclerHcmhFavoriteGoods.adapter?.notifyDataSetChanged()
+                }
             }
             productImageNameList.observe(mainActivity){
                 fragmentHomeCustomerMainHomeBinding.recyclerHcmhRecommend.adapter?.notifyDataSetChanged()
             }
         }
-        homeCustomerMainHomeViewModel.getProductInfoAll()
+        viewModel.getProductInfoAll()
+
+        // 인기상품 동기화
+        viewModel.getOrdersInfoAll()
 
         fragmentHomeCustomerMainHomeBinding.run{
             // 메뉴선택
@@ -138,6 +160,8 @@ class HomeCustomerMainHomeFragment : Fragment() {
 
                 // 아이템 클릭시 개별 상품상세로 이동
                 rowHcmhFavoriteBinding.root.setOnClickListener {
+                    val selectedProductIdx = favoriteList[adapterPosition].productIdx!!
+                    MainActivity.chosedProductIdx = selectedProductIdx
                     mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
@@ -156,12 +180,25 @@ class HomeCustomerMainHomeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return favoriteList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderHCMHFavorite, position: Int) {
-            holder.textViewHcmhFavoriteTitle.text = "상품명"
-            holder.textViewHcmhFavoritePrice.text = "10,000원"
+            // image
+            // 이미지 썸네일 넣기(대표 사진 0번)
+            var fileName = favoriteList[position].productImageList?.get(0)!!
+            ProductRepository.getProductImage(fileName){
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imageViewHcmhFavorite)
+            }
+
+            // 상품명
+            holder.textViewHcmhFavoriteTitle.text = favoriteList[position].productName
+
+            // 가격
+            var decimal = DecimalFormat("#,###")
+            var temp = favoriteList[position].productPrice?.toInt()!!
+            holder.textViewHcmhFavoritePrice.text = decimal.format(temp) + "원"
         }
     }
 
@@ -179,10 +216,9 @@ class HomeCustomerMainHomeFragment : Fragment() {
 
                 // 클릭시 개별 아이템 상세페이지 이동
                 rowHcmhRecommendBinding.root.setOnClickListener {
-                    val selectedProductIdx = homeCustomerMainHomeViewModel.productClassList.value?.get(adapterPosition)?.productIdx!!
-                    val bundle = Bundle()
-                    bundle.putLong("selectedProductIdx",selectedProductIdx)
-                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
+                    val selectedProductIdx = viewModel.productClassList.value?.get(adapterPosition)?.productIdx!!
+                    MainActivity.chosedProductIdx = selectedProductIdx
+                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
         }
@@ -200,23 +236,23 @@ class HomeCustomerMainHomeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return homeCustomerMainHomeViewModel.productClassList.value?.size!!
+            return viewModel.productClassList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ViewHolderHCMHRecommend, position: Int) {
             // 이미지 썸네일 넣기(대표 사진 0번)
-            var fileName = homeCustomerMainHomeViewModel.productImageNameList.value?.get(position)!!
+            var fileName = viewModel.productImageNameList.value?.get(position)!!
             ProductRepository.getProductImage(fileName){
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.imageViewHcmhRecommend)
             }
 
             // 제목 표시하기 (1줄 고정)
-            holder.textViewHcmhRecommendTitle.text = homeCustomerMainHomeViewModel.productClassList.value?.get(position)?.productName
+            holder.textViewHcmhRecommendTitle.text = viewModel.productClassList.value?.get(position)?.productName
 
             // 숫자 comma 표시하기
             var decimal = DecimalFormat("#,###")
-            var temp = homeCustomerMainHomeViewModel.productClassList.value?.get(position)?.productPrice?.toInt()
+            var temp = viewModel.productClassList.value?.get(position)?.productPrice?.toInt()
             holder.textViewHcmhRecommendPrice.text = decimal.format(temp) + "원"
         }
     }

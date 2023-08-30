@@ -1,6 +1,8 @@
 package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,9 +16,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
+import com.test.keepgardeningproject_customer.MainActivity.Companion.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository.Companion.getProductSellerInfoByIdx
+import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailAuctionFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailBottomDialog
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailDetailFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailReviewFragment
@@ -36,7 +40,7 @@ class ProductCustomerDetailFragment : Fragment() {
 
     // 뷰모델
     lateinit var productCustomerDetailViewModel: ProductCustomerDetailViewModel
-    var idx : Long = 1
+    var idx : Long = MainActivity.chosedProductIdx
     lateinit var price : String
 
     // 탭
@@ -50,6 +54,7 @@ class ProductCustomerDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         fragmentProductCustomerDetailBinding =
             FragmentProductCustomerDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
@@ -94,8 +99,7 @@ class ProductCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 상품 인덱스
-        idx = arguments?.getLong("selectedProductIdx", 1)!!
-
+        idx = MainActivity.chosedProductIdx
         // 뷰모델 함수 실행
         productCustomerDetailViewModel.getProductInfoByIdx(idx.toDouble())
 
@@ -107,12 +111,37 @@ class ProductCustomerDetailFragment : Fragment() {
                 setNavigationOnClickListener {
                     mainActivity.removeFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT)
                 }
+
+                inflateMenu(R.menu.menu_product_cart)
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.item_product_cart -> {
+                            if (MainActivity.isLogined == true) {
+                                mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                            } else {
+                                mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT, true, null)
+                            }
+                        }
+                    }
+                    true
+                }
             }
 
             // 구매하기 버튼 바텀 다이얼로그
             buttonPcdBuy.setOnClickListener {
                 val bs = ProductCustomerDetailBottomDialog()
                 bs.show(mainActivity.supportFragmentManager, "구매")
+            }
+
+            buttonPcdQna.setOnClickListener {
+                if(!MainActivity.isLogined) {
+                    mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                } else {
+                    // 로그인이 이미 된경우
+                    val newBundle = Bundle()
+                    newBundle.putLong("productIdx", idx)
+                    mainActivity.replaceFragment(PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
+                }
             }
 
 

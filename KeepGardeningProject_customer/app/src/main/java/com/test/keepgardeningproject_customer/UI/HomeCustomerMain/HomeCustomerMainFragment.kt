@@ -44,7 +44,11 @@ class HomeCustomerMainFragment : Fragment() {
 
                 // 장바구니
                 imageHcmOrder.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                    if (MainActivity.isLogined == true) {
+                        mainActivity.replaceFragment(MainActivity.CART_CUSTOMER_FRAGMENT,true,null)
+                    } else {
+                        mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT, true, null)
+                    }
                 }
 
                 // 알람
@@ -104,6 +108,9 @@ class HomeCustomerMainFragment : Fragment() {
                         }
                         R.id.item_hcm_store->{
                             mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT,true,null)
+                        }
+                        R.id.item_hcm_auction->{
+                            mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_FRAGMENT,true,null)
                         }
                     }
                     false

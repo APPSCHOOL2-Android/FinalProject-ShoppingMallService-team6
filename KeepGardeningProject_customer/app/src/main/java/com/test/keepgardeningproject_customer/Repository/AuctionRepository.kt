@@ -1,5 +1,6 @@
 package com.test.keepgardeningproject_customer.Repository
 
+import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.provider.ContactsContract.Data
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
@@ -30,6 +31,12 @@ class AuctionRepository {
             databaseRef.orderByChild("auctionIdx").get().addOnCompleteListener(callback1)
         }
 
+        fun getAuctionInfoByUserIdx(useridx: Long,callback1: (it: Task<DataSnapshot>) -> Unit){
+            var database = FirebaseDatabase.getInstance()
+            val databaseRef = database.getReference("Auction")
+            databaseRef.orderByChild("auctionCustomerIdx").equalTo(useridx.toDouble()!!).get().addOnCompleteListener(callback1)
+        }
+
         //경매상품 저장
         fun setAuctionProduct(auctionInfo:AuctionInfo,callback1: (it: Task<Void>) -> Unit){
             val database = FirebaseDatabase.getInstance()
@@ -43,6 +50,7 @@ class AuctionRepository {
             val databaseRef = database.getReference("Auction")
             databaseRef.orderByChild("auctionAuctionProductIdx").equalTo(auctionProductIdx).get().addOnCompleteListener(callback1)
         }
+
     }
 
 

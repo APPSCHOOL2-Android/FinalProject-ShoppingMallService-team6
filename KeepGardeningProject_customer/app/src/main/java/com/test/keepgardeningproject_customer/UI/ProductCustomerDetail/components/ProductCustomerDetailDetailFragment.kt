@@ -9,12 +9,9 @@ import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailDetailBinding
 import com.test.keepgardeningproject_customer.databinding.RowPcddBinding
@@ -24,22 +21,29 @@ class ProductCustomerDetailDetailFragment : Fragment() {
     lateinit var fragmentProductCustomerDetailDetailBinding: FragmentProductCustomerDetailDetailBinding
     lateinit var mainActivity: MainActivity
 
-    lateinit var productCustomerDetailViewModel : ProductCustomerDetailViewModel
+    lateinit var viewModel : ProductCustomerDetailViewModel
+
+    var fileNameList = mutableListOf<String>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         fragmentProductCustomerDetailDetailBinding = FragmentProductCustomerDetailDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        productCustomerDetailViewModel = ViewModelProvider(mainActivity)[ProductCustomerDetailViewModel::class.java]
+        viewModel = ViewModelProvider(mainActivity)[ProductCustomerDetailViewModel::class.java]
 
-        productCustomerDetailViewModel.productInfo.observe(mainActivity){
+        viewModel.productInfo.observe(mainActivity){
             var binding = fragmentProductCustomerDetailDetailBinding
             // 상세정보
             binding.textViewPcddDetail.text = it.productDetail
+
+            fileNameList = it.productImageList!!
+            fragmentProductCustomerDetailDetailBinding.recyclerPcdd.adapter?.notifyDataSetChanged()
         }
 
         fragmentProductCustomerDetailDetailBinding.run{
@@ -52,9 +56,19 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         return fragmentProductCustomerDetailDetailBinding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ProductCustomerDetailViewModel::class.java)
+    }
+
     override fun onResume() {
         super.onResume()
         fragmentProductCustomerDetailDetailBinding.root.requestLayout()
+        viewModel = ViewModelProvider(mainActivity).get(ProductCustomerDetailViewModel::class.java)
+//        viewModel.getProductInfoByIdx(sidx.toDouble())
+
+//        var adapter = fragmentProductCustomerDetailDetailBinding.recyclerPcdd.adapter as RecyclerAdapterPCDD
+//        adapter.notifyDataSetChanged()
     }
 
 
@@ -80,17 +94,16 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return productCustomerDetailViewModel.productInfo.value?.productImageList?.size ?: 0
+            return viewModel.productInfo.value?.productImageList?.size ?: 0
         }
 
         override fun onBindViewHolder(holder: ViewHolderPCDD, position: Int) {
             // 상세정보 이미지
-            var fileNameList = productCustomerDetailViewModel.productInfo.value?.productImageList!!
-            for(fileName in fileNameList){
-                ProductRepository.getProductImage(fileName){
-                    var fileUri = it.result
-                    Glide.with(mainActivity).load(fileUri).into(holder.imagePcddRow)
-                }
+
+            var fileName = viewModel.imageList.value?.get(position)!!
+            ProductRepository.getProductImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.imagePcddRow)
             }
         }
     }

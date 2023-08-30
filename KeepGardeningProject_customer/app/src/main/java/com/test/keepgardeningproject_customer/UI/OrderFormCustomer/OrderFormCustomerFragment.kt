@@ -28,10 +28,13 @@ import com.google.android.material.textfield.TextInputEditText
 import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
 import com.test.keepgardeningproject_customer.DAO.TotalOrderClass
+import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
+import com.test.keepgardeningproject_customer.Repository.ProductRepository
+import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
 import com.test.keepgardeningproject_customer.Repository.TotalOrderRepository
 import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
@@ -134,7 +137,9 @@ class OrderFormCustomerFragment : Fragment() {
             if (fromWhere == "cartPage") {
                 orderFormCustomerViewModel.getProductFromCart(MainActivity.loginedUserInfo.userIdx!!)
             } else if (fromWhere == "productPage") {
-
+                val productIdx = arguments?.getLong("productIdx")!!
+                var count = arguments?.getInt("count")!!
+                orderFormCustomerViewModel.getProductFromProduct(productIdx, count.toLong())
             }
         }
 
@@ -142,7 +147,6 @@ class OrderFormCustomerFragment : Fragment() {
     }
 
     inner class OrderFormRecyclerViewAdpater : RecyclerView.Adapter<OrderFormRecyclerViewAdpater.OrderFormViewHolder>() {
-        // private val storeRequestList = mutableListOf<String>()
 
         inner class OrderFormViewHolder(rowOrderFormCustomerBinding: RowOrderFormCustomerBinding) :
             RecyclerView.ViewHolder(rowOrderFormCustomerBinding.root) {
@@ -151,7 +155,6 @@ class OrderFormCustomerFragment : Fragment() {
             var rowProductPrice: TextView
             var rowProductTotalPrice: TextView
             var rowProductCount: TextView
-            var rowStoreRequest: TextInputEditText
             var rowProductImage: ImageView
 
             init {
@@ -159,24 +162,7 @@ class OrderFormCustomerFragment : Fragment() {
                 rowProductPrice = rowOrderFormCustomerBinding.textViewRowOrderFormProductPrice
                 rowProductTotalPrice = rowOrderFormCustomerBinding.textViewRowOrderFormTotalPrice
                 rowProductCount = rowOrderFormCustomerBinding.textViewRowOrderFormProductCount
-                rowStoreRequest = rowOrderFormCustomerBinding.editTextRowOrderFormRequest
                 rowProductImage = rowOrderFormCustomerBinding.imageViewRowOrderFormProductImage
-
-//                rowStoreRequest.addTextChangedListener(object : TextWatcher {
-//                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                    }
-//
-//                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                        val position = adapterPosition
-//                        if (position != RecyclerView.NO_POSITION) {
-//                            storeRequestList[position] = s.toString()
-//                        }
-//                    }
-//
-//                    override fun afterTextChanged(s: Editable?) {
-//                    }
-//
-//                })
             }
         }
 
@@ -214,10 +200,6 @@ class OrderFormCustomerFragment : Fragment() {
             holder.rowProductCount.text = "${orderFormCustomerViewModel.orderFormProductList.value?.get(position)?.cartCount}개"
         }
 
-        // 함수를 추가하여 storeRequestList를 외부에서 접근할 수 있게 만듭니다.
-//        fun getstoreRequestList(): List<String> {
-//            return storeRequestList
-//        }
     }
 
     fun next() {
@@ -346,8 +328,6 @@ class OrderFormCustomerFragment : Fragment() {
                 OrderProductRepository.getOrdersProductIdx {
                     var ordersIdx = it.result.value as Long
                     val adapter = OrderFormRecyclerViewAdpater()
-//                    val storeRequestList = adapter.getstoreRequestList()
-//                    var listIdx = 0
 
                     // 주문서에 있는 개별 상품만큼 반복
                     for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
@@ -365,17 +345,12 @@ class OrderFormCustomerFragment : Fragment() {
                             totalOrderIdx
                         )
 
-//                        listIdx++
-
                         OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
                             // 개별 주문 인덱스 번호 저장
                             OrderProductRepository.setOrdersProductIdx(ordersIdx)
                         }
                     }
                 }
-
-
-
 
 //                for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
 //                    // 개별 주문 인덱스 번호를 가져온다.
@@ -427,6 +402,7 @@ class OrderFormCustomerFragment : Fragment() {
                     }
                 }
             }
+            getData()
         }
     }
 
@@ -435,5 +411,45 @@ class OrderFormCustomerFragment : Fragment() {
         fragmentOrderFormCustomerBinding.run {
             editTextOrderFormAddress.setText(mainActivity.address)
         }
+    }
+
+    fun getData() {
+        var useridx = MainActivity.loginedUserInfo.userIdx!!
+        PurchaseRepository.getPurchaseIndex {
+            //idx2 == purchaseInfoIdx:Long
+            var purchaseinfoidx = it.result.value as Long
+            purchaseinfoidx++
+            //useridx로 결제한 상품을 가져옴
+            OrderProductRepository.getIndexorderInfo(useridx) {
+                for (c1 in it.result.children) {
+                    var newstate = c1.child("ordersDeliveryState").value.toString()
+                    var newordersidx = c1.child("ordersIdx").value as Long
+                    var newproductidx =  c1.child("ordersProductIdx").value as Long
+                    var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
+                    ProductRepository.getProductInfoByIdx(useridx.toDouble()) {
+                        for (c2 in it.result.children) {
+                            //결제한 상품의 이름,이미지,상태
+                            var newname = c2.child("productName").value.toString()
+                            var imglist = c2.child("productImageList").value as ArrayList<String>
+                            var newimg = imglist[0]
+
+                            if(newstate== "결제완료"){
+                                var newclass = purchaseInfo(newproductidx,newordersidx,useridx,newtotalorderidx,purchaseinfoidx,
+                                        newname,newimg,newstate)
+                                PurchaseRepository.setPurchaseInfo(newclass) {
+                                    PurchaseRepository.setPurchaseIndex(purchaseinfoidx) {
+                                        Log.d("Limidx","${newclass}")
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+
     }
 }

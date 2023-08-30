@@ -112,5 +112,13 @@ class UserRepository {
             // putFile 매개변수로 해당 uri 객체가 들어감
             imageRef.putFile(uploadUri!!).addOnCompleteListener(callback1)
         }
+
+        //  상점 배너 이미지 가져오기
+        fun getBannerImage(fileName : String, callback1:(Task<Uri>) -> Unit) {
+            val storage = FirebaseStorage.getInstance()
+            val fileRef = storage.reference.child(fileName)
+
+            fileRef.downloadUrl.addOnCompleteListener(callback1)
+        }
     }
 }

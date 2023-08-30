@@ -110,6 +110,11 @@ class AuctionCustomerFragment : Fragment() {
         return fragmentAuctionCustomerBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAuctionProductInfoAll()
+        fragmentAuctionCustomerBinding.recyclerAuctionCustomer.adapter?.notifyDataSetChanged()
+    }
 
     inner class RAAC : RecyclerView.Adapter<RAAC.VHAC>() {
         inner class VHAC(rowAuctionCustomerBinding: RowAuctionCustomerBinding) : RecyclerView.ViewHolder(rowAuctionCustomerBinding.root){
@@ -127,9 +132,8 @@ class AuctionCustomerFragment : Fragment() {
                 // 클릭시 개별상품 detail로 이동
                 rowAuctionCustomerBinding.root.setOnClickListener {
                     val selectedAuctionProductIdx = rpl[adapterPosition].auctionProductIdx!!
-                    val bundle = Bundle()
-                    bundle.putLong("selectedAuctionProductIdx",selectedAuctionProductIdx)
-                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
+                    MainActivity.chosedAuctionProductIdx = selectedAuctionProductIdx
+                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
         }
@@ -159,12 +163,10 @@ class AuctionCustomerFragment : Fragment() {
             holder.textviewAcTitle.text = rpl[position].auctionProductName
             
             // 가게명
-            ProductRepository.getProductSellerInfoByIdx(rpl[position].auctionProductStoreIdx!!.toDouble()){
-                for(c1 in it.result.children){
-                    holder.textViewAcStore.text = c1.child("userSellerStoreName").value as String?
-                }
-            }
-            
+            holder.textViewAcStore.text = rpl[position].auctionProductOpenDate + " 입찰시작"
+
+
+
             // 경매시작가
             var decimal = DecimalFormat("#,###")
             var temp = rpl[position].auctionProductOpenPrice!!.toInt()

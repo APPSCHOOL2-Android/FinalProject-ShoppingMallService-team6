@@ -73,6 +73,7 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
                     //마이페이지 메인화면으로 이동
+                    purchaseviewModel.resetList()
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_PURCHASE_FRAGMENT)
                 }
             }
@@ -174,9 +175,14 @@ class MyPageCustomerPurchaseFragment : Fragment() {
                 rowButton.setOnClickListener {
                     //구매자 인덱스
 
+
                     //2023.08.29일 오준용 수정함.
                     val ordersProductIdx = purchaseviewModel.deliveryList.value?.get(adapterPosition)?.orderproductIdx
                     val ordersIdx= purchaseviewModel.deliveryList.value?.get(adapterPosition)?.totalorderIdx
+
+                    val purchaseInfoIdx = purchaseviewModel.deliveryList.value?.get(adapterPosition)?.purchaseInfoIdx
+                    val purchaseIdx = purchaseviewModel.deliveryList.value?.get(adapterPosition)?.purchaseIdx
+
                     val newBundle = Bundle()
                     newBundle.putLong("ordersProductIdx", ordersProductIdx!!)
                     newBundle.putLong("ordersIdx", ordersIdx!!)
@@ -219,6 +225,11 @@ class MyPageCustomerPurchaseFragment : Fragment() {
 
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        purchaseviewModel.resetList()
     }
 
 
