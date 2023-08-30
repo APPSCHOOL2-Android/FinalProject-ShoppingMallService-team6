@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets.Side.all
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,15 +16,22 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.AuctionRepository
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
 import com.test.keepgardeningproject_customer.Repository.UserRepository
+import com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerAuctionBinding
+import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerAuctionBinding
+import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseBinding
+import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseButtonBinding
 import java.lang.RuntimeException
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -35,7 +43,6 @@ class MyPageCustomerAuctionFragment : Fragment() {
     lateinit var fragmentAuctionCustomerBinding: FragmentMyPageCustomerAuctionBinding
     lateinit var mainActivity: MainActivity
     lateinit var mypagecustomerauctionviewModel: MyPageCustomerAuctionViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,9 +61,9 @@ class MyPageCustomerAuctionFragment : Fragment() {
         }
 
         fragmentAuctionCustomerBinding.run {
-            mypagecustomerauctionviewModel.getData()
+            mypagecustomerauctionviewModel.getAll()
             recyclerviewAc.run {
-                adapter = ResultRecyclerviewAdapter()
+                adapter = AuctionRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(
                     MaterialDividerItemDecoration(
@@ -70,7 +77,7 @@ class MyPageCustomerAuctionFragment : Fragment() {
                 setTitle("경매내역")
                 setNavigationIcon(R.drawable.ic_back_24px)
                 setNavigationOnClickListener {
-                    //마이페이지 메인화면으로 이동
+                    mypagecustomerauctionviewModel.resetList()
                     mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_AUCTION_FRAGMENT)
                 }
 
@@ -81,53 +88,66 @@ class MyPageCustomerAuctionFragment : Fragment() {
         return fragmentAuctionCustomerBinding.root
     }
 
-    inner class ResultRecyclerviewAdapter():RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            TODO("Not yet implemented")
+    inner class AuctionRecyclerViewAdapter : RecyclerView.Adapter<AuctionRecyclerViewAdapter.allViewHolder>(){
+        inner class allViewHolder(rowPostListBinding: RowMyPageCustomerAuctionBinding) : RecyclerView.ViewHolder(rowPostListBinding.root){
+
+            val rowPostListState:TextView
+            val rowPostListNickName:TextView
+            val imageviewPtimg :ImageView
+            val rowPostListPrice:TextView
+            init{
+                rowPostListState = rowPostListBinding.textviewAcState
+                rowPostListNickName = rowPostListBinding.textViewAcProductName
+                imageviewPtimg = rowPostListBinding.imageviewAcImg1
+                rowPostListPrice = rowPostListBinding.textViewAcPrices
+
+
+                rowPostListBinding.root.setOnClickListener {
+                    var productidx = mypagecustomerauctionviewModel.getauctiondetailList.value!!.get(adapterPosition).productidx
+                    MainActivity.chosedAuctionProductIdx = productidx
+                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
+                }
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): allViewHolder {
+            val rowPostListBinding =RowMyPageCustomerAuctionBinding.inflate(layoutInflater)
+            val allViewHolder = allViewHolder(rowPostListBinding)
+
+            rowPostListBinding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            return allViewHolder
         }
 
         override fun getItemCount(): Int {
-            TODO("Not yet implemented")
+          return mypagecustomerauctionviewModel.getauctiondetailList.value?.size!!
         }
 
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            TODO("Not yet implemented")
+        override fun onBindViewHolder(holder: allViewHolder, position: Int) {
+            holder.rowPostListNickName.text = mypagecustomerauctionviewModel.getauctiondetailList.value!!.get(position).name
+            holder.rowPostListState.text = mypagecustomerauctionviewModel.getauctiondetailList.value!!.get(position).state
+            holder.rowPostListPrice.text = mypagecustomerauctionviewModel.getauctiondetailList.value!!.get(position).price + " 원"
+            PurchaseRepository.getImage(mypagecustomerauctionviewModel.getauctiondetailList.value!!.get(position)?.img.toString()){
+
+                val url = URL(it.result.toString())
+                Glide.with(context!!).load(url)
+                    .override(200,200)
+                    .into(holder.imageviewPtimg)
+            }
         }
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mypagecustomerauctionviewModel.resetList()
     }
 
 
 }
 
 
-
-
-
-
-
-//var newformatter = SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
-//
-////현재시간 가져오기
-//var now = System.currentTimeMillis()
-//
-//
-//AuctionProductRepository.getAuctionProductIndex {
-//    val idx = it.result.value as Long
-//    Log.d("lim","${idx}")
-//    AuctionProductRepository.getAuctionProductInfo(idx) {
-//        for(c1 in it.result.children){
-//            //이름,상태,이미지
-//            var newname = c1.child("auctionProductName").value.toString()
-//            var newdate = c1.child("auctionProductCloseDate").value.toString()
-//            var newimg = c1.child("auctionProductImageList").value.toString()
-//
-//            Log.d("Lim","${newname}")
-//            Log.d("Lim","${newdate}")
-//            Log.d("Lim","${newimg}")
-//
-//
-//        }
-//    }
-//}
-data class auctionCustomerDetail(var name:String,var img:String,var state:String)

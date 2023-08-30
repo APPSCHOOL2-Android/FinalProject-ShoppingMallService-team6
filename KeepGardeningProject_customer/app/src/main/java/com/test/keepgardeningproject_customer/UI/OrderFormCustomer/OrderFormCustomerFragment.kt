@@ -402,7 +402,7 @@ class OrderFormCustomerFragment : Fragment() {
                     }
                 }
             }
-            getData()
+
         }
     }
 
@@ -413,43 +413,4 @@ class OrderFormCustomerFragment : Fragment() {
         }
     }
 
-    fun getData() {
-        var useridx = MainActivity.loginedUserInfo.userIdx!!
-        PurchaseRepository.getPurchaseIndex {
-            //idx2 == purchaseInfoIdx:Long
-            var purchaseinfoidx = it.result.value as Long
-            purchaseinfoidx++
-            //useridx로 결제한 상품을 가져옴
-            OrderProductRepository.getIndexorderInfo(useridx) {
-                for (c1 in it.result.children) {
-                    var newstate = c1.child("ordersDeliveryState").value.toString()
-                    var newordersidx = c1.child("ordersIdx").value as Long
-                    var newproductidx =  c1.child("ordersProductIdx").value as Long
-                    var newtotalorderidx = c1.child("ordersTotalOrderIdx").value as Long
-                    ProductRepository.getProductInfoByIdx(useridx.toDouble()) {
-                        for (c2 in it.result.children) {
-                            //결제한 상품의 이름,이미지,상태
-                            var newname = c2.child("productName").value.toString()
-                            var imglist = c2.child("productImageList").value as ArrayList<String>
-                            var newimg = imglist[0]
-
-                            if(newstate== "결제완료"){
-                                var newclass = purchaseInfo(newproductidx,newordersidx,useridx,newtotalorderidx,purchaseinfoidx,
-                                        newname,newimg,newstate)
-                                PurchaseRepository.setPurchaseInfo(newclass) {
-                                    PurchaseRepository.setPurchaseIndex(purchaseinfoidx) {
-                                        Log.d("Limidx","${newclass}")
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-
-            }
-        }
-
-
-    }
 }

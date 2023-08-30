@@ -16,7 +16,6 @@ data class purchaseInfo(
     //orderTotalOrder
     var totalorderIdx:Long,
 
-    var purchaseInfoIdx:Long,
 
     var purchaseTitle: String,
     var purchaseImg: String,

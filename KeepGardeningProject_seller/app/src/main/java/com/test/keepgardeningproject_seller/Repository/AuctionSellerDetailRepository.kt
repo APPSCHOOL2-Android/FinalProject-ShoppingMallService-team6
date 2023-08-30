@@ -28,8 +28,8 @@ class AuctionSellerDetailRepository {
 
         fun getAuctionSellerDetailAll(userIdx:Long,callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
-            val databaseRef = database.getReference("AuctionSellerDetail")
-            databaseRef.orderByChild("auctionDetailIdx").equalTo(userIdx.toDouble()).get().addOnCompleteListener(callback1)
+            val databaseRef = database.getReference("AuctionProduct")
+            databaseRef.orderByChild("auctionProductStoreIdx").equalTo(userIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
 
         fun setAuctionSellerDetailInfo(auctionInfo:auctionInfo,callback1: (Task<Void>) -> Unit){

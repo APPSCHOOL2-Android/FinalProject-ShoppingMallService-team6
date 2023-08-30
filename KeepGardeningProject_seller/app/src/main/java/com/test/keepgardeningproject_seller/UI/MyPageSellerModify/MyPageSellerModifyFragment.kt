@@ -67,6 +67,13 @@ class MyPageSellerModifyFragment : Fragment() {
 
         myPageSellerModifyViewModel = ViewModelProvider(this).get(MyPageSellerModifyViewModel::class.java)
         myPageSellerModifyBinding.run {
+            toolbarMs.run {
+                setTitle("내 정보 수정")
+                setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_SELLER_MODIFY_FRAGMENT)
+                }
+            }
             var userInfo = mainActivity.loginSellerInfo
             textInputEditTextMsNickName.setText(userInfo.userSellerNickname)
             textInputEditTextMsAddressNumber.setText(userInfo.userSellerPostNumber)
