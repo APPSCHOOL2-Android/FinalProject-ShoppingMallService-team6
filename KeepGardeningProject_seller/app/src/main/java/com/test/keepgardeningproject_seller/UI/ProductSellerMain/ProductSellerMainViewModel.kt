@@ -19,7 +19,7 @@ class ProductSellerMainViewModel : ViewModel() {
     var productPrice = MutableLiveData<String>()
     var productCategory = MutableLiveData<String>()
     var productDetail = MutableLiveData<String>()
-    var productMainImage = MutableLiveData<Bitmap>()
+    var productMainImage = MutableLiveData<Uri>()
 
     // 상품 이미지 이름 리스트
     var productImageNameList = MutableLiveData<MutableList<String>>()
@@ -52,15 +52,7 @@ class ProductSellerMainViewModel : ViewModel() {
             productImageNameList.value = tempImageNameList
 
             ProductRepository.getProductImage(productImageNameList.value!![0]) {
-                thread {
-                    // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성
-                    val url = URL(it.result.toString())
-                    // 접속
-                    val httpURLConnection = url.openConnection() as HttpURLConnection
-                    // 이미지 객체를 생성
-                    val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
-                    productMainImage.postValue(bitmap)
-                }
+                productMainImage.value = it.result
             }
         }
     }

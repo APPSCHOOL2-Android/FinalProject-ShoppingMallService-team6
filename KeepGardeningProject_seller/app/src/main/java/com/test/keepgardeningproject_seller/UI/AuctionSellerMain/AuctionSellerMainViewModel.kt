@@ -2,6 +2,7 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerMain
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.DAO.AuctionClass
@@ -20,7 +21,7 @@ class AuctionSellerMainViewModel : ViewModel() {
     var auctionProductOpenDate = MutableLiveData<String>()
     var auctionProductCloseDate = MutableLiveData<String>()
     var auctionProductDetail = MutableLiveData<String>()
-    var auctionProductMainImage = MutableLiveData<Bitmap>()
+    var auctionProductMainImage = MutableLiveData<Uri>()
 
     // 경매 상품 이미지 이름 리스트
     var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
@@ -69,15 +70,7 @@ class AuctionSellerMainViewModel : ViewModel() {
             }
 
             ProductRepository.getProductImage(auctionProductImageNameList.value!![0]) {
-                thread {
-                    // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성한다.
-                    val url = URL(it.result.toString())
-                    // 접속한다.
-                    val httpURLConnection = url.openConnection() as HttpURLConnection
-                    // 이미지 객체를 생성한다.
-                    val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
-                    auctionProductMainImage.postValue(bitmap)
-                }
+                auctionProductMainImage.value = it.result
             }
         }
     }

@@ -80,7 +80,7 @@ class ProductSellerMainFragment : Fragment() {
                 fileNameList = it
             }
             productMainImage.observe(mainActivity) {
-                fragmentProductSellerMainBinding.imageViewProductSellerMainMainImage.setImageBitmap(it)
+                Glide.with(mainActivity).load(it).into(fragmentProductSellerMainBinding.imageViewProductSellerMainMainImage)
             }
             productSellerMainViewModel.getProductInfo(productIdx.toLong())
         }
