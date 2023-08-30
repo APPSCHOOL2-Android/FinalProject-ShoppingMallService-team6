@@ -7,12 +7,15 @@ import com.test.keepgardeningproject_customer.DAO.Review
 import com.test.keepgardeningproject_customer.DAO.UserSellerInfo
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.ReviewRepository
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 
 class ProductCustomerDetailViewModel : ViewModel() {
     val productInfo = MutableLiveData<ProductClass>()
     val imageList = MutableLiveData<MutableList<String>>()
     val userSellerInfo = MutableLiveData<UserSellerInfo>()
     val reviewList = MutableLiveData<MutableList<Review>>()
+
+    val userName = MutableLiveData<String>()
 
     init {
         imageList.value = mutableListOf<String>()
@@ -106,6 +109,16 @@ class ProductCustomerDetailViewModel : ViewModel() {
 
             tempList.reverse()
             reviewList.value = tempList
+        }
+    }
+
+    fun getName(_userIdx : Long){
+        UserRepository.getUserInfoByUserIdx(_userIdx){
+            for(c1 in it.result.children){
+                val userNickname = c1.child("userNickname").value as String
+
+                userName.value = userNickname
+            }
         }
     }
 }
