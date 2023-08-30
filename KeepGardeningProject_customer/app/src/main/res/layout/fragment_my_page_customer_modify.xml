@@ -23,42 +23,6 @@
         android:padding="@dimen/padding_size_middle">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_mc_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_size"
-            android:hint="비밀번호"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_mc_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_mc_passwordCheck"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_size"
-            android:hint="비밀번호확인"
-            android:transitionGroup="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_mc_passwordCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:inputType="text|textPassword"
-                android:textSize="@dimen/text_size_18" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout_mc_nickName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

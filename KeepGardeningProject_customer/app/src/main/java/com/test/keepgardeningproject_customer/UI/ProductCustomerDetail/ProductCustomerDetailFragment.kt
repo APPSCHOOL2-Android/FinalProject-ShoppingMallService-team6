@@ -40,7 +40,7 @@ class ProductCustomerDetailFragment : Fragment() {
 
     // 뷰모델
     lateinit var productCustomerDetailViewModel: ProductCustomerDetailViewModel
-    var idx : Long = 1
+    var idx : Long = MainActivity.chosedProductIdx
     lateinit var price : String
 
     // 탭
@@ -99,8 +99,7 @@ class ProductCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 상품 인덱스
-        idx = arguments?.getLong("selectedProductIdx", 1)!!
-
+        idx = MainActivity.chosedProductIdx
         // 뷰모델 함수 실행
         productCustomerDetailViewModel.getProductInfoByIdx(idx.toDouble())
 
@@ -134,6 +133,7 @@ class ProductCustomerDetailFragment : Fragment() {
                 bs.show(mainActivity.supportFragmentManager, "구매")
             }
 
+            // 문의 작성 버튼 클릭
             buttonPcdQna.setOnClickListener {
                 if(!MainActivity.isLogined) {
                     mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
@@ -141,6 +141,7 @@ class ProductCustomerDetailFragment : Fragment() {
                     // 로그인이 이미 된경우
                     val newBundle = Bundle()
                     newBundle.putLong("productIdx", idx)
+                    newBundle.putString("oldFragment", "Product")
                     mainActivity.replaceFragment(PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
                 }
             }

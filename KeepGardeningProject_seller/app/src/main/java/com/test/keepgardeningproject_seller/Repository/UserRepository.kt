@@ -72,7 +72,7 @@ class UserRepository {
                     data.ref.child("userSellerStoreInfo").setValue(userInfo.userSellerStoreInfo)
                     data.ref.child("userSellerPostNumber").setValue(userInfo.userSellerPostNumber)
                     data.ref.child("userSellerPostDetail").setValue(userInfo.userSellerPostDetail)
-                    data.ref.child("userSellerLoginType").setValue(userInfo.userSellerLoginType).addOnCompleteListener(callback1)
+                    data.ref.child("userSellerLoginType").setValue(userInfo.userSellerLoginType)
                 }
             }
         }

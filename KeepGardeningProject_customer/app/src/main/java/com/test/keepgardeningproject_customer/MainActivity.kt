@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity() {
             userNickname = null
         )
 
+        // 현재 선택한 상품 idx
+        var chosedProductIdx : Long = 1
+        var chosedAuctionProductIdx : Long = 1
+
         // 화면 분기
 
         val ALERT_CUSTOMER_FRAGMENT = "AlertCustomerFragment"

@@ -41,19 +41,19 @@ class MyPageSellerAuctionFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         myPageSellerAuctionBinding = FragmentMyPageSellerAuctionBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
         viewModel = ViewModelProvider(mainActivity)[MyPageSellerAuctionViewModel::class.java]
 
         viewModel.run {
-            sellerList.observe(mainActivity){
+            sellerList.observe(mainActivity) {
                 myPageSellerAuctionBinding.recyclerviewAs.adapter?.notifyDataSetChanged()
             }
         }
         myPageSellerAuctionBinding.run {
-            //getData()
+
             recyclerviewAs.run {
                 adapter = ResultrecyclerAdapter()
                 layoutManager = LinearLayoutManager(context)
@@ -67,14 +67,16 @@ class MyPageSellerAuctionFragment : Fragment() {
                     mainActivity.removeFragment(MY_PAGE_SELLER_AUCTION_FRAGMENT)
                 }
             }
-            var myidx =  mainActivity.loginSellerInfo.userSellerIdx
-            viewModel.getPostALl(myidx)
+            var useridx = mainActivity.loginSellerInfo.userSellerIdx
+            viewModel.getData(useridx)
         }
         return myPageSellerAuctionBinding.root
     }
 
-    inner class ResultrecyclerAdapter:RecyclerView.Adapter<ResultrecyclerAdapter.viewholderclass>(){
-        inner class viewholderclass(rowbinding:RowMyPageSellerAuctionBinding):RecyclerView.ViewHolder(rowbinding.root){
+    inner class ResultrecyclerAdapter :
+        RecyclerView.Adapter<ResultrecyclerAdapter.viewholderclass>() {
+        inner class viewholderclass(rowbinding: RowMyPageSellerAuctionBinding) :
+            RecyclerView.ViewHolder(rowbinding.root) {
 
             val textViewAuctionState: TextView
             val textViewAuctionName: TextView
@@ -86,18 +88,23 @@ class MyPageSellerAuctionFragment : Fragment() {
                 imageviewAuctionimg = rowbinding.imageviewAsImg
 
                 rowbinding.root.setOnClickListener {
-
                     var bundle = Bundle()
-                    var productidx = viewModel.sellerList.value?.get(adapterPosition)!!.auctionProductIdx
-                    bundle.putLong("productidx",productidx)
-                    mainActivity.replaceFragment(MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,true,bundle)
+                    var productidx =
+                        viewModel.sellerList.value?.get(adapterPosition)!!.auctionProductIdx.toInt()
+                    bundle.putInt("auctionProductIdx", productidx)
+                    mainActivity.replaceFragment(
+                        MainActivity.AUCTION_SELLER_MAIN_FRAGMENT,
+                        true,
+                        bundle
+                    )
                 }
             }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholderclass {
 
-            var rowMyPageSellerAuctionBinding = RowMyPageSellerAuctionBinding.inflate(layoutInflater)
+            var rowMyPageSellerAuctionBinding =
+                RowMyPageSellerAuctionBinding.inflate(layoutInflater)
             val allViewholder = viewholderclass(rowMyPageSellerAuctionBinding)
             rowMyPageSellerAuctionBinding.root.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -109,19 +116,22 @@ class MyPageSellerAuctionFragment : Fragment() {
 
         override fun getItemCount(): Int {
             return viewModel.sellerList.value?.size!!
-
-
         }
 
-        override fun onBindViewHolder(holder: ResultrecyclerAdapter.viewholderclass, position: Int) {
+        override fun onBindViewHolder(
+            holder: ResultrecyclerAdapter.viewholderclass,
+            position: Int,
+        ) {
 
-            holder.textViewAuctionState.text = viewModel.sellerList.value?.get(position)?.auctionDetailState.toString()
-            holder.textViewAuctionName.text =viewModel.sellerList.value?.get(position)?.auctionDetailTitle.toString()
-            AuctionSellerDetailRepository.getImage(viewModel.sellerList.value?.get(position)?.auctionDetailImg.toString()){
+            holder.textViewAuctionState.text =
+                viewModel.sellerList.value?.get(position)?.auctionDetailState.toString()
+            holder.textViewAuctionName.text =
+                viewModel.sellerList.value?.get(position)?.auctionDetailTitle.toString()
+            AuctionSellerDetailRepository.getImage(viewModel.sellerList.value?.get(position)?.auctionDetailImg.toString()) {
                 //이미지뷰에 사진넣기
                 val url = URL(it.result.toString())
                 Glide.with(context!!).load(url)
-                    .override(200,200)
+                    .override(200, 200)
                     .into(holder.imageviewAuctionimg)
 
             }
@@ -131,68 +141,18 @@ class MyPageSellerAuctionFragment : Fragment() {
     }
 
 
-
-
-
-    fun getData(){
-
-            var idx = mainActivity.loginSellerInfo.userSellerIdx
-            Log.d("Lim","${idx}")
-
-            AuctionSellerDetailRepository.getAuctionSellerDetailIdx {
-                var idx2 = it.result.value as Long
-                idx2++
-                Log.d("Lim","${idx2}")
-                AuctionProductRepository.getAuctionProductDetailInfoByIdx(idx){
-                    for(c1 in it.result.children){
-                        var newname = c1.child("auctionProductName").value.toString()
-                        var newimg = c1.child("auctionProductImageList").value as ArrayList<String>
-                        var productIdx = c1.child("auctionProductIdx").value as Long
-                        var imgone = newimg[0]
-                        var state = c1.child("auctionProductCloseDate").value.toString()
-                        var newstate = getTime(state)
-                        var newclass = auctionInfo(idx,imgone,newname,newstate,productIdx,idx2)
-
-                        AuctionSellerDetailRepository.setAuctionSellerDetailInfo(newclass){
-                            AuctionSellerDetailRepository.setAuctioSellerDetailIdx(idx2){
-                                Log.d("Lim","${newclass}")
-                            }
-                        }
-                    }
-
-                }
-            }
-
-    }
-
-
-    fun getTime(state:String):String{
-        var date: Date = Calendar.getInstance().time
-        date = SimpleDateFormat("yyyy/MM/dd HH:mm") .parse(state)
-        //현재시간
-        var today = Calendar.getInstance()
-        //경매종료시간 -현재시간
-        var calculateDate = (date.time - today.time.time)
-
-//        var calculateDay = calculateDate/(24 * 60 * 60 * 1000)
-//        var calculateHour = (calculateDate/(60 * 60 * 1000)) - calculateDay*24
-//        var calculateMinute = (calculateDate/(60 * 1000)) - calculateHour*60 - calculateDay*24*60
-//
-//        fragmentAuctionSellerMainBinding.textViewAuctionSellerMainTimeValue.text = "${calculateDay}일 ${calculateHour}시 ${calculateMinute}분"
-
-        if(calculateDate < 0) {
-            val state  = "경매완료"
-            return state
-        } else {
-            val state  = "경매중"
-            return state
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         viewModel.resetList()
     }
 
+
+
 }
+
+
+
+
+
+
 

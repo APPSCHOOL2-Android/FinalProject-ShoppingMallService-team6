@@ -8,6 +8,5 @@ data class auctionInfo(
     var auctionDetailImg:String,
     var auctionDetailTitle:String,
     var auctionDetailState:String,
-    var auctionProductIdx:Long,
-    var auctionDetailInfoIdx:Long
+    var auctionProductIdx:Long
 )

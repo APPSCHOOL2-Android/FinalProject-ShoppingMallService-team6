@@ -23,8 +23,10 @@ import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.test.keepgardeningproject_customer.API.KakaoAPI
 import com.test.keepgardeningproject_customer.API.NaverAPI
+import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentLoginCustomerMainBinding
 
 class LoginCustomerMainFragment : Fragment() {
@@ -62,15 +64,23 @@ class LoginCustomerMainFragment : Fragment() {
             }
             // 카카오 로그인
             buttonLoginCustomerMainKakaoLogin.setOnClickListener {
-                Toast.makeText(requireContext(),"kakao",Toast.LENGTH_SHORT).show()
+                kakaoApi.checkKaKaoLogin(requireContext())
+                kakaoLogin()
             }
             // 네이버 로그인
             buttonLoginCustomerMainNaverLogin.setOnClickListener {
-                Toast.makeText(requireContext(),"naver",Toast.LENGTH_SHORT).show()
+                naverApi.checkNaverLogin(requireContext())
+                naverLogin()
             }
             // 구글 로그인
             buttonLoginCustomerMainGoogleLogin.setOnClickListener {
-                Toast.makeText(requireContext(),"google",Toast.LENGTH_SHORT).show()
+                googleLogin()
+                signInWithGoogle()
+                val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+                val userEmail = account?.email
+                if (userEmail != null) {
+                    checkEmail(userEmail,MainActivity.GOOGLE_LOGIN)
+                }
             }
             // 이메일 로그인
             buttonLoginCustomerMainEmailLogin.setOnClickListener {
@@ -154,8 +164,36 @@ class LoginCustomerMainFragment : Fragment() {
             // 로그인 실패 처리
         }
     }
-    fun checkEmail(loginSellerEmail:String, joinUserType:Long){
+    fun checkEmail(loginCustomerEmail:String, joinUserType:Long){
+        UserRepository.getUserInfoById(loginCustomerEmail){
+            // 가져온 데이터가 없다면?
+            if(!it.result.exists()){
+                val joinBundle = Bundle()
+                joinBundle.putString("joinUserEmail",loginCustomerEmail)
+                joinBundle.putLong("joinUserType",joinUserType)
+                mainActivity.replaceFragment(MainActivity.JOIN_CUSTOMER_ADD_INFO_FRAGMENT,false,joinBundle)
+            }else{
+                for(c1 in it.result.children){
+                    // 로그인한 사용자 정보를 가져온다.
+                    val userCustomerIdx = c1.child("userIdx").value as Long
+                    var userCustomerEmail = c1.child("userEmail").value as String
+                    var userCustomerLoginType = c1.child("userLoginType").value as Long
+                    var userCustomerNickName = c1.child("userNickname").value as String
+                    var userCustomerPw = c1.child("userPw").value as String
+                    MainActivity.loginedUserInfo = UserInfo(
+                        userCustomerIdx,
+                        userCustomerLoginType,
+                        userCustomerEmail,
+                        userCustomerPw,
+                        userCustomerNickName
+                    )
+                    MainActivity.isLogined = true
+                    Snackbar.make(fragmentLoginCustomerMainBinding.root, "로그인 되었습니다", Snackbar.LENGTH_SHORT).show()
 
+                    mainActivity.replaceFragment(MainActivity.HOME_CUSTOMER_MAIN_FRAGMENT, false, null)
+                }
+            }
+        }
     }
 
 }

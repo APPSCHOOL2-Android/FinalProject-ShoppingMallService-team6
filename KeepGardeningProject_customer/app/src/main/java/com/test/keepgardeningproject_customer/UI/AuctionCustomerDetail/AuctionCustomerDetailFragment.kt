@@ -41,8 +41,11 @@ class AuctionCustomerDetailFragment : Fragment() {
     // 뷰모델
     lateinit var viewModel: AuctionCustomerDetailViewModel
     // 선택한 인덱스
-    var selectedIdx: Long = 1
+    var selectedIdx = MainActivity.chosedAuctionProductIdx
+
+    // 경매가격
     var openPrice : Int = 1
+    var nowPrice : Int = 1
 
     // 시간
     var date: Date = Calendar.getInstance().time
@@ -84,6 +87,9 @@ class AuctionCustomerDetailFragment : Fragment() {
                 val temp = dec.format(it.auctionProductOpenPrice!!.toInt())
                 binding.textviewAcdOpenprice.text = temp + " 원"
                 openPrice = it.auctionProductOpenPrice!!.toInt()
+
+                // 현재가격
+
 
                 // 경매상태 : 경매가능
 
@@ -130,7 +136,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                     maxPrice = priceList.max()
                 }
 
-
+                nowPrice = maxPrice
                 val dec = DecimalFormat("#,###")
                 val temp = dec.format(maxPrice)
                 binding.textviewAcdCurrentprice.text = temp + " 원"
@@ -138,7 +144,7 @@ class AuctionCustomerDetailFragment : Fragment() {
         }
 
         // 받아온 경매상품 인덱스
-        selectedIdx = arguments?.getLong("selectedAuctionProductIdx", 1)!!
+        selectedIdx = MainActivity.chosedAuctionProductIdx
 
         // 상품 정보 불러오기
         viewModel.getAPByIdx(selectedIdx.toDouble())
@@ -200,7 +206,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                             var auctionPrice = dialogAcdBinding.editTextTextDialogAcdPrice.text.toString().toInt()
 
                             // 입찰금액이 현재 금액보다 낮을경우
-                            if(auctionPrice <= openPrice){
+                            if(auctionPrice <= nowPrice){
                                 Snackbar.make(auctionCustomerDetailBinding.root, "현재금액보다 높은 금액만 입찰이 가능합니다.", Snackbar.LENGTH_SHORT).show()
                             }
                             // 입찰금액이 현재 금액보다 높을경우
@@ -226,6 +232,7 @@ class AuctionCustomerDetailFragment : Fragment() {
                                     AuctionRepository.setAuctionProduct(auctionInfo){
                                         AuctionRepository.setAuctionIndex(auctionIndex){
                                             Snackbar.make(auctionCustomerDetailBinding.root, "입찰등록이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                                            viewModel.getAuction()
                                         }
                                     }
                                 }
@@ -241,6 +248,15 @@ class AuctionCustomerDetailFragment : Fragment() {
             buttonAcdQnas.run {
                 setOnClickListener {
                     //문의작성으로 이동
+                    if(!MainActivity.isLogined) {
+                        mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT,true,null)
+                    } else {
+                        // 로그인이 이미 된경우
+                        val newBundle = Bundle()
+                        newBundle.putLong("auctionIdx", selectedIdx)
+                        newBundle.putString("oldFragment", "Auction")
+                        mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT, true, newBundle)
+                    }
                 }
             }
 

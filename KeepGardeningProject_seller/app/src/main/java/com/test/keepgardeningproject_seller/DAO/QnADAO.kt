@@ -1,4 +1,4 @@
-package com.test.keepgardeningproject_customer.DAO
+package com.test.keepgardeningproject_seller.DAO
 
 class QnADAO {
 }

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import java.net.HttpURLConnection
 import java.net.URL
@@ -24,6 +25,7 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
     }
 
 
+    // 상품 정보 가져오기
     fun getProductInfo(productIdx: Long) {
         val tempImageNameList = mutableListOf<String>()
 
@@ -33,7 +35,6 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                 var productImageList = c1.child("productImageList").value as ArrayList<String>
                 productName.value = c1.child("productName").value as String
                 productStoreIdx.value = c1.child("productStoreIdx").value as Long
-                Log.d("lion", "store index : ${productStoreIdx.value}")
 
                 for (i in 0 until productImageList.size) {
                     tempImageNameList.add(productImageList[i])
@@ -61,6 +62,61 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                     // 이미지 객체를 생성
                     val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
                     productMainImage.postValue(bitmap)
+                }
+            }
+        }
+    }
+
+    var auctionProductName = MutableLiveData<String>()
+    var auctionProductStoreIdx = MutableLiveData<Long>()
+    var auctionProductStoreName = MutableLiveData<String>()
+    var auctionProductMainImage = MutableLiveData<Bitmap>()
+
+    // 상품 이미지 이름 리스트
+    var auctionProductImageNameList = MutableLiveData<MutableList<String>>()
+
+    init {
+        auctionProductImageNameList.value = mutableListOf<String>()
+    }
+
+
+    // 경매 상품 정보 가져오기
+    fun getAuctionProductInfo(auctionProductIdx: Long) {
+        val tempImageNameList = mutableListOf<String>()
+
+
+        AuctionProductRepository.getAuctionProductByIdx(auctionProductIdx.toDouble()) { it ->
+            for (c1 in it.result.children) {
+                var auctionProductImageList = c1.child("auctionProductImageList").value as ArrayList<String>
+                auctionProductName.value = c1.child("auctionProductName").value as String
+                auctionProductStoreIdx.value = c1.child("auctionProductStoreIdx").value as Long
+
+                for (i in 0 until auctionProductImageList.size) {
+                    tempImageNameList.add(auctionProductImageList[i])
+                }
+
+//            // 가장 마지막에 등록한것부터 보여주기
+//            tempImageNameList.reverse()
+
+                auctionProductImageNameList.value = tempImageNameList
+
+                ProductRepository.getProductSellerInfoByIdx(auctionProductStoreIdx.value!!.toDouble()) {
+                    for (c1 in it.result.children) {
+                        auctionProductStoreName.value = c1.child("userSellerStoreName").value as String
+                        Log.d("lion", "store name : ${auctionProductStoreName.value}")
+                    }
+                }
+            }
+
+            ProductRepository.getProductImage(auctionProductImageNameList.value!![0]) {
+                thread {
+                    // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성
+                    val url = URL(it.result.toString())
+                    // 접속
+                    val httpURLConnection = url.openConnection() as HttpURLConnection
+                    // 이미지 객체를 생성
+                    val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
+                    auctionProductMainImage.postValue(bitmap)
                 }
             }
         }

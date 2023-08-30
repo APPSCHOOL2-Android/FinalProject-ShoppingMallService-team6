@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:fontFamily="@font/nanum_square_round_bold"
-            android:text="번호"
+            android:text="순위"
             android:textAlignment="center"
             android:textColor="@color/gray" />
 

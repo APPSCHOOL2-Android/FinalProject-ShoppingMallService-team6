@@ -41,9 +41,6 @@ class JoinSellerAddInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         // 앨범 설정
         albumLauncher = albumSetting(fragmentJoinSellerAddInfoBinding.imageViewJoinSellerMain)
-        var kakaoApi = KakaoAPI()
-        val googleAPI = GoogleAPI()
-        val naverAPI = NaverAPI()
         fragmentJoinSellerAddInfoBinding.run {
             var joinUserType = arguments?.getLong("joinUserType")
             if (joinUserType != null) {
@@ -68,9 +65,10 @@ class JoinSellerAddInfoFragment : Fragment() {
 
             }
             buttonJoinSellerAddInfoFindPostNumber.setOnClickListener {
-                googleAPI.googleLogOut(requireContext())
-                naverAPI.naverWithdraw()
+                mainActivity.replaceFragment(MainActivity.SEARCH_ADDRESS_FRAGMENT,true,null)
+                textInputEditTextJoinSellerAddInfoPostNumber.setText(mainActivity.postAddress)
             }
+
         }
 
 
@@ -162,5 +160,11 @@ class JoinSellerAddInfoFragment : Fragment() {
         return albumLauncher
     }
 
+    override fun onResume() {
+        super.onResume()
+        fragmentJoinSellerAddInfoBinding.run {
+            textInputEditTextJoinSellerAddInfoPostNumber.setText(mainActivity.postAddress)
+        }
+    }
 
 }

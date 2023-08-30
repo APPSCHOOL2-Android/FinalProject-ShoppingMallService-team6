@@ -5,16 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:transitionGroup="true"
     tools:context=".UI.MyPageCustomerQnADetail.MyPageCustomerQnADetailFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar_qc_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_qc_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

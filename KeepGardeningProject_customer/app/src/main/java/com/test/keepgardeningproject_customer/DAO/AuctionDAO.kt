@@ -27,3 +27,7 @@ data class AuctionProductInfo(
     var auctionProductImageList : ArrayList<String>?
 )
 
+
+//구매자 경매 데이터클래스
+data class auctionCustomerDetail(var name:String,var img:String,var state:String,var price:String,var productidx:Long)
+
