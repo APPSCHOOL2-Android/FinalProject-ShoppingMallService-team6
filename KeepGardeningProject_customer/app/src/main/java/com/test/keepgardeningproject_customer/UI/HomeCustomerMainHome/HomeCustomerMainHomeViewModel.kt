@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.ProductClass
+import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import kotlin.concurrent.thread
 
@@ -15,9 +16,13 @@ class HomeCustomerMainHomeViewModel : ViewModel() {
     // 게시글 이미지 이름 리스트
     var productImageNameList = MutableLiveData<MutableList<String>>()
 
+    // 인기상품 idx 리스트
+    var ordersProductIdxList = MutableLiveData<MutableList<Long>>()
+
     init {
         productClassList.value = mutableListOf<ProductClass>()
         productImageNameList.value = mutableListOf<String>()
+        ordersProductIdxList.value = mutableListOf<Long>()
     }
 
     // 추천상품
@@ -57,4 +62,18 @@ class HomeCustomerMainHomeViewModel : ViewModel() {
             productImageNameList.value = tempImageNameList
         }
     }
+
+    fun getOrdersInfoAll(){
+        val tempList = mutableListOf<Long>()
+        OrderProductRepository.getOrdersProductAll {
+            for(c1 in it.result.children){
+                val ordersProductIdx = c1.child("ordersProductIdx").value as Long
+
+                tempList.add(ordersProductIdx)
+            }
+
+            ordersProductIdxList.value = tempList
+        }
+    }
+
 }

@@ -132,9 +132,8 @@ class AuctionCustomerFragment : Fragment() {
                 // 클릭시 개별상품 detail로 이동
                 rowAuctionCustomerBinding.root.setOnClickListener {
                     val selectedAuctionProductIdx = rpl[adapterPosition].auctionProductIdx!!
-                    val bundle = Bundle()
-                    bundle.putLong("selectedAuctionProductIdx",selectedAuctionProductIdx)
-                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
+                    MainActivity.chosedAuctionProductIdx = selectedAuctionProductIdx
+                    mainActivity.replaceFragment(MainActivity.AUCTION_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
         }
