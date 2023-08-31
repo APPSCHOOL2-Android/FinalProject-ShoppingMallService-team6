@@ -56,6 +56,12 @@ class JoinSellerMainFragment : Fragment() {
                 setTitle("회원가입 하기")
             }
 
+            fileName = if (uploadUri == null) {
+                "None"
+            } else {
+                "image/img_${System.currentTimeMillis()}.jpg"
+            }
+
             textInputEditTextJoinSellerMainPostNumber.setText(mainActivity.postAddress)
             // 이메일 포커스 주기
             textInputLayoutJoinSellerMainEmail.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -118,11 +124,7 @@ class JoinSellerMainFragment : Fragment() {
                 var userinfo = mainActivity.loginSellerInfo
                 userindex++
                 // 배너 이미지 선택 안하면 파일 이름은 None으로 설정
-                fileName = if (uploadUri == null) {
-                    "None"
-                } else {
-                    "image/img_${System.currentTimeMillis()}.jpg"
-                }
+
                 firebaseAuth!!.createUserWithEmailAndPassword(email, pw).addOnCompleteListener(requireActivity()) { task ->
                         if(isAdded){
                             if (task.isSuccessful) {

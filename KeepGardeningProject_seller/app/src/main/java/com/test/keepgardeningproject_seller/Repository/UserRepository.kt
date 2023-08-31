@@ -105,7 +105,6 @@ class UserRepository {
             if(fileName != "None"){
                 val storage = FirebaseStorage.getInstance()
                 val fileRef = storage.reference.child(fileName)
-
                 fileRef.downloadUrl.addOnCompleteListener(callback1)
             }
 

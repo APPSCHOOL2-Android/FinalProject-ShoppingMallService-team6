@@ -78,10 +78,16 @@ class MyPageSellerModifyFragment : Fragment() {
 
             }
             var userbanner = userInfo.userSellerBanner!!
-            Log.e("테스트 합니다.","${userInfo.userSellerBanner}")
-            UserRepository.getBannerImage(userbanner){
-                val fileUri = it.result
-                Glide.with(mainActivity).load(fileUri).into(imageViewMsStoreImg)
+            Log.e("테스트 합니다.", "$userbanner")
+            if (userbanner != "None") { // 이미지 URL이 "None"이 아닐 때에만 이미지 로드
+                UserRepository.getBannerImage(userbanner) { result ->
+                    if (result.isSuccessful) {
+                        val fileUri = result.result
+                        Glide.with(mainActivity).load(fileUri).into(imageViewMsStoreImg)
+                    } else {
+                        Log.e("이미지 로드 실패", result.exception.toString())
+                    }
+                }
             }
 
             buttonMsModifyEnd.setOnClickListener {
