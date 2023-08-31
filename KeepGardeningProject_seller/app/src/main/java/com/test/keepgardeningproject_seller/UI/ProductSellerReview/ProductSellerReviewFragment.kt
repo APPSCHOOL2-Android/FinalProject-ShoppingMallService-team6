@@ -45,7 +45,6 @@ class ProductSellerReviewFragment : Fragment() {
         viewModel = ViewModelProvider(mainActivity)[ProductSellerReviewViewModel::class.java]
         viewModel.run {
             reviewClassList.observe(mainActivity) {
-                reviewList.clear()
                 reviewList = it
                 fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter?.notifyDataSetChanged()
             }
@@ -58,6 +57,7 @@ class ProductSellerReviewFragment : Fragment() {
                 adapter = RecyclerAdapterClass()
 
                 layoutManager = LinearLayoutManager(mainActivity)
+                adapter?.notifyDataSetChanged()
             }
         }
         return fragmentProductSellerReviewBinding.root
@@ -66,10 +66,10 @@ class ProductSellerReviewFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        viewModel.getReviewInfoAll(productIdx.toLong())
+
         var adapter = fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
-
-        viewModel.getReviewInfoAll(productIdx.toLong())
 
         fragmentProductSellerReviewBinding.root.requestLayout()
     }

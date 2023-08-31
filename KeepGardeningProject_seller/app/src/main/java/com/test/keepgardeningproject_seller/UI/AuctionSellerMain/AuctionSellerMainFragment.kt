@@ -64,6 +64,8 @@ class AuctionSellerMainFragment : Fragment() {
 
     private lateinit var viewModel: AuctionSellerMainViewModel
 
+    var openPrice = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -85,13 +87,20 @@ class AuctionSellerMainFragment : Fragment() {
                 // 숫자 comma 표시하기
                 var decimal = DecimalFormat("#,###")
                 var temp = it.toInt()
+                openPrice = temp
                 fragmentAuctionSellerMainBinding.textViewAuctionSellerMainOpenPriceValue.text = decimal.format(temp) + "원"
             }
-            auctionCurrentPrice.observe(mainActivity) {
+            auctionProductPriceList.observe(mainActivity) {
                 // 숫자 comma 표시하기
                 var decimal = DecimalFormat("#,###")
-                var temp = it.toInt()
-                fragmentAuctionSellerMainBinding.textViewAuctionSellerMainNowPriceValue.text = decimal.format(temp) + "원"
+                if(it.size == 0) {
+                    var temp = openPrice
+                    fragmentAuctionSellerMainBinding.textViewAuctionSellerMainNowPriceValue.text = decimal.format(temp) + "원"
+                }
+                else {
+                    var temp = it.get(0).toInt()
+                    fragmentAuctionSellerMainBinding.textViewAuctionSellerMainNowPriceValue.text = decimal.format(temp) + "원"
+                }
             }
             auctionProductImageNameList.observe(mainActivity) {
                 fileNameList = it
@@ -202,6 +211,9 @@ class AuctionSellerMainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        auctionSellerMainViewModel.getAuctionProductInfo(auctionProductIdx.toLong())
+
         fragmentAuctionSellerMainBinding.viewPagerAuctionSellerMainFragment.requestLayout()
     }
 

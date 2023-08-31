@@ -54,6 +54,11 @@ class HomeSellerTabFragment : Fragment() {
         return fragmentHomeSellerTabBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        fragmentHomeSellerTabBinding.viewPagerHomeSellerTab.requestLayout()
+    }
+
     // adapter 클래스
     inner class TabAdapterClass(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
         override fun getItemCount(): Int {

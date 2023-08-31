@@ -60,6 +60,12 @@ class HomeSellerAuctionFragment : Fragment() {
         return fragmentHomeSellerAuctionBinding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeSellerViewModel.getAuctionProductInfoAll(mainActivity.loginSellerInfo.userSellerIdx)
+        fragmentHomeSellerAuctionBinding.recyclerViewHomeSellerAuction.adapter?.notifyDataSetChanged()
+    }
+
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
         inner class ViewHolderClass(rowHomeSellerBinding: RowHomeSellerBinding) : RecyclerView.ViewHolder(rowHomeSellerBinding.root) {
             var imageViewRow : ImageView

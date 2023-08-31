@@ -50,19 +50,21 @@ class ProductSellerDetailFragment : Fragment() {
 
             productDetail.observe(mainActivity) {
                 fragmentProductSellerDetailBinding.textViewProductSellerDetailProductDetail.text = it
+                fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter?.notifyDataSetChanged()
             }
             productImageNameList.observe(mainActivity) {
                 fileNameList = it
                 fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter?.notifyDataSetChanged()
             }
-            productSellerMainViewModel.getProductInfo(productIdx.toLong())
         }
+        productSellerMainViewModel.getProductInfo(productIdx.toLong())
 
         fragmentProductSellerDetailBinding.run {
             recyclerViewProductSellerDetail.run {
                 adapter = RecyclerAdapterClass()
 
                 layoutManager = LinearLayoutManager(mainActivity)
+                adapter?.notifyDataSetChanged()
             }
         }
         return fragmentProductSellerDetailBinding.root
@@ -77,12 +79,14 @@ class ProductSellerDetailFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        fragmentProductSellerDetailBinding.root.requestLayout()
+        fileNameList.clear()
 
         productSellerMainViewModel.getProductInfo(productIdx.toLong())
 
         var adapter = fragmentProductSellerDetailBinding.recyclerViewProductSellerDetail.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
+
+        fragmentProductSellerDetailBinding.root.requestLayout()
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {
@@ -117,7 +121,7 @@ class ProductSellerDetailFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
 
-            var fileName = productSellerMainViewModel.productImageNameList.value?.get(position)!!
+            var fileName = fileNameList.get(position)!!
             ProductRepository.getProductImage(fileName) {
                 var fileUri = it.result
                 Glide.with(mainActivity).load(fileUri).into(holder.imageViewProductDetail)
