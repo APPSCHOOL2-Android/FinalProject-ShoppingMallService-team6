@@ -20,5 +20,12 @@ class ReviewRepository {
             val reviewDataRef = database.getReference("Review")
             reviewDataRef.orderByChild("productIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener(callback1)
         }
+
+        fun getSellerReviewInfoByIdx(storeName:String,callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val reviewDataRef = database.getReference("Review")
+            reviewDataRef.orderByChild("storeName").equalTo(storeName).get().addOnCompleteListener (callback1)
+
+        }
     }
 }
