@@ -7,11 +7,13 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
@@ -50,6 +52,9 @@ class ProductSellerMainFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProductSellerMainViewModel
+
+    lateinit var dialog: AlertDialog
+    val dialogAutoDismissTime = 3000L // 3초 후에 다이얼로그 닫힘
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -158,8 +163,24 @@ class ProductSellerMainFragment : Fragment() {
                                 ProductRepository.removeImage(fileNameList[i]!!) {}
                             }
                         }
-                        SystemClock.sleep(500)
-                        mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
+
+                        val builder = MaterialAlertDialogBuilder(mainActivity)
+                        builder.setMessage("LOADING...")
+                        dialog = builder.create()
+                        dialog.show()
+
+                        // 일정 시간 후에 다이얼로그 닫기
+                        val handler = Handler()
+                        handler.postDelayed({
+                            dialog.dismiss()
+                            var oldFragment = arguments?.getString("oldFragment")
+                            if(oldFragment == "ProductSellerRegisterFragment") {
+                                mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
+                                mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
+                            } else {
+                                mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
+                            }
+                        }, dialogAutoDismissTime)
                     }
                     builder.show()
                 }
