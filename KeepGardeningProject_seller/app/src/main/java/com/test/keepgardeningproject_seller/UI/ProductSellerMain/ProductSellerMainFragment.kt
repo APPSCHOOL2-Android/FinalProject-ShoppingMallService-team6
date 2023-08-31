@@ -33,7 +33,6 @@ import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSeller
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
 import java.text.DecimalFormat
 
-
 class ProductSellerMainFragment : Fragment() {
 
     lateinit var fragmentProductSellerMainBinding: FragmentProductSellerMainBinding
@@ -159,6 +158,8 @@ class ProductSellerMainFragment : Fragment() {
                             for(i in 0 until fileNameList.size) {
                                 ProductRepository.removeImage(fileNameList[i]!!) {}
                             }
+
+                            ProductRepository.removeProductAtCart(productIdx.toLong())
                         }
 
                         val builder = MaterialAlertDialogBuilder(mainActivity)

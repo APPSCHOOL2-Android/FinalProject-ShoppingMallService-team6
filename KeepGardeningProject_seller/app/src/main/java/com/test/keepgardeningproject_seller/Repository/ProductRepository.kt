@@ -109,5 +109,17 @@ class ProductRepository {
                 }
             }
         }
+        // 장바구니 데이터에서 삭제
+        fun removeProductAtCart(productIdx:Long) {
+            val database = FirebaseDatabase.getInstance()
+            val testDataRef = database.getReference("Cart")
+
+            testDataRef.orderByChild("cartProductIdx").equalTo(productIdx.toDouble()).get().addOnCompleteListener {
+                for(a1 in it.result.children) {
+                    // 해당 데이터 삭제
+                    a1.ref.removeValue()
+                }
+            }
+        }
     }
 }
