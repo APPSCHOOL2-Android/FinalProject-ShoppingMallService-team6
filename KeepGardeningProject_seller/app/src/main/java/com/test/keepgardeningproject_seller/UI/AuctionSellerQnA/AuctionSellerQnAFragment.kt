@@ -48,6 +48,7 @@ class AuctionSellerQnAFragment : Fragment() {
         viewModel.run {
             qnaClassList.observe(mainActivity) {
                 qnaList = it
+                qnaAuctionList.clear()
                 for (i in 0 until qnaList.size) {
                     if(it.get(i).QnAProductType == "경매") {
                         qnaAuctionList.add(qnaList[i])

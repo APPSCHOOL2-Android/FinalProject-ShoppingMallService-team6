@@ -34,7 +34,7 @@ class ProductSellerQnAFragment : Fragment() {
     }
 
     var qnaList = mutableListOf<QnAClass>()
-    var qnaAuctionList = mutableListOf<QnAClass>()
+    var qnaProductList = mutableListOf<QnAClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,9 +48,10 @@ class ProductSellerQnAFragment : Fragment() {
         viewModel.run {
             qnaClassList.observe(mainActivity) {
                 qnaList = it
+                qnaProductList.clear()
                 for (i in 0 until qnaList.size) {
                     if(it.get(i).QnAProductType == "상품") {
-                        qnaAuctionList.add(qnaList[i])
+                        qnaProductList.add(qnaList[i])
                     }
                 }
                 fragmentProductSellerQnABinding.recyclerViewProductSellerQnA.adapter?.notifyDataSetChanged()
@@ -103,7 +104,7 @@ class ProductSellerQnAFragment : Fragment() {
 
                 rowProductSellerQnaBinding.root.setOnClickListener {
                     val newBundle = Bundle()
-                    newBundle.putInt("qnaIdx", qnaAuctionList[adapterPosition].QnAIdx!!.toInt())
+                    newBundle.putInt("qnaIdx", qnaProductList[adapterPosition].QnAIdx!!.toInt())
                     mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT, true, newBundle)
                 }
             }
@@ -126,13 +127,13 @@ class ProductSellerQnAFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return qnaAuctionList.size
+            return qnaProductList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.textViewRowTitle.text = qnaAuctionList.get(position)?.QnATitle
-            holder.textViewRowContent.text = qnaAuctionList.get(position)?.QnAContent
-            holder.textViewRowDate.text = qnaAuctionList.get(position)?.QnADate
+            holder.textViewRowTitle.text = qnaProductList.get(position)?.QnATitle
+            holder.textViewRowContent.text = qnaProductList.get(position)?.QnAContent
+            holder.textViewRowDate.text = qnaProductList.get(position)?.QnADate
         }
     }
 
