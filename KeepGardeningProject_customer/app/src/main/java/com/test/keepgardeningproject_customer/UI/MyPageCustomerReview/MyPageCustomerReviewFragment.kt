@@ -55,7 +55,7 @@ class MyPageCustomerReviewFragment : Fragment() {
 
             recyclerViewMyPageCustomerReview.run {
                 adapter = ReviewRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = LinearLayoutManager(mainActivity)
             }
 
             viewModel.getReviewData(userIdx.toString())
