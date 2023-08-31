@@ -1,42 +1,33 @@
 package com.test.keepgardeningproject_customer.Repository
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
-import com.test.keepgardeningproject_customer.DAO.UserDAO
 import com.test.keepgardeningproject_customer.DAO.UserInfo
-
-import com.test.keepgardeningproject_customer.MainActivity
 
 class UserRepository {
     companion object{
+        /*로그인 ->홈
 
-        //로그인 ->홈
+        비회원가입시
+        카카오로 계속하기 -> 홈 -> 회원가입화면(닉네임) -> 마이페이지에서 수정(닉네임)
+        네이버로 계속하기  -> 홈
+        구글로 계속하기 -> 홈
+        이메일로 계속하기 -> 이메일 계속하기 화면  - 회원가입화면(이메일,비밀번호(확인),닉네임) -> 마이페이지 수정(비밀번호,닉네임)
 
-        //비회원가입시
-        //카카오로 계속하기 -> 홈 -> 회원가입화면(닉네임) -> 마이페이지에서 수정(닉네임)
-        //네이버로 계속하기  -> 홈
-        //구글로 계속하기 -> 홈
-        //이메일로 계속하기 -> 이메일 계속하기 화면  - 회원가입화면(이메일,비밀번호(확인),닉네임) -> 마이페이지 수정(비밀번호,닉네임)
-
-
-        //회원가입시
-        //카카오로 계속하기 -> 홈 -
-        //네이버로 계속하기  -> 홈
-        //구글로 계속하기 -> 홈
-        //이메일로 계속하기 -> 홈
+        회원가입시
+        카카오로 계속하기 -> 홈 -
+        네이버로 계속하기  -> 홈
+        구글로 계속하기 -> 홈
+        이메일로 계속하기 -> 홈
 
 
-//        UserIndex:유저인덱스(Int)
-
-//        UserLoginType: 로그인타입(0:일반, 1:카카오, 2:네이버, 3:구글)
-
-//        UserEmail:이메일
-//        UserPw:비밀번호
-//        UserNickName:닉네임
-
-//        UserStoreIndex?: 구매자인지 판매자인지
+        UserIndex:유저인덱스(Int)
+        UserLoginType: 로그인타입(0:일반, 1:카카오, 2:네이버, 3:구글)
+        UserEmail:이메일
+        UserPw:비밀번호
+        UserNickName:닉네임
+        UserStoreIndex?: 구매자인지 판매자인지*/
 
         //사용자 로그인 정보 저장
         fun setUserInfo(userInfo:UserInfo,callback1: (Task<Void>) -> Unit){
@@ -114,13 +105,5 @@ class UserRepository {
                 }
             }
         }
-
-
-
-
-
-
-
-
     }
 }

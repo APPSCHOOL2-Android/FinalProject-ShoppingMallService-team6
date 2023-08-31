@@ -1,9 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerAuction
 
-import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,22 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.navercorp.nid.oauth.NidOAuthPreferencesManager.state
-import com.test.keepgardeningproject_seller.DAO.auctionInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.MY_PAGE_SELLER_AUCTION_FRAGMENT
 import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.AuctionSellerDetailRepository
-import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerAuctionBinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerAuctionBinding
-import java.lang.RuntimeException
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
-import java.util.Date
 
 
 class MyPageSellerAuctionFragment : Fragment() {

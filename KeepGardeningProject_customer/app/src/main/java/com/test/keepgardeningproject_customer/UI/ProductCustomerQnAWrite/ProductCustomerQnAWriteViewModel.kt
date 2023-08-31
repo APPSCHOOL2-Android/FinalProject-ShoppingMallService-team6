@@ -1,16 +1,11 @@
 package com.test.keepgardeningproject_customer.UI.ProductCustomerQnAWrite
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
 
 class ProductCustomerQnAWriteViewModel():ViewModel() {
     var productName = MutableLiveData<String>()
@@ -24,7 +19,6 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
     init {
         productImageNameList.value = mutableListOf<String>()
     }
-
 
     // 상품 정보 가져오기
     fun getProductInfo(productIdx: Long) {
@@ -40,9 +34,6 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                 for (i in 0 until productImageList.size) {
                     tempImageNameList.add(productImageList[i])
                 }
-
-//            // 가장 마지막에 등록한것부터 보여주기
-//            tempImageNameList.reverse()
 
                 productImageNameList.value = tempImageNameList
 
@@ -87,9 +78,6 @@ class ProductCustomerQnAWriteViewModel():ViewModel() {
                 for (i in 0 until auctionProductImageList.size) {
                     tempImageNameList.add(auctionProductImageList[i])
                 }
-
-//            // 가장 마지막에 등록한것부터 보여주기
-//            tempImageNameList.reverse()
 
                 auctionProductImageNameList.value = tempImageNameList
 

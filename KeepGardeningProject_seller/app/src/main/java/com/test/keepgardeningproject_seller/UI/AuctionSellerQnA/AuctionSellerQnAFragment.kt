@@ -2,23 +2,17 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerQnA
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.DAO.QnAClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
-import com.test.keepgardeningproject_seller.UI.MyPageSellerQnADetail.MyPageSellerQnADetailViewModel
-import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.RowProductSellerQnaBinding
 
@@ -72,7 +66,6 @@ class AuctionSellerQnAFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AuctionSellerQnAViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

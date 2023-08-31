@@ -10,14 +10,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.UI.AuctionSellerRegister.AuctionSellerRegisterFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerRegister.ProductSellerRegisterFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerTabBinding
 
 class HomeSellerTabFragment : Fragment() {
-
-//    private lateinit var viewModel: HomeSellerViewModel
 
     lateinit var fragmentHomeSellerTabBinding: FragmentHomeSellerTabBinding
     lateinit var mainActivity: MainActivity
@@ -41,7 +36,6 @@ class HomeSellerTabFragment : Fragment() {
         fragmentList.add(HomeSellerAuctionFragment())
 
         fragmentHomeSellerTabBinding.run {
-//            viewPagerHomeSeller.setUserInputEnabled(false)
             viewPagerHomeSellerTab.adapter = TabAdapterClass(mainActivity)
 
             // 탭 구성

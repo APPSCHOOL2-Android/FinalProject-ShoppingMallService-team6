@@ -2,25 +2,19 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerInfo
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_seller.DAO.AuctionClass
-import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
-import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerInfoBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerInfoBinding
-import com.test.keepgardeningproject_seller.databinding.RowProductSellerQnaBinding
 import java.text.DecimalFormat
 
 class AuctionSellerInfoFragment : Fragment() {
@@ -70,7 +64,6 @@ class AuctionSellerInfoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AuctionSellerInfoViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

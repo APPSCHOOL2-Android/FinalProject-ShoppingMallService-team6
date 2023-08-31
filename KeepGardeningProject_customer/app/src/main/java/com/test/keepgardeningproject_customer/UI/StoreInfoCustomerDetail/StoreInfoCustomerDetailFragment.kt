@@ -14,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.StoreRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerDetailBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcsGridBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcsLinearBinding
-import com.test.keepgardeningproject_customer.databinding.RowStoreInfoCustomerBinding
 import java.text.DecimalFormat
 
 class StoreInfoCustomerDetailFragment : Fragment() {

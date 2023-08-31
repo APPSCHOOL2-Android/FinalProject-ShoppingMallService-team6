@@ -1,17 +1,9 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerMain
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import com.test.keepgardeningproject_seller.Repository.UserRepository
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
 
 class ProductSellerMainViewModel : ViewModel() {
 
@@ -45,9 +37,6 @@ class ProductSellerMainViewModel : ViewModel() {
                     tempImageNameList.add(productImageList[i])
                 }
             }
-
-//            // 가장 마지막에 등록한것부터 보여주기
-//            tempImageNameList.reverse()
 
             productImageNameList.value = tempImageNameList
 

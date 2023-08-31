@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 

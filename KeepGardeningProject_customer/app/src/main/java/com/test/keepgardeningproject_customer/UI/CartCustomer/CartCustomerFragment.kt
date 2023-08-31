@@ -2,7 +2,6 @@ package com.test.keepgardeningproject_customer.UI.CartCustomer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,14 +11,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentCartCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowCartCustomerBinding
-import com.test.keepgardeningproject_customer.databinding.RowOrderCheckFormCustomerBinding
 import java.text.DecimalFormat
 
 class CartCustomerFragment : Fragment() {

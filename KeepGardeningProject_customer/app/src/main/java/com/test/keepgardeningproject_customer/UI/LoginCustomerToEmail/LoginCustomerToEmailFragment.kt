@@ -121,7 +121,6 @@ class LoginCustomerToEmailFragment : Fragment() {
                 .addOnCompleteListener(requireActivity(), OnCompleteListener<AuthResult?> { task ->
                     // 로그인 성공
                     if (task.isSuccessful) {
-                        //Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
                         UserRepository.getUserInfoById(loginCustomerEmail) {
                             // 가져온 데이터가 없다면
                             if (!it.result.exists()) {
@@ -153,7 +152,6 @@ class LoginCustomerToEmailFragment : Fragment() {
                             }
                         }
                     } else { // 로그인 실패
-                        //Toast.makeText(requireActivity(), "로그인 오류", Toast.LENGTH_SHORT).show()
                         Snackbar.make(fragmentLoginCustomerToEmailBinding.root, "로그인 오류입니다.", Snackbar.LENGTH_SHORT).show()
                     }
 

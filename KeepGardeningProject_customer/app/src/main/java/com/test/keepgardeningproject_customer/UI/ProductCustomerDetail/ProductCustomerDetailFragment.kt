@@ -1,9 +1,6 @@
 package com.test.keepgardeningproject_customer.UI.ProductCustomerDetail
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,19 +11,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.MainActivity.Companion.PRODUCT_CUSTOMER_QNA_WRITE_FRAGMENT
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.Repository.ProductRepository.Companion.getProductSellerInfoByIdx
-import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailAuctionFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailBottomDialog
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailDetailFragment
 import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.components.ProductCustomerDetailReviewFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailBinding
-import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailDetailBinding
-import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerDetailReviewBinding
 import java.text.DecimalFormat
 
 class ProductCustomerDetailFragment : Fragment() {

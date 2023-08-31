@@ -1,22 +1,16 @@
 package com.test.keepgardeningproject_seller.UI.LoginSellerToEmail
 
-import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.navercorp.nid.NaverIdLoginSDK.getApplicationContext
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
@@ -128,7 +122,6 @@ class LoginSellerToEmailFragment : Fragment() {
                 .addOnCompleteListener(requireActivity(), OnCompleteListener<AuthResult?> { task ->
                     // 로그인 성공
                     if (task.isSuccessful) {
-                        //Toast.makeText(requireActivity(), "로그인 성공", Toast.LENGTH_SHORT).show()
                         UserRepository.getUserSellerInfoById(loginSellerEmail) {
                             // 가져온 데이터가 없다면
                             if (!it.result.exists()) {
@@ -178,7 +171,6 @@ class LoginSellerToEmailFragment : Fragment() {
                             }
                         }
                     } else { // 로그인 실패
-                        //Toast.makeText(requireActivity(), "로그인 오류", Toast.LENGTH_SHORT).show()
                         Snackbar.make(fragmentLoginSellerToEmailBinding.root, "로그인 오류입니다.", Snackbar.LENGTH_SHORT).show()
                     }
 

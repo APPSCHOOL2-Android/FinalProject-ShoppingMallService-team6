@@ -9,7 +9,6 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.databinding.FragmentSearchAddressBinding
 
 

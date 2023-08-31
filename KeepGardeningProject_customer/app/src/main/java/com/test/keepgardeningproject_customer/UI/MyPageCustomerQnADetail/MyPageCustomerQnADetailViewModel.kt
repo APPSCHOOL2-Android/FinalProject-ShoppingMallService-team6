@@ -1,14 +1,8 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnADetail
 
-
-import android.net.Uri
-import android.os.Handler
-import android.os.SystemClock
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.Repository.QnARepository
-import kotlin.concurrent.thread
 
 class MyPageCustomerQnADetailViewModel : ViewModel() {
 

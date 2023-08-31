@@ -9,10 +9,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
-
-
-public class KakaoAPI {
-
+class KakaoAPI {
     fun checkKaKaoLogin(context: Context) {
         // 로그인 조합 예제
         // 카카오계정으로 로그인 공통 callback 구성
@@ -45,32 +42,6 @@ public class KakaoAPI {
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-        }
-    }
-
-    // 카카오 로그아웃 함수
-    fun kakaoLogOut() {
-        UserApiClient.instance.logout { error ->
-            if (error != null) {
-                // 로그아웃 실패 시 처리
-                Log.e("KakaoAPI", "카카오톡 로그아웃 실패", error)
-            } else {
-                // 로그아웃 성공 시 처리
-                Log.i("KakaoAPI", "카카오톡 로그아웃 성공")
-                // 로그아웃 후에 수행할 작업을 여기에 추가할
-            }
-        }
-    }
-    // 카카오톡 회원탈퇴 함수
-    fun kakaoWithdraw() {
-        UserApiClient.instance.unlink { error ->
-            if (error != null) {
-                // 탈퇴 실패 시 처리
-                Log.e("KakaoAPI", "카카오톡 계정 탈퇴 실패", error)
-            } else {
-                // 탈퇴 성공 시 처리
-                Log.i("KakaoAPI", "카카오톡 계정 탈퇴 성공")
-            }
         }
     }
 

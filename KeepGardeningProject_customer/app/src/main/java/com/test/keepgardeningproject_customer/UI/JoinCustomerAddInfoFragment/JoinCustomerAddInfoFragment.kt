@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentJoinCustomerAddInfoBinding
 

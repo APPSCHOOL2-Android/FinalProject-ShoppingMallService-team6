@@ -1,10 +1,8 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerAuction
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.auctionCustomerDetail
-import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.AuctionRepository

@@ -1,40 +1,23 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnADetail
 
-import android.content.res.Resources
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.google.android.material.carousel.CarouselLayoutManager
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerQnADetailBinding
-import com.test.keepgardeningproject_customer.databinding.RowQnaImageBinding
-
 
 class MyPageCustomerQnADetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MyPageCustomerQnADetailFragment()
-    }
-
     private lateinit var viewModel: MyPageCustomerQnADetailViewModel
-
     lateinit var binding: FragmentMyPageCustomerQnADetailBinding
     lateinit var mainActivity: MainActivity
-
     var qnaIdx:Long = 0
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -121,12 +104,6 @@ class MyPageCustomerQnADetailFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyPageCustomerQnADetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

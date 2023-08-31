@@ -5,19 +5,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.test.keepgardeningproject_customer.DAO.ProductClass
 
 class ProductRepository {
     companion object {
-
-        // 상품 인덱스 가져오기
-        fun getProductIdx(callback1:(Task<DataSnapshot>) -> Unit) {
-            val database = FirebaseDatabase.getInstance()
-            // 게시글 인덱스 번호
-            val productIdxRef = database.getReference("ProductIdx")
-            productIdxRef.get().addOnCompleteListener(callback1)
-        }
-
         fun getProductInfoByIdx(productIdx:Double, callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
             val productDataRef = database.getReference("Product")
@@ -28,12 +18,6 @@ class ProductRepository {
             val database = FirebaseDatabase.getInstance()
             val productDataRef = database.getReference("Product")
             productDataRef.orderByChild("productIdx").get().addOnCompleteListener(callback1)
-        }
-
-        fun getProductInfoByCategory(category : String, callback1: (Task<DataSnapshot>) -> Unit){
-            val database = FirebaseDatabase.getInstance()
-            val productDataRef = database.getReference("Product")
-            productDataRef.orderByChild("productCategory")
         }
 
         fun getProductImage(fileName : String, callback1:(Task<Uri>) -> Unit){

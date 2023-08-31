@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain
 
 import android.content.DialogInterface
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.play.integrity.internal.m
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ktx.values
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R

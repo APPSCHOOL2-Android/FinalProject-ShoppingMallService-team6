@@ -1,11 +1,8 @@
 package com.test.keepgardeningproject_seller.UI.HomeSeller
 
-import android.content.Context
 import android.net.Uri
-import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
@@ -31,7 +28,6 @@ class HomeSellerViewModel : ViewModel() {
     fun getProductInfoAll(storeIdx: Long) {
         val tempList = mutableListOf<ProductClass>()
         val tempImageNameList = mutableListOf<String>()
-        val tempUriList = mutableListOf<Uri>()
 
         ProductRepository.getProductInfoAll(storeIdx) {
             for (c1 in it.result.children) {
@@ -80,7 +76,6 @@ class HomeSellerViewModel : ViewModel() {
     fun getAuctionProductInfoAll(storeIdx: Long) {
         val tempList = mutableListOf<AuctionProductClass>()
         val tempImageNameList = mutableListOf<String>()
-        val tempUriList = mutableListOf<Uri>()
 
         AuctionProductRepository.getAuctionProductInfoAll(storeIdx) {
             for (c1 in it.result.children) {

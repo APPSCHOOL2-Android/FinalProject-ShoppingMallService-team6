@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -171,11 +170,6 @@ class HomeCustomerMainHomeFragment : Fragment() {
             val rowHcmhFavoriteBinding = RowHcmhFavoriteBinding.inflate(layoutInflater)
             val viewHolderHCMHFavorite = ViewHolderHCMHFavorite(rowHcmhFavoriteBinding)
 
-//            rowHcmhFavoriteBinding.root.layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
-
             return viewHolderHCMHFavorite
         }
 
@@ -226,11 +220,6 @@ class HomeCustomerMainHomeFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHCMHRecommend {
             val rowHcmhRecommendBinding = RowHcmhRecommendBinding.inflate(layoutInflater)
             val viewHolderHCMHRecommend = ViewHolderHCMHRecommend(rowHcmhRecommendBinding)
-
-//            rowHcmhRecommendBinding.root.layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
 
             return viewHolderHCMHRecommend
         }

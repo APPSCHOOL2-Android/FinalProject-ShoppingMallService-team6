@@ -1,8 +1,4 @@
 package com.test.keepgardeningproject_customer.DAO
-
-class ProductDAO {
-}
-
 data class ProductClass(
     var productIdx: Long?,
     var productImageList: ArrayList<String>?,

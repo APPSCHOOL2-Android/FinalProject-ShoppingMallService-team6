@@ -1,16 +1,9 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerAuction
 
-import android.os.Build.VERSION_CODES.M
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.play.integrity.internal.m
-import com.test.keepgardeningproject_seller.DAO.UserDAO
-import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.DAO.auctionInfo
-import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.Repository.AuctionSellerDetailRepository
-import com.test.keepgardeningproject_seller.Repository.UserRepository
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

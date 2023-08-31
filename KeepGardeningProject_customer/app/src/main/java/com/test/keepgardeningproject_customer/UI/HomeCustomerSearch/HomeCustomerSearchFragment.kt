@@ -24,7 +24,6 @@ import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerSearchBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcsGridBinding
 import com.test.keepgardeningproject_customer.databinding.RowHcsLinearBinding
-import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 class HomeCustomerSearchFragment : Fragment() {
@@ -59,14 +58,10 @@ class HomeCustomerSearchFragment : Fragment() {
 
             this.productClassList.observe(mainActivity){
                 productList = it
-//                rpl = productList
-//                fragmentHomeCustomerSearchBinding.recyclerHcsSearchResult.adapter?.notifyDataSetChanged()
             }
 
             this.productImageNameList.observe(mainActivity){
                 productThumbnailFileNameList = it
-//                ril = productThumbnailFileNameList
-//                fragmentHomeCustomerSearchBinding.recyclerHcsSearchResult.adapter?.notifyDataSetChanged()
             }
 
         }
@@ -278,11 +273,6 @@ class HomeCustomerSearchFragment : Fragment() {
             val rowHcsGridBinding = RowHcsGridBinding.inflate(layoutInflater)
             val viewHolderHCSGrid = ViewHolderHCSGrid(rowHcsGridBinding)
 
-//            rowHcsBinding.root.layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
-
             return viewHolderHCSGrid
         }
 
@@ -339,11 +329,6 @@ class HomeCustomerSearchFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHCSLinear {
             val rowHcsBindingLinear = RowHcsLinearBinding.inflate(layoutInflater)
             val viewHolderHCSLinear = ViewHolderHCSLinear(rowHcsBindingLinear)
-
-//            rowHcsBinding.root.layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
 
             return viewHolderHCSLinear
         }

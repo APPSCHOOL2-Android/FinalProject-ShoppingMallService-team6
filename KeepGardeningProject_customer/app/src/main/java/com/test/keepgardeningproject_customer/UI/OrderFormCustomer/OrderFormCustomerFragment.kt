@@ -1,54 +1,37 @@
 package com.test.keepgardeningproject_customer.UI.OrderFormCustomer
 
-import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.SystemClock
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.children
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
-import com.test.keepgardeningproject_customer.DAO.CartClass
 import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
 import com.test.keepgardeningproject_customer.DAO.TotalOrderClass
-import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
-import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
 import com.test.keepgardeningproject_customer.Repository.TotalOrderRepository
-import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import java.util.Date
 import java.util.Locale
-import kotlin.concurrent.thread
 
 class OrderFormCustomerFragment : Fragment() {
     lateinit var fragmentOrderFormCustomerBinding: FragmentOrderFormCustomerBinding
@@ -370,31 +353,6 @@ class OrderFormCustomerFragment : Fragment() {
                     }
                 }
 
-//                for (product in orderFormCustomerViewModel.orderFormProductList.value!!) {
-//                    // 개별 주문 인덱스 번호를 가져온다.
-//                    OrderProductRepository.getOrdersProductIdx {
-//                        var ordersIdx = it.result.value as Long
-//                        ordersIdx++
-//
-//                        // 개별 상품의 주문 정보
-//                        val ordersProductClass = OrdersProductClass(
-//                            ordersIdx,
-//                            userIdx,
-//                            product.cartProductIdx,
-//                            "",
-//                            product.cartCount,
-//                            product.cartPrice,
-//                            "결제완료",
-//                            totalOrderIdx
-//                        )
-//
-//                        OrderProductRepository.addOrdersProductInfo(ordersProductClass) {
-//                            // 개별 주문 인덱스 번호 저장
-//                            OrderProductRepository.setOrdersProductIdx(ordersIdx)
-//                        }
-//                    }
-//                }
-
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val orderDate = sdf.format(Date(System.currentTimeMillis()))
 
@@ -421,12 +379,6 @@ class OrderFormCustomerFragment : Fragment() {
                         mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
                         CartRepository.deleteAllCart(userIdx) {
                         }
-                        // 장바구니 상품 삭제
-//                        CartRepository.deleteAllCart(userIdx) {
-//                            val bundle = Bundle()
-//                            bundle.putLong("totalOrderIdx", totalOrderIdx)
-//                            mainActivity.replaceFragment(MainActivity.ORDER_CHECK_FORM_CUSTOMER_FRAGMENT, true, bundle)
-//                        }
                     }
                 }
             }

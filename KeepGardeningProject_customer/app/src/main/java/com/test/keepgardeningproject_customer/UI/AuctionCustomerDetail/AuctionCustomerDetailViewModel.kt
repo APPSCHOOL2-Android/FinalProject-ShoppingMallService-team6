@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.AuctionInfo
 import com.test.keepgardeningproject_customer.DAO.AuctionProductInfo
-import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.DAO.UserSellerInfo
 import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_customer.Repository.AuctionRepository

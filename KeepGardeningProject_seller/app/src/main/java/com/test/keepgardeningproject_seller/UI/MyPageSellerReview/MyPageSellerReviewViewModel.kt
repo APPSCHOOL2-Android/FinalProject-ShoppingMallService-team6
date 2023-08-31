@@ -11,7 +11,6 @@ import com.test.keepgardeningproject_seller.Repository.ReviewRepository
 import com.test.keepgardeningproject_seller.Repository.UserRepository
 
 class MyPageSellerReviewViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
 
     var reviewlist = MutableLiveData<MutableList<reviewInfo>>()
 
@@ -52,7 +51,6 @@ class MyPageSellerReviewViewModel : ViewModel() {
 
                             }
                         }
-
                     }
                 }
             }

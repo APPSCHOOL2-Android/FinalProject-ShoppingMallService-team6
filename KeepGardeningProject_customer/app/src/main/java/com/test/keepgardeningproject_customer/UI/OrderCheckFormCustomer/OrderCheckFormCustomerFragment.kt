@@ -3,8 +3,6 @@ package com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +17,8 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.CartRepository
-import com.test.keepgardeningproject_customer.UI.OrderFormCustomer.OrderFormCustomerViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentOrderCheckFormCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowOrderCheckFormCustomerBinding
-import com.test.keepgardeningproject_customer.databinding.RowOrderFormCustomerBinding
-import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 class OrderCheckFormCustomerFragment : Fragment() {
@@ -41,15 +36,6 @@ class OrderCheckFormCustomerFragment : Fragment() {
 
         orderCheckFormCustomerViewModel = ViewModelProvider(mainActivity)[OrderCheckFormCustomerViewModel::class.java]
         orderCheckFormCustomerViewModel.run {
-//            orderCheckFormOrderList.observe(mainActivity) {
-//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
-//            }
-//            orderCheckFormOrderProductList.observe(mainActivity) {
-//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
-//            }
-//            orderCheckFormOrderImageList.observe(mainActivity) {
-//                fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
-//            }
             orderCheckFormOrderList.observe(mainActivity) {
                 fragmentOrderCheckFormCustomerBinding.recyclerViewOrderCheckForm.adapter?.notifyDataSetChanged()
             }

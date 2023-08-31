@@ -80,7 +80,4 @@ class AlertSellerFragment : Fragment() {
 
         }
     }
-
-
-
 }

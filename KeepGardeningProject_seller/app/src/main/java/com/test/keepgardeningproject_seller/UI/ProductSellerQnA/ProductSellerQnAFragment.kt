@@ -6,22 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.keepgardeningproject_seller.DAO.QnAClass
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment
-import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnAViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
-import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
-import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.RowProductSellerQnaBinding
-import com.test.keepgardeningproject_seller.databinding.RowProductSellerReviewBinding
 
 class ProductSellerQnAFragment : Fragment() {
 
@@ -86,7 +78,6 @@ class ProductSellerQnAFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductSellerQnAViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {

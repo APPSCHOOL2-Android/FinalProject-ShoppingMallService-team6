@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -289,11 +288,6 @@ class AuctionCustomerDetailFragment : Fragment() {
             // 다음 주기적 갱신을 예약
             dataRefreshHandler.postDelayed(this, dataRefreshInterval.toLong())
         }
-    }
-
-    private fun startDataRefreshTask() {
-        // 주기적 갱신 작업을 예약
-        dataRefreshHandler.postDelayed(dataRefreshRunnable, dataRefreshInterval.toLong())
     }
 
     private fun stopDataRefreshTask() {

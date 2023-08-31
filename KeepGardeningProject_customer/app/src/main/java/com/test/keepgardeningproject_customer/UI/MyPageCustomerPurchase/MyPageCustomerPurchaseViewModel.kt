@@ -1,19 +1,12 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase
 
 import android.graphics.Bitmap
-import android.media.Image
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide.init
-import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
 
 class MyPageCustomerPurchaseViewModel : ViewModel() {
 
@@ -77,16 +70,9 @@ class MyPageCustomerPurchaseViewModel : ViewModel() {
                             deliveryList.value = templist2
 
                         }
-
-
                     }
                 }
             }
-
         }
-
-
     }
-
-
 }

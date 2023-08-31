@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerQnA
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.DAO.QnAClass

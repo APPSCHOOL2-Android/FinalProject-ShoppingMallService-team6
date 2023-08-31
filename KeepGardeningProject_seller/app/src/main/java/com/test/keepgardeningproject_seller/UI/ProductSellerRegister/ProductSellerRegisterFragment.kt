@@ -11,8 +11,6 @@ import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
-import android.os.SystemClock
-import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,10 +38,6 @@ class ProductSellerRegisterFragment : Fragment() {
     lateinit var fragmentProductSellerRegisterBinding: FragmentProductSellerRegisterBinding
     lateinit var mainActivity: MainActivity
 
-    // 업로드할 이미지의 Uri
-    var uploadUri: Uri? = null
-
-
     var imageList = ArrayList<String>()
     var uriList = ArrayList<Uri>()
 
@@ -55,8 +49,6 @@ class ProductSellerRegisterFragment : Fragment() {
     companion object {
         fun newInstance() = ProductSellerRegisterFragment()
     }
-
-    private lateinit var viewModel: ProductSellerRegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -271,12 +263,6 @@ class ProductSellerRegisterFragment : Fragment() {
         super.onResume()
         var adapter = fragmentProductSellerRegisterBinding.recyclerViewProductSellerRegisterImage.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProductSellerRegisterViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private val registerForActivityResult =

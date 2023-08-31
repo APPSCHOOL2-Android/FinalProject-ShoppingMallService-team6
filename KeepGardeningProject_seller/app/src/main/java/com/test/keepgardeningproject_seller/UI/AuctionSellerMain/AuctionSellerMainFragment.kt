@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerMain
 
-import android.content.Context
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -8,34 +7,21 @@ import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_EDIT_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_INFO_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_QNA_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.UI.AuctionSellerDetail.AuctionSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerInfo.AuctionSellerInfoFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerQnA.AuctionSellerQnAFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ViewPager2Adapter
-import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerMainBinding
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -206,7 +192,6 @@ class AuctionSellerMainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AuctionSellerMainViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

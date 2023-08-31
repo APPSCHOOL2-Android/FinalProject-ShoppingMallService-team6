@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import com.test.keepgardeningproject_customer.UI.ProductCustomerDetail.ProductCustomerDetailViewModel
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailInfoBinding
 import com.test.keepgardeningproject_customer.databinding.RowAuctionCustomerDetailInfoBinding
 
@@ -100,9 +99,6 @@ class AuctionCustomerDetailInfoFragment : Fragment() {
         auctionCustomerDetailInfoBinding.root.requestLayout()
 
         viewModel = ViewModelProvider(mainActivity).get(AuctionCustomerDetailViewModel::class.java)
-
-//        var adapter = auctionCustomerDetailInfoBinding.recyclerviewAcDetailInfo.adapter as RecyclerviewAdaper
-//        adapter.notifyDataSetChanged()
     }
 
 }

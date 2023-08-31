@@ -6,24 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.test.keepgardeningproject_customer.DAO.MypageReview
-import com.test.keepgardeningproject_customer.DAO.MypageReviewDetail
-import com.test.keepgardeningproject_customer.DAO.Review
-import com.test.keepgardeningproject_customer.DAO.TestDAO
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.ReviewRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
-import org.w3c.dom.Text
 
 class MyPageCustomerReviewFragment : Fragment() {
 

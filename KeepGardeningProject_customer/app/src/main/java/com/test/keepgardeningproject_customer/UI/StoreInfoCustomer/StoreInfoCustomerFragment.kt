@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_customer.UI.StoreInfoCustomer
 
-import android.graphics.BitmapFactory
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -13,17 +12,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.StoreRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerBinding
-import com.test.keepgardeningproject_customer.databinding.RowCartCustomerBinding
 import com.test.keepgardeningproject_customer.databinding.RowStoreInfoCustomerBinding
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
 
 class StoreInfoCustomerFragment : Fragment() {
     lateinit var fragmentStoreInfoCustomerBinding: FragmentStoreInfoCustomerBinding
@@ -113,15 +106,6 @@ class StoreInfoCustomerFragment : Fragment() {
                 StoreRepository.getImage(fileName) {
                     var fileUri = it.result
                     Glide.with(mainActivity).load(fileUri).into(holder.rowStoreImage)
-//                    thread {
-//                        // 파일에 접근할 수 있는 경로를 이용해 URL 객체를 생성한다.
-//                        val url = URL(it.result.toString())
-//                        // 접속한다.
-//                        val httpURLConnection = url.openConnection() as HttpURLConnection
-//                        // 이미지 객체를 생성한다.
-//                        val bitmap = BitmapFactory.decodeStream(httpURLConnection.inputStream)
-//                        holder.rowStoreImage.setImageBitmap(bitmap)
-//                    }
                 }
             }
 

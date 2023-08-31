@@ -65,10 +65,6 @@ class ProductCustomerDetailDetailFragment : Fragment() {
         super.onResume()
         fragmentProductCustomerDetailDetailBinding.root.requestLayout()
         viewModel = ViewModelProvider(mainActivity).get(ProductCustomerDetailViewModel::class.java)
-//        viewModel.getProductInfoByIdx(sidx.toDouble())
-
-//        var adapter = fragmentProductCustomerDetailDetailBinding.recyclerPcdd.adapter as RecyclerAdapterPCDD
-//        adapter.notifyDataSetChanged()
     }
 
 
