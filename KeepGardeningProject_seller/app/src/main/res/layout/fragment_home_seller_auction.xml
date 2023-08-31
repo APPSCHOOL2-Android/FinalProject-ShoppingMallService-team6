@@ -20,5 +20,5 @@
         android:id="@+id/recyclerView_HomeSellerAuction"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_size_top" />
+        android:padding="@dimen/padding_size_middle" />
 </LinearLayout>

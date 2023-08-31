@@ -14,11 +14,11 @@
         style="@style/Theme.KeepGardeningProject_seller.Toolbar"/>
 
     <ScrollView
-        android:layout_marginTop="@dimen/margin_size_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:padding="@dimen/padding_size_middle"
             android:id = "@+id/recyclerView_seller_product_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

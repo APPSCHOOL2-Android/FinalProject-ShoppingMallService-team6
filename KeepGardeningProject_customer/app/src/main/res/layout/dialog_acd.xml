@@ -33,6 +33,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_regular"
             android:layout_weight="1"
-            android:text="원" />
+            android:text=" 원" />
     </LinearLayout>
 </LinearLayout>

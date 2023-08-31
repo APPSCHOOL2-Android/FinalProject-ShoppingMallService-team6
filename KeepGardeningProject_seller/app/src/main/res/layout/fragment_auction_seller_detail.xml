@@ -6,22 +6,32 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_size_middle"
     tools:context=".UI.AuctionSellerDetail.AuctionSellerDetailFragment">
-
-    <TextView
-        android:id="@+id/textView_auctionSellerDetail_productContent"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_size_top"
-        android:fontFamily="@font/nanum_square_round_regular"
-        android:text="상품 상세 내용"
-        android:textSize="@dimen/text_size_20" />
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_auctionSellerDetail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_size_top">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+           <TextView
+               android:id="@+id/textView_auctionSellerDetail_productContent"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/margin_size_top"
+               android:fontFamily="@font/nanum_square_round_regular"
+               android:text="상품 상세 내용"
+               android:textSize="@dimen/text_size_20" />
 
-    </androidx.recyclerview.widget.RecyclerView>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/recyclerView_auctionSellerDetail"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginTop="@dimen/margin_size_top">
+           </androidx.recyclerview.widget.RecyclerView>
+       </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

@@ -45,13 +45,6 @@
                     android:inputType="text|textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_marginLeft="@dimen/margin_size_top"
-                android:id="@+id/button_joinCustomerMain_doubleCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_bold"
-                android:text="중복확인" />
 
         </LinearLayout>
 

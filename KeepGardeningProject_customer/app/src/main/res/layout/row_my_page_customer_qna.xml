@@ -8,102 +8,96 @@
     android:orientation="vertical">
 
 
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_middle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/padding_size_middle">
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_qc_replyState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="답변완료"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_18"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_size_top">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textview_qc_replyState"
+                <ImageView
+                    android:id="@+id/imageview_qc_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_extra_bold"
-                    android:text="답변완료"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_18"
-                    android:textStyle="bold" />
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_launcher_foreground" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/margin_size_top">
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageview_qc_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_launcher_foreground" />
 
-                    <LinearLayout
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textview_qc_storeName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/margin_size_top"
-                        android:orientation="vertical">
+                        android:text="상점이름"
+                        android:textSize="@dimen/text_size_14" />
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textview_qc_productName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:layout_gravity="center_vertical"
+                        android:text="문의 제목"
+                        android:textSize="@dimen/text_size_14" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textview_qc_storeName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_size_top"
-                            android:fontFamily="@font/nanum_square_round_bold"
-                            android:layout_gravity="center_vertical"
-                            android:text="상점이름"
-                            android:textSize="@dimen/text_size_14" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textview_qc_productName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_size_top"
-                            android:fontFamily="@font/nanum_square_round_bold"
-                            android:layout_gravity="center_vertical"
-                            android:text="문의 제목"
-                            android:textSize="@dimen/text_size_14" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textview_qc_comment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_size_top"
-                            android:fontFamily="@font/nanum_square_round_bold"
-                            android:layout_gravity="center_vertical"
-                            android:text="문의 내역"
-                            android:textSize="@dimen/text_size_14" />
-
-                    </LinearLayout>
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textview_qc_detail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:clickable="true"
-                            android:visibility="visible"
-                            app:drawableEndCompat="@drawable/ic_arrow_right_24px"
-                            app:fontFamily="@font/nanum_square_round_extra_bold" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textview_qc_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:layout_gravity="center_vertical"
+                        android:text="문의 내역"
+                        android:textSize="@dimen/text_size_14" />
 
                 </LinearLayout>
-            </LinearLayout>
 
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textview_qc_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:visibility="visible"
+                    app:drawableEndCompat="@drawable/ic_arrow_right_24px"
+                    app:fontFamily="@font/nanum_square_round_extra_bold" />
+
+            </LinearLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -15,6 +15,7 @@
         android:theme="@style/Theme.KeepGardeningProject_customer.Toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="15dp"
         android:id="@+id/recyclerView_storeInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

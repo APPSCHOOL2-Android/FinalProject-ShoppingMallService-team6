@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".UI.MyPageCustomerReviewWrite.MyPageCustomerReviewWriteFragment">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar_rc_write"
@@ -86,7 +85,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_size"
+
                     android:numStars="5"
+                    android:progressTint="@color/colorAccent3"
                     android:rating="3"
                     android:stepSize="1" />
 

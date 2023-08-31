@@ -43,7 +43,7 @@
                     android:id="@+id/recyclerView_orderForm"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:padding="@dimen/padding_size_middle"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
                     android:transitionGroup="true" />
@@ -72,7 +72,7 @@
                             android:id="@+id/textView7"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:text="상품 금액" />
 
                         <TextView
@@ -95,7 +95,7 @@
                             android:id="@+id/textView9"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:text="배송비" />
 
                         <TextView
@@ -118,7 +118,7 @@
                             android:id="@+id/textView11"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:text="총 결제 금액" />
 
                         <TextView
@@ -158,7 +158,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="주문자명" />
 
@@ -187,7 +187,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="연락처" />
 
@@ -216,7 +216,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="이메일" />
 
@@ -262,7 +262,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="받는사람" />
 
@@ -290,7 +290,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="연락처" />
 
@@ -317,7 +317,7 @@
                             android:id="@+id/textView24"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="주소" />
 
@@ -350,7 +350,7 @@
                                 android:id="@+id/button_orderForm_findAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:fontFamily="@font/nanum_square_round_bold"
                                 android:text="검색" />
                         </LinearLayout>
 
@@ -366,7 +366,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="상세주소" />
 
@@ -394,7 +394,7 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="left|center_vertical"
                             android:text="배송 요청사항" />
 
@@ -442,21 +442,21 @@
                                 android:id="@+id/radioButton_orderForm_deposit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:fontFamily="@font/nanum_square_round_bold"
                                 android:text="무통장 입금" />
 
                             <RadioButton
                                 android:id="@+id/radioButton_orderForm_card"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:fontFamily="@font/nanum_square_round_bold"
                                 android:text="카드 결제" />
 
                             <RadioButton
                                 android:id="@+id/radioButton_orderForm_naverPay"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:fontFamily="@font/nanum_square_round_bold"
                                 android:text="네이버 페이" />
                         </RadioGroup>
                     </LinearLayout>
@@ -472,7 +472,7 @@
                         android:id="@+id/textView35"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="최종 결제 금액"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -481,7 +481,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:gravity="right"
                         android:text="29,000원"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -539,7 +539,7 @@
             android:id="@+id/button_orderForm_submitOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="주문하기"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </LinearLayout>

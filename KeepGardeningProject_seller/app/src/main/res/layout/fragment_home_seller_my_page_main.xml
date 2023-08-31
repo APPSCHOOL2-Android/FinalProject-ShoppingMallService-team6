@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:fontFamily="@font/nanum_square_round_bold"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:textSize="@dimen/text_size_16" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -34,7 +34,7 @@
             android:id="@+id/textview_homeSellerMyPageMain_sellDelivery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_bold"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
             android:text="판매/배송"
             android:textSize="@dimen/text_size_16"/>
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:fontFamily="@font/nanum_square_round_bold"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="경매내역"
             android:textSize="@dimen/text_size_16"/>
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:fontFamily="@font/nanum_square_round_bold"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="문의내역"
             android:textSize="@dimen/text_size_16"/>
 
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_right_24px"
-            android:fontFamily="@font/nanum_square_round_bold"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:text="리뷰내역"
             android:textSize="@dimen/text_size_16"/>
 
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanum_square_round_bold"
-                android:text="비밀번호 수정" />
+                android:text="비밀번호 찾기" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_homeSellerMyPageMain_logOut"
                 android:layout_width="match_parent"

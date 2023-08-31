@@ -66,7 +66,7 @@
                 android:id="@+id/recyclerView_orderCheckForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_size_top"
+                android:padding="@dimen/padding_size_middle"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 android:transitionGroup="true" />
@@ -81,7 +81,7 @@
                     android:id="@+id/textView_orderCheckForm_addressInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="배송지 정보"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -95,7 +95,7 @@
                         android:id="@+id/textView_pcd_dialogTitle"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="받으시는 분" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -118,7 +118,7 @@
                         android:id="@+id/textView_pcd_dialogPrice"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="연락처" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -141,7 +141,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="배송지" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -164,7 +164,7 @@
                         android:id="@+id/textView14"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="배송 메시지" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -188,7 +188,7 @@
                     android:id="@+id/textView_orderCheckForm_ordererInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
                     android:text="주문자 정보"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 

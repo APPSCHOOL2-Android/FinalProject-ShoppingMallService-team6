@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
@@ -58,7 +59,7 @@ class MyPageCustomerQnAFragment : Fragment() {
             MyPageCustomerQuestionRecyclerView.run{
                 adapter = QnaRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(context)
-
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
 

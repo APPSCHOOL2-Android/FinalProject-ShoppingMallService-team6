@@ -15,7 +15,7 @@
 
     <ImageView
         android:layout_margin="@dimen/margin_size_top"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src = "@drawable/ic_launcher_background"/>
@@ -51,13 +51,14 @@
             android:fontFamily="@font/nanum_square_round_bold" />
 
         <RatingBar
-            android:layout_marginTop="@dimen/margin_size_top"
-            android:id = "@+id/ratingbar_rs_review_detail"
+            android:id="@+id/ratingbar_rs_review_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
             android:numStars="5"
+            android:progressTint="@color/colorAccent3"
             android:rating="3"
-            android:stepSize="1"/>
+            android:stepSize="1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_marginTop="@dimen/margin_size_top"

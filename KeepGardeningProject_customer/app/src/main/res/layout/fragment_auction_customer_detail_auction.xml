@@ -17,37 +17,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:textAlignment="center"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="입찰순위"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_acda_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:textAlignment="center"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="닉네임"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_acda_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:textAlignment="center"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="입찰금액"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_ac_detail_auction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:padding="@dimen/padding_size_middle">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_seller.DAO.OrdersProductClass
 import com.test.keepgardeningproject_seller.DAO.ProductClass
@@ -116,6 +117,7 @@ class MyPageSellerProductStateFragment : Fragment() {
             recyclerViewSellerProductState.run {
                 adapter = ProductStateRecyclerViewAdapter(ProductState)
                 layoutManager = LinearLayoutManager(context)
+                addItemDecoration(MaterialDividerItemDecoration(context, MaterialDividerItemDecoration.VERTICAL))
             }
 
         }

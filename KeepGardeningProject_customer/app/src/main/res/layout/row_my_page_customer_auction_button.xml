@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -70,7 +71,7 @@
                     android:id="@+id/button_ac_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_bold"
                     android:text="구매하기"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/white"

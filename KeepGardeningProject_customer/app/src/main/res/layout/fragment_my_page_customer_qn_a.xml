@@ -15,7 +15,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id = "@+id/MyPageCustomerQuestionRecyclerView"
-            android:layout_margin="@dimen/margin_size"
+            android:padding="@dimen/padding_size_middle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

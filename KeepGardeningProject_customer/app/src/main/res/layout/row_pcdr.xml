@@ -36,7 +36,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:isIndicator="true"
-                android:numStars="5" />
+                android:numStars="5"
+                android:progressTint="@color/colorAccent3" />
 
             <TextView
                 android:id="@+id/textView_pcdr_user"

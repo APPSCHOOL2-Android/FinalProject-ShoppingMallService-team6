@@ -40,6 +40,7 @@
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
                         android:background="@drawable/background_hcmh_icon"
+                        android:padding="5dp"
                         android:src="@drawable/img_plant" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -63,6 +64,7 @@
                         android:id="@+id/image_hcmh_2"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_orchid" />
 
@@ -87,6 +89,7 @@
                         android:id="@+id/image_hcmh_3"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_monstera" />
 
@@ -111,6 +114,7 @@
                         android:id="@+id/image_hcmh_4"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_bonsai" />
 
@@ -135,6 +139,7 @@
                         android:id="@+id/image_hcmh_5"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_auction" />
 
@@ -144,6 +149,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="경매"
+
                         android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
@@ -167,6 +173,7 @@
                         android:id="@+id/image_hcmh_6"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_commodity" />
 
@@ -191,6 +198,7 @@
                         android:id="@+id/image_hcmh_7"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_seed" />
 
@@ -214,6 +222,7 @@
                     <ImageView
                         android:id="@+id/image_hcmh_8"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_bouquet" />
@@ -239,6 +248,7 @@
                         android:id="@+id/image_hcmh_9"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_pot" />
 
@@ -263,6 +273,7 @@
                         android:id="@+id/image_hcmh_10"
                         android:layout_width="@dimen/homeCustomerMainHome_icon_size"
                         android:layout_height="@dimen/homeCustomerMainHome_icon_size"
+                        android:padding="5dp"
                         android:background="@drawable/background_hcmh_icon"
                         android:src="@drawable/img_money" />
 
@@ -296,7 +307,7 @@
                     android:id="@+id/recycler_hcmh_favoriteGoods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:padding="@dimen/padding_size_middle"
                     android:transitionGroup="true" />
             </LinearLayout>
 
@@ -320,7 +331,7 @@
                     android:id="@+id/recycler_hcmh_recommend"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="40dp"
+                    android:padding="@dimen/padding_size_middle"
                     android:nestedScrollingEnabled="true"
                     android:overScrollMode="never"
                     android:transitionGroup="true" />

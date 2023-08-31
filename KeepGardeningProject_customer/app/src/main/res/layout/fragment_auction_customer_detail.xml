@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        style="@style/Theme.KeepGardeningProject_customer.Toolbar" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -85,7 +85,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="right"
                             android:text="남은시간"
                             android:textColor="@color/Red"
@@ -113,7 +113,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="right"
                             android:text="시작가격"
                             android:textStyle="bold" />
@@ -139,10 +139,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="right"
-                            android:text="현재가격"
-                            android:textStyle="bold" />
+                            android:text="현재가격" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_currentprice"
@@ -165,10 +164,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:fontFamily="@font/nanum_square_round_bold"
                             android:gravity="right"
-                            android:text="경매상태"
-                            android:textStyle="bold" />
+                            android:text="경매상태" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textview_acd_statenow"
@@ -195,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:fontFamily="@font/nanum_square_round_bold"
                     android:text="경매 기간"
                     android:textStyle="bold" />
 
@@ -242,7 +240,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="4"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="입찰하기"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -254,7 +252,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="4"
-            android:fontFamily="@font/nanum_square_round_regular"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:text="문의하기"
             android:textSize="20sp"
             android:textStyle="bold" />

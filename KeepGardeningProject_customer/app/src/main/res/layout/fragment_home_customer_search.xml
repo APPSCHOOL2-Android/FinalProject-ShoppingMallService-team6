@@ -80,7 +80,7 @@
                 android:id="@+id/recycler_hcs_searchResult"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/padding_size_middle" />
+                android:padding="@dimen/padding_size_middle" />
         </LinearLayout>
     </ScrollView>
 
