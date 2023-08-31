@@ -83,5 +83,11 @@ class AuctionProductRepository {
                 }
             }
         }
+
+        fun getAuctionDetailInfoByidx(idx:Long, callback1: (Task<DataSnapshot>) -> Unit){
+            val database = FirebaseDatabase.getInstance()
+            val productDataRef = database.getReference("AuctionProduct")
+            productDataRef.orderByChild("auctionProductIdx").equalTo(idx.toDouble()).get().addOnCompleteListener(callback1)
+        }
     }
 }
