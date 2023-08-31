@@ -49,6 +49,7 @@ class AuctionSellerQnAFragment : Fragment() {
                     }
                 }
                 fragmentAuctionSellerQnABinding.recyclerViewAuctionSellerQnA.adapter?.notifyDataSetChanged()
+                fragmentAuctionSellerQnABinding.textViewAuctionSellerQnACount.text = "문의 내역 : ${qnaAuctionList.size}개"
             }
         }
         viewModel.getQnAInfoAll(auctionProductIdx.toLong())

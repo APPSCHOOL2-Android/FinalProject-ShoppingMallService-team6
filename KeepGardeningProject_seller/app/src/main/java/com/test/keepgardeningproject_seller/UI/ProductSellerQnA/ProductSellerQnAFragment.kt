@@ -47,6 +47,7 @@ class ProductSellerQnAFragment : Fragment() {
                     }
                 }
                 fragmentProductSellerQnABinding.recyclerViewProductSellerQnA.adapter?.notifyDataSetChanged()
+                fragmentProductSellerQnABinding.textViewProductSellerQnA.text = "문의 내역 : ${qnaProductList.size}개"
             }
         }
         viewModel.getQnAInfoAll(productIdx.toLong())
