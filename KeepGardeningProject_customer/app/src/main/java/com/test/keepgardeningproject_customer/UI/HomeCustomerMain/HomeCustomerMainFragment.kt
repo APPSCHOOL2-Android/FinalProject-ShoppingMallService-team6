@@ -59,10 +59,15 @@ class HomeCustomerMainFragment : Fragment() {
                 val headerHomeCustomerMainBinding = HeaderHomeCustomerMainBinding.inflate(inflater)
                 var newemail = MainActivity.loginedUserInfo.userEmail.toString()
                 UserRepository.getUserInfoById(newemail){
-                    for(a1 in it.result.children){
-                        var mynick = a1.child("userNickname").value
-                        headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = mynick.toString() + "님 환영합니다"
+                    if(MainActivity.isLogined == true){
+                        for(a1 in it.result.children){
+                            var mynick = a1.child("userNickname").value
+                            headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = mynick.toString() + "님 환영합니다"
+                        }
+                    }else{
+                        headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = "로그인이 필요합니다"
                     }
+
                 }
                 addHeaderView(headerHomeCustomerMainBinding.root)
 
