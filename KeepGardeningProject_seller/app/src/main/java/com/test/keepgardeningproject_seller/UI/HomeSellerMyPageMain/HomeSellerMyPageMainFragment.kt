@@ -1,25 +1,18 @@
 package com.test.keepgardeningproject_seller.UI.HomeSellerMyPageMain
 
-import android.app.Dialog
 import android.content.DialogInterface
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import com.test.keepgardeningproject_seller.API.GoogleAPI
 import com.test.keepgardeningproject_seller.API.KakaoAPI
 import com.test.keepgardeningproject_seller.API.NaverAPI
-import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.UserRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerMyPageMainBinding
 
@@ -79,7 +72,6 @@ class HomeSellerMyPageMainFragment : Fragment() {
             }
 
             buttonHomeSellerMyPageMainLogOut.setOnClickListener {
-                // mainActivity.removeFragment(MainActivity.HOME_SELLER_MY_PAGE_MAIN_FRAGMENT)
                 mainActivity.replaceFragment(MainActivity.LOGIN_SELLER_MAIN_FRAGMENT,false,null)
             }
 

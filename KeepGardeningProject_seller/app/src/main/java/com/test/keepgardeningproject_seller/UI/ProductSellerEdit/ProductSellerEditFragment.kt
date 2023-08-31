@@ -11,8 +11,6 @@ import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
-import android.os.SystemClock
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,11 +33,8 @@ import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
-import com.test.keepgardeningproject_seller.UI.ProductSellerRegister.ProductSellerRegisterFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerEditBinding
 import com.test.keepgardeningproject_seller.databinding.RowSellerRegisterBinding
-import java.text.DecimalFormat
 
 class ProductSellerEditFragment : Fragment() {
 
@@ -293,7 +288,6 @@ class ProductSellerEditFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductSellerEditViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

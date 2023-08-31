@@ -1,11 +1,8 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerQnA
 
-import android.os.Build.VERSION_CODES.P
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.DAO.qnaInfo
-import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.Repository.QnARepository
 import com.test.keepgardeningproject_seller.Repository.UserRepository
@@ -55,22 +52,12 @@ class MyPageSellerQnAViewModel : ViewModel() {
                                     templist.add(newclass2)
                                     templist.reverse()
                                     qnalist.value = templist
-
                                 }
                             }
                         }
-
-
                     }
                 }
-
-
-
-
-
             }
         }
     }
-
-
 }

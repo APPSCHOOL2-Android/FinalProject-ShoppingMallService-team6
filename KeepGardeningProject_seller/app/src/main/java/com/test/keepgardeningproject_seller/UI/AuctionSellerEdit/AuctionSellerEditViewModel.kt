@@ -3,13 +3,10 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerEdit
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
-import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.UI.AuctionSellerEdit.AuctionSellerEditFragment.Companion.originImageNum
-import com.test.keepgardeningproject_seller.UI.ProductSellerEdit.ProductSellerEditFragment
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
@@ -17,8 +14,6 @@ import kotlin.concurrent.thread
 class AuctionSellerEditViewModel : ViewModel() {
 
     var auctionProductName = MutableLiveData<String>()
-    var auctionProductOpenPrice = MutableLiveData<String>()
-    var auctionProductCloseDate = MutableLiveData<String>()
     var auctionProductDetail = MutableLiveData<String>()
     var auctionProductMainImage = MutableLiveData<Bitmap>()
 
@@ -49,8 +44,6 @@ class AuctionSellerEditViewModel : ViewModel() {
                 }
             }
 
-//            // 가장 마지막에 등록한것부터 보여주기
-//            tempImageNameList.reverse()
 
             auctionProductImageNameList.value = tempImageNameList
 

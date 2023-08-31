@@ -1,16 +1,12 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerProductState
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -27,8 +23,6 @@ import com.test.keepgardeningproject_seller.Repository.OrderProductRepository
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerProductStateBinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageProductStateBinding
-import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerQuaBinding
-import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 class MyPageSellerProductStateFragment : Fragment() {
@@ -228,9 +222,6 @@ class MyPageSellerProductStateFragment : Fragment() {
                     Snackbar.make(binding.root, "이미 배송이 완료되었습니다.", Snackbar.LENGTH_SHORT).show()
                 }
             }
-
-
         }
     }
-
 }

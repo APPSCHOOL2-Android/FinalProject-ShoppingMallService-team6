@@ -36,9 +36,6 @@ class LoginSellerMainFragment : Fragment() {
     private val kakaoApi = KakaoAPI()
     // 네이버 API 불러오기
     private val naverApi = NaverAPI()
-
-    // val sharedPref = requireContext().getSharedPreferences("myLogin", Context.MODE_PRIVATE)
-
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
     companion object {
@@ -52,11 +49,6 @@ class LoginSellerMainFragment : Fragment() {
         NaverIdLoginSDK.initialize(requireContext(), "el7gHNDTrFweYrwQdjFT", "Kp1DmQI6qv", "킵 가드닝")
         fragmentLoginSellerMainBinding = FragmentLoginSellerMainBinding.inflate(inflater)
         mainActivity = activity as  MainActivity
-
-//        val editor = sharedPref.edit()
-//        editor.putString("user_email", user_email)
-//        editor.putBoolean("is_logged_in", true)
-//        editor.apply()
 
         fragmentLoginSellerMainBinding.run {
             // 카카오 로그인

@@ -9,14 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.snackbar.Snackbar
-import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
 import com.test.keepgardeningproject_seller.DAO.QnAClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT
 import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.QnARepository
-import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerQnADetailBinding
 
 class MyPageSellerQnADetailFragment : Fragment() {
@@ -122,8 +119,6 @@ class MyPageSellerQnADetailFragment : Fragment() {
                     Log.d("lion","$qnaDataClass")
                 }
 
-//                viewModel.getQnAInfo(qnaIdx.toLong())
-
                 Snackbar.make(fragmentMyPageSellerQnADetailBinding.root, "문의 답변이 등록되었습니다.", Snackbar.LENGTH_SHORT).show()
                 mainActivity.removeFragment(MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT)
             }
@@ -135,7 +130,6 @@ class MyPageSellerQnADetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MyPageSellerQnADetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

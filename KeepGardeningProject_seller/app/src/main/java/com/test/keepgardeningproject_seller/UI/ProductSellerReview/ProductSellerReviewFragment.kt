@@ -68,16 +68,11 @@ class ProductSellerReviewFragment : Fragment() {
 
         viewModel.getReviewInfoAll(productIdx.toLong())
 
-        var adapter = fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter as RecyclerAdapterClass
+        var adapter =
+            fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter as RecyclerAdapterClass
         adapter.notifyDataSetChanged()
 
         fragmentProductSellerReviewBinding.root.requestLayout()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProductSellerReviewViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     inner class RecyclerAdapterClass : RecyclerView.Adapter<RecyclerAdapterClass.ViewHolderClass>() {

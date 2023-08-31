@@ -11,7 +11,6 @@ import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
-import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,19 +26,13 @@ import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
-import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_EDIT_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
-import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainViewModel
-import com.test.keepgardeningproject_seller.UI.ProductSellerEdit.ProductSellerEditFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerEdit.ProductSellerEditViewModel
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerEditBinding
-import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerEditBinding
 import com.test.keepgardeningproject_seller.databinding.RowSellerRegisterBinding
 
 class AuctionSellerEditFragment : Fragment() {

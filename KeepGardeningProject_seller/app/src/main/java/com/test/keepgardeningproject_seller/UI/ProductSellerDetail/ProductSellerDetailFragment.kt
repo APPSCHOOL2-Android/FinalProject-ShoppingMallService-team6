@@ -1,10 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.ProductSellerDetail
 
-import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment.Companion.productIdx
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerDetailBinding
-import com.test.keepgardeningproject_seller.databinding.FragmentProductSellerMainBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerDetailBinding
 
 class ProductSellerDetailFragment : Fragment() {
@@ -34,8 +29,6 @@ class ProductSellerDetailFragment : Fragment() {
     companion object {
         fun newInstance() = ProductSellerDetailFragment()
     }
-
-    private lateinit var viewModel: ProductSellerDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,12 +61,6 @@ class ProductSellerDetailFragment : Fragment() {
             }
         }
         return fragmentProductSellerDetailBinding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProductSellerDetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {
@@ -128,5 +115,4 @@ class ProductSellerDetailFragment : Fragment() {
             }
         }
     }
-
 }

@@ -2,28 +2,20 @@ package com.test.keepgardeningproject_seller.UI.AuctionSellerDetail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
-import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import com.test.keepgardeningproject_seller.UI.AuctionSellerInfo.AuctionSellerInfoFragment
 import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainFragment.Companion.auctionProductIdx
 import com.test.keepgardeningproject_seller.UI.AuctionSellerMain.AuctionSellerMainViewModel
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
-import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainViewModel
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerDetailBinding
 import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerDetailBinding
-import com.test.keepgardeningproject_seller.databinding.RowAuctionSellerInfoBinding
 
 class AuctionSellerDetailFragment : Fragment() {
 
@@ -38,7 +30,6 @@ class AuctionSellerDetailFragment : Fragment() {
         fun newInstance() = AuctionSellerDetailFragment()
     }
 
-    private lateinit var viewModel: AuctionSellerDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,12 +61,6 @@ class AuctionSellerDetailFragment : Fragment() {
 
         }
         return fragmentAuctionSellerDetailBinding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AuctionSellerDetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

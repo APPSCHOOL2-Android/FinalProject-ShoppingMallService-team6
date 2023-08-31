@@ -12,11 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.DAO.AuctionProductClass
-import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
-import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerAuctionBinding
 import com.test.keepgardeningproject_seller.databinding.RowHomeSellerBinding
 import java.text.DecimalFormat

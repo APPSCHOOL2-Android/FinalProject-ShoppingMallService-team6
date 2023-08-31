@@ -15,11 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.QnARepository
-import com.test.keepgardeningproject_seller.UI.MyPageSellerQnA.MyPageSellerQnAFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerReviewBinding
-import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerQuaBinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerReviewBinding
 import java.net.URL
 
@@ -97,16 +94,6 @@ class MyPageSellerReviewFragment : Fragment() {
                 rowArrow  = rowPostListBinding.buttonRsDetail
                 rowPostImg = rowPostListBinding.imageviewRsImg
                 ratingbar = rowPostListBinding.ProductReviewStars
-
-
-
-//                rowArrow.setOnClickListener {
-//                    val qnaidx = viewModel.qnalist.value?.get(adapterPosition)?.qnaidx!!.toInt()
-//                    val newBundle = Bundle()
-//                    newBundle.putInt("qnaIdx", qnaidx!!)
-//                    mainActivity.replaceFragment(MainActivity.MY_PAGE_SELLER_QNA_DETAIL_FRAGMENT, true, newBundle)
-//
-//                }
             }
         }
 
@@ -150,6 +137,4 @@ class MyPageSellerReviewFragment : Fragment() {
         super.onDestroy()
         viewModel.resetList()
     }
-
-
 }

@@ -1,42 +1,26 @@
 package com.test.keepgardeningproject_seller.UI.HomeSeller
 
-import android.Manifest
-import android.content.Context
 import android.content.DialogInterface
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.ALERT_SELLER_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.AUCTION_SELLER_REGISTER_FRAGMENT
-import com.test.keepgardeningproject_seller.MainActivity.Companion.HOME_SELLER_FRAGMENT
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.UI.HomeSellerMyPageMain.HomeSellerMyPageMainFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerBinding
-import kotlin.concurrent.thread
 
 class HomeSellerFragment : Fragment() {
 
     lateinit var fragmentHomeSellerBinding: FragmentHomeSellerBinding
     lateinit var mainActivity: MainActivity
-
-    var newFragment:Fragment? = null
-    var oldFragment:Fragment? = null
 
     var oldBottom = ""
 
@@ -129,7 +113,6 @@ class HomeSellerFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeSellerViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     fun replaceFragment(name: String, addToBackStack: Boolean, animate: Boolean) {

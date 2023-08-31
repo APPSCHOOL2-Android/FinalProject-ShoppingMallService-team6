@@ -1,10 +1,7 @@
 package com.test.keepgardeningproject_seller.UI.MyPageSellerQnA
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,17 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_seller.MainActivity
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.QnARepository
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerQnABinding
 import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerQuaBinding
-import com.test.keepgardeningproject_seller.databinding.RowMyPageSellerReviewBinding
 import java.net.URL
 
 class MyPageSellerQnAFragment : Fragment() {

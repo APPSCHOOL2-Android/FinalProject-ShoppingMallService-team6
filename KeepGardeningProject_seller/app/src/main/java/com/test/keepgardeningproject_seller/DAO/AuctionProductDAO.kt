@@ -1,8 +1,4 @@
 package com.test.keepgardeningproject_seller.DAO
-
-class AuctionProductDAO {
-}
-
 data class AuctionProductClass(
     var auctionProductIdx: Long,
     var auctionProductImageList: ArrayList<String>,

@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_seller.UI.OrderCheckFormSeller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,8 +18,6 @@ class OrderCheckFormSellerFragment : Fragment() {
     lateinit var fragmentOrderCheckFormSellerBinding: FragmentOrderCheckFormSellerBinding
     lateinit var mainActivity: MainActivity
 
-    private lateinit var viewModel: OrderCheckFormSellerViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,8 +33,6 @@ class OrderCheckFormSellerFragment : Fragment() {
                     mainActivity.removeFragment(MainActivity.ORDER_CHECK_FORM_SELLER_FRAGMENT)
                 }
             }
-
-
 
             recyclerViewOrderCheckForm.run {
                 adapter = OrderCheckFormRecyclerViewAdpater()

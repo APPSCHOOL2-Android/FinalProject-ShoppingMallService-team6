@@ -34,7 +34,6 @@ import com.test.keepgardeningproject_seller.UI.MyPageSellerQnADetail.MyPageSelle
 import com.test.keepgardeningproject_seller.UI.MyPageSellerReview.MyPageSellerReviewFragment
 import com.test.keepgardeningproject_seller.UI.MyPageSellerReviewDetail.MyPageSellerReviewDetailFragment
 import com.test.keepgardeningproject_seller.UI.OrderCheckFormSeller.OrderCheckFormSellerFragment
-import com.test.keepgardeningproject_seller.UI.OrderFormSeller.OrderFormSellerFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerEdit.ProductSellerEditFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerMain.ProductSellerMainFragment
@@ -60,7 +59,6 @@ class MainActivity : AppCompatActivity() {
     )
     companion object{
         val ALERT_SELLER_FRAGMENT = "AlertSellerFragment"
-
         val AUCTION_SELLER_DETAIL_FRAGMENT = "AuctionSellerDetailFragment"
         val AUCTION_SELLER_EDIT_FRAGMENT = "AuctionSellerEditFragment"
         val AUCTION_SELLER_INFO_FRAGMENT = "AuctionSellerInfoFragment"
@@ -82,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         val MY_PAGE_SELLER_REVIEW_FRAGMENT = "MyPageSellerReviewFragment"
         val MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT = "MyPageSellerReviewDetailFragment"
         val ORDER_CHECK_FORM_SELLER_FRAGMENT = "OrderCheckFormSellerFragment"
-        val ORDER_FORM_SELLER_FRAGMENT = "OrderFormSellerFragment"
         val PRODUCT_SELLER_DETAIL_FRAGMENT = "ProductSellerDetailFragment"
         val PRODUCT_SELLER_EDIT_FRAGMENT = "ProductSellerEditFragment"
         val PRODUCT_SELLER_MAIN_FRAGMENT = "ProductSellerMainFragment"
@@ -159,7 +156,6 @@ class MainActivity : AppCompatActivity() {
             MY_PAGE_SELLER_REVIEW_FRAGMENT -> MyPageSellerReviewFragment()
             MY_PAGE_SELLER_REVIEW_DETAIL_FRAGMENT ->MyPageSellerReviewDetailFragment()
             MY_PAGE_SELLER_PRODUCT_STATE_FRAGMENT -> MyPageSellerProductStateFragment()
-            ORDER_FORM_SELLER_FRAGMENT -> OrderFormSellerFragment()
             ORDER_CHECK_FORM_SELLER_FRAGMENT -> OrderCheckFormSellerFragment()
             PRODUCT_SELLER_MAIN_FRAGMENT -> ProductSellerMainFragment()
             PRODUCT_SELLER_DETAIL_FRAGMENT -> ProductSellerDetailFragment()

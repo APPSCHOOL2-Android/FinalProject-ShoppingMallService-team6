@@ -16,24 +16,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.firebase.auth.UserInfo
-import com.kakao.sdk.user.model.User
-import com.test.keepgardeningproject_seller.DAO.UserDAO
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
-import com.test.keepgardeningproject_seller.Repository.AuctionSellerDetailRepository
 import com.test.keepgardeningproject_seller.Repository.UserRepository
-
 import com.test.keepgardeningproject_seller.databinding.FragmentMyPageSellerModifyBinding
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
+
 
 class MyPageSellerModifyFragment : Fragment() {
 

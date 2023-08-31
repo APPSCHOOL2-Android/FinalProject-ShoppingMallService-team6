@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_seller.Repository
 
 import android.net.Uri
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -44,13 +43,6 @@ class UserRepository {
             userSellerIdxRef.get().addOnCompleteListener(callback1)
         }
 
-        //사용자 정보 가져옴
-        fun getUserSellerInfoByIndex(userSellerIdx:Long,callback1: (Task<DataSnapshot>) -> Unit){
-            val database = FirebaseDatabase.getInstance()
-            val userSellerDataRef = database.getReference("UserSellerInfo")
-            userSellerDataRef.orderByChild("UserSellerIdx").equalTo(userSellerIdx.toDouble()).get().addOnCompleteListener(callback1)
-        }
-
         //이메일로 통해 사용자 정보 가져옴
         fun getUserSellerInfoById(userSellerEmail:String,callback1: (Task<DataSnapshot>) -> Unit){
             val database = FirebaseDatabase.getInstance()
@@ -88,11 +80,6 @@ class UserRepository {
                 }
             }
         }
-
-
-
-
-
 
         fun uploadImage(fileName:String,uploadUri: Uri,callback1: (Task<UploadTask.TaskSnapshot>) -> Unit){
             val storage = FirebaseStorage.getInstance()

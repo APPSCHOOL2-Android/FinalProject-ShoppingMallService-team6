@@ -8,8 +8,6 @@ import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.os.SystemClock
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +27,6 @@ import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLE
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_REGISTER_FRAGMENT
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import com.test.keepgardeningproject_seller.UI.HomeSeller.HomeSellerViewModel
 import com.test.keepgardeningproject_seller.UI.ProductSellerDetail.ProductSellerDetailFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerQnA.ProductSellerQnAFragment
 import com.test.keepgardeningproject_seller.UI.ProductSellerReview.ProductSellerReviewFragment
@@ -195,7 +192,6 @@ class ProductSellerMainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProductSellerMainViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {
@@ -222,13 +218,10 @@ class ViewPager2Adapter(fragmentActivity: FragmentActivity) : FragmentStateAdapt
     fun addFragment(fragment: Fragment) {
         fragments.add(fragment)
         notifyItemInserted(fragments.size - 1)
-        //TODO: notifyItemInserted!!
     }
 
     fun removeFragement() {
         fragments.removeLast()
         notifyItemRemoved(fragments.size)
-        //TODO: notifyItemRemoved!!
     }
-
 }

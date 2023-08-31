@@ -15,10 +15,6 @@ import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import com.test.keepgardeningproject_seller.API.GoogleAPI
-import com.test.keepgardeningproject_seller.API.KakaoAPI
-import com.test.keepgardeningproject_seller.API.NaverAPI
 import com.test.keepgardeningproject_seller.DAO.UserSellerInfo
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.Repository.UserRepository
@@ -114,7 +110,6 @@ class JoinSellerAddInfoFragment : Fragment() {
                             //Snackbar.make(fragmentJoinSellerAddInfoBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                             mainActivity.removeFragment(MainActivity.JOIN_SELLER_ADD_INFO_FRAGMENT)
                         }
-//
                     }
                 }
             }
@@ -166,5 +161,4 @@ class JoinSellerAddInfoFragment : Fragment() {
             textInputEditTextJoinSellerAddInfoPostNumber.setText(mainActivity.postAddress)
         }
     }
-
 }

@@ -1,8 +1,5 @@
 package com.test.keepgardeningproject_seller.DAO
 
-class UserDAO {
-}
-
 //사용자 정보 dataModel
 data class UserSellerInfo(
     var userSellerIdx: Long, var userSellerLoginType:Long,

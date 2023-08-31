@@ -1,18 +1,11 @@
 package com.test.keepgardeningproject_seller.UI.AuctionSellerMain
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.test.keepgardeningproject_seller.DAO.AuctionClass
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
 import com.test.keepgardeningproject_seller.Repository.AuctionRepository
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
 
 class AuctionSellerMainViewModel : ViewModel() {
 
@@ -52,9 +45,6 @@ class AuctionSellerMainViewModel : ViewModel() {
                     tempImageNameList.add(productImageList[i])
                 }
             }
-
-//            // 가장 마지막에 등록한것부터 보여주기
-//            tempImageNameList.reverse()
 
             auctionProductImageNameList.value = tempImageNameList
 

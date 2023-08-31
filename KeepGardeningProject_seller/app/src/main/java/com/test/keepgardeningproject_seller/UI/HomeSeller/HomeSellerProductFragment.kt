@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_seller.UI.HomeSeller
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +14,7 @@ import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_seller.DAO.ProductClass
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.MainActivity.Companion.PRODUCT_SELLER_MAIN_FRAGMENT
-import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.ProductRepository
-import com.test.keepgardeningproject_seller.UI.AuctionSellerRegister.AuctionSellerRegisterFragment
 import com.test.keepgardeningproject_seller.databinding.FragmentHomeSellerProductBinding
 import com.test.keepgardeningproject_seller.databinding.RowHomeSellerBinding
 import java.text.DecimalFormat

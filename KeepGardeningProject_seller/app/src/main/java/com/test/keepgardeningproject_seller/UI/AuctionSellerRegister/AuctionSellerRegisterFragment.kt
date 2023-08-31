@@ -28,7 +28,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.test.keepgardeningproject_seller.MainActivity
 import com.test.keepgardeningproject_seller.R
 import com.test.keepgardeningproject_seller.Repository.AuctionProductRepository
-import com.test.keepgardeningproject_seller.Repository.ProductRepository
 import com.test.keepgardeningproject_seller.databinding.FragmentAuctionSellerRegisterBinding
 import com.test.keepgardeningproject_seller.databinding.RowSellerRegisterBinding
 import java.util.Calendar
@@ -49,8 +48,6 @@ class AuctionSellerRegisterFragment : Fragment() {
     companion object {
         fun newInstance() = AuctionSellerRegisterFragment()
     }
-
-    private lateinit var viewModel: AuctionSellerRegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -285,11 +282,6 @@ class AuctionSellerRegisterFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AuctionSellerRegisterViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
     private val registerForActivityResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
