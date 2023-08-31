@@ -47,6 +47,7 @@ class ProductSellerReviewFragment : Fragment() {
             reviewClassList.observe(mainActivity) {
                 reviewList = it
                 fragmentProductSellerReviewBinding.recyclerViewProductSellerReview.adapter?.notifyDataSetChanged()
+                fragmentProductSellerReviewBinding.textViewProductSellerReview.text = "리뷰 내역 : ${reviewList.size}개"
             }
         }
         viewModel.getReviewInfoAll(productIdx.toLong())
