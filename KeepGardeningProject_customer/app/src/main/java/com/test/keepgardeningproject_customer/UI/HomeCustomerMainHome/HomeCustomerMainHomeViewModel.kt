@@ -1,13 +1,10 @@
 package com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome
 
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
-import kotlin.concurrent.thread
 
 class HomeCustomerMainHomeViewModel : ViewModel() {
 

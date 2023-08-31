@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMainHome.HomeCustomerMainHomeFragment
 import com.test.keepgardeningproject_customer.UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentHomeCustomerMainBinding
@@ -50,18 +51,19 @@ class HomeCustomerMainFragment : Fragment() {
                         mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT, true, null)
                     }
                 }
-
-                // 알람
-                imageHcmAlarm.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.ALERT_CUSTOMER_FRAGMENT,true,null)
-                }
             }
 
             //네비게이션 드로어
             navigationHcm.run{
                 // 헤더 설정
                 val headerHomeCustomerMainBinding = HeaderHomeCustomerMainBinding.inflate(inflater)
-                headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = "홍길동님 환영합니다"
+                var newemail = MainActivity.loginedUserInfo.userEmail.toString()
+                UserRepository.getUserInfoById(newemail){
+                    for(a1 in it.result.children){
+                        var mynick = a1.child("userNickname").value
+                        headerHomeCustomerMainBinding.textViewHcmHeaderTitle.text = mynick.toString() + "님 환영합니다"
+                    }
+                }
                 addHeaderView(headerHomeCustomerMainBinding.root)
 
                 // 마이페이지로

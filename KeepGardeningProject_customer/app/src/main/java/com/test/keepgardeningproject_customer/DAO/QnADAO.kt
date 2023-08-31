@@ -1,8 +1,4 @@
 package com.test.keepgardeningproject_customer.DAO
-
-class QnADAO {
-}
-
 data class QnAClass(
     var QnAIdx: Long,
     var QnAProductType: String,

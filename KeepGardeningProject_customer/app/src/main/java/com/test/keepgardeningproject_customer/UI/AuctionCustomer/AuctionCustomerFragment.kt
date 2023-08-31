@@ -2,7 +2,6 @@ package com.test.keepgardeningproject_customer.UI.AuctionCustomer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.DAO.AuctionProductInfo
-import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
@@ -82,7 +79,6 @@ class AuctionCustomerFragment : Fragment() {
 
                     override fun onQueryTextChange(newText: String?): Boolean {
                         //키보드에서 검색 버튼을 누르는 순간의 이벤트
-                        Log.d("^^^^^^^^^^^^^^^^^^^",query.toString())
                         val resultList = mutableListOf<AuctionProductInfo>()
                         val resultImageFileNameList = mutableListOf<String>()
                         for(ap in APInfoList){

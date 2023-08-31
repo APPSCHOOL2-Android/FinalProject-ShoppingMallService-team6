@@ -1,12 +1,10 @@
 package com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.test.keepgardeningproject_customer.DAO.AuctionInfo
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.databinding.FragmentAuctionCustomerDetailAuctionBinding
 import com.test.keepgardeningproject_customer.databinding.RowAuctionCustomerDetailAuctionBinding
 import java.text.DecimalFormat

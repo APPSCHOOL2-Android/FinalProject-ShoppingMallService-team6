@@ -1,25 +1,14 @@
 package com.test.keepgardeningproject_customer.UI.JoinCustomerMain
 
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.kakao.sdk.user.model.User
 import com.test.keepgardeningproject_customer.DAO.UserInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.MainActivity.Companion.loginedUserInfo
@@ -31,10 +20,7 @@ class JoinCustomerMainFragment : Fragment() {
     lateinit var fragmentJoinCustomerMainBinding: FragmentJoinCustomerMainBinding
     lateinit var mainActivity: MainActivity
     private var firebaseAuth: FirebaseAuth? = null
-    lateinit var albumLauncher: ActivityResultLauncher<Intent>
 
-    // 업로드할 이미지의 Uri
-    var uploadUri: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -74,8 +60,6 @@ class JoinCustomerMainFragment : Fragment() {
 
             }
 
-
-
             // 로그인 화면으로
             buttonJoinCustomerMainJoin.setOnClickListener {
                 userSubmit()
@@ -105,7 +89,6 @@ class JoinCustomerMainFragment : Fragment() {
                         if(isAdded){
                             if (task.isSuccessful) {
                                 Toast.makeText(requireContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                                //mainActivity.replaceFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT,false,null)
 
                             } else {
                                 Toast.makeText(requireContext(),"이미 존재하는 계정입니다.",Toast.LENGTH_SHORT).show()
@@ -120,7 +103,6 @@ class JoinCustomerMainFragment : Fragment() {
                         UserRepository.setUserIdx(userindex){
                             Snackbar.make(fragmentJoinCustomerMainBinding.root, "저장되었습니다", Snackbar.LENGTH_SHORT).show()
                             mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_TO_EMAIL_FRAGMENT)
-                            //mainActivity.removeFragment(MainActivity.LOGIN_CUSTOMER_MAIN_FRAGMENT)
                         }
                     }
                 }

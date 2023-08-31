@@ -4,8 +4,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
-import com.test.keepgardeningproject_customer.DAO.ProductClass
-import com.test.keepgardeningproject_customer.DAO.TotalOrderClass
 
 class OrderProductRepository {
     companion object {

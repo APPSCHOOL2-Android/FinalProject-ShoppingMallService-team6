@@ -56,7 +56,7 @@
                         android:layout_marginEnd="@dimen/padding_size_small"
                         android:src="@drawable/ic_shopping_cart_24px"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/image_hcm_alarm"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/gray" />
 
@@ -96,17 +96,6 @@
                             android:textColor="@color/colorAccent3" />
 
                     </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/image_hcm_alarm"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="@dimen/padding_size_middle"
-                        android:src="@drawable/ic_notifications_24px"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/gray" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
 

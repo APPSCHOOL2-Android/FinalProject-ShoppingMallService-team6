@@ -1,7 +1,6 @@
 package com.test.keepgardeningproject_customer.UI.ProductCustomerQnAWrite
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -9,19 +8,11 @@ import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -31,10 +22,7 @@ import com.test.keepgardeningproject_customer.MainActivity.Companion.MY_PAGE_CUS
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.QnARepository
 import com.test.keepgardeningproject_customer.databinding.FragmentProductCustomerQnaWriteBinding
-import com.test.keepgardeningproject_customer.databinding.RowRegisterImageBinding
-import java.text.DecimalFormat
 import java.util.Calendar
-import kotlin.concurrent.fixedRateTimer
 
 
 class ProductCustomerQnAWriteFragment : Fragment() {
@@ -44,11 +32,6 @@ class ProductCustomerQnAWriteFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var viewModel: ProductCustomerQnAWriteViewModel
-
-    var imageList = ArrayList<String>()
-    var uriList = ArrayList<Uri>()
-
-    val MAX_IMAGE_NUM = 3
 
     var productIdx: Long = 0
     var storeIdx: Long = 0
@@ -206,9 +189,5 @@ class ProductCustomerQnAWriteFragment : Fragment() {
 
         }
         return fragmentProductCustomerQnaWriteBinding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 }

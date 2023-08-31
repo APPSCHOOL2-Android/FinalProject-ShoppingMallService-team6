@@ -1,6 +1,5 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnA
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.keepgardeningproject_customer.DAO.QnaInfo
@@ -59,14 +58,10 @@ class MyPageCustomerQnAViewModel : ViewModel() {
                                     templist.reverse()
                                     qnalist.value = templist
                                 }
-
-
                             }
-
                         }
                     }
                 }
-
             }
         }
     }

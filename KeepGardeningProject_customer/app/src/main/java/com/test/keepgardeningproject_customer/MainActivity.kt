@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.test.keepgardeningproject_customer.DAO.UserInfo
-import com.test.keepgardeningproject_customer.UI.AlertCustomer.AlertCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomer.AuctionCustomerFragment
 import com.test.keepgardeningproject_customer.UI.AuctionCustomerDetail.AuctionCustomerDetailFragment
 import com.test.keepgardeningproject_customer.UI.CartCustomer.CartCustomerFragment
@@ -77,8 +76,6 @@ class MainActivity : AppCompatActivity() {
         var chosedAuctionProductIdx : Long = 1
 
         // 화면 분기
-
-        val ALERT_CUSTOMER_FRAGMENT = "AlertCustomerFragment"
         val AUCTION_CUSTOMER_FRAGMENT = "AuctionCustomerFragment"
         val AUCTION_CUSTOMER_DETAIL_FRAGMENT = "AuctionCustomerDetailFragment"
         val CART_CUSTOMER_FRAGMENT = "CartCustomerFragment"
@@ -145,7 +142,6 @@ class MainActivity : AppCompatActivity() {
 
         // 새로운 Fragment를 담을 변수
         newFragment = when(name){
-            ALERT_CUSTOMER_FRAGMENT -> AlertCustomerFragment()
             AUCTION_CUSTOMER_FRAGMENT -> AuctionCustomerFragment()
             AUCTION_CUSTOMER_DETAIL_FRAGMENT -> AuctionCustomerDetailFragment()
             CART_CUSTOMER_FRAGMENT -> CartCustomerFragment()

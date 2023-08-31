@@ -1,42 +1,23 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerAuction
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets.Side.all
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.AuctionProductRepository
-import com.test.keepgardeningproject_customer.Repository.AuctionRepository
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
-import com.test.keepgardeningproject_customer.Repository.UserRepository
-import com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerAuctionBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerAuctionBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseButtonBinding
-import java.lang.RuntimeException
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.Calendar
-import java.util.Date
 
 class MyPageCustomerAuctionFragment : Fragment() {
 

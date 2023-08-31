@@ -15,10 +15,6 @@ import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.ReviewRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewDetailBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 class MyPageCustomerReviewDetailFragment : Fragment() {
 

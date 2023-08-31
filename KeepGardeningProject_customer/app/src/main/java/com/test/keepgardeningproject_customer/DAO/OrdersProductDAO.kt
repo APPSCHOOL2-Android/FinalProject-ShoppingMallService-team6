@@ -1,8 +1,4 @@
 package com.test.keepgardeningproject_customer.DAO
-
-class OrdersProductDAO {
-}
-
 data class OrdersProductClass (
     // 개별 주문번호
     var ordersIdx: Long,

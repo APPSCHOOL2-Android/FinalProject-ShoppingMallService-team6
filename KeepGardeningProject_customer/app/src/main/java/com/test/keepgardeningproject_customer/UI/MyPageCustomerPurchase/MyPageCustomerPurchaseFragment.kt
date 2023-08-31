@@ -1,10 +1,7 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase
 
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
-
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,23 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.google.android.material.snackbar.Snackbar
-
-import com.test.keepgardeningproject_customer.DAO.UserInfo
-import com.test.keepgardeningproject_customer.DAO.purchaseInfo
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
-import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
-import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
-import com.test.keepgardeningproject_customer.Repository.UserRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerPurchaseBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseButtonBinding
-import java.lang.RuntimeException
-import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.concurrent.thread
 
 class MyPageCustomerPurchaseFragment : Fragment() {
 

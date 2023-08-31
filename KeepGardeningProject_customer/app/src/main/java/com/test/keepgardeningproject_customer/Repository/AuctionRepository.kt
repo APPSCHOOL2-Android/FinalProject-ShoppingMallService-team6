@@ -1,7 +1,5 @@
 package com.test.keepgardeningproject_customer.Repository
 
-import android.provider.ContactsContract.CommonDataKinds.Nickname
-import android.provider.ContactsContract.Data
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
@@ -42,13 +40,6 @@ class AuctionRepository {
             val database = FirebaseDatabase.getInstance()
             val databaseRef = database.getReference("Auction")
             databaseRef.push().setValue(auctionInfo).addOnCompleteListener (callback1)
-        }
-
-        // 상품인덱스를 이용해 관련된 경매내역 호출
-        fun getAuctionByProductIdx(auctionProductIdx : Double, callback1: (it: Task<DataSnapshot>) -> Unit){
-            var database = FirebaseDatabase.getInstance()
-            val databaseRef = database.getReference("Auction")
-            databaseRef.orderByChild("auctionAuctionProductIdx").equalTo(auctionProductIdx).get().addOnCompleteListener(callback1)
         }
 
     }

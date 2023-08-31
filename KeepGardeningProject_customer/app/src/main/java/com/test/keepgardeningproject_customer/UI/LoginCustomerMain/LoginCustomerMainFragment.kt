@@ -1,14 +1,11 @@
 package com.test.keepgardeningproject_customer.UI.LoginCustomerMain
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -38,8 +35,6 @@ class LoginCustomerMainFragment : Fragment() {
     private val kakaoApi = KakaoAPI()
     // 네이버 API 불러오기
     private val naverApi = NaverAPI()
-
-    // val sharedPref = requireContext().getSharedPreferences("myLogin", Context.MODE_PRIVATE)
 
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
@@ -158,7 +153,6 @@ class LoginCustomerMainFragment : Fragment() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val userEmail = account?.email
-            Log.e("email","$userEmail")
             // userEmail을 이용하여 이메일 처리
         } catch (e: ApiException) {
             // 로그인 실패 처리

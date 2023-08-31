@@ -1,35 +1,21 @@
 package com.test.keepgardeningproject_customer.UI.MyPageCustomerQnA
 
-import android.icu.lang.UCharacter.VerticalOrientation
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.test.keepgardeningproject_customer.DAO.MypageQnAData
-import com.test.keepgardeningproject_customer.DAO.MypageQnADetailData
 
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.R
 import com.test.keepgardeningproject_customer.Repository.PurchaseRepository
-import com.test.keepgardeningproject_customer.UI.HomeCustomerMain.HomeCustomerMainFragment
-import com.test.keepgardeningproject_customer.UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment
-import com.test.keepgardeningproject_customer.databinding.ActivityMainBinding
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerQnABinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerPurchaseButtonBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerQnaBinding
-import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
-import org.w3c.dom.Text
 import java.net.URL
 
 class MyPageCustomerQnAFragment : Fragment() {

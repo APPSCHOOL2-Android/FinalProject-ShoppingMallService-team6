@@ -3,10 +3,7 @@ package com.test.keepgardeningproject_customer.UI.OrderCheckFormCustomer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.test.keepgardeningproject_customer.DAO.OrdersProductClass
-import com.test.keepgardeningproject_customer.DAO.ProductClass
 import com.test.keepgardeningproject_customer.MainActivity
-import com.test.keepgardeningproject_customer.Repository.OrderProductRepository
 import com.test.keepgardeningproject_customer.Repository.ProductRepository
 import com.test.keepgardeningproject_customer.Repository.TotalOrderRepository
 
