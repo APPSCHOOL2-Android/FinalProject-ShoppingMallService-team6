@@ -262,9 +262,8 @@ class HomeCustomerSearchFragment : Fragment() {
                 // 클릭시 개별 아이템 상세페이지 이동
                 rowHcsGridBinding.root.setOnClickListener {
                     val selectedProductIdx = rpl[adapterPosition].productIdx!!
-                    val bundle = Bundle()
-                    bundle.putLong("selectedProductIdx",selectedProductIdx)
-                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
+                    MainActivity.chosedProductIdx = selectedProductIdx
+                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
         }
@@ -319,9 +318,8 @@ class HomeCustomerSearchFragment : Fragment() {
                 // 클릭시 개별 아이템 상세페이지 이동
                 rowHcsLinearBinding.root.setOnClickListener {
                     val selectedProductIdx = rpl[adapterPosition].productIdx!!
-                    val bundle = Bundle()
-                    bundle.putLong("selectedProductIdx",selectedProductIdx)
-                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,bundle)
+                    MainActivity.chosedProductIdx = selectedProductIdx
+                    mainActivity.replaceFragment(MainActivity.PRODUCT_CUSTOMER_DETAIL_FRAGMENT,true,null)
                 }
             }
         }
