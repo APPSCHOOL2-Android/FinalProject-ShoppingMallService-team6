@@ -101,8 +101,8 @@ class ProductSellerMainFragment : Fragment() {
                 setNavigationOnClickListener {
                     var oldFragment = arguments?.getString("oldFragment")
                     if(oldFragment == "ProductSellerRegisterFragment") {
-                        mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
                         mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
+                        mainActivity.removeFragment(PRODUCT_SELLER_REGISTER_FRAGMENT)
                     } else {
                         mainActivity.removeFragment(PRODUCT_SELLER_MAIN_FRAGMENT)
                     }
@@ -179,6 +179,8 @@ class ProductSellerMainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        fileNameList.clear()
         fragmentProductSellerMainBinding.viewPagerProductSellerMainFragment.requestLayout()
 
         productSellerMainViewModel.getProductInfo(productIdx.toLong())
