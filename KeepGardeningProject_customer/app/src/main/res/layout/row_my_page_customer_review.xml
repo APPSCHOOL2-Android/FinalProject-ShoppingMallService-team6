@@ -1,84 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/margin_size"
-    android:id = "@+id/ProductReviewRow"
-    android:background="#406E7783">
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_tertiary99"
+    android:orientation="vertical">
 
-
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_margin="@dimen/margin_size"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src = "@drawable/ic_launcher_foreground"/>
+        android:layout_margin="5dp"
+        app:contentPadding="@dimen/padding_size_middle">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/imageView_rc_productImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_foreground"
+                app:srcCompat="@mipmap/app" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:text = "상점이름"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:id = "@+id/textview_rc_storeName"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:text = "상품이름"
-                android:layout_width="match_parent"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:layout_height="wrap_content"
-                android:id = "@+id/textview_rc_productName"/>
-
-            <RatingBar
-                android:id = "@+id/ProductReviewStars"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:numStars="5"
-                android:rating="3"
-                android:stepSize="1"/>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id = "@+id/textview_rc_productComment"
-                android:layout_width="match_parent"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textview_rc_storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="상점이름" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textview_rc_productName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="상품이름" />
+
+                <RatingBar
+                    android:id="@+id/ProductReviewStars"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:stepSize="1" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textview_rc_productComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="한줄 평" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text = "한줄 평"/>
-
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_arrow_right_24px" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginStart="170dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:layout_marginEnd="30dp"
-                android:id = "@+id/imageButton_rc_detail"
-                android:layout_marginTop="@dimen/margin_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_right_24px"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@color/white"/>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

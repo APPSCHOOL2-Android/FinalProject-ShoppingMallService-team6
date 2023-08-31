@@ -7,16 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.test.keepgardeningproject_customer.DAO.MypageReview
 import com.test.keepgardeningproject_customer.DAO.MypageReviewDetail
 import com.test.keepgardeningproject_customer.DAO.Review
 import com.test.keepgardeningproject_customer.DAO.TestDAO
 import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.CartRepository
 import com.test.keepgardeningproject_customer.Repository.ReviewRepository
 import com.test.keepgardeningproject_customer.databinding.FragmentMyPageCustomerReviewBinding
 import com.test.keepgardeningproject_customer.databinding.RowMyPageCustomerReviewBinding
@@ -24,150 +27,110 @@ import org.w3c.dom.Text
 
 class MyPageCustomerReviewFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MyPageCustomerReviewFragment()
-    }
-
     private lateinit var viewModel: MyPageCustomerReviewViewModel
-
     lateinit var binding: FragmentMyPageCustomerReviewBinding
-
     lateinit var mainActivity: MainActivity
 
-    lateinit var newBundle:Bundle
-
-    var reviewDetail: MypageReviewDetail = MypageReviewDetail(1,"오준용","환불할게요")
+    val userIdx = MainActivity.loginedUserInfo.userIdx!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentMyPageCustomerReviewBinding.inflate(inflater)
-
         mainActivity = activity as MainActivity
 
-        val view = binding.root
-
-        binding.run {
-
-            materialToolbarRc.run {
-
-                title = "리뷰 내역"
-
-                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
-
-                setNavigationOnClickListener {
-
-                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_FRAGMENT)
-
-                }
-
+        viewModel = ViewModelProvider(mainActivity)[MyPageCustomerReviewViewModel::class.java]
+        viewModel.run {
+            reviewList.observe(mainActivity) {
+                binding.recyclerViewMyPageCustomerReview.adapter?.notifyDataSetChanged()
             }
-
-            val userIdx = MainActivity.loginedUserInfo.userIdx.toString()
-
-            ReviewRepository.getUserReview(userIdx){
-
-                var reviewList = mutableListOf<Review>()
-
-                for(c1 in it.result.children){
-
-                    reviewList.add(c1.value as Review)
-
-                }
-
-                MyPageReviewRecyclerView.run{
-
-                    adapter = ReviewRecyclerViewAdapter(reviewList)
-                    layoutManager = LinearLayoutManager(context)
-
-                }
-
-
-
-            }
-
         }
 
-        return view
+        binding = FragmentMyPageCustomerReviewBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
+
+        binding.run {
+            viewModel.reset()
+            
+            materialToolbarRc.run {
+                title = "리뷰 내역"
+                setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.MY_PAGE_CUSTOMER_REVIEW_FRAGMENT)
+                }
+            }
+
+            recyclerViewMyPageCustomerReview.run {
+                adapter = ReviewRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(context)
+            }
+
+            viewModel.getReviewData(userIdx.toString())
+        }
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MyPageCustomerReviewViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    inner class ReviewRecyclerViewAdapter(val reviewList: MutableList<Review>) :
+    inner class ReviewRecyclerViewAdapter() :
         RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>() {
         inner class ReviewViewHolder(rowCustomerReviewBinding: RowMyPageCustomerReviewBinding) :
             RecyclerView.ViewHolder(rowCustomerReviewBinding.root) {
 
-            val ProductName: TextView
-            val StoreName: TextView
-            val Comment: TextView
-
-            val rating :RatingBar
-
-            val moveBtn:ImageButton
+            val rowImage: ImageView
+            val rowStoreName: TextView
+            val rowProductName: TextView
+            val rowReviewTitle: TextView
+            val rowRating :RatingBar
 
             init {
-                ProductName = rowCustomerReviewBinding.textviewRcProductName
-                StoreName = rowCustomerReviewBinding.textviewRcStoreName
-                Comment = rowCustomerReviewBinding.textviewRcProductComment
+                rowImage = rowCustomerReviewBinding.imageViewRcProductImage
+                rowProductName = rowCustomerReviewBinding.textviewRcProductName
+                rowStoreName = rowCustomerReviewBinding.textviewRcStoreName
+                rowReviewTitle = rowCustomerReviewBinding.textviewRcProductComment
+                rowRating = rowCustomerReviewBinding.ProductReviewStars
 
-                rating = rowCustomerReviewBinding.ProductReviewStars
+                rowCustomerReviewBinding.root.setOnClickListener {
+                    val reviewIdx = viewModel.reviewList.value?.get(adapterPosition)?.reviewIdx!!
+                    val bundle = Bundle()
+                    bundle.putLong("reviewIdx", reviewIdx)
 
-                moveBtn = rowCustomerReviewBinding.imageButtonRcDetail
+                    mainActivity.replaceFragment(MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT, true, bundle)
+                }
             }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
             val rowCustomerReviewBinding = RowMyPageCustomerReviewBinding.inflate(layoutInflater)
-            val ViewHolder = ReviewViewHolder(rowCustomerReviewBinding)
+            val viewHolder = ReviewViewHolder(rowCustomerReviewBinding)
 
             rowCustomerReviewBinding.root.layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
 
-            return ViewHolder
+            return viewHolder
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return viewModel.reviewList.value?.size!!
         }
 
         override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-            holder.ProductName.text = reviewList[position].productName
-            holder.StoreName.text = reviewList[position].storeName
-            holder.Comment.text = reviewList[position].reviewTitle
-            holder.rating.rating = reviewList[position].rating.toFloat()
-
-            holder.moveBtn.setOnClickListener {
-
-                val imageResourceId = R.drawable.img_orchid
-
-                newBundle = Bundle().apply{
-
-                    putFloat("contentRating", reviewList[position].rating.toFloat())
-                    putInt("contentImage",imageResourceId)
-                    putString("contentTitle",reviewList[position].reviewTitle)
-                    putString("contentReview",reviewList[position].reviewContent)
-
-                }
-
-
-                mainActivity.replaceFragment(
-                    MainActivity.MY_PAGE_CUSTOEMR_REVIEW_DETAIL_FRAGMENT,
-                    true,
-                    newBundle
-                )
-
+            var fileName = viewModel.reviewList.value?.get(position)?.productImage!!
+            ReviewRepository.getProductImage(fileName) {
+                var fileUri = it.result
+                Glide.with(mainActivity).load(fileUri).into(holder.rowImage)
             }
 
+            holder.rowStoreName.text = viewModel.reviewList.value?.get(position)?.storeName!!
+            holder.rowProductName.text = viewModel.reviewList.value?.get(position)?.productName!!
+            holder.rowReviewTitle.text = viewModel.reviewList.value?.get(position)?.reviewTitle!!
+            holder.rowRating.rating = viewModel.reviewList.value?.get(position)?.reviewRating?.toFloat()!!
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getReviewData(userIdx.toString())
+    }
 }
