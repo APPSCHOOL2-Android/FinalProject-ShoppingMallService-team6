@@ -55,10 +55,7 @@ class JoinCustomerMainFragment : Fragment() {
                     }
                 }
             }
-            // 중복확인하기
-            buttonJoinCustomerMainDoubleCheck.setOnClickListener {
 
-            }
 
             // 로그인 화면으로
             buttonJoinCustomerMainJoin.setOnClickListener {

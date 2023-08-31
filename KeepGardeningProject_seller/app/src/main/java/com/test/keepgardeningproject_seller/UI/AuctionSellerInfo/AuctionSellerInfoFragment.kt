@@ -113,7 +113,7 @@ class AuctionSellerInfoFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
             // 인덱스 표시
-            holder.textViewRowIndex.text = (position+1).toString()
+            holder.textViewRowIndex.text = ("${position + 1} 순위").toString()
 
             // 입찰자 닉네임 표시
             holder.textViewRowNickname.text = auctionSellerInfoViewModel.auctionClassList.value?.get(position)?.auctionBidNickname
