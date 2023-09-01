@@ -1,13 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.CartCustomer.CartCustomerFragment">
+    android:orientation="vertical"
+    tools:context=".UI.CartCustomer.CartCustomerFragment" >
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_cart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Theme.KeepGardeningProject_customer.Toolbar" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_small">
+
+        <TextView
+            android:id="@+id/textView_cart_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="center_vertical"
+            android:text="상품갯수"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_cart_deleteAll"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="전체삭제"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:transitionGroup="true"
+        android:padding="@dimen/padding_size_middle"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_cart_pay"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:fontFamily="@font/nanum_square_round_bold"
+        android:text="결제하기"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+</LinearLayout>

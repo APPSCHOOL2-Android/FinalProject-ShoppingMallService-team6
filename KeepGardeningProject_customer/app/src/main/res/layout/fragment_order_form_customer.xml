@@ -1,13 +1,546 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.OrderFormCustomer.OrderFormCustomerFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_orderForm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Theme.KeepGardeningProject_customer.Toolbar" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_size_big">
+
+                <TextView
+                    android:id="@+id/textView_orderForm_orderInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="상품주문정보"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_orderForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_size_middle"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:transitionGroup="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_extra_bold"
+                        android:text="총 결제금액"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="상품 금액" />
+
+                        <TextView
+                            android:id="@+id/textView_orderForm_productPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:gravity="right"
+                            android:text="22,000원" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="배송비" />
+
+                        <TextView
+                            android:id="@+id/textView_orderForm_deliveryFee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:gravity="right"
+                            android:text="7,000원" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="총 결제 금액" />
+
+                        <TextView
+                            android:id="@+id/textView_orderForm_totalPaymentPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:gravity="right"
+                            android:text="29,000원" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_extra_bold"
+                        android:text="주문자 정보"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView25"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="주문자명" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:inputType="text|textPersonName" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView28"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="연락처" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:inputType="phone" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView29"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="이메일" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_ordererEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_ordererEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:inputType="text" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_extra_bold"
+                        android:text="배송지 정보"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_size_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView30"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="받는사람" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_receiverName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_receiverName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textPersonName" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView31"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="연락처" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_receiverPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_receiverPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="phone" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView24"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="주소" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:enabled="false"
+                                android:inputType="text|textMultiLine" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/button_orderForm_findAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_bold"
+                                android:text="검색" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView32"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="상세주소" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_detailAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_detailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView33"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:gravity="left|center_vertical"
+                            android:text="배송 요청사항" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInput_orderForm_deliveryRequest"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editText_orderForm_deliveryRequest"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text|textMultiLine" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView34"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_extra_bold"
+                            android:text="결제수단"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup_orderForm_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="20dp">
+
+                            <RadioButton
+                                android:id="@+id/radioButton_orderForm_deposit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_bold"
+                                android:text="무통장 입금" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton_orderForm_card"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_bold"
+                                android:text="카드 결제" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton_orderForm_naverPay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_round_bold"
+                                android:text="네이버 페이" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="최종 결제 금액"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView_orderForm_finalPayPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:gravity="right"
+                        android:text="29,000원"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/checkBox_orderForm_allAgree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:text="주문/결제 진행 필수 동의"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:id="@+id/checkBoxGroup_orderForm_agree"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp">
+
+                        <CheckBox
+                            android:id="@+id/checkBox_orderForm_agree1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="(필수) 개인정보 수집, 처리 및 이용 동의" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox_orderForm_agree2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="(필수) 개인정보 제3자 제공 동의" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_size_small">
+
+        <Button
+            android:id="@+id/button_orderForm_submitOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="주문하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+</LinearLayout>

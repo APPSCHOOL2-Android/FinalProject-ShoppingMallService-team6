@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_middle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_size_top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_productSellerReview_reviewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="리뷰 제목"
+                android:textSize="@dimen/text_size_20" />
+
+            <RatingBar
+                android:id="@+id/ratingBar_productSellerReview"
+                style="?attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:numStars="5"
+                android:progressTint="@color/colorAccent3"
+                android:rating="3"
+                android:stepSize="1" />
+
+            <TextView
+                android:id="@+id/textView_productSellerReview_reviewContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="리뷰 내용"
+                android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/padding_size_middle">
+
+    <ImageView
+        android:id="@+id/imageView_hcmh_favorite"
+        android:layout_width="@dimen/homeCustomerMainHome_recycler_favorite_item_image_size"
+        android:layout_height="@dimen/homeCustomerMainHome_recycler_favorite_item_image_size"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/textView_hcmh_favoriteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="제목"
+        android:fontFamily="@font/nanum_square_round_regular"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:fontFamily="@font/nanum_square_round_bold"
+        android:id="@+id/textView_hcmh_favoritePrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="10000원"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+</LinearLayout>

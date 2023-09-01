@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_small">
+
+        <ImageView
+            android:id="@+id/imageview_ac_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textview_ac_state2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_size_top"
+                    android:text="[입찰완료]"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="@dimen/text_size_20"
+                    app:fontFamily="@font/nanum_square_round_extra_bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ac_productName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="몬스테라"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="@dimen/text_size_20"
+                    app:fontFamily="@font/nanum_square_round_bold" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_ac_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="구매하기"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    app:backgroundTint="@color/colorPrimary"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

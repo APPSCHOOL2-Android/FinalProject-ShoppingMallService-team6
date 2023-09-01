@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.HomeCustomerMyPageMain.HomeCustomerMyPageMainFragment" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar.hcpm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_size_middle">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:textSize="@dimen/text_size_16"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="구매내역"
+                android:textSize="@dimen/text_size_16" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_auction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="경매내역"
+                android:textSize="@dimen/text_size_16"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="리뷰내역"
+                android:textSize="@dimen/text_size_16"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            app:contentPadding="@dimen/margin_size">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_homeCustomerMyPageMain_qna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_right_24px"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="문의내역"
+                android:textSize="@dimen/text_size_16"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|left">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_findPw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="비밀번호 찾기" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_logOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="로그아웃"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_homeCustomerMyPageMain_withdrawal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="회원탈퇴"
+                    android:textSize="@dimen/text_size_16"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

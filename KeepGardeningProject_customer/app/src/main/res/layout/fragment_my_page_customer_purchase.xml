@@ -1,13 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.MyPageCustomerPurchase.MyPageCustomerPurchaseFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_pc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_pc_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:padding="@dimen/padding_size_middle"
+                android:text="결제"
+                android:textSize="@dimen/text_size_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_pcp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_size_middle">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_pc_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:padding="@dimen/padding_size_middle"
+                android:text="배송"
+                android:textSize="@dimen/text_size_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_pcd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_size_middle">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.MyPageSellerProductState.MyPageSellerProductStateFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
 
-</FrameLayout>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id = "@+id/materialToolbar_seller_product_state_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="@dimen/padding_size_middle"
+            android:id = "@+id/recyclerView_seller_product_state"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ScrollView>
+
+
+</LinearLayout>

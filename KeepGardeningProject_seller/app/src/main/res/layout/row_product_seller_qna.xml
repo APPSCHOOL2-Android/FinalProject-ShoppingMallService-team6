@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_size_middle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/margin_size_top"
+            android:layout_marginRight="@dimen/margin_size_top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_productSellerQnA_qnaTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_extra_bold"
+                android:text="문의 제목"
+                android:textSize="@dimen/text_size_20" />
+
+            <TextView
+                android:id="@+id/textView_productSellerQnA_qnaContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="문의 내용"
+                android:textSize="@dimen/text_size_16" />
+
+            <TextView
+                android:id="@+id/textView_productSellerQnA_qnaDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_light"
+                android:text="TextView"
+                android:textAlignment="viewEnd" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

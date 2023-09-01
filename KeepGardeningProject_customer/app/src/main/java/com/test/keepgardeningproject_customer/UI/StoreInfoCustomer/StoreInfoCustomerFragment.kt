@@ -2,31 +2,114 @@ package com.test.keepgardeningproject_customer.UI.StoreInfoCustomer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.test.keepgardeningproject_customer.MainActivity
 import com.test.keepgardeningproject_customer.R
+import com.test.keepgardeningproject_customer.Repository.StoreRepository
+import com.test.keepgardeningproject_customer.databinding.FragmentStoreInfoCustomerBinding
+import com.test.keepgardeningproject_customer.databinding.RowStoreInfoCustomerBinding
 
 class StoreInfoCustomerFragment : Fragment() {
+    lateinit var fragmentStoreInfoCustomerBinding: FragmentStoreInfoCustomerBinding
+    lateinit var mainActivity: MainActivity
 
-    companion object {
-        fun newInstance() = StoreInfoCustomerFragment()
-    }
-
-    private lateinit var viewModel: StoreInfoCustomerViewModel
+    private lateinit var storeInfoCustomerViewModel: StoreInfoCustomerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_store_info_customer, container, false)
+        fragmentStoreInfoCustomerBinding = FragmentStoreInfoCustomerBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
+
+        storeInfoCustomerViewModel = ViewModelProvider(mainActivity)[StoreInfoCustomerViewModel::class.java]
+        storeInfoCustomerViewModel.run {
+            storeInfoStoreList.observe(mainActivity) {
+                fragmentStoreInfoCustomerBinding.recyclerViewStoreInfo.adapter?.notifyDataSetChanged()
+            }
+
+            storeInfoImageList.observe(mainActivity) {
+                fragmentStoreInfoCustomerBinding.recyclerViewStoreInfo.adapter?.notifyDataSetChanged()
+            }
+        }
+
+        fragmentStoreInfoCustomerBinding.run {
+            toolbarStoreInfo.run {
+                title = "스토어"
+                setNavigationIcon(R.drawable.ic_back_24px)
+                setNavigationOnClickListener {
+                    mainActivity.removeFragment(MainActivity.STORE_INFO_CUSTOMER_FRAGMENT)
+                }
+            }
+
+            recyclerViewStoreInfo.run {
+                adapter = StoreInfoRecyclerViewAdpater()
+                layoutManager = LinearLayoutManager(context)
+            }
+
+            storeInfoCustomerViewModel.getAllStoreInfo()
+        }
+
+        return fragmentStoreInfoCustomerBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(StoreInfoCustomerViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    inner class StoreInfoRecyclerViewAdpater : RecyclerView.Adapter<StoreInfoRecyclerViewAdpater.StoreInfoViewHolder>() {
+        inner class StoreInfoViewHolder(rowStoreInfoCustomerBinding: RowStoreInfoCustomerBinding) :
+            RecyclerView.ViewHolder(rowStoreInfoCustomerBinding.root) {
 
+            var rowStoreName: TextView
+            var rowStoreImage: ImageView
+
+            init {
+                rowStoreName = rowStoreInfoCustomerBinding.textViewRowStoreInfoStoreName
+                rowStoreImage = rowStoreInfoCustomerBinding.imageViewRowStoreInfo1
+
+                rowStoreInfoCustomerBinding.root.setOnClickListener {
+                    val storeIdx = storeInfoCustomerViewModel.storeInfoStoreList.value?.get(adapterPosition)?.userSellerIdx!!
+                    val bundle = Bundle()
+                    bundle.putLong("storeIdx", storeIdx)
+
+                    mainActivity.replaceFragment(MainActivity.STORE_INFO_CUSTOMER_DETAIL_FRAGMENT, true, bundle)
+                }
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreInfoViewHolder {
+            val rowStoreInfoCustomerBinding = RowStoreInfoCustomerBinding.inflate(layoutInflater)
+            val storeInfoViewHolder = StoreInfoViewHolder(rowStoreInfoCustomerBinding)
+
+            rowStoreInfoCustomerBinding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            return storeInfoViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return storeInfoCustomerViewModel.storeInfoStoreList.value?.size!!
+        }
+
+        override fun onBindViewHolder(holder: StoreInfoViewHolder, position: Int) {
+            var fileName = storeInfoCustomerViewModel.storeInfoImageList.value?.get(position)!!
+            Log.i("f222", fileName)
+            if (fileName != "None") {
+                StoreRepository.getImage(fileName) {
+                    var fileUri = it.result
+                    Glide.with(mainActivity).load(fileUri).into(holder.rowStoreImage)
+                }
+            }
+
+            holder.rowStoreName.text = storeInfoCustomerViewModel.storeInfoStoreList.value?.get(position)?.userSellerStoreName
+        }
+    }
 }

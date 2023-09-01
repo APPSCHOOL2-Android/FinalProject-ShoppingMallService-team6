@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_size_small"
+    android:paddingBottom="@dimen/padding_size_small">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="상품금액"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="20,000원"
+            app:layout_constraintStart_toEndOf="@+id/textView_rowOrderForm_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_deliveryFee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="배송비 : 3000원"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="36dp" />
+
+        <ImageView
+            android:id="@+id/imageView_rowOrderForm_productImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_1"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@mipmap/app" />
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="상품명"
+            app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderForm_productImage"
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_productPrice" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="상품 총금액"
+            app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderForm_productImage"
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_productName" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="수량"
+            app:layout_constraintStart_toEndOf="@+id/imageView_rowOrderForm_productImage"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_totalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:layout_marginTop="10dp"
+            android:text="23,000원"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_rowOrderForm_productName" />
+
+        <TextView
+            android:id="@+id/textView_rowOrderForm_productCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:layout_marginTop="10dp"
+            android:text="1개"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

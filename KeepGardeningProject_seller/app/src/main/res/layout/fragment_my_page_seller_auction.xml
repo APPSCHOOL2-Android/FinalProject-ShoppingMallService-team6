@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.MyPageSellerAuction.MyPageSellerAuctionFragment">
+    android:orientation="vertical"
+    tools:context=".UI.MyPageSellerAuction.MyPageSellerAuctionFragment" >
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_as"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_as"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout>
+        android:padding="@dimen/padding_size_middle"/>
+</LinearLayout>

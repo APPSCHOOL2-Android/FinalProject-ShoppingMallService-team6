@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_size_middle"
     tools:context=".UI.ProductSellerQnA.ProductSellerQnAFragment">
 
     <TextView
+        android:id="@+id/textView_productSellerQnA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_round_bold"
+        android:text="문의 내역 : 0개"
+        android:textSize="@dimen/text_size_16" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_productSellerQnA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
-
-</FrameLayout>
+        android:layout_marginTop="@dimen/margin_size_top" />
+</LinearLayout>

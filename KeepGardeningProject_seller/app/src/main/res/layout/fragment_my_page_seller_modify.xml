@@ -1,13 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".UI.MyPageSellerModify.MyPageSellerModifyFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_ms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_size_middle">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="닉네임"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_nickName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_ms_addressNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="주소"
+                    android:enabled="false"
+                    android:transitionGroup="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditText_ms_addressNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_size"
+                        android:enabled="true"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:inputType="text|textEmailAddress|textMultiLine" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_mc_modifySearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_size_top"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="찾기" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_addressDetail"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상세 주소"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_addressDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_ms_storeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="상점 배너"
+                    android:textSize="@dimen/text_size_16" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView_ms_storeImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:scaleType="center"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="상점 설명"
+                android:transitionGroup="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_ms_storeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:hint="상점명"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditText_ms_storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="true"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:inputType="text|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_ms_modifyEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="수정 완료"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

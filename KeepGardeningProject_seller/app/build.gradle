@@ -48,6 +48,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -55,7 +56,26 @@ dependencies {
     // firebase 관련
     implementation platform('com.google.firebase:firebase-bom:32.2.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
+    implementation 'com.google.firebase:firebase-storage:20.2.1'
 
     // Splash
     implementation 'androidx.core:core-splashscreen:1.0.1'
+
+    // 카카오톡 로그인
+    implementation "com.kakao.sdk:v2-user:2.15.0"
+    // 네이버 로그인
+    implementation 'com.navercorp.nid:oauth:5.7.0' // jdk 11
+    implementation("com.navercorp.nid:oauth:5.7.0") // jdk 11
+    // 구글 로그인
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    // 다이얼로그
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
 }

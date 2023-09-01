@@ -1,13 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.MyPageSellerReviewDetail.MyPageSellerReviewDetailFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar"
+        android:id = "@+id/materialToolbar_rs_detail"/>
+
+
+    <ImageView
+        android:layout_margin="@dimen/margin_size_top"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/ic_launcher_background"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:layout_marginEnd="@dimen/margin_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "2023.08.16"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="@dimen/padding_size_middle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
 
-</FrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "별점"
+            android:textSize="@dimen/text_size_20"
+            android:fontFamily="@font/nanum_square_round_bold" />
+
+        <RatingBar
+            android:id="@+id/ratingbar_rs_review_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:numStars="5"
+            android:progressTint="@color/colorAccent3"
+            android:rating="3"
+            android:stepSize="1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "제목"
+            android:textSize="@dimen/text_size_20"
+            android:fontFamily="@font/nanum_square_round_bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id= "@+id/editTextView_rs_title"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "내용"
+            android:textSize="@dimen/text_size_20"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:gravity="top"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id= "@+id/editTextView_rs_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginLeft="@dimen/margin_size_top"
+                android:layout_marginRight="@dimen/margin_size_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text = "수정"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginLeft="@dimen/margin_size_top"
+                android:layout_marginRight="@dimen/margin_size_top"
+                android:backgroundTint="@color/Red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text = "삭제"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,13 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.OrderCheckFormSeller.OrderCheckFormSellerFragment">
 
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_orderCheckForm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        style="@style/Theme.KeepGardeningProject_seller.Toolbar" />
 
-</FrameLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_size_middle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:id="@+id/textView_orderCheckForm_orderNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="No. 202308171234" />
+
+                    <TextView
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:id="@+id/textView_orderCheckForm_orderDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="2023.08.17 11:50" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#000000" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_orderCheckForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_size_middle"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:transitionGroup="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_orderCheckForm_addressInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="배송지 정보"
+                    android:textSize="@dimen/text_size_16"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="받으시는 분" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_addressUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="이채연" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="연락처" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_addressPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="010-1234-5678" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="배송지" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_addressDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="( 31234) 000아파트 000동 000호" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="배송 메시지" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_deliveryMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="배송 전 연락 부탁드립니다." />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_orderCheckForm_ordererInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_extra_bold"
+                    android:text="주문자 정보"
+                    android:textSize="@dimen/text_size_16"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_top"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="이름" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_ordererName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="이채연" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="연락처" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_ordererPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="010-1234-5678" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_size_5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="이메일" />
+
+                    <TextView
+                        android:id="@+id/textView_orderCheckForm_ordererEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="right"
+                        android:text="abcd1234@naver.com" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

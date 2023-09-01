@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.MyPageCustomerModify.MyPageCustomerModifyFragment">
 
-    <TextView
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_mc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical"
+        android:padding="@dimen/padding_size_middle">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_mc_nickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_size"
+            android:hint="닉네임"
+            android:transitionGroup="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_mc_nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:inputType="text|textPersonName"
+                android:textSize="@dimen/text_size_18" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_mc_modify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_size_top"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="수정완료"
+            android:textSize="@dimen/text_size_20"
+            app:backgroundTint="@color/colorPrimary" />
+
+    </LinearLayout>
+
+</LinearLayout>
