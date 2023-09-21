@@ -52,3 +52,18 @@
   </table>
 </div>
 
+
+# 🛠 Tech & Library
+
++ Target SDK Level 33
++ Min SDK Level 24
++ Kotlin 1.8.20
+  
+ 구분 | 내용
+-- | --
+Architecture Pattern | MVVM
+Third Party Library | Kakao SDK, Naver SDK, Google SDK
+Database | Firebase
+Jetpack | LiveData, ViewModel
+Other  | Figma, Google Docs
+
