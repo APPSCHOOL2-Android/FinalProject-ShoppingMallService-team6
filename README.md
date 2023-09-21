@@ -6,7 +6,7 @@
 + 2023.08.01 ~ 2023.09.01까지 6명이 함께 진행한 프로젝트입니다.
 + 현대 사회에서 반려 식물로 식집사가 등장한 이래, 식물에 대한 요구 및 필요성을 가지게 되어 식물 및 식물에 필요한 도구를 파는 서비스입니다.
 
-# 💻 Contributor
+# :smile: Contributor 
 <div align="center">
 <table style="font-weight : bold">
       <tr>
@@ -53,7 +53,7 @@
 </div>
 
 
-# 🛠 Tech & Library
+# 💻 Tech & Library 
 
 + Target SDK Level 33
 + Min SDK Level 24
