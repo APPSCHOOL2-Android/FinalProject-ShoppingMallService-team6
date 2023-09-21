@@ -7,6 +7,7 @@
 + 현대 사회에서 반려 식물로 식집사가 등장한 이래, 식물에 대한 요구 및 필요성을 가지게 되어 식물 및 식물에 필요한 도구를 파는 서비스입니다.
   
 
+
 # :smile: Contributor 
 <div align="center">
 <table style="font-weight : bold">
@@ -54,6 +55,7 @@
 </div>
 
 
+
 # 💻 Tech & Library 
 
 + Target SDK Level 33
@@ -68,9 +70,11 @@ Database | Firebase
 Jetpack | LiveData, ViewModel
 Other  | Figma, Google Docs
 
+
 # 📷Features
 
 + Customer
+  
 <div>
       <img
         width="18%"
@@ -100,5 +104,39 @@ Other  | Figma, Google Docs
 
 
 </div>
+
++ Seller
+
+  
+<div>
+   <img
+        width="18%"
+        alt="image"
+        src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/0ee5956e-3020-4992-b716-d5b371590b13"
+       />
+      <img
+        width="18%"
+        alt="image"
+        src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/9853978b-dac6-479c-a380-d939ea2450fb"
+      />
+       <img
+        width="18%"
+        alt="image"
+        src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/22cb38f7-6d36-4b12-97ae-8b2ae7ddd4cb"
+      />
+       <img
+        width="18%"
+        alt="image"
+        src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/6a8b43fe-9930-4d17-a8b5-d3ec32688cf0"
+      />
+        <img
+        width="18%"
+        alt="image"
+        src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/245d171b-8150-48bb-87ee-a22c2d950c4b"
+      />
+
+
+</div>
+
 
 
