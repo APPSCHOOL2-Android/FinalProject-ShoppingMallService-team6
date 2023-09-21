@@ -62,7 +62,6 @@
           <td align="center">신승헌</td>
           <td align="center">정채윤</td>
           <td align="center">피유진</td>
-        
       </tr>
   </table>
 </div>
