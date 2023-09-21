@@ -1,7 +1,14 @@
 # FinalProject-ShoppingMallService-team6
 테킷 앱스쿨:안드로이드1기 최종 프로젝트(쇼핑몰 서비스 개발) - 6팀
+-----------------------
 
+<img
+  width = "10%"
+  alt="image"
+  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/36e4675e-778b-42a5-aa15-cefa53b23be9"
+  />
 킵카드닝
+
 
 + 2023.08.01 ~ 2023.09.01까지 6명이 함께 진행한 프로젝트입니다.
 + 현대 사회에서 반려 식물로 식집사가 등장한 이래, 식물에 대한 요구 및 필요성을 가지게 되어 식물 및 식물에 필요한 도구를 파는 서비스입니다.
