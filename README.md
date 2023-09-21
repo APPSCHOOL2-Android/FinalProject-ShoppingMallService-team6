@@ -25,6 +25,8 @@
   
 + 시스템 융합 ➡️ 천원샵으로 저렴한 상품을 홍보를 하고, 경매시스템으로 더 즐거운 구매 경험을 제공
 
+
+
 # :smile: Contributor 
 
 <div align="center">
@@ -66,6 +68,11 @@
   </table>
 </div>
 
+
+# 🚧 Structure
+<img
+  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/4a7b8c5c-b59a-48e2-bf3c-ad8648b9b9ec"
+/>
 
 
 # 💻 Tech & Library 
