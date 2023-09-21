@@ -54,12 +54,7 @@
               <a href="https://github.com/PIYUJIN">                 
                   <img alt="oreocube" src="https://avatars.githubusercontent.com/PIYUJIN" width="120" />            
               </a>
-          </td>
-           <td align="center">
-              <a href="https://github.com/dlwngud">                 
-                  <img alt="oreocube" src="https://avatars.githubusercontent.com/dlwngud" width="120" />            
-              </a>
-          </td>
+           </td>
       </tr>
       <tr>
           <td align="center">이채연</td>
@@ -67,7 +62,7 @@
           <td align="center">신승헌</td>
           <td align="center">정채윤</td>
           <td align="center">피유진</td>
-          <td align="center">이주형</td>
+        
       </tr>
   </table>
 </div>
