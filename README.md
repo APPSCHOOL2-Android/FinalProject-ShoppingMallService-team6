@@ -6,9 +6,20 @@
 + 2023.08.01 ~ 2023.09.01까지 6명이 함께 진행한 프로젝트입니다.
 + 현대 사회에서 반려 식물로 식집사가 등장한 이래, 식물에 대한 요구 및 필요성을 가지게 되어 식물 및 식물에 필요한 도구를 파는 서비스입니다.
   
+# 🌟 Goal
 
++ 다양한 상품 목록 형식 ➡️ 리스트, 그리드 형식으로 확 인할 수 있는 기능을 도입
+  
++ 현대적인 UI/UX ➡️ 최신 트랜드에 부합하는 사용자 인터페이스를 도입
+  
++ 소셜 로그인 ➡️ 네이버, 카카오, 구글 로그인 로그인 옵션을 제공
+  
++ 어플 분리 ➡️ 사용자들이 각각의 역할에 특화 된 기능을 사용할 수 있게 제공
+  
++ 시스템 융합 ➡️ 천원샵으로 저렴한 상품을 홍보를 하고, 경매시스템으로 더 즐거운 구매 경험을 제공
 
 # :smile: Contributor 
+
 <div align="center">
 <table style="font-weight : bold">
       <tr>
@@ -62,7 +73,7 @@
 + Min SDK Level 24
 + Kotlin 1.8.20
   
- 구분 | 내용
+ Divide | Content
 -- | --
 Architecture Pattern | MVVM
 Third Party Library | Kakao SDK, Naver SDK, Google SDK
