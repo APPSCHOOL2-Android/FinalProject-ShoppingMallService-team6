@@ -12,6 +12,9 @@
 
 + 2023.08.01 ~ 2023.09.01까지 5명이 함께 진행한 프로젝트입니다.
 + 현대 사회에서 반려 식물로 식집사가 등장한 이래, 식물에 대한 요구 및 필요성을 가지게 되어 식물 및 식물에 필요한 도구를 파는 서비스입니다.
+
+# ⚓ Tech Stack
+- <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=github&logoColor=Green"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=firebase&logoColor=white">
   
 # 🌟 Goal
 
@@ -25,9 +28,6 @@
   
 + 시스템 융합 ➡️ 천원샵으로 저렴한 상품을 홍보를 하고, 경매시스템으로 더 즐거운 구매 경험을 제공
 
-
-# ⚓ Tech Stack
-- <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=github&logoColor=Green">
 
 
 
