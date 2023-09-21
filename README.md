@@ -26,6 +26,10 @@
 + 시스템 융합 ➡️ 천원샵으로 저렴한 상품을 홍보를 하고, 경매시스템으로 더 즐거운 구매 경험을 제공
 
 
+# ⚓ Tech Stack
+- <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=github&logoColor=Green">
+
+
 
 # :smile: Contributor 
 
