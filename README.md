@@ -92,9 +92,7 @@
 <br>
 
 # 🚧 Structure
-<img
-  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/4a7b8c5c-b59a-48e2-bf3c-ad8648b9b9ec"
-/>
+![image](https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/b2d9b062-1451-4136-bc62-8d9ba29bbd00)
 
 <br>
 
