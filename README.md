@@ -103,7 +103,7 @@ Other  | Figma, Google Docs
 
 <br>
 
-# 📷Features
+# 📷 Photos
 
 + Customer
   
