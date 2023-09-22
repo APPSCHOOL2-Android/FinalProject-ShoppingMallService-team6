@@ -21,7 +21,7 @@
 
 <br>
 
-# 🌟 Feature
+# 🌟 Produce
 
 + 다양한 상품 목록 형식 ➡️ 리스트, 그리드 형식으로 확 인할 수 있는 기능을 도입
   
@@ -68,11 +68,18 @@
            </td>
       </tr>
       <tr>
-          <td align="center">이채연</td>
-          <td align="center">임성욱</td>
+          <td align="center">이채연(리더)</td>
+          <td align="center">임성욱(부리더)</td>
           <td align="center">신승헌</td>
           <td align="center">정채윤</td>
           <td align="center">피유진</td>
+      </tr>
+      <tr>
+          <td align="center">프로젝트 관리 로그인 & 회원가입 담당</td>
+          <td align="center">마이페이지 담당</td>
+          <td align="center">주문 담당</td>
+          <td align="center">구매자 홈 화면 담당</td>
+          <td align="center">판매자 홈화면 담당</td>
       </tr>
   </table>
 </div>
@@ -103,7 +110,7 @@ Other  | Figma, Google Docs
 
 <br>
 
-# 📷 Photos
+# 📷 Features
 
 + Customer
   
