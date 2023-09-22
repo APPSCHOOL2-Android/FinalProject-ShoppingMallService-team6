@@ -9,11 +9,12 @@
 
 
 <img
-  width = "10%"
+  width = "100%"
   alt="image"
-  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/36e4675e-778b-42a5-aa15-cefa53b23be9"
+  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/70b7dd17-0440-4d44-967f-f1d7fe697038"
   />
-       킵가드닝
+       
+
 
           
   <br>
