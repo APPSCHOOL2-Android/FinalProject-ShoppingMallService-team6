@@ -6,18 +6,10 @@
 
 <br>
 
-
-
-<img
-  width = "100%"
-  alt="image"
-  src ="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/40172001/70b7dd17-0440-4d44-967f-f1d7fe697038"
-  />
-       
-
+![image](https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/78582f2f-524e-4c9e-9ab0-aeece8aef340)
 
           
-  <br>
+<br>
 
 # 🌟 Produce
 + 2023.08.01 ~ 2023.09.01까지 5명이 함께 진행한 프로젝트입니다.
