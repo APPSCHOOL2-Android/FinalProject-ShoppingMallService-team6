@@ -155,6 +155,8 @@ Other  | Figma, Google Docs
 
 </div>
 
+<br>
+
 + Seller
 
   
