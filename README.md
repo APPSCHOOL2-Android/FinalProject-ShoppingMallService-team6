@@ -1,6 +1,7 @@
-# FinalProject-ShoppingMallService-team6
-테킷 앱스쿨:안드로이드1기 최종 프로젝트(쇼핑몰 서비스 개발) - 6팀
------------------------
+
+# KEEP GARDENING <img src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/e7e30792-f804-4474-a083-f452c735b7fd" align=left width=100><img src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/8a4030af-8fab-4e23-a22d-38858b04a04f" align=left width=100>
+
+> 테킷 앱스쿨:안드로이드1기 최종 프로젝트(쇼핑몰 서비스 개발)    🌱 식물 쇼핑몰 플랫폼 - 판매자, 구매자 어플리케이션
 
 
 
@@ -12,17 +13,12 @@
 <br>
 
 # 🌟 Produce
-+ 2023.08.01 ~ 2023.09.01까지 5명이 함께 진행한 프로젝트입니다.
++ 2023.08.07 ~ 2023.08.31까지 5명이 함께 진행한 프로젝트입니다.
 + 현대 사회에서 1인 가구 증가로 인해 반려 식물을 돌보는 '식집사' 문화가 증가되어 왔습니다.
 + 특히 코로나 19 펜데믹 이후에 정서적 안정과 위안을 제공하는 녹색 식물들이 코로나블루의 완화에 기여하고 있다는 점이 부각되었습니다.
 + 또한 전문적이고 안전한 방식으로 반려식물을 사고 파는 플랫폼을 제공하여 사용자가 편의성과 신뢰성을 높여야겠다고 생각하였습니다
 + 그래서 저희는 기존의 식물앱보다 나은 식물과 식물용품을 사고파는 서비스앱을 만들었습니다.
   
-<br>
-
-# ⚓ Tech Stack
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"> <img src="https://img.shields.io/badge/diagrams.net-F08705?style=for-the-badge&logo=diagrams.net&logoColor=white"> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white"> <img src="https://img.shields.io/badge/Google Maps-4285F4?style=for-the-badge&logo=Google Maps&logoColor=white"> <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"> <img src="https://img.shields.io/badge/Material Design-757575?style=for-the-badge&logo=Material Design&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
-
 <br>
 
 # 🔨 Development
@@ -40,59 +36,15 @@
 
 <br>
 
-# :smile: Contributor 
-
-<div align="center">
-<table style="font-weight : bold">
-      <tr>
-         <td align="center">
-              <a href="https://github.com/dkin12 ">                 
-                  <img alt="AnKyungMoo" src="https://avatars.githubusercontent.com/dkin12 " width="120" />            
-              </a>
-          </td>
-          <td align="center">
-              <a href="https://github.com/Seongwk">                 
-                  <img alt="SEO-J17" src="https://avatars.githubusercontent.com/SeongWk" width="120" />            
-              </a>
-          </td>
-          <td align="center">
-              <a href="https://github.com/ShShin98">                 
-                  <img alt="oreocube" src="https://avatars.githubusercontent.com/ShShin98" width="120" />            
-              </a>
-          </td>
-          <td align="center">
-              <a href="https://github.com/JUNGCHAEYOON">                 
-                  <img alt="oreocube" src="https://avatars.githubusercontent.com/JUNGCHAEYOON" width="120" />            
-              </a>
-          </td>
-           <td align="center">
-              <a href="https://github.com/PIYUJIN">                 
-                  <img alt="oreocube" src="https://avatars.githubusercontent.com/PIYUJIN" width="120" />            
-              </a>
-           </td>
-      </tr>
-      <tr>
-          <td align="center">이채연(리더)</td>
-          <td align="center">임성욱(부리더)</td>
-          <td align="center">신승헌</td>
-          <td align="center">정채윤</td>
-          <td align="center">피유진</td>
-      </tr>
-      <tr>
-          <td align="center">프로젝트 관리 로그인 & 회원가입 담당</td>
-          <td align="center">마이페이지 담당</td>
-          <td align="center">주문 담당</td>
-          <td align="center">구매자 홈 화면 담당</td>
-          <td align="center">판매자 홈화면 담당</td>
-      </tr>
-  </table>
-</div>
+# 🛠️ Structure
+![image](https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/b2d9b062-1451-4136-bc62-8d9ba29bbd00)
 
 
 <br>
 
-# 🚧 Structure
-![image](https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/b2d9b062-1451-4136-bc62-8d9ba29bbd00)
+# ⚓ Tech Stack
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"> <img src="https://img.shields.io/badge/diagrams.net-F08705?style=for-the-badge&logo=diagrams.net&logoColor=white"> <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"> <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=Android&logoColor=white"> <img src="https://img.shields.io/badge/Google Maps-4285F4?style=for-the-badge&logo=Google Maps&logoColor=white"> <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"> <img src="https://img.shields.io/badge/Material Design-757575?style=for-the-badge&logo=Material Design&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
+
 
 <br>
 
@@ -182,4 +134,52 @@ Other  | Figma, Google Docs
 </div>
 
 
+<br>
 
+# 🙌 Contributor 
+
+<div align="center">
+<table style="font-weight : bold">
+      <tr>
+         <td align="center">
+              <a href="https://github.com/dkin12 ">                 
+                  <img alt="AnKyungMoo" src="https://avatars.githubusercontent.com/dkin12 " width="120" />            
+              </a>
+          </td>
+          <td align="center">
+              <a href="https://github.com/Seongwk">                 
+                  <img alt="SEO-J17" src="https://avatars.githubusercontent.com/SeongWk" width="120" />            
+              </a>
+          </td>
+          <td align="center">
+              <a href="https://github.com/ShShin98">                 
+                  <img alt="oreocube" src="https://avatars.githubusercontent.com/ShShin98" width="120" />            
+              </a>
+          </td>
+          <td align="center">
+              <a href="https://github.com/JUNGCHAEYOON">                 
+                  <img alt="oreocube" src="https://avatars.githubusercontent.com/JUNGCHAEYOON" width="120" />            
+              </a>
+          </td>
+           <td align="center">
+              <a href="https://github.com/PIYUJIN">                 
+                  <img alt="oreocube" src="https://avatars.githubusercontent.com/PIYUJIN" width="120" />            
+              </a>
+           </td>
+      </tr>
+      <tr>
+          <td align="center">이채연(리더)</td>
+          <td align="center">임성욱(부리더)</td>
+          <td align="center">신승헌</td>
+          <td align="center">정채윤</td>
+          <td align="center">피유진</td>
+      </tr>
+      <tr>
+          <td align="center">프로젝트 관리 <br/>로그인 & 회원가입 담당</td>
+          <td align="center">마이페이지 담당</td>
+          <td align="center">주문 담당</td>
+          <td align="center">구매자 홈 화면 담당</td>
+          <td align="center">판매자 홈화면 담당</td>
+      </tr>
+  </table>
+</div>
