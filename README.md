@@ -1,7 +1,7 @@
 
 # KEEP GARDENING <img src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/e7e30792-f804-4474-a083-f452c735b7fd" align=left width=100><img src="https://github.com/APPSCHOOL2-Android/FinalProject-ShoppingMallService-team6/assets/86800087/8a4030af-8fab-4e23-a22d-38858b04a04f" align=left width=100>
 
-> 테킷 앱스쿨:안드로이드1기 최종 프로젝트(쇼핑몰 서비스 개발)    🌱 식물 쇼핑몰 플랫폼 - 판매자, 구매자 어플리케이션
+> 테킷 앱스쿨:안드로이드1기 최종 프로젝트(쇼핑몰 서비스 개발)    🌱 식물 쇼핑몰 플랫폼 
 
 
 
